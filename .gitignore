@@ -1,0 +1,15 @@
+# Maven
+HELP.md
+target/
+src/main/resources/application.properties
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Dolphin
+.directory
+
+# MacOs
+.DS_Store
