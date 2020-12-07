@@ -5,8 +5,8 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 public class BotController extends TelegramLongPollingBot {
 
-    private String username;
-    private String token;
+    private String username; // Bot username
+    private String token; // Bot token
 
     public BotController(String username) throws Exception {
         this.username = username;

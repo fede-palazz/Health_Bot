@@ -8,6 +8,7 @@ import java.util.Properties;
 public class Property {
 
     public static String getProp(String path, String key) throws IOException {
+        // Restituisce il valore di una properties specificata dalla key
         FileInputStream fis = null;
         Properties prop = null;
         try {
