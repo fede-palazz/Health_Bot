@@ -5,11 +5,11 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 public class BotController extends TelegramLongPollingBot {
 
-    private String username; // Bot username
+    private String botUsername; // Bot username
     private String token; // Bot token
 
     public BotController(String username) throws Exception {
-        this.username = username;
+        this.botUsername = username;
         String path = "src/main/resources/application.properties";
         this.token = Property.getProp(path, "token"); // Legge il token dal file
         if (token.isBlank() || token.isEmpty())
@@ -23,7 +23,7 @@ public class BotController extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return this.username;
+        return this.botUsername;
     }
 
     @Override
