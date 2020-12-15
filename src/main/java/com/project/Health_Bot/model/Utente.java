@@ -1,4 +1,4 @@
-package model;
+package com.project.Health_Bot.model;
 /*
  * questa classe è astratta poichè deve modellare 3 possibili stili di vita.
  * per ogni stile di vita ho dei metodi in comune ma diversi tra loro -> uso abstract 

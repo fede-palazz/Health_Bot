@@ -1,4 +1,4 @@
-package util;
+package com.project.Health_Bot.util;
 
 import java.util.Scanner;
 
