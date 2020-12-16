@@ -39,7 +39,7 @@ Diagramma dei casi d'uso:
 
 ## Contributors
 
-- Federico Palazzi [https://github.com/]
-- Giovanni Novelli [https://github.com/] 
+- Federico Palazzi [https://github.com/fedePalazz]
+- Giovanni Novelli [https://github.com/GiovanniNovelli9] 
 - Alessio Baldelli [https://github.com/Baldellaux]
 

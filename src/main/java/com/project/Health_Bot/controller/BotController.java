@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package com.project.Health_Bot.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,6 +9,12 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import com.project.Health_Bot.service.BotService;
 
+/**
+ * @author FedePalaz & GiovanniNovelli9 & Baldellaux
+ *
+ * Classe Controller del Bot.
+ *
+ */
 @RestController
 public class BotController extends TelegramLongPollingBot {
 

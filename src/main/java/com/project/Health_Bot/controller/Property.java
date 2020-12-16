@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package com.project.Health_Bot.controller;
 
 import java.io.FileInputStream;
@@ -5,6 +8,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
+/**
+ * @author FedePalaz & GiovanniNovelli9 & Baldellaux
+ *
+ * Classe che contiene le proprità del programma.
+ *
+ */
 public class Property {
 
     public static String getProp(String path, String key) throws IOException {
