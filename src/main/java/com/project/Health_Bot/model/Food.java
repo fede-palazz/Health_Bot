@@ -3,58 +3,69 @@ package com.project.Health_Bot.model;
 public class Food {
 
 	protected String cibo;
-	protected double Kcal;
-	protected double proteine;
-	protected double lipidi;
-	protected double carboidrati;
-	protected double zuccheri;
+	protected double energ_kcal;
+	protected double protein;
+	protected double lipid_tot;
+	protected double carbohydrt;
+	protected double sugar_tot;
 	
-	public Food(double kcal, double proteine, double lipidi, double carboidrati, double zuccheri) {
-		this.Kcal = kcal;
-		this.proteine = proteine;
-		this.lipidi = lipidi;
-		this.carboidrati = carboidrati;
-		this.zuccheri = zuccheri;
+	public Food(String cibo, double energ_kcal, double protein, double lipid_tot, double carbohydrt, double sugar_tot) {
+		this.cibo = cibo;
+		this.energ_kcal = energ_kcal;
+		this.protein = protein;
+		this.lipid_tot = lipid_tot;
+		this.carbohydrt = carbohydrt;
+		this.sugar_tot = sugar_tot;
 	}
 
-	public double getKcal() {
-		return Kcal;
+	public String getCibo() {
+		return cibo;
 	}
 
-	public void setKcal(double kcal) {
-		Kcal = kcal;
+	public void setCibo(String cibo) {
+		this.cibo = cibo;
 	}
 
-	public double getProteine() {
-		return proteine;
+	public double getEnerg_kcal() {
+		return energ_kcal;
 	}
 
-	public void setProteine(double proteine) {
-		this.proteine = proteine;
+	public void setEnerg_kcal(double energ_kcal) {
+		this.energ_kcal = energ_kcal;
 	}
 
-	public double getLipidi() {
-		return lipidi;
+	public double getProtein() {
+		return protein;
 	}
 
-	public void setLipidi(double lipidi) {
-		this.lipidi = lipidi;
+	public void setProtein(double protein) {
+		this.protein = protein;
 	}
 
-	public double getCarboidrati() {
-		return carboidrati;
+	public double getLipid_tot() {
+		return lipid_tot;
 	}
 
-	public void setCarboidrati(double carboidrati) {
-		this.carboidrati = carboidrati;
+	public void setLipid_tot(double lipid_tot) {
+		this.lipid_tot = lipid_tot;
 	}
 
-	public double getZuccheri() {
-		return zuccheri;
+	public double getCarbohydrt() {
+		return carbohydrt;
 	}
 
-	public void setZuccheri(double zuccheri) {
-		this.zuccheri = zuccheri;
+	public void setCarbohydrt(double carbohydrt) {
+		this.carbohydrt = carbohydrt;
 	}
-		
+
+	public double getSugar_tot() {
+		return sugar_tot;
+	}
+
+	public void setSugar_tot(double sugar_tot) {
+		this.sugar_tot = sugar_tot;
+	}
+	
+	
+	
 }
