@@ -1,4 +1,4 @@
-Progetto Programmazione ad Oggetti: Health_Bot
+# Progetto Programmazione ad Oggetti: Health_Bot
 
 ## UTILIZZO CORRETTO E SCOPO DEL PROGETTO
 
@@ -28,4 +28,18 @@ Successivamente, seguendo le istruzioni indicate da BotFather, sarà possibile, 
 - Scegliere la descrizione, dopo aver selezionato il bot, con il comando '/setdescription'.
 
   Inoltre BotFather dà fornisce all'utente il token per accedere all'HTTP API del Bot.
+
+## DIAGRAMMI UML E FUNZIONAMENTO DEL SOFTWARE
+
+Diagramma dei casi d'uso:
+
+![Health_Bot__Case Diagram](/Users/baldellaux/Desktop/BOT_Project/UML/Health_Bot/Health_Bot__Case Diagram.jpg)
+
+
+
+## Contributors
+
+- Federico Palazzi [https://github.com/]
+- Giovanni Novelli [https://github.com/] 
+- Alessio Baldelli [https://github.com/Baldellaux]
 
