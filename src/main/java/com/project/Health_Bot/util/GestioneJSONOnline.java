@@ -1,24 +1,18 @@
 package com.project.Health_Bot.util;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
+
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.Scanner;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
@@ -28,12 +22,12 @@ public class GestioneJSONOnline {
 	protected double i;
 	
 	
-   /**
-	 * Metodo per scaricare un JSONObject utilizzando l'API del BMI.
-	 * 
-	 * @throws ParseException 
-	 * 
-	 */
+    /**
+     * 
+     * Metodo che chiama l'API del BMI
+     * @return valore del BMI
+     * @throws ParseException
+     */
 	public double BMI_API() throws ParseException {
 		
 		HttpRequest request = HttpRequest.newBuilder()
@@ -43,6 +37,7 @@ public class GestioneJSONOnline {
 		.method("GET", HttpRequest.BodyPublishers.noBody())
 		.build();
 		HttpResponse<String> response = null;
+		
 		try {
 		response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
 		} 
@@ -52,6 +47,7 @@ public class GestioneJSONOnline {
 		catch (InterruptedException e) {
 		e.printStackTrace();
 		}
+		
 		System.out.println(response.body()); //mi da una stringa java
 		String risposta = response.body();
 		
@@ -63,11 +59,11 @@ public class GestioneJSONOnline {
 		return i = (double) obj.get("bmi");
 		}	
 		
+	
     /**
-     * Metodo per scaricare un JSONObject utilizzando API del FOOD.
-     *
-     *
-     * @param url URL da cui utilizzare la chiamata API.
+     * 
+     * Metodo che chiama l'API del FOOD
+     * @return il JSONObject contente i valori nutrizionali del cibo scelto
      * @throws ParseException
      */
     public JSONObject FOOD_API() throws ParseException {
@@ -78,6 +74,7 @@ public class GestioneJSONOnline {
 		        .method("GET", HttpRequest.BodyPublishers.noBody())
 		        .build();
 		    HttpResponse<String> response = null;
+		    
 		    try {
 		      response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
 		    } catch (IOException e) {
@@ -87,23 +84,23 @@ public class GestioneJSONOnline {
 		    }
 		    
 		    JSONParser parser = new JSONParser();
-		    Object obj = (JSONArray) parser.parse(response.body()); // il parsing trasfmora il dato in long o double
+		    // il parsing trasforma il dato in long o double
+		    Object obj = (JSONArray) parser.parse(response.body()); 
 		    JSONArray array = (JSONArray) obj;
 		    
-		    JSONObject jo = (JSONObject)array.get(4); //prende il quinto elemento di un array
+		    //prende il quinto elemento di un array
+		    JSONObject jo = (JSONObject)array.get(4); 
 		    
 		    return jo;
 			}
 
     
-   /** 
-	*
-	* Prende in input i dati dal JSONObject
-	* formattazione JSON ({ "cibo":"apple", "kcal":"valore diz.",...}
-	* salvare la formattazione in JSONObject
-	* return JSONObject
-	* 
-	*/
+    /**
+     * 
+     * Metodo che formatta un JSONObject, utilizzato per far funzionare il metodo precedente
+     * @param jo
+     * @return jo1
+     */
 	public JSONObject formattazioneJSON (JSONObject jo) {
 			// Casto tutti i valori a Object
 			Object d0 = ((Object) jo.get("energ_kcal"));
@@ -112,6 +109,8 @@ public class GestioneJSONOnline {
 			Object d3 = ((Object) jo.get("carbohydrt"));
 			Object d4 = ((Object) jo.get("lipid_tot"));
 			Object d5 = ((Object) jo.get("sugar_tot"));
+			
+			// Creo un nuovo oggetto JSONObject, che è il formattato di jo
 			JSONObject jo1 = new JSONObject();
 			jo1.put("energ_kcal", d0);
 			jo1.put("water", d1);
@@ -119,20 +118,21 @@ public class GestioneJSONOnline {
 			jo1.put("carbohydrt", d3);
 			jo1.put("lipid_tot", d4);
 			jo1.put("sugar_tot", d5);
+			
 			return jo1;
 			}
 	
 
 	/**
-	* Metodo per salvare un oggetto in un file di testo .json.
-	*
-	* @param nome_file Nome del file in cui salvare l'oggetto.
-	* @param Obj JSONObject da inserire.
-	*/
+	 * 
+	 * Metodo che salva un oggetto in un file di testo .json.
+	 * @param nome_file
+	 * @param obj
+	 */
 	public void salvaFile(String nome_file, JSONObject obj) {
 		try {
-		// Constructs a FileWriter given a file name, using the platform's default charset
-		file = new FileWriter("prova1.json", true); //true = non sovrascive il file
+	    //true = non sovrascive il file
+		file = new FileWriter("prova1.json", true); 
 		file.write(obj.toJSONString());
 		verifica("Successfully Copied JSON Object to File...");
 		verifica("\nJSON Object: " + obj);
@@ -140,47 +140,57 @@ public class GestioneJSONOnline {
 		catch (IOException e) {
 		e.printStackTrace();
 		} 
+		
 		finally {
+		
 		try {
-		file.flush();
-		file.close();
+		file.flush(); // svuota il buffer
+		file.close(); // chiude la lettura del file
 		} 
 		catch (IOException e) {
 		e.printStackTrace();
 		}
-      }
-   }
+      
+	   }
+   
+	}
 	
 	
 	/**
-	*
-	* Metodo per verificare che il file sia stato salvato.
-	* 
-	*/
+	 * 
+	 * Metodo per verificare che il file sia stato salvato correttamente.
+	 * @param str
+	 */
 	static public void verifica(String str) {
 		System.out.println("str");
 	  }
 	
+	
 	/**
-	* Metodo per caricare un oggetto in un file di testo .json.
-	*
-	* @param nome_file Nome del file in cui salvare l'oggetto.
-	* @param Obj JSONObject .
-	*/
-	public static void caricaFile (String nome_file) {
-		//caricare JSONObject salvato in locale su un file .JSON
+	 * 
+	 * Metodo per caricare un JSONObject salvato in un file locale.
+	 * @param nome_file
+	 * @return
+	 */
+	public static JSONObject caricaFile (String nome_file) {
 		JSONParser parser = new JSONParser();
 		try {
 		Object obj = parser.parse(new FileReader(nome_file));
-		// A JSON object. Key value pairs are unordered. JSONObject supports java.util.Map interface.
 		JSONObject jsonObject = (JSONObject) obj;
-		System.out.println(jsonObject);
-		}catch (IOException e) {
+		return jsonObject;
+		}
+		catch (IOException e) {
 		e.printStackTrace();
 		} catch (ParseException e) {
 		e.printStackTrace();
 		}
+		
+		return null;
 		}
+	
+	
+	
+	
 	
   }
 
