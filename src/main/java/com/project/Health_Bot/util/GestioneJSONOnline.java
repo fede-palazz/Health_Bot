@@ -1,186 +1,198 @@
 package com.project.Health_Bot.util;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
+
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.Scanner;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 public class GestioneJSONOnline {
 	
-	private JSONArray ja = null;
-	private JSONObject obj = null;
-	private static FileWriter file;
-	protected String risposta;
-	private int altezza;
-	private double peso;
-	private double bmi;
-	
-	public GestioneJSONOnline() {
-		this.obj = new JSONObject();
-		this.ja = new JSONArray();
-	}
-
-	public JSONArray getArray() {
-		return ja;
-	}
-
-	public void setArray(JSONArray ja) {
-		this.ja = ja;
-	}
-
-	public JSONObject getObject() {
-		return obj;
-	}
-
-	public void setObject(JSONObject obj) {
-		this.obj = obj;
-	}
-	
-	/**
-	 * Inserisco un JSONObject nel mio JSONArray.
-	 * @param jo JSONOnject
-	 */
-	public void insertObject(JSONObject obj) {
-		this.ja.add(obj);
-	}
+	private FileWriter file;
+	protected double i;
 	
 	
-	/**
-	* Metodo per salvare un oggetto in un file di testo .json.
-	*
-	* @param nome_file Nome del file in cui salvare l'oggetto.
-	* @param Obj JSONObject da inserire.
-	*/
-	public void salvaFile(String nome_file, JSONObject obj) {
+    /**
+     * 
+     * Metodo che chiama l'API del BMI
+     * @return valore del BMI
+     * @throws ParseException
+     */
+	public double BMI_API() throws ParseException {
+		
+		HttpRequest request = HttpRequest.newBuilder()
+		.uri(URI.create("https://body-mass-index-bmi-calculator.p.rapidapi.com/metric?weight=80+&height=1.83"))
+		.header("x-rapidapi-key", "b799bcf831msha880494b27071fbp184accjsna4aba3b9c35d")
+		.header("x-rapidapi-host", "body-mass-index-bmi-calculator.p.rapidapi.com")
+		.method("GET", HttpRequest.BodyPublishers.noBody())
+		.build();
+		HttpResponse<String> response = null;
+		
 		try {
-		// Constructs a FileWriter given a file name, using the platform's default charset
-		file = new FileWriter(nome_file, true); //true = non sovrascive il file
-		file.write(obj.toJSONString()+"\n");
-
-		 } catch (IOException e) {
+		response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+		} 
+		catch (IOException e) {
 		e.printStackTrace();
-
-		 } finally {
-
-		 try {
-		file.flush();
-		file.close();
-		} catch (IOException e) {
+		} 
+		catch (InterruptedException e) {
 		e.printStackTrace();
-		}
-		}
-		}
-	
-	/**
-	 * Metodo per leggere un oggetto da un file di testo .json.
-	 * Posso scegliere se caricare un JSONObject oppure un JSONArray.
-	 * 
-	 * @param nome_file Nome del file da cui leggere l'oggetto.
-	 * @param isObject Specifica se l'oggetto da salvare � un JSONObject oppure un JSONArray.
-	 */
-	public void caricaFile(String nome_file, boolean isObject) {
-		String data = "";
-		String line = "";
-		try {
-			Scanner file_input = new Scanner(new BufferedReader(new FileReader(nome_file)));	  
-			String str = file_input.nextLine();
-			
-			if(isObject) {
-				this.obj = (JSONObject) JSONValue.parseWithException(str);	 //parse JSON Object
-				System.out.println("JSONObject letto: "+ this.obj);
-			}else{
-				this.ja = (JSONArray) JSONValue.parseWithException(str);	//parse JSON Array
-				System.out.println("JSONArray letto: "+ this.ja);
-				System.out.println("IL JSONArray letto ha "+ this.ja.size()+" elementi!");
-			}
-			
-			file_input.close();
-			
-		} catch (IOException | ParseException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 		
-	}
+		System.out.println(response.body()); //mi da una stringa java
+		String risposta = response.body();
+		
+		//convertire da JSONString a JSONObject
+		JSONParser parser = new JSONParser();
+		JSONObject obj = (JSONObject) parser.parse(risposta);
+		
+		//System.out.println(obj.get("bmi")); //mi da il valore del BMI
+		return i = (double) obj.get("bmi");
+		}	
+		
 	
-	/**
-	 * Metodo per scaricare un JSONObject utilizzando l'API del BMI.
-	 * 
-	 * @throws ParseException 
-	 * 
-	 */
-	public JSONObject BMIAPI () throws ParseException {
-		HttpRequest request = HttpRequest.newBuilder()
-				.uri(URI.create("https://body-mass-index-bmi-calculator.p.rapidapi.com/metric?weight=peso&height=altezza"))
-				.header("x-rapidapi-key", "b799bcf831msha880494b27071fbp184accjsna4aba3b9c35d")
-				.header("x-rapidapi-host", "body-mass-index-bmi-calculator.p.rapidapi.com")
-				.method("GET", HttpRequest.BodyPublishers.noBody())
-				.build();
-				HttpResponse<String> response = null;
-				try {
-				response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
-				} catch (IOException e) {
-				e.printStackTrace();
-				} catch (InterruptedException e) {
-				e.printStackTrace();
-				}
-				System.out.println(response.body()); //mi da una stringa java
-				risposta = response.body();
-				JSONParser parser = new JSONParser();
-				JSONObject obj = (JSONObject) parser.parse(risposta);
-				System.out.println(obj); //ho il mio JSONObject
-				return obj;
-	}
-
     /**
-     * Metodo per scaricare un JSONObject utilizzando API del FOOD.
-     *
-     *
-     * @param url URL da cui utilizzare la chiamata API.
+     * 
+     * Metodo che chiama l'API del FOOD
+     * @return il JSONObject contente i valori nutrizionali del cibo scelto
      * @throws ParseException
      */
     public JSONObject FOOD_API() throws ParseException {
-			 HttpRequest request = HttpRequest.newBuilder()
-			.uri(URI.create("https://food-calorie-data-search.p.rapidapi.com/api/search?keyword=cibo"))
-			.header("x-rapidapi-key", "b799bcf831msha880494b27071fbp184accjsna4aba3b9c35d")
-			.header("x-rapidapi-host", "food-calorie-data-search.p.rapidapi.com")
-			.method("GET", HttpRequest.BodyPublishers.noBody())
-			.build();
-			HttpResponse<String> response = null;
-			try {
-			response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
-			} catch (IOException e) {
-			e.printStackTrace();
-			} catch (InterruptedException e) {
-			e.printStackTrace();
+    	HttpRequest request = HttpRequest.newBuilder()
+		        .uri(URI.create("https://food-calorie-data-search.p.rapidapi.com/api/search?keyword=chicken"/* + this.cibo */))
+		        .header("x-rapidapi-key", "b799bcf831msha880494b27071fbp184accjsna4aba3b9c35d")
+		        .header("x-rapidapi-host", "food-calorie-data-search.p.rapidapi.com")
+		        .method("GET", HttpRequest.BodyPublishers.noBody())
+		        .build();
+		    HttpResponse<String> response = null;
+		    
+		    try {
+		      response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+		    } catch (IOException e) {
+		      e.printStackTrace();
+		    } catch (InterruptedException e) {
+		      e.printStackTrace();
+		    }
+		    
+		    JSONParser parser = new JSONParser();
+		    // il parsing trasforma il dato in long o double
+		    Object obj = (JSONArray) parser.parse(response.body()); 
+		    JSONArray array = (JSONArray) obj;
+		    
+		    //prende il quinto elemento di un array
+		    JSONObject jo = (JSONObject)array.get(4); 
+		    
+		    return jo;
 			}
-			System.out.println(response.body()); //mi da un JSONString
-			risposta = response.body();
-			JSONParser parser = new JSONParser();
-			JSONArray ja = (JSONArray) parser.parse(risposta);
-			JSONObject obj = new JSONObject();
-			obj.put("Nutrienti", ja);
-			return obj;
+
+    
+    /**
+     * 
+     * Metodo che formatta un JSONObject, utilizzato per far funzionare il metodo precedente
+     * @param jo
+     * @return jo1
+     */
+	public JSONObject formattazioneJSON (JSONObject jo) {
+			// Casto tutti i valori a Object
+			Object d0 = ((Object) jo.get("energ_kcal"));
+			Object d1 = ((Object) jo.get("water"));
+			Object d2 = ((Object) jo.get("protein"));
+			Object d3 = ((Object) jo.get("carbohydrt"));
+			Object d4 = ((Object) jo.get("lipid_tot"));
+			Object d5 = ((Object) jo.get("sugar_tot"));
+			
+			// Creo un nuovo oggetto JSONObject, che è il formattato di jo
+			JSONObject jo1 = new JSONObject();
+			jo1.put("energ_kcal", d0);
+			jo1.put("water", d1);
+			jo1.put("protein", d2 );
+			jo1.put("carbohydrt", d3);
+			jo1.put("lipid_tot", d4);
+			jo1.put("sugar_tot", d5);
+			
+			return jo1;
 			}
-			}
+	
+
+	/**
+	 * 
+	 * Metodo che salva un oggetto in un file di testo .json.
+	 * @param nome_file
+	 * @param obj
+	 */
+	public void salvaFile(String nome_file, JSONObject obj) {
+		try {
+	    //true = non sovrascive il file
+		file = new FileWriter("prova1.json", true); 
+		file.write(obj.toJSONString());
+		verifica("Successfully Copied JSON Object to File...");
+		verifica("\nJSON Object: " + obj);
+		} 
+		catch (IOException e) {
+		e.printStackTrace();
+		} 
+		
+		finally {
+		
+		try {
+		file.flush(); // svuota il buffer
+		file.close(); // chiude la lettura del file
+		} 
+		catch (IOException e) {
+		e.printStackTrace();
+		}
+      
+	   }
+   
+	}
+	
+	
+	/**
+	 * 
+	 * Metodo per verificare che il file sia stato salvato correttamente.
+	 * @param str
+	 */
+	static public void verifica(String str) {
+		System.out.println("str");
+	  }
+	
+	
+	/**
+	 * 
+	 * Metodo per caricare un JSONObject salvato in un file locale.
+	 * @param nome_file
+	 * @return
+	 */
+	public static JSONObject caricaFile (String nome_file) {
+		JSONParser parser = new JSONParser();
+		try {
+		Object obj = parser.parse(new FileReader(nome_file));
+		JSONObject jsonObject = (JSONObject) obj;
+		return jsonObject;
+		}
+		catch (IOException e) {
+		e.printStackTrace();
+		} catch (ParseException e) {
+		e.printStackTrace();
+		}
+		
+		return null;
+		}
+	
+	
+	
+	
+	
+  }
 
 
 	
