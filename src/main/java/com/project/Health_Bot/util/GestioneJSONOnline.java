@@ -31,10 +31,10 @@ public class GestioneJSONOnline {
      * @return valore del BMI
      * @throws ParseException
      */
-	public double BMI_API() throws ParseException {
+	public double BMI_API(double peso, int altezza) throws ParseException {
 		
 		HttpRequest request = HttpRequest.newBuilder()
-		.uri(URI.create("https://body-mass-index-bmi-calculator.p.rapidapi.com/metric?weight=80+&height=1.83"))
+		.uri(URI.create("https://body-mass-index-bmi-calculator.p.rapidapi.com/metric?weight=" + peso + "&height=" + altezza))
 		.header("x-rapidapi-key", "b799bcf831msha880494b27071fbp184accjsna4aba3b9c35d")
 		.header("x-rapidapi-host", "body-mass-index-bmi-calculator.p.rapidapi.com")
 		.method("GET", HttpRequest.BodyPublishers.noBody())
@@ -59,7 +59,9 @@ public class GestioneJSONOnline {
 		JSONObject obj = (JSONObject) parser.parse(risposta);
 		
 		//System.out.println(obj.get("bmi")); //mi da il valore del BMI
-		return i = (double) obj.get("bmi");
+		i = (double) obj.get("bmi");
+		//Un modo per troncare a due cifre dopo la virgola...
+		return (double)Math.round(i * 100) / 100;
 		}	
 		
 	
@@ -69,9 +71,9 @@ public class GestioneJSONOnline {
      * @return il JSONObject contente i valori nutrizionali del cibo scelto
      * @throws ParseException
      */
-    public JSONObject FOOD_API() throws ParseException {
+    public JSONObject FOOD_API(String cibo) throws ParseException {
     	HttpRequest request = HttpRequest.newBuilder()
-		        .uri(URI.create("https://food-calorie-data-search.p.rapidapi.com/api/search?keyword=chicken"/* + this.cibo */))
+		        .uri(URI.create("https://food-calorie-data-search.p.rapidapi.com/api/search?keyword=" + cibo ))
 		        .header("x-rapidapi-key", "b799bcf831msha880494b27071fbp184accjsna4aba3b9c35d")
 		        .header("x-rapidapi-host", "food-calorie-data-search.p.rapidapi.com")
 		        .method("GET", HttpRequest.BodyPublishers.noBody())
@@ -190,8 +192,6 @@ public class GestioneJSONOnline {
 		
 		return null;
 		}
-	
-	
 	
 	
 	
