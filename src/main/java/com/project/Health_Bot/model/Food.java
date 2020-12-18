@@ -11,16 +11,19 @@ public class Food {
 	protected double lipid_tot;
 	protected double carbohydrt;
 	protected double sugar_tot;
+	protected double water;
 	
-	public Food(String cibo, double energ_kcal, double protein, double lipid_tot, double carbohydrt, double sugar_tot) {
+	public Food(String cibo, double energ_kcal, double protein, double lipid_tot, double carbohydrt, double sugar_tot, double water) {
 		this.cibo = cibo;
 		this.energ_kcal = energ_kcal;
 		this.protein = protein;
 		this.lipid_tot = lipid_tot;
 		this.carbohydrt = carbohydrt;
 		this.sugar_tot = sugar_tot;
+		this.water = water;
 	}
 
+	
 	public String getCibo() {
 		return cibo;
 	}
@@ -67,6 +70,14 @@ public class Food {
 
 	public void setSugar_tot(double sugar_tot) {
 		this.sugar_tot = sugar_tot;
+	}
+	
+	public double getWater() {
+		return water;
+	}
+
+	public void setWater(double water) {
+		this.water = water;
 	}
 	
 	

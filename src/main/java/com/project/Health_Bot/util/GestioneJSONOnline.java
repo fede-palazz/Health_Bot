@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package com.project.Health_Bot.util;
 
 
@@ -125,7 +128,7 @@ public class GestioneJSONOnline {
 
 	/**
 	 * 
-	 * Metodo che salva un oggetto in un file di testo .json.
+	 * Metodo che salva un JSONObject in un file di testo .json.
 	 * @param nome_file
 	 * @param obj
 	 */
