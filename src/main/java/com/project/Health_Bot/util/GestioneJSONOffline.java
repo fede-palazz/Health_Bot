@@ -11,6 +11,7 @@ import org.json.simple.parser.ParseException;
 public class GestioneJSONOffline {
 
 	private static FileWriter file;
+	
    /**
     * Metodo che salva un JSONObject in un file di testo .json.
     * @param nome_file 
@@ -22,8 +23,8 @@ public class GestioneJSONOffline {
 			    //true = non sovrascive il file
 	            file = new FileWriter(nome_file, true); 
 	            file.write(obj.toJSONString());
-	            //verifica("Successfully Copied JSON Object to File...");
-	            //verifica("\nJSON Object: " + obj);
+	            verifica("Successfully Copied JSON Object to File...");
+	            verifica("\nJSON Object: " + obj);
 	 
 	        } catch (IOException e) {
 	            e.printStackTrace();
@@ -34,12 +35,15 @@ public class GestioneJSONOffline {
 	                file.flush();
 	                file.close();
 	            } catch (IOException e) {
-	                // TODO Auto-generated catch block
 	                e.printStackTrace();
 	            }
 	        }
 	    }
 	 
+        /**
+         * Metodo per verificare che il file sia stato salvato correttamente.
+         * @param str
+         */
 	    static public void verifica(String str) {
 	        System.out.println("str");
 	    }
