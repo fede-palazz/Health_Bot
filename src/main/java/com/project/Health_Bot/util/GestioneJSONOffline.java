@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package com.project.Health_Bot.util;
 
 
@@ -11,6 +14,7 @@ import org.json.simple.parser.ParseException;
 public class GestioneJSONOffline {
 
 	private static FileWriter file;
+	
 	
    /**
     * Metodo che salva un JSONObject in un file di testo .json.
@@ -40,13 +44,14 @@ public class GestioneJSONOffline {
 	        }
 	    }
 	 
-        /**
-         * Metodo per verificare che il file sia stato salvato correttamente.
-         * @param str
-         */
-	    static public void verifica(String str) {
-	        System.out.println("str");
-	    }
+    
+    /**
+     * Metodo per verificare che il file sia stato salvato correttamente.
+     * @param str
+     */
+    static public void verifica(String str) {
+        System.out.println("str");
+    }
 	
 
    /**
@@ -73,4 +78,5 @@ public class GestioneJSONOffline {
 			return null; 
 	    	
 	    }
+
 }

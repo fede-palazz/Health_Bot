@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package com.project.Health_Bot.model;
 /*
  * questa classe è astratta poichè deve modellare 3 possibili stili di vita.

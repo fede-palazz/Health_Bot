@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package com.project.Health_Bot.model;
 
 public class Sportivo extends Utente {
