@@ -1,120 +1,82 @@
+/**
+ * 
+ */
 package com.project.Health_Bot.util;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class GestioneJSONOffline {
 
-    private JSONArray ja = null;
-    private JSONObject jo = null;
-
-    public GestioneJSONOffline() {
-        this.jo = new JSONObject();
-        this.ja = new JSONArray();
-    }
-
+	private static FileWriter file;
+	
+	
+   /**
+    * Metodo che salva un JSONObject in un file di testo .json.
+    * @param nome_file 
+    * @param obj
+    */
+    public static void salvaFile(String nome_file, JSONObject obj) {
+        
+		try {
+			    //true = non sovrascive il file
+	            file = new FileWriter(nome_file, true); 
+	            file.write(obj.toJSONString());
+	            verifica("Successfully Copied JSON Object to File...");
+	            verifica("\nJSON Object: " + obj);
+	 
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	 
+	        } finally {
+	 
+	            try {
+	                file.flush();
+	                file.close();
+	            } catch (IOException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    }
+	 
+    
     /**
-     * Metodo che genera un JSONObject predefinito
+     * Metodo per verificare che il file sia stato salvato correttamente.
+     * @param str
      */
-    public void creaObjectPredefinito() {
-        JSONObject obj = new JSONObject();
-        obj.put("name", "foo");
-        obj.put("num", new Integer(100));
-        obj.put("balance", new Double(1000.21));
-        obj.put("is_vip", new Boolean(true));
-        obj.put("nickname", null);
-        System.out.println("JSONObject predefinito: " + obj);
-        this.jo = obj;
+    static public void verifica(String str) {
+        System.out.println("str");
     }
+	
 
-    public JSONArray getArray() {
-        return ja;
-    }
+   /**
+    * Metodo per caricare un JSONObject salvato in un file locale.
+    * @param nome_file
+    * @return
+    */
+    
+	    public static JSONObject caricaFile (String nome_file) {
+	    	//caricare JSONObject salvato in locale su un file .JSON
+	        JSONParser parser = new JSONParser();
+	
+			try {
+				Object obj = parser.parse(new FileReader(nome_file));
+	 
+				JSONObject jsonObject = (JSONObject) obj;
+				return jsonObject;
+	        
+	        }catch (IOException e) {
+	            e.printStackTrace();
+	        } catch (ParseException e) {
+	            e.printStackTrace();
+	        }
+			return null; 
+	    	
+	    }
 
-    public void setArray(JSONArray ja) {
-        this.ja = ja;
-    }
-
-    public JSONObject getObject() {
-        return jo;
-    }
-
-    public void setObject(JSONObject jo) {
-        this.jo = jo;
-    }
-
-    /**
-     * Inserisco un JSONObject nel mio JSONArray.
-     * 
-     * @param jo JSONOnject
-     */
-    public void insertObject(JSONObject jo) {
-        this.ja.add(jo);
-    }
-
-    /**
-     * Metodo per salvare un oggetto serializzabile in un file binario. Posso
-     * scegliere se salvare un JSONObject oppure un JSONArray.
-     * 
-     * @param nome_file Nome del file in cui salvare l'oggetto.
-     * @param isObject  Specifica se l'oggetto da salvare � un JSONObject oppure un
-     *                  JSONArray.
-     */
-    public void salvaFile(String nome_file, boolean isObject) {
-        try {
-            ObjectOutputStream file_output = new ObjectOutputStream(
-                    new BufferedOutputStream(new FileOutputStream(nome_file)));
-
-            if (isObject)
-                file_output.writeObject(this.jo);
-            else
-                file_output.writeObject(this.ja);
-
-            file_output.close();
-            System.out.println("File salvato!");
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Metodo per leggere un oggetto serializzabile da un file binario. Posso
-     * scegliere se caricare un JSONObject oppure un JSONArray.
-     * 
-     * @param nome_file Nome del file da cui leggere l'oggetto.
-     * @param isObject  Specifica se l'oggetto da salvare � un JSONObject oppure un
-     *                  JSONArray.
-     */
-    public void caricaFile(String nome_file, boolean isObject) {
-        try {
-            ObjectInputStream file_input = new ObjectInputStream(
-                    new BufferedInputStream(new FileInputStream(nome_file)));
-
-            if (isObject) {
-                this.jo = (JSONObject) file_input.readObject();
-                System.out.println("JSONObject letto: " + this.jo);
-            }
-            else {
-                this.ja = (JSONArray) file_input.readObject();
-                System.out.println("JSONArray letto: " + this.ja);
-                System.out.println("IL JSONArray letto ha " + this.ja.size() + " elementi!");
-            }
-
-            file_input.close();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-        catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
 }
