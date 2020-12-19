@@ -2,70 +2,79 @@
  * 
  */
 package com.project.Health_Bot.model;
-/*
- * questa classe è astratta poichè deve modellare 3 possibili stili di vita.
- * per ogni stile di vita ho dei metodi in comune ma diversi tra loro -> uso abstract 
- * 
- */
-public abstract class Utente {
 
-	protected String genere;
-	protected int altezza; // aletzza in cm
-	protected double peso; // peso in Kg
-	protected int età; 
-	protected String stileDiVita;
-	
-	// Costruttore.
-	public Utente(String genere, int altezza, double peso, int età, String stileDiVita) {
-		this.genere = genere;
-		this.altezza = altezza;
-		this.peso = peso;
-		this.età = età;
-		this.stileDiVita = stileDiVita;
-	}
+import java.util.Calendar;
+import java.util.Optional;
 
-	public String getGenere() {
-		return genere;
-	}
+public class Utente {
 
-	public void setGenere(String genere) {
-		this.genere = genere;
-	}
+    /**
+     * Sesso ('M' o 'F')
+     */
+    protected Character sesso;
+    /**
+     * Altezza in cm
+     */
+    protected int altezza;
+    /**
+     * Peso attuale dell'utente
+     */
+    protected double peso;
+    /**
+     * Anno di nascita
+     */
+    protected int annoNascita;
 
-	public int getAltezza() {
-		return altezza;
-	}
+    /**
+     * Costruttore utilizzato al momento della registrazione di un nuovo utente (i campi sono nulli)
+     * 
+     * @param username
+     */
+    public Utente() {
+    }
 
-	public void setAltezza(int altezza) {
-		this.altezza = altezza;
-	}
+    public Utente(char sesso, int altezza, double peso, int annoNascita) {
+        this.sesso = sesso;
+        this.altezza = altezza;
+        this.peso = peso;
+        this.annoNascita = annoNascita;
+    }
 
-	public double getPeso() {
-		return peso;
-	}
+    public Optional<Character> getSesso() {
+        return Optional.ofNullable(sesso);
+    }
 
-	public void setPeso(double peso) {
-		this.peso = peso;
-	}
+    public void setGenere(char sesso) {
+        this.sesso = sesso;
+    }
 
-	public int getEtà() {
-		return età;
-	}
+    public Optional<Integer> getAltezza() {
+        return Optional.ofNullable(altezza);
+    }
 
-	public void setEtà(int età) {
-		this.età = età;
-	}
+    public void setAltezza(int altezza) {
+        this.altezza = altezza;
+    }
 
-	public String getStileDiVita() {
-		return stileDiVita;
-	}
+    public Optional<Double> getPeso() {
+        return Optional.ofNullable(peso);
+    }
 
-	public void setStileDiVita(String stileDiVita) {
-		this.stileDiVita = stileDiVita;
-	}
-	
-	
-	
-	
-	
+    public void setPeso(double peso) {
+        this.peso = peso;
+    }
+
+    public Optional<Integer> getEtà() {
+        if (Optional.ofNullable(annoNascita).isPresent()) {
+            int anno = Calendar.getInstance().get(Calendar.YEAR); // Anno corrente
+            return Optional.ofNullable(anno - this.annoNascita); // Calcolo dell'età
+        }
+        else
+            return Optional.empty();
+    }
+
+    public void setAnnoNascita(int annoNascita) {
+        this.annoNascita = annoNascita;
+    }
+
 }
