@@ -21,7 +21,7 @@ import com.project.Health_Bot.model.Cibo;
 public class GestioneJSONOnline {
 
     private FileWriter file;
-    protected double i;
+    protected double bmi;
 
     /**
      * 
@@ -58,9 +58,9 @@ public class GestioneJSONOnline {
         JSONObject obj = (JSONObject) parser.parse(risposta);
 
         //System.out.println(obj.get("bmi")); //mi da il valore del BMI
-        i = (double) obj.get("bmi");
+        bmi = (double) obj.get("bmi");
         //Un modo per troncare a due cifre dopo la virgola...
-        return (double) Math.round(i * 100) / 100;
+        return (double) Math.round(bmi * 100) / 100;
     }
 
     /**
@@ -105,7 +105,7 @@ public class GestioneJSONOnline {
      * @param jo
      * @return jo1
      */
-    public JSONObject formattazioneJSON(JSONObject jo) {
+    public JSONObject FoodJSON(JSONObject jo) {
         // Casto tutti i valori a Object
         Object d0 = ((Object) jo.get("energ_kcal"));
         Object d1 = ((Object) jo.get("protein"));

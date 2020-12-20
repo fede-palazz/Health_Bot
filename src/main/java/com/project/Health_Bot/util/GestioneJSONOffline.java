@@ -63,10 +63,8 @@ public class GestioneJSONOffline {
 	    public static JSONObject caricaFile (String nome_file) {
 	    	//caricare JSONObject salvato in locale su un file .JSON
 	        JSONParser parser = new JSONParser();
-	
 			try {
 				Object obj = parser.parse(new FileReader(nome_file));
-	 
 				JSONObject jsonObject = (JSONObject) obj;
 				return jsonObject;
 	        
