@@ -11,7 +11,7 @@ public class Utente {
     /**
      * Sesso ('M' o 'F')
      */
-    protected Character sesso;
+    protected char sesso;
     /**
      * Altezza in cm
      */

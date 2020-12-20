@@ -12,6 +12,12 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import com.project.Health_Bot.dao.UtenteRegDao;
+import com.project.Health_Bot.model.Pesista;
+import com.project.Health_Bot.model.Sedentario;
+import com.project.Health_Bot.model.Sportivo;
+import com.project.Health_Bot.model.Utente;
+
 public class GestioneJSONOffline {
 
 	private static FileWriter file;
@@ -124,4 +130,47 @@ public class GestioneJSONOffline {
 		return null;
 
 	}
+
+	/**
+	 * Metodo che ci da il JSONObject Utente
+	 * 
+	 * @param id
+	 * @param ja
+	 * @return
+	 */
+	public UtenteRegDao getUtente(String id, JSONArray ja) {
+
+		// analizza oggetti dentro array
+		for (int i = 0; i < ja.size(); i++) {
+			JSONObject jo = (JSONObject) ja.get(i);
+			// analizza parametri dentro l'oggetto scelto dal primo for
+			for (int j = 0; j < jo.size(); j++) {
+				if (jo.get("id").equals(id))
+					return (UtenteRegDao) jo.get("utente");
+			}
+		}
+		return null;
+	}
+/* funziona fino allo switch
+	public UtenteRegDao getTipo(JSONObject utente) {
+		String tipo = (String) utente.get("tipo");
+		switch (tipo) {
+		case "sport":
+			Utente sport = new Sportivo();
+			sport.setAltezza((int) utente.get("altezza"));
+			break;
+		case "pes":
+			Utente pes = new Pesista();
+
+			break;
+		case "sed":
+			Utente sed = new Sedentario();
+
+			break;
+
+		}
+
+		return null;
+
+	}*/
 }

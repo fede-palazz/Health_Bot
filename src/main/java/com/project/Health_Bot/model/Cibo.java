@@ -10,11 +10,21 @@ public class Cibo {
     protected double proteine;
     protected double lipidi;
     protected double carbo;
-
+/**
+ * 
+ * @param nome
+ */
     public Cibo(String nome) {
         this.nome = nome;
     }
-
+/**
+ * 
+ * @param nome
+ * @param energia
+ * @param proteine
+ * @param lipidi
+ * @param carbo
+ */
     public Cibo(String nome, double energia, double proteine, double lipidi, double carbo) {
         this.nome = nome;
         this.energia = energia;
