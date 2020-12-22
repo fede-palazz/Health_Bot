@@ -64,7 +64,7 @@ public class Utente {
         this.peso = peso;
     }
 
-    public Optional<Integer> getEtà() {
+    public Optional<Integer> getEta() {
         if (Optional.ofNullable(annoNascita).isPresent()) {
             int anno = Calendar.getInstance().get(Calendar.YEAR); // Anno corrente
             return Optional.ofNullable(anno - this.annoNascita); // Calcolo dell'età

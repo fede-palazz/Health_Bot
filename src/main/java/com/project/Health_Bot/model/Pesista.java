@@ -3,36 +3,35 @@
  */
 package com.project.Health_Bot.model;
 
-/**
- * @author FedePalaz & GiovanniNovelli9 & Baldellaux
- *
- *         Classe che modella l'utente pesista.
- *
- */
+import java.util.Vector;
+
 public class Pesista extends Utente {
 
-	private static String utenteLeggero;
-	private String stileDiVita;
+    private Vector<Misurazione> misurazioni;
 
-	/**
-	 * Costruttore di default
-	 */
-	public Pesista() {
+    public Pesista() {
+        super();
+    }
 
-	}
+    public Pesista(Character sesso, int altezza, double peso, int annoNascita) {
+        super(sesso, altezza, peso, annoNascita);
+        misurazioni = new Vector<Misurazione>();
+    }
 
-	/**
-	 * Costruttore
-	 * 
-	 * @param genere
-	 * @param altezza
-	 * @param peso
-	 * @param età
-	 * @param stileDiVita
-	 */
-	public Pesista(char genere, int altezza, double peso, int età, String stileDiVita) {
-		super(genere, altezza, peso, età);
-		this.stileDiVita = utenteLeggero;
-	}
+    /**
+     * Costruttore
+     * 
+     * @param genere
+     * @param altezza
+     * @param peso
+     * @param età
+     * @param stileDiVita
+     */
+    public Pesista(Character sesso, int altezza, double peso, int annoNascita, Vector<Misurazione> misurazioni) {
+        super(sesso, altezza, peso, annoNascita);
+        this.misurazioni = new Vector<Misurazione>();
+        for (Misurazione m : misurazioni) // Trasferisce la lista di misurazioni
+            this.misurazioni.add(m);
+    }
 
 }
