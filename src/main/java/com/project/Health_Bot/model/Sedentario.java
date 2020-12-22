@@ -3,6 +3,12 @@
  */
 package com.project.Health_Bot.model;
 
+/**
+ * Classe che modella l'utente sedentario.
+ * 
+ * @author FedePalaz & GiovanniNovelli9 & Baldellaux 
+ *
+ */
 public class Sedentario extends Utente {
 	
 	private static String utenteSedentario;
@@ -20,11 +26,11 @@ public class Sedentario extends Utente {
 	 * @param genere
 	 * @param altezza
 	 * @param peso
-	 * @param età
+	 * @param annoNascita
 	 * @param stileDiVita
 	 */
-	public Sedentario(char genere, int altezza, double peso, int età, String stileDiVita) {
-		super(genere, altezza, peso, età);
+	public Sedentario(char genere, int altezza, float peso, int annoNascita, String stileDiVita) {
+		super(genere, altezza, peso, annoNascita);
 		this.stileDiVita = utenteSedentario;
 	}
 

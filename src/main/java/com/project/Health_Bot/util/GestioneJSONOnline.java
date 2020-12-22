@@ -18,6 +18,12 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import com.project.Health_Bot.model.Cibo;
 
+/**
+ * Classe che contiene i metodi che gestiscono i file JSON in online
+ * 
+ * @author FedePalaz & GiovanniNovelli9 & Baldellaux
+ *
+ */
 public class GestioneJSONOnline {
 
 	private FileWriter file;
@@ -30,7 +36,7 @@ public class GestioneJSONOnline {
 	 * @return valore del BMI
 	 * @throws ParseException
 	 */
-	public double BMI_API(double peso, int altezza) throws ParseException {
+	public double BMI_API(float peso, int altezza) throws ParseException {
 
 		HttpRequest request = HttpRequest.newBuilder()
 				.uri(URI.create("https://body-mass-index-bmi-calculator.p.rapidapi.com/metric?weight=" + peso
@@ -56,9 +62,9 @@ public class GestioneJSONOnline {
 		JSONObject obj = (JSONObject) parser.parse(risposta);
 
 		// System.out.println(obj.get("bmi")); //mi da il valore del BMI
-		bmi = (double) obj.get("bmi");
+		bmi = (float) obj.get("bmi");
 		// Un modo per troncare a due cifre dopo la virgola...
-		return (double) Math.round(bmi * 100) / 100;
+		return (float) Math.round(bmi * 100) / 100;
 	}
 
 	/**
@@ -195,6 +201,13 @@ public class GestioneJSONOnline {
 
 		return null;
 	}
+	
+	/**
+	 * Metodo un JSONArray in un file di testo .json.
+	 * 
+	 * @param nome_file
+	 * @param ja
+	 */
 	public void salvaARRAYFile(String nome_file, JSONArray ja) {
 
 		try {

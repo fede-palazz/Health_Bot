@@ -1,19 +1,22 @@
 # Progetto Programmazione ad Oggetti: Health_Bot
 
+## INTRODUZIONE
+
+Lo scopo di questo progetto è ...
+
+
+
+
+
+
 ## UTILIZZO CORRETTO E SCOPO DEL PROGETTO
 
 Il progetto è stato sviluppato utilizzando l'applicazione, disponibile anche in modalità web, Telegram. 
 Il fine è creare un chat-bot virtuale, cioè un utente Telegram fittizio, che sia in grado di aiutare l'utilizzatore nell'ambito della salute (health) e dell'allenamento (fit), collezionando dati sulle sue misure e statistiche inerenti i suoi miglioramenti nel tempo. 
 Per la realizzazione di tale progetto, è stata consultata prima di tutto l'API (interfaccia di programmazione di un'applicazione) ufficiale di Telegram, poi si è attinto dal sito RapidApi, che mette a disposizione utili API gratuite: ne è un esempio quella per il calcolo del BMI. Queste sono utilizzabili da software di API development come Postman: tale programma consente una gestione facilitata del codice della pagina e fornisce i risultati delle nostre richieste in formato JSON.
-Il codice, poi, è stato elaborato tramite l’IDE ECLIPSE in linguaggio java. Con l’utilizzo della Web Application Spring Boot è possibile lanciare il programma, sviluppato in ambiente Eclipse, attraverso Postman ed effettuare le seguenti richieste di GET e POST:
+Il codice, poi, è stato elaborato tramite l’IDE ECLIPSE in linguaggio java.
 
-- Elencarle
-
--
-
--
-
-## INIZIALIZZARE IL PROGRAMMA
+## GETTING STARTED
 
 Per poter iniziare è necessario creare un bot su Telegram interagendo direttamente con il BotFather, come mostrato in figura:
 
@@ -33,7 +36,7 @@ Successivamente, seguendo le istruzioni indicate da BotFather, sarà possibile, 
 
 Diagramma dei casi d'uso:
 
-![Health_Bot__Case Diagram](/Users/baldellaux/Desktop/BOT_Project/UML/Health_Bot/Health_Bot__Case Diagram.jpg)
+![](/Users/baldellaux/Desktop/BOT_Project/Health_Bot/resources/Health_Bot__Case Diagram.jpg)
 
 
 

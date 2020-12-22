@@ -4,9 +4,9 @@
 package com.project.Health_Bot.model;
 
 /**
+ * Classe che modella l'utente pesista.
+ * 
  * @author FedePalaz & GiovanniNovelli9 & Baldellaux
- *
- *         Classe che modella l'utente pesista.
  *
  */
 public class Pesista extends Utente {
@@ -30,7 +30,7 @@ public class Pesista extends Utente {
 	 * @param età
 	 * @param stileDiVita
 	 */
-	public Pesista(char genere, int altezza, double peso, int età, String stileDiVita) {
+	public Pesista(char genere, int altezza, float peso, int età, String stileDiVita) {
 		super(genere, altezza, peso, età);
 		this.stileDiVita = utenteLeggero;
 	}

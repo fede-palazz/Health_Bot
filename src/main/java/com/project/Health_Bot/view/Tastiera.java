@@ -1,4 +1,7 @@
-package view;
+/**
+ * 
+ */
+package com.project.Health_Bot.view;
 
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 

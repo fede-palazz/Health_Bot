@@ -1,5 +1,14 @@
+/**
+ * 
+ */
 package com.project.Health_Bot.dao;
 
+/**
+ * Interfaccia che modella l'utente già registrato
+ * 
+ * @author FedePalaz & GiovanniNovelli9 & Baldellaux
+ *
+ */
 public interface UtenteRegDao {
 
     /**

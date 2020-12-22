@@ -1,9 +1,17 @@
+/**
+ * 
+ */
 package com.project.Health_Bot.dao;
 
 import java.util.HashMap;
 import org.springframework.stereotype.Repository;
 import com.project.Health_Bot.model.Utente;
 
+/**
+ * 
+ * @author FedePalaz & GiovanniNovelli9 & Baldellaux
+ *
+ */
 @Repository
 public class UtenteRegDaoImpl implements UtenteRegDao {
 
@@ -12,9 +20,12 @@ public class UtenteRegDaoImpl implements UtenteRegDao {
      */
     private static HashMap<String, Utente> utentiReg;
 
+    /**
+     * 
+     */
     @Override
     public boolean isRegistered(String id) {
-        // TODO Auto-generated method stub
+        
         return false;
     }
 

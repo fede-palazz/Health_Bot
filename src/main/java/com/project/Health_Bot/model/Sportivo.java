@@ -7,10 +7,12 @@ public class Sportivo extends Utente {
 
 	private static String utenteSportivo;
 	private String stileDiVita;
-/**
- * Costruttore di default
- */
-	public Sportivo() {
+
+    /**
+     * Costruttore di default
+     */
+   	public Sportivo() {
+   		
 	}
 	
 /**
@@ -18,11 +20,11 @@ public class Sportivo extends Utente {
  * @param genere
  * @param altezza
  * @param peso
- * @param età
+ * @param annoNascita
  * @param stileDiVita
  */
-	public Sportivo(char genere, int altezza, double peso, int età, String stileDiVita) {
-		super(genere, altezza, peso, età);
+	public Sportivo(char genere, int altezza, float peso, int annoNascita, String stileDiVita) {
+		super(genere, altezza, peso, annoNascita);
 		this.stileDiVita = utenteSportivo;
 	}
 

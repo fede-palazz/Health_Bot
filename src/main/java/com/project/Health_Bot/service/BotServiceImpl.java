@@ -9,6 +9,11 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import com.project.Health_Bot.dao.UtenteNonRegDao;
 import com.project.Health_Bot.dao.UtenteRegDao;
 
+/**
+ * 
+ * @author FedePalaz & GiovanniNovelli9 & Baldellaux
+ *
+ */
 @Service
 public class BotServiceImpl implements BotService {
 

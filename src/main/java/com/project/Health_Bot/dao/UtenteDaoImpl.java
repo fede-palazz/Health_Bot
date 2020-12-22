@@ -7,6 +7,11 @@ import java.util.Vector;
 import org.springframework.stereotype.Repository;
 import com.project.Health_Bot.model.Utente;
 
+/**
+ * 
+ * @author FedePalaz & GiovanniNovelli9 & Baldellaux
+ *
+ */
 @Repository
 public class UtenteDaoImpl implements UtenteDao {
 

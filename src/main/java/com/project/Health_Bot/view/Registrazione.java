@@ -1,6 +1,10 @@
-package view;
+/**
+ * 
+ */
+package com.project.Health_Bot.view;
 
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageReplyMarkup;
 
 /**
  * @author FedePalaz & GiovanniNovelli9 & Baldellaux
@@ -9,6 +13,9 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
  * 
  */
 public class Registrazione {
+	
+	String chatId;
+	Object messageId;
 
 	/**
 	 * Metodo che chiede all'utente il genere
@@ -49,5 +56,20 @@ public class Registrazione {
 		return null;
 		
 	}
+    
+    /**
+     * 
+     * @param chatId
+     * @param messageId
+     * @return
+     */
+    public EditMessageReplyMarkup eliminaKeyboard (String chatId , int messageId ) {
+		EditMessageReplyMarkup editMessage = new EditMessageReplyMarkup();
+	    editMessage.setChatId(chatId);
+		editMessage.setMessageId(messageId);
+		editMessage.setReplyMarkup(null);
+    	return editMessage;
+    }
+    
 	
 }

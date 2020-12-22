@@ -18,6 +18,12 @@ import com.project.Health_Bot.model.Sedentario;
 import com.project.Health_Bot.model.Sportivo;
 import com.project.Health_Bot.model.Utente;
 
+/**
+ * Classe che contiene i metodi che gestiscono i file JSON in offline
+ * 
+ * @author FedePalaz & GiovanniNovelli9 & Baldellaux
+ *
+ */
 public class GestioneJSONOffline {
 
 	private static FileWriter file;
@@ -176,7 +182,7 @@ public class GestioneJSONOffline {
 	
 	/*
 	 * Per la creazione del JSONArray contenente le informazioni relatve agli utenti già registrati,
-	 * si utilizza un metodo che si estende a matrioscaé partendo da "dentro".
+	 * si utilizza un metodo che si estende a matriosca, partendo da "dentro".
 	 * Creo lo storico; 
 	 * lo inserisco dentro il JSONArray misurazioni;
 	 * inserisco misurazioni dentro utente;
@@ -201,7 +207,7 @@ public class GestioneJSONOffline {
 	 * @param id
 	 * @return generale
 	 */
-	public JSONObject setGenerale (JSONObject utente, String id) {
+	public JSONObject setGenerale (Utente utente, String id) {
 		JSONObject generale = new JSONObject();
 		generale.put("id", id);
 		generale.put("utente", utente);		
@@ -209,7 +215,9 @@ public class GestioneJSONOffline {
 	}
 	
 	/**
-	 * Metodo che ritorna un JSONObject, dopo aver ricevuto in input tutti i parametri che descrivono l'utente, tra cui lo storico delle misurazioni.
+	 * Metodo che ritorna un JSONObject, dopo aver ricevuto in input tutti i parametri che descrivono l'utente, 
+	 * tra cui lo storico delle misurazioni.
+	 * 
 	 * @param username
 	 * @param sesso
 	 * @param pesoAttuale
@@ -219,7 +227,7 @@ public class GestioneJSONOffline {
 	 * @param misurazioni
 	 * @return utente
 	 */ 
-	public JSONObject setUtente (String username, char sesso, double pesoAttuale, int altezza, int annoNascita, String stileDiVita, JSONArray misurazioni) {
+	private JSONObject setUtente (String username, char sesso, float pesoAttuale, int altezza, int annoNascita, String stileDiVita, JSONArray misurazioni) {
 		
 		JSONObject utente = new JSONObject();
 
@@ -231,6 +239,7 @@ public class GestioneJSONOffline {
 		utente.put("annoNascita", annoNascita);
 		utente.put("stileDiVita", stileDiVita);    
 		utente.put("misurazioni", misurazioni);
+		
 		return utente;
 		
 	}
@@ -238,18 +247,22 @@ public class GestioneJSONOffline {
 	/**
 	 * Metodo che ritorna un JSONObect, dopo aver ricevuto in input i parametri delle nuove misurazioni.
 	 * storico é l'insieme delle misurazioni compiute dall'utente.
+	 * 
 	 * @param peso
 	 * @param data
 	 * @param lbm
 	 * @param bmi 
 	 * @return storico
 	 */
-	public JSONObject setStorico (double peso, int data, double lbm, double bmi) {	
+	private JSONObject setStorico (float peso, int data, float lbm, float bmi) {	
 		JSONObject storico = new JSONObject();
+		
 		storico.put("peso", peso);
         storico.put("data", data);
-        storico.put("ibm", lbm);
+        storico.put("lbm", lbm);
         storico.put("bmi", bmi);
+        
         return storico;
 	}
+
 }

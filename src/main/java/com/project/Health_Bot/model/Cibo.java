@@ -3,13 +3,18 @@
  */
 package com.project.Health_Bot.model;
 
+/**
+ * 
+ * @author FedePalaz & GiovanniNovelli9 & Baldellaux
+ *
+ */
 public class Cibo {
 
     protected String nome;
-    protected double energia;
-    protected double proteine;
-    protected double lipidi;
-    protected double carbo;
+    protected float energia;
+    protected float proteine;
+    protected float lipidi;
+    protected float carbo;
 /**
  * 
  * @param nome
@@ -25,52 +30,93 @@ public class Cibo {
  * @param lipidi
  * @param carbo
  */
-    public Cibo(String nome, double energia, double proteine, double lipidi, double carbo) {
+    public Cibo(String nome, float energia, float proteine, float lipidi, float carbo) {
         this.nome = nome;
         this.energia = energia;
         this.proteine = proteine;
         this.lipidi = lipidi;
         this.carbo = carbo;
     }
-
+    
+    /**
+     * 
+     * @return nome
+     */
     public String getNome() {
         return nome;
     }
-
+    
+    /**
+     * 
+     * @param nome
+     */
     public void setNome(String nome) {
         this.nome = nome;
     }
-
+    
+    /**
+     * 
+     * @return energia
+     */
     public double getEnergia() {
         return energia;
     }
-
-    public void setEnergia(double energia) {
+    
+    /**
+     * 
+     * @param energia
+     */
+    public void setEnergia(float energia) {
         this.energia = energia;
     }
-
+    
+    /**
+     * 
+     * @return energia
+     */
     public double getProteine() {
         return proteine;
     }
-
-    public void setProteine(double proteine) {
+    
+    /**
+     * 
+     * @param proteine
+     */
+    public void setProteine(float proteine) {
         this.proteine = proteine;
     }
-
+    
+    /**
+     * 
+     * @return lipidi
+     */
     public double getLipidi() {
         return lipidi;
     }
-
-    public void setLipidi(double lipidi) {
+    
+    /**
+     * 
+     * @param lipidi
+     */
+    public void setLipidi(float lipidi) {
         this.lipidi = lipidi;
     }
-
+    
+    /**
+     * 
+     * @return carbo
+     */
     public double getCarbo() {
         return carbo;
     }
-
-    public void setCarbo(double carbo) {
+    
+    /**
+     * 
+     * @param carbo
+     */
+    public void setCarbo(float carbo) {
         this.carbo = carbo;
     }
 
+    
 }

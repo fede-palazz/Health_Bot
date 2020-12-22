@@ -22,7 +22,12 @@ public class BotController extends TelegramLongPollingBot {
     private BotService service;
     private String botUsername; // Bot username
     private String botToken; // Bot token
-
+    
+    /**
+     * 
+     * @param username
+     * @throws Exception
+     */
     public BotController(String username) throws Exception {
         this.botUsername = username;
         String path = "src/main/resources/application.properties";

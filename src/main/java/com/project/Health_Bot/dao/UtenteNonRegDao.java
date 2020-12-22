@@ -1,7 +1,16 @@
+/**
+ * 
+ */
 package com.project.Health_Bot.dao;
 
 import java.util.Optional;
 
+/**
+ * Interfaccia che modella l'utente non ancora registrato
+ * 
+ * @author FedePalaz & GiovanniNovelli9 & Baldellaux
+ *
+ */
 public interface UtenteNonRegDao {
 
     /**

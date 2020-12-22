@@ -13,7 +13,10 @@ import org.telegram.telegrambots.meta.api.objects.Update;
  */
 public interface BotService {
 
-    // Metodi che rappresentano la logica di business dell'applicazione
+    /**
+     * 
+     * @param update
+     */
     public void handleUpdate(Update update);
 
 }

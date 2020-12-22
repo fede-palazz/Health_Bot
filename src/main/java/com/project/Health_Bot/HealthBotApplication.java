@@ -10,9 +10,20 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 import com.project.Health_Bot.controller.BotController;
 
+/**
+ * 
+ * @author FedePalaz & GiovanniNovelli9 & Baldellaux
+ *
+ */
 @SpringBootApplication
 public class HealthBotApplication {
 
+	/**
+	 * Main
+	 * 
+	 * @param args
+	 * @throws Exception
+	 */
     public static void main(String[] args) throws Exception {
         SpringApplication.run(HealthBotApplication.class, args);
 
