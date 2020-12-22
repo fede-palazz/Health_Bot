@@ -8,7 +8,7 @@ package com.project.Health_Bot.model;
  * @author FedePalaz & GiovanniNovelli9 & Baldellaux
  *
  */
-public class Cibo {
+public class Alimento {
 
     protected String nome;
     protected float energia;
@@ -19,7 +19,7 @@ public class Cibo {
  * 
  * @param nome
  */
-    public Cibo(String nome) {
+    public Alimento(String nome) {
         this.nome = nome;
     }
 /**
@@ -30,7 +30,7 @@ public class Cibo {
  * @param lipidi
  * @param carbo
  */
-    public Cibo(String nome, float energia, float proteine, float lipidi, float carbo) {
+    public Alimento(String nome, float energia, float proteine, float lipidi, float carbo) {
         this.nome = nome;
         this.energia = energia;
         this.proteine = proteine;

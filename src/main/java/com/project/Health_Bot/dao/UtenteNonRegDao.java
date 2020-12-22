@@ -14,7 +14,8 @@ import java.util.Optional;
 public interface UtenteNonRegDao {
 
     /**
-     * Restituisce il nome del primo attributo nullo dell'utente specificato o null se non ve ne sono
+     * Restituisce il nome del primo attributo nullo dell'utente specificato (null se tutti i campi sono
+     * compilati)
      * 
      * @param id
      * @return Optional<String>

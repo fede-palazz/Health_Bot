@@ -16,7 +16,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import com.project.Health_Bot.model.Cibo;
+import com.project.Health_Bot.model.Alimento;
 
 /**
  * Classe che contiene i metodi che gestiscono i file JSON in online

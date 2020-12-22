@@ -33,7 +33,13 @@ public class BotServiceImpl implements BotService {
      * @param update Updates
      */
     @Override
-    public void handleUpdate(Update update) {
+    public void gestisciUpdate(Update update) {
+
+    }
+
+    @Override
+    public void gestisciReg() {
+        // TODO Auto-generated method stub
 
     }
 

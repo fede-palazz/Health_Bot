@@ -12,7 +12,7 @@ import com.project.Health_Bot.service.BotService;
 /**
  * @author FedePalaz & GiovanniNovelli9 & Baldellaux
  *
- * Classe Controller del Bot.
+ *         Classe Controller del Bot.
  *
  */
 @RestController
@@ -22,7 +22,7 @@ public class BotController extends TelegramLongPollingBot {
     private BotService service;
     private String botUsername; // Bot username
     private String botToken; // Bot token
-    
+
     /**
      * 
      * @param username
@@ -39,7 +39,7 @@ public class BotController extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         // Invocato al ricevimento di un nuovo update (messaggio)
-        service.handleUpdate(update);
+        service.gestisciUpdate(update);
     }
 
     @Override
