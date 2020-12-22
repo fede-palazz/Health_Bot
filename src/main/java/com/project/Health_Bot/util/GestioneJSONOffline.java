@@ -173,4 +173,83 @@ public class GestioneJSONOffline {
 		return null;
 
 	}*/
+	
+	/*
+	 * Per la creazione del JSONArray contenente le informazioni relatve agli utenti già registrati,
+	 * si utilizza un metodo che si estende a matrioscaé partendo da "dentro".
+	 * Creo lo storico; 
+	 * lo inserisco dentro il JSONArray misurazioni;
+	 * inserisco misurazioni dentro utente;
+	 * inserisco dunque utente dentro il general;
+	 * inserisco il general dentro un JSONArray totale.
+	 */
+	
+	/**
+	 * Metodo che ritorna un JSONArray, dopo aver ricevuto in input un JSONObject.
+	 * @param generale
+	 * @return totale
+	 */
+	public JSONArray setArray (JSONObject generale) {
+		JSONArray totale = new JSONArray();
+		totale.add(generale);
+		return totale ;
+	}
+	
+	/**
+	 * Metodo che ritorna un JSONObject, dopo aver ricevuto in input un JSONObject e l'id dell'utente selezionato.
+	 * @param utente
+	 * @param id
+	 * @return generale
+	 */
+	public JSONObject setGenerale (JSONObject utente, String id) {
+		JSONObject generale = new JSONObject();
+		generale.put("id", id);
+		generale.put("utente", utente);		
+		return generale;
+	}
+	
+	/**
+	 * Metodo che ritorna un JSONObject, dopo aver ricevuto in input tutti i parametri che descrivono l'utente, tra cui lo storico delle misurazioni.
+	 * @param username
+	 * @param sesso
+	 * @param pesoAttuale
+	 * @param altezza
+	 * @param annoNascita
+	 * @param stileDiVita
+	 * @param misurazioni
+	 * @return utente
+	 */ 
+	public JSONObject setUtente (String username, char sesso, double pesoAttuale, int altezza, int annoNascita, String stileDiVita, JSONArray misurazioni) {
+		
+		JSONObject utente = new JSONObject();
+
+		//inserire JSONOBJ dati dentro JSONArray misurazioni
+		utente.put("username", username);
+		utente.put("sesso", sesso);
+		utente.put("pesoAttuale", pesoAttuale);
+		utente.put("altezza", altezza);
+		utente.put("annoNascita", annoNascita);
+		utente.put("stileDiVita", stileDiVita);    
+		utente.put("misurazioni", misurazioni);
+		return utente;
+		
+	}
+	
+	/**
+	 * Metodo che ritorna un JSONObect, dopo aver ricevuto in input i parametri delle nuove misurazioni.
+	 * storico é l'insieme delle misurazioni compiute dall'utente.
+	 * @param peso
+	 * @param data
+	 * @param lbm
+	 * @param bmi 
+	 * @return storico
+	 */
+	public JSONObject setStorico (double peso, int data, double lbm, double bmi) {	
+		JSONObject storico = new JSONObject();
+		storico.put("peso", peso);
+        storico.put("data", data);
+        storico.put("ibm", lbm);
+        storico.put("bmi", bmi);
+        return storico;
+	}
 }
