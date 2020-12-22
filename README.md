@@ -1,8 +1,12 @@
 # Progetto Programmazione ad Oggetti: Health_Bot
 
+<img src="/Users/baldellaux/Desktop/BOT_Project/Health_Bot/resources/Bot_def.jpg" style="zoom:25%;" />
+
 ## INTRODUZIONE
 
-Lo scopo di questo progetto è ...
+
+
+![](/Users/baldellaux/Desktop/BOT_Project/Health_Bot/resources/Funzionamento_BOT.png)
 
 
 
@@ -37,6 +41,20 @@ Successivamente, seguendo le istruzioni indicate da BotFather, sarà possibile, 
 Diagramma dei casi d'uso:
 
 ![](/Users/baldellaux/Desktop/BOT_Project/Health_Bot/resources/Health_Bot__Case Diagram.jpg)
+
+
+
+
+
+Diagrammi delle classi:
+
+<img src="/Users/baldellaux/Desktop/BOT_Project/Health_Bot/resources/UML/class_diagram-Diagramma classi.png" style="zoom:80%;" />
+
+
+
+Diagrammi delle sequenze:
+
+![](/Users/baldellaux/Desktop/BOT_Project/Health_Bot/resources/UML/Seq_diagram-Seq_Updates.png)
 
 
 
