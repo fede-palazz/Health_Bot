@@ -1,6 +1,6 @@
 # Progetto Programmazione ad Oggetti: Health_Bot
 
-<img src="resources/Bot_def.jpg" style="zoom:20%;" />
+<img src="resources/Bot_def.jpg" style="zoom:15%;" />
 
 ## INTRODUZIONE
 
@@ -44,7 +44,7 @@ Successivamente, seguendo le istruzioni indicate da BotFather, sarà possibile, 
 
 Diagramma dei casi d'uso:
 
-![](resources/UML/Health_Bot__Case Diagram.jpg)
+![](resources/UML/Health_Bot_UseCaseDiagram.png)
 
 
 
