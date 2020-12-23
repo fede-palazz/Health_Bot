@@ -26,7 +26,7 @@ Lo scopo del progetto è quello di realizzare un Web Service in grado di interag
 
 Per poter iniziare è necessario creare un bot su Telegram interagendo direttamente con il BotFather, come mostrato nella gif sotto:
 
-![](resources/introduzione.gif)
+![](/Users/baldellaux/Desktop/BOT_Project/Health_Bot/resources/IntrGIUSTA.gif)
 
 Successivamente, seguendo le istruzioni indicate da BotFather, sarà possibile, per esempio:
 
