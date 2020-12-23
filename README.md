@@ -2,7 +2,6 @@
 
 
 
-<<<<<<< HEAD
 ## INTRODUZIONE
 
 Lo scopo del progetto è quello di realizzare un Web Service in grado di interagire con le API di Telegram e permettere il funzionamento di "Health_Bot", un bot con svariate funzionalità:
@@ -20,17 +19,8 @@ Lo scopo del progetto è quello di realizzare un Web Service in grado di interag
 ## LOGICA DI FUNZIONAMENTO
 
 ![](resources/Funzionamento_BOT.png)
-=======
-Lo scopo del progetto è quello di realizzare un Web Service in grado di interagire con le API di Telegram e permettere il funzionamento di "Health_Bot", un bot con svariate funzionalità:
-- Monitoraggio del peso e del BMI
-- Calcolo del FCG (Fabbisogno Calorico Giornaliero), del PI (Peso ideale) e dell'LBM (Massa magra in kg)
-- Diagnostica della salute (sulla base del BMI)
-- Statistiche su peso e BMI (sia personali per ogni utente, che generali accessibili tramite richieste GET)
->>>>>>> 364d5be3cc53c88560b2cdc380f0d7a40b43a962
 
-## LOGICA DI FUNZIONAMENTO
 
-![](resources/Funzionamento_BOT.png)
 
 ## GETTING STARTED
 
@@ -69,18 +59,11 @@ Diagrammi delle sequenze:
 ![](resources/UML/Seq_diagram-Seq_Updates.png)
 
 ## TECNOLOGIE UTILIZZATE
-<<<<<<< HEAD
-
 - Eclipse (IDE)
 - Spring Boot (Framework backend Java)
 - Telegram BOT API (Documentazione)
 
 
-=======
-- Eclipse (IDE)
-- Spring Boot (Framework backend Java)
-- Telegram BOT API (Documentazione)
->>>>>>> 364d5be3cc53c88560b2cdc380f0d7a40b43a962
 
 ## Contributors
 
