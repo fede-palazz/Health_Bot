@@ -2,6 +2,7 @@
 
 
 
+<<<<<<< HEAD
 ## INTRODUZIONE
 
 Lo scopo del progetto è quello di realizzare un Web Service in grado di interagire con le API di Telegram e permettere il funzionamento di "Health_Bot", un bot con svariate funzionalità:
@@ -19,8 +20,17 @@ Lo scopo del progetto è quello di realizzare un Web Service in grado di interag
 ## LOGICA DI FUNZIONAMENTO
 
 ![](resources/Funzionamento_BOT.png)
+=======
+Lo scopo del progetto è quello di realizzare un Web Service in grado di interagire con le API di Telegram e permettere il funzionamento di "Health_Bot", un bot con svariate funzionalità:
+- Monitoraggio del peso e del BMI
+- Calcolo del FCG (Fabbisogno Calorico Giornaliero), del PI (Peso ideale) e dell'LBM (Massa magra in kg)
+- Diagnostica della salute (sulla base del BMI)
+- Statistiche su peso e BMI (sia personali per ogni utente, che generali accessibili tramite richieste GET)
+>>>>>>> 364d5be3cc53c88560b2cdc380f0d7a40b43a962
 
+## LOGICA DI FUNZIONAMENTO
 
+![](resources/Funzionamento_BOT.png)
 
 ## GETTING STARTED
 
@@ -30,13 +40,13 @@ Per poter iniziare è necessario creare un bot su Telegram interagendo direttame
 
 Successivamente, seguendo le istruzioni indicate da BotFather, sarà possibile, per esempio:
 
-- Scegliere lo username per il bot, che deve terminare per forza con 'Bot' o 'bot';
+- Scegliere un username per il bot (deve terminare per forza con 'Bot' o 'bot')
 
-- Abilitare/disabilitare il bot ad essere inseriro in chat e gruppi;
+- Abilitare/disabilitare il bot ad essere inserito in gruppi
 
-- Scegliere la descrizione, dopo aver selezionato il bot, con il comando '/setdescription'.
+- Scegliere la descrizione tramite il comando '/setdescription'.
 
-  Inoltre BotFather dà fornisce all'utente il token per accedere all'HTTP API del Bot.
+Inoltre BotFather fornisce all'utente il token da utilizzare per comandare il bot tramite richieste HTTP.
 
 
 
@@ -59,12 +69,18 @@ Diagrammi delle sequenze:
 ![](resources/UML/Seq_diagram-Seq_Updates.png)
 
 ## TECNOLOGIE UTILIZZATE
+<<<<<<< HEAD
 
 - Eclipse (IDE)
 - Spring Boot (Framework backend Java)
 - Telegram BOT API (Documentazione)
 
 
+=======
+- Eclipse (IDE)
+- Spring Boot (Framework backend Java)
+- Telegram BOT API (Documentazione)
+>>>>>>> 364d5be3cc53c88560b2cdc380f0d7a40b43a962
 
 ## Contributors
 
