@@ -37,9 +37,12 @@ public class BotServiceImpl implements BotService {
 
     }
 
+    /**
+     * 
+     */
     @Override
     public void gestisciReg() {
-        // TODO Auto-generated method stub
+        
 
     }
 

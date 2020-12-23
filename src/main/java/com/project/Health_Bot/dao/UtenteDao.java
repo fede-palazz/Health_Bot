@@ -13,8 +13,10 @@ public interface UtenteDao {
 
     /**
      * Metodi gestione dei dati (inserimento utenti, eliminazione, ecc ...)
+     * 
      * @param username
      * @return
      */
     public boolean isRegistered(String username);
+    
 }

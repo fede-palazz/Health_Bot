@@ -104,8 +104,9 @@ public class Utente {
 
 
     /**
+     * Metodo che calcola l'età a aprtire dall'anno di nascita
      * 
-     * @return
+     * @return eta
      */
     public Optional<Integer> getEta() {
         if (Optional.ofNullable(annoNascita).isPresent()) {

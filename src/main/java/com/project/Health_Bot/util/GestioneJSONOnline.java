@@ -82,6 +82,7 @@ public class GestioneJSONOnline {
 				.method("GET", HttpRequest.BodyPublishers.noBody()).build();
 		HttpResponse<String> response = null;
 
+		// Aggiungere eccezione personalizzata
 		try {
 			response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
 		} catch (IOException e) {

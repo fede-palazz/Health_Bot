@@ -4,8 +4,9 @@
 package com.project.Health_Bot.model;
 
 /**
- * 
  * @author FedePalaz & GiovanniNovelli9 & Baldellaux
+ * 
+ * Classe che modella il generico alimento
  *
  */
 public class Alimento {
@@ -16,6 +17,7 @@ public class Alimento {
     protected float lipidi;
     protected float carbo;
 /**
+ * Costruttore
  * 
  * @param nome
  */
@@ -23,6 +25,7 @@ public class Alimento {
         this.nome = nome;
     }
 /**
+ * Costruttore
  * 
  * @param nome
  * @param energia
