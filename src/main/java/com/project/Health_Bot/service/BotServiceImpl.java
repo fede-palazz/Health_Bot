@@ -3,6 +3,7 @@
  */
 package com.project.Health_Bot.service;
 
+import java.util.Calendar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -10,6 +11,7 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import com.project.Health_Bot.dao.UtenteNonRegDao;
 import com.project.Health_Bot.dao.UtenteRegDao;
+import com.project.Health_Bot.exception.BadGenderException;
 import com.project.Health_Bot.view.Registrazione;
 
 /**
@@ -36,6 +38,7 @@ public class BotServiceImpl implements BotService {
      * Ricostruisce lo stato dell'applicazione
      * 
      * @param update Updates
+     * @throws BadGenderException
      */
     @Override
     public SendMessage gestisciUpdate(Update update) {
@@ -57,7 +60,7 @@ public class BotServiceImpl implements BotService {
             else {
                 // Nuovo utente
                 utenteNonRegDao.nuovoUtente(userId); // Registrazione
-
+                response = Registrazione.getVistaSesso(); // Vista iniziale
             }
 
             // Restituisce la risposta con il relativo chatId
@@ -73,6 +76,7 @@ public class BotServiceImpl implements BotService {
      * 
      * @param mess
      * @param userId
+     * @throws BadGenderException
      */
     @Override
     public SendMessage gestisciReg(Message mess, String userId) {
@@ -80,18 +84,30 @@ public class BotServiceImpl implements BotService {
         // Individuo quale campo deve essere ancora compilato ed restituisco la vista corrispondente
         switch (utenteNonRegDao.getCampoVuoto(userId)) {
         case "sesso":
-            return Registrazione.getVistaSesso();
-            
-        case "peso":
             // Verifico se il genere ottenuto è valido
+
             if (mess.getText().toUpperCase() == "M" || mess.getText().toUpperCase() == "F") {
                 // Lo registro e restituisco la prossima vista
                 utenteNonRegDao.registraSesso(userId, mess.getText().toUpperCase().charAt(0));
                 return Registrazione.getVistaPeso();
             }
-            else // Input non valido
+            else // Sesso inserito non valido
                 return Registrazione.getVistaErrore();
-            
+
+        case "peso":
+            // Verifico che il peso ottenuto sia valido
+            try {
+                float peso = Float.parseFloat(mess.getText());
+                if (peso > 0 && peso < 300) {
+                    // Peso valido
+                    utenteNonRegDao.registraPeso(userId, peso);
+                    return Registrazione.getVistaAltezza();
+                }
+            }
+            catch (Exception e) {
+                // Peso inserito non valido
+                return Registrazione.getVistaErrore();
+            }
         case "altezza":
             // Verifico che l'altezza ottenuta sia valida
             try {
@@ -99,22 +115,38 @@ public class BotServiceImpl implements BotService {
                 if (altezza > 30 && altezza < 280) {
                     // Registro il valore e restituisco la prossima vista
                     utenteNonRegDao.registraAltezza(userId, altezza);
-                    
+                    return Registrazione.getVistaAnno();
                 }
             }
-            
-            return Registrazione.getVistaAltezza();
-            
+            catch (Exception e) {
+                // Altezza inserita non valida
+                return Registrazione.getVistaErrore();
+            }
+
         case "annoNascita":
-            return Registrazione.getVistaAnno();
-            
-        default: // Tutti i campi sono compilati
+            // Verifico l'anno inserito sia valido
+            try {
+                int annoNascita = Integer.parseInt(mess.getText());
+                int annoCorrente = Calendar.getInstance().get(Calendar.YEAR);
+                if ((annoCorrente - annoNascita) >= 0 && (annoCorrente - annoNascita) < 120) {
+                    // Registro il valore e restituisco la prossima vista
+                    utenteNonRegDao.registraAnno(userId, annoNascita);
+                    //return Registrazione.getVista();
+                }
+            }
+            catch (Exception e) {
+                // Anno di nascita inserito non valido
+                return Registrazione.getVistaErrore();
+            }
+
+        case "tipo": // Inserimento livello attività fisica
             return null;
         }
     }
 
     @Override
     public SendMessage gestisciMenu(Message mess, String userId) {
+
         return null;
     }
 

@@ -15,7 +15,7 @@ public interface UtenteNonRegDao {
      * Verifica se l'utente è in fase di registrazione o meno
      * 
      * @param id
-     * @return
+     * @return Boolean
      */
     public Boolean isRegistering(String id);
 
@@ -24,12 +24,12 @@ public interface UtenteNonRegDao {
      * compilati)
      * 
      * @param id
-     * @return Optional<String>
+     * @return String
      */
     public String getCampoVuoto(String id);
 
     /**
-     * Inserisce un nuovo utente con attributi nulli
+     * Aggiunge un nuovo utente al sistema (attributi nulli)
      * 
      * @param id
      */

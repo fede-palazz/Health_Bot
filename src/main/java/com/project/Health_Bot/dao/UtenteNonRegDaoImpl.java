@@ -4,7 +4,6 @@
 package com.project.Health_Bot.dao;
 
 import java.util.HashMap;
-import java.util.Optional;
 import org.springframework.stereotype.Repository;
 import com.project.Health_Bot.model.Utente;
 
@@ -22,59 +21,53 @@ public class UtenteNonRegDaoImpl implements UtenteNonRegDao {
     private static HashMap<String, Utente> utentiNonReg;
 
     /**
-     * Aggiunge un nuovo utente al sistema (attributi nulli)
-     * 
-     * @param id
-     * @param username
-     */
-    private void registraUtente(String id, String username) {
-        
-    	
-    }
-    
-    /**
      * 
      */
     @Override
     public void registraSesso(String id, char sesso) {
 
-    	
     }
-    
+
     /**
      * 
      */
     @Override
     public void registraPeso(String id, float peso) {
-        
 
     }
-    
+
     /**
      * 
      */
     @Override
     public void registraAltezza(String id, int altezza) {
-       
 
     }
-    
+
     /**
      * 
      */
     @Override
     public void registraAnno(String id, int anno) {
-        
 
     }
-    
-    /**
-     * 
-     */
+
     @Override
-    public Optional<String> getCampoVuoto(String id) {
-        
+    public Boolean isRegistering(String id) {
+        // TODO Auto-generated method stub
         return null;
+    }
+
+    @Override
+    public String getCampoVuoto(String id) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void nuovoUtente(String id) {
+        // TODO Auto-generated method stub
+
     }
 
 }
