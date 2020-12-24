@@ -6,6 +6,7 @@ package com.project.Health_Bot.util;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Vector;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -13,6 +14,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import com.project.Health_Bot.dao.UtenteRegDao;
+import com.project.Health_Bot.model.Misurazione;
 import com.project.Health_Bot.model.Pesista;
 import com.project.Health_Bot.model.Sedentario;
 import com.project.Health_Bot.model.Sportivo;
@@ -202,7 +204,9 @@ public class GestioneJSONOffline {
 	}
 	
 	/**
-	 * Metodo che ritorna un JSONObject, dopo aver ricevuto in input un JSONObject e l'id dell'utente selezionato.
+	 * Metodo che ritorna un JSONObject, 
+	 * dopo aver ricevuto in input un JSONObject e l'id dell'utente selezionato.
+	 * 
 	 * @param utente
 	 * @param id
 	 * @return generale
@@ -215,8 +219,8 @@ public class GestioneJSONOffline {
 	}
 	
 	/**
-	 * Metodo che ritorna un JSONObject, dopo aver ricevuto in input tutti i parametri che descrivono l'utente, 
-	 * tra cui lo storico delle misurazioni.
+	 * Metodo che ritorna un JSONObject, dopo aver ricevuto in input tutti i parametri 
+	 * che descrivono l'utente, tra cui lo storico delle misurazioni.
 	 * 
 	 * @param username
 	 * @param sesso
@@ -245,24 +249,95 @@ public class GestioneJSONOffline {
 	}
 	
 	/**
-	 * Metodo che ritorna un JSONObect, dopo aver ricevuto in input i parametri delle nuove misurazioni.
-	 * storico é l'insieme delle misurazioni compiute dall'utente.
+	 * Metodo che ritorna un JSONObect, dopo aver ricevuto in input il vector mis di tipo Misurazione.
+	 * Lo storico é l'insieme delle misurazioni compiute dall'utente.
 	 * 
-	 * @param peso
-	 * @param data
-	 * @param lbm
-	 * @param bmi 
-	 * @return storico
+	 * @param mis
+	 * @return
 	 */
-	private JSONObject setStorico (float peso, int data, float lbm, float bmi) {	
+	private JSONObject setStorico (Vector<Misurazione> mis) {	
 		JSONObject storico = new JSONObject();
 		
-		storico.put("peso", peso);
-        storico.put("data", data);
-        storico.put("lbm", lbm);
-        storico.put("bmi", bmi);
-        
+		/*
+		Misurazione peso = mis.get(0);
+		Misurazione data = mis.get(1);
+		Misurazione lbm = mis.get(2);
+		Misurazione bmi = mis.get(3);
+		*/
+		
+		storico.put("peso", mis.get(0));
+        storico.put("data", mis.get(1));
+        storico.put("lbm", mis.get(2));
+        storico.put("bmi", mis.get(3));
+   
         return storico;
+	
 	}
+	
+	/**
+	 * Metodo che carica l'allenamento dal file e lo restituisce
+	 * @param tipo Stile di vita (sed, sport, pes)
+	 * @param n variabile generata randomicamente
+	 * @return String un possibile allenamento
+	 */
+	public static String getAllenamento(String tipo, int n) {
+
+		JSONArray array = caricaARRAYFile("allenamenti.json");
+		
+		switch (tipo) {
+		case "pes":
+			// mi prende allenamenti PESISTA
+			JSONObject allenamentiPesista = (JSONObject) array.get(0);
+			JSONObject listPes = (JSONObject) allenamentiPesista.get("allenamentiPesista");
+
+			switch (n) {
+			case 0:
+				String allenamento1;
+				return allenamento1 = (String) listPes.get("1");
+			case 1:
+				String allenamento2;
+				return allenamento2 = (String) listPes.get("2");
+			case 2:
+				String allenamento3;
+				return allenamento3 = (String) listPes.get("3");
+			}
+		case "sport":
+			// mi prende allenamenti SPORTIVO
+			JSONObject allenamentiSportivo = (JSONObject) array.get(1);
+			JSONObject listSport = (JSONObject) allenamentiSportivo.get("allenamentiSportivo");
+
+			switch (n) {
+			case 0:
+				String allenamento1;
+				return allenamento1 = (String) listSport.get("1");
+			case 1:
+				String allenamento2;
+				return allenamento2 = (String) listSport.get("2");
+			case 2:
+				String allenamento3;
+				return allenamento3 = (String) listSport.get("3");
+			}
+			
+		case "sed":
+			// mi prende allenamenti SEDENTARIO
+			JSONObject allenamentiSedentario = (JSONObject) array.get(2);
+			JSONObject listSed = (JSONObject) allenamentiSedentario.get("allenamentiSedentario");
+
+			switch (n) {
+			case 0:
+				String allenamento1;
+				return allenamento1 = (String) listSed.get("1");
+			case 1:
+				String allenamento2;
+				return allenamento2 = (String) listSed.get("2");
+			case 2:
+				String allenamento3;
+				return allenamento3 = (String) listSed.get("3");
+			}
+		}
+		return null;
+
+	}
+
 
 }
