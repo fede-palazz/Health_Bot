@@ -258,13 +258,6 @@ public class GestioneJSONOffline {
 	private JSONObject setStorico (Vector<Misurazione> mis) {	
 		JSONObject storico = new JSONObject();
 		
-		/*
-		Misurazione peso = mis.get(0);
-		Misurazione data = mis.get(1);
-		Misurazione lbm = mis.get(2);
-		Misurazione bmi = mis.get(3);
-		*/
-		
 		storico.put("peso", mis.get(0));
         storico.put("data", mis.get(1));
         storico.put("lbm", mis.get(2));
