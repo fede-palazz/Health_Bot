@@ -266,6 +266,71 @@ public class GestioneJSONOffline {
         return storico;
 	
 	}
+	
+	/**
+	 * Metodo che carica l'allenamento dal file e lo restituisce
+	 * @param tipo Stile di vita (sed, sport, pes)
+	 * @param n variabile generata randomicamente
+	 * @return String un possibile allenamento
+	 */
+	public static String getAllenamento(String tipo, int n) {
+
+		JSONArray array = caricaARRAYFile("allenamenti.json");
+		
+		switch (tipo) {
+		case "pes":
+			// mi prende allenamenti PESISTA
+			JSONObject allenamentiPesista = (JSONObject) array.get(0);
+			JSONObject listPes = (JSONObject) allenamentiPesista.get("allenamentiPesista");
+
+			switch (n) {
+			case 0:
+				String allenamento1;
+				return allenamento1 = (String) listPes.get("1");
+			case 1:
+				String allenamento2;
+				return allenamento2 = (String) listPes.get("2");
+			case 2:
+				String allenamento3;
+				return allenamento3 = (String) listPes.get("3");
+			}
+		case "sport":
+			// mi prende allenamenti SPORTIVO
+			JSONObject allenamentiSportivo = (JSONObject) array.get(1);
+			JSONObject listSport = (JSONObject) allenamentiSportivo.get("allenamentiSportivo");
+
+			switch (n) {
+			case 0:
+				String allenamento1;
+				return allenamento1 = (String) listSport.get("1");
+			case 1:
+				String allenamento2;
+				return allenamento2 = (String) listSport.get("2");
+			case 2:
+				String allenamento3;
+				return allenamento3 = (String) listSport.get("3");
+			}
+			
+		case "sed":
+			// mi prende allenamenti SEDENTARIO
+			JSONObject allenamentiSedentario = (JSONObject) array.get(2);
+			JSONObject listSed = (JSONObject) allenamentiSedentario.get("allenamentiSedentario");
+
+			switch (n) {
+			case 0:
+				String allenamento1;
+				return allenamento1 = (String) listSed.get("1");
+			case 1:
+				String allenamento2;
+				return allenamento2 = (String) listSed.get("2");
+			case 2:
+				String allenamento3;
+				return allenamento3 = (String) listSed.get("3");
+			}
+		}
+		return null;
+
+	}
 
 
 }

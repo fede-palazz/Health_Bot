@@ -3,13 +3,12 @@
  */
 package com.project.Health_Bot.service;
 
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 /**
- * @author FedePalaz & GiovanniNovelli9 & Baldellaux
- *
- * Interfaccia contenente metodi che rappresentano 
- * la logica di business dell'applicazione.
+ * Interfaccia contenente i metodi che gestiscono la logica di business dell'applicazione.
  *
  */
 public interface BotService {
@@ -19,8 +18,10 @@ public interface BotService {
      * 
      * @param update
      */
-    public void gestisciUpdate(Update update);
+    public SendMessage gestisciUpdate(Update update);
 
-    public void gestisciReg();
+    public SendMessage gestisciReg(Message mess, String userId);
+
+    public SendMessage gestisciMenu(Message mess, String userId);
 
 }

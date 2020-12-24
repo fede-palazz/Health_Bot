@@ -4,6 +4,7 @@
 package com.project.Health_Bot.model;
 
 import java.util.Vector;
+import com.project.Health_Bot.util.GestioneJSONOffline;
 
 /**
  * Classe che modella l'utente pesista.
@@ -50,6 +51,17 @@ public class Pesista extends Utente {
         for (Misurazione m : misurazioni) // Trasferisce la lista di misurazioni
             this.misurazioni.add(m);
     }
-    
+
+	/**
+	 * Metodo che genera un numero casuale e restituisce un allenamento salvato nel file
+	 * @return Allenamento per utente Pesista
+	 */
+	public String getAllenamentoPesista() {
+		// numero da 0 e 2 inclusi
+		int n = (int) (Math.random() * 3);
+		// chiamata metodo JSONOffline
+		String allenamento = GestioneJSONOffline.getAllenamento("pes", n);
+		return allenamento;
+	}
 
 }

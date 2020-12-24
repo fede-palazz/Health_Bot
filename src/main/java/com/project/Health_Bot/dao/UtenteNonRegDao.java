@@ -3,8 +3,6 @@
  */
 package com.project.Health_Bot.dao;
 
-import java.util.Optional;
-
 /**
  * Interfaccia che modella l'utente non ancora registrato
  * 
@@ -14,13 +12,28 @@ import java.util.Optional;
 public interface UtenteNonRegDao {
 
     /**
+     * Verifica se l'utente è in fase di registrazione o meno
+     * 
+     * @param id
+     * @return
+     */
+    public Boolean isRegistering(String id);
+
+    /**
      * Restituisce il nome del primo attributo nullo dell'utente specificato (null se tutti i campi sono
      * compilati)
      * 
      * @param id
      * @return Optional<String>
      */
-    public Optional<String> getCampoVuoto(String id);
+    public String getCampoVuoto(String id);
+
+    /**
+     * Inserisce un nuovo utente con attributi nulli
+     * 
+     * @param id
+     */
+    public void nuovoUtente(String id);
 
     /**
      * Regista il sesso dell'utente
