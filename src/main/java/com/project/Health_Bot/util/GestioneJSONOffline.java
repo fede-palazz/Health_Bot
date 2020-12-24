@@ -258,13 +258,6 @@ public class GestioneJSONOffline {
 	private JSONObject setStorico (Vector<Misurazione> mis) {	
 		JSONObject storico = new JSONObject();
 		
-		/*
-		Misurazione peso = mis.get(0);
-		Misurazione data = mis.get(1);
-		Misurazione lbm = mis.get(2);
-		Misurazione bmi = mis.get(3);
-		*/
-		
 		storico.put("peso", mis.get(0));
         storico.put("data", mis.get(1));
         storico.put("lbm", mis.get(2));
@@ -292,14 +285,11 @@ public class GestioneJSONOffline {
 
 			switch (n) {
 			case 0:
-				String allenamento1;
-				return allenamento1 = (String) listPes.get("1");
+				return (String) listPes.get("1").toString();
 			case 1:
-				String allenamento2;
-				return allenamento2 = (String) listPes.get("2");
+				return (String) listPes.get("2").toString();
 			case 2:
-				String allenamento3;
-				return allenamento3 = (String) listPes.get("3");
+				return (String) listPes.get("3").toString();
 			}
 		case "sport":
 			// mi prende allenamenti SPORTIVO
@@ -308,14 +298,11 @@ public class GestioneJSONOffline {
 
 			switch (n) {
 			case 0:
-				String allenamento1;
-				return allenamento1 = (String) listSport.get("1");
+				return (String) listSport.get("1").toString();
 			case 1:
-				String allenamento2;
-				return allenamento2 = (String) listSport.get("2");
+				return (String) listSport.get("2").toString();
 			case 2:
-				String allenamento3;
-				return allenamento3 = (String) listSport.get("3");
+				return (String) listSport.get("3").toString();
 			}
 			
 		case "sed":
@@ -325,18 +312,14 @@ public class GestioneJSONOffline {
 
 			switch (n) {
 			case 0:
-				String allenamento1;
-				return allenamento1 = (String) listSed.get("1");
+				return (String) listSed.get("1").toString();
 			case 1:
-				String allenamento2;
-				return allenamento2 = (String) listSed.get("2");
+				return (String) listSed.get("2").toString();
 			case 2:
-				String allenamento3;
-				return allenamento3 = (String) listSed.get("3");
+				return (String) listSed.get("3").toString();
 			}
 		}
 		return null;
-
 	}
 
 

@@ -13,7 +13,7 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.Keyboard
  * 
  * @author FedePalaz & GiovanniNovelli9 & Baldellaux
  * 
- *         Classe che rappresenta una tastiera personalizzata di risposta al bot
+ * Classe che rappresenta una tastiera personalizzata di risposta al bot
  *
  */
 public class Tastiera {

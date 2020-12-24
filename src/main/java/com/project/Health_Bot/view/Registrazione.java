@@ -3,13 +3,16 @@
  */
 package com.project.Health_Bot.view;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+
 
 /**
  * @author FedePalaz & GiovanniNovelli9 & Baldellaux
  * 
- *         Classe che modella la fase di registrazione del'utente.
+ * Classe che modella la fase di registrazione dell'utente.
  * 
  */
 public class Registrazione {
@@ -24,7 +27,7 @@ public class Registrazione {
         // Testo del messaggio
         mess.setText("Benvenuto su Health_Bot! 😉\n"
                 + "Prima di poter accedere alle sue funzionalità è necessario inserire qualche dato iniziale\n\n"
-                + "Sei un maschio o una femmina?");
+                + "Sei un maschio ♀️ o una femmina ♂️ ?");
         // Testo dei pulsanti della tastiera
         Vector<String> pulsanti = new Vector<String>();
         pulsanti.add("M");
@@ -41,7 +44,7 @@ public class Registrazione {
     public static SendMessage getVistaPeso() {
         SendMessage mess = new SendMessage();
         // Testo del messaggio
-        mess.setText("Quanto pesi attualmente?");
+        mess.setText("Quanto pesi attualmente [Kg]? ⚖");
         // Rimuove l'eventuale tastiera visualizzata
         mess.setReplyMarkup(Tastiera.rimuoviTastiera());
         return mess;
@@ -74,7 +77,31 @@ public class Registrazione {
         // Rimuove l'eventuale tastiera visualizzata
         mess.setReplyMarkup(Tastiera.rimuoviTastiera());
         return mess;
-
+    }
+    
+    /**
+     * Metodo che restituisce il livello di att. fisica selezionato dall'utente
+     * 
+     * @return
+     */
+    public static SendMessage getVistaAttivita() {
+    	SendMessage mess = new SendMessage();
+        // Testo del messaggio
+        mess.setText("Seleziona il tuo livello di attività fisica 💪: ");
+        // Testo dei pulsanti della tastiera
+        List<Vector<String>> pulsanti = new Vector<>();
+        
+        Vector<String> pulsanti1 = new Vector<>();
+        pulsanti1.add("Pesante 🏋️‍♀️");
+        pulsanti1.add("Moderato 🏃‍♂️");
+        pulsanti.add(pulsanti1);
+        
+        Vector<String> pulsanti2 = new Vector<>();
+        pulsanti2.add("Sedentario 🧘🏿‍♀️");
+        pulsanti.add(pulsanti2);
+        
+        mess.setReplyMarkup(Tastiera.getTastiera(pulsanti));
+        return mess;
     }
 
     /**
@@ -90,5 +117,6 @@ public class Registrazione {
         mess.setReplyMarkup(Tastiera.rimuoviTastiera());
         return mess;
     }
+    
 
 }

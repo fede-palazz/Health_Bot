@@ -56,12 +56,12 @@ public class Pesista extends Utente {
 	 * Metodo che genera un numero casuale e restituisce un allenamento salvato nel file
 	 * @return Allenamento per utente Pesista
 	 */
-	public String getAllenamentoPesista() {
+	public String getAllenamento() {
 		// numero da 0 e 2 inclusi
 		int n = (int) (Math.random() * 3);
 		// chiamata metodo JSONOffline
-		String allenamento = GestioneJSONOffline.getAllenamento("pes", n);
-		return allenamento;
+		return GestioneJSONOffline.getAllenamento("pes", n);
+
 	}
 
 }
