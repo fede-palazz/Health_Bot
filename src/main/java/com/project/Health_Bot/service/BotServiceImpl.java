@@ -96,12 +96,11 @@ public class BotServiceImpl implements BotService {
             // Verifico che l'altezza ottenuta sia valida
             try {
                 int altezza = Integer.parseInt(mess.getText());
-                if (altezza > 30 && altezza < 280) {
+                if (altezza > 30 && altezza < 280) 
                     // Registro il valore e restituisco la prossima vista
-                    utenteNonRegDao.registraAltezza(userId, altezza);
-                    
+                    utenteNonRegDao.registraAltezza(userId, altezza); 
                 }
-            }
+
             
             return Registrazione.getVistaAltezza();
             
