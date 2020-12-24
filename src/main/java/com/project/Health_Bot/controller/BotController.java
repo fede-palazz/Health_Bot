@@ -6,7 +6,9 @@ package com.project.Health_Bot.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import com.project.Health_Bot.service.BotService;
 
 /**
@@ -39,7 +41,14 @@ public class BotController extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         // Invocato al ricevimento di un nuovo update (messaggio)
-        service.gestisciUpdate(update);
+        try {
+            SendMessage mess = service.gestisciUpdate(update);
+            if (mess != null)
+                execute(mess);
+        }
+        catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

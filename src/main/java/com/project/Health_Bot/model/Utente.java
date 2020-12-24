@@ -23,7 +23,7 @@ public class Utente {
      */
     protected int altezza;
     /**
-     * Peso attuale dell'utente
+     * Peso inserito in fase di registrazione
      */
     protected float peso;
     /**
@@ -32,7 +32,8 @@ public class Utente {
     protected int annoNascita;
 
     /**
-     * Costruttore di default utilizzato al momento della registrazione di un nuovo utente (i campi sono nulli)
+     * Costruttore di default utilizzato al momento della registrazione di un nuovo utente (i campi sono
+     * nulli)
      * 
      * @param username
      */
@@ -91,7 +92,7 @@ public class Utente {
      * @return
      */
     public Optional<Float> getPeso() {
-        return Optional.ofNullable(peso); 
+        return Optional.ofNullable(peso);
     }
 
     /**
@@ -101,7 +102,6 @@ public class Utente {
     public void setPeso(float peso) {
         this.peso = peso;
     }
-
 
     /**
      * 
