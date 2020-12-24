@@ -57,11 +57,10 @@ public class Sedentario extends Utente {
 	 * Metodo che genera un numero casuale e restituisce un allenamento salvato nel file
 	 * @return Allenamento per utente Sedentario
 	 */
-    public String getAllenamentoSedentario() {
+    public String getAllenamento() {
 		// numero da 0 e 2 inclusi
 		int n = (int) (Math.random() * 3);
 		// chiamata metodo JSONOffline
-		String allenamento = GestioneJSONOffline.getAllenamento("sed", n);
-		return allenamento;
+		return GestioneJSONOffline.getAllenamento("sed", n);
 	}
 }
