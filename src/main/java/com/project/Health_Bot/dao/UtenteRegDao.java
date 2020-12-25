@@ -3,6 +3,8 @@
  */
 package com.project.Health_Bot.dao;
 
+import com.project.Health_Bot.model.Utente;
+
 /**
  * Interfaccia che modella l'utente già registrato
  * 
@@ -18,4 +20,14 @@ public interface UtenteRegDao {
      * @param id
      */
     public boolean isRegistered(String id);
+
+    /**
+     * Inserisce un nuovo utente non appena viene registrato nel sistema
+     * 
+     * @param id
+     * @param user
+     */
+    public Utente inserisciUtente(String id, Utente user);
+
+    public void inserisciMisurazione(String id, )
 }

@@ -20,33 +20,25 @@ public class UtenteNonRegDaoImpl implements UtenteNonRegDao {
      */
     private static HashMap<String, Utente> utentiNonReg;
 
-    /**
-     * 
-     */
+    public UtenteNonRegDaoImpl() {
+        utentiNonReg = new HashMap<String, Utente>();
+    }
+
     @Override
     public void registraSesso(String id, char sesso) {
 
     }
 
-    /**
-     * 
-     */
     @Override
     public void registraPeso(String id, float peso) {
 
     }
 
-    /**
-     * 
-     */
     @Override
     public void registraAltezza(String id, int altezza) {
 
     }
 
-    /**
-     * 
-     */
     @Override
     public void registraAnno(String id, int anno) {
 
@@ -66,6 +58,18 @@ public class UtenteNonRegDaoImpl implements UtenteNonRegDao {
 
     @Override
     public void nuovoUtente(String id) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public Utente getUtente(String id) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void rimuoviUtente(String id) {
         // TODO Auto-generated method stub
 
     }

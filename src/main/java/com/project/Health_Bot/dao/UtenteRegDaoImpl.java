@@ -20,13 +20,20 @@ public class UtenteRegDaoImpl implements UtenteRegDao {
      */
     private static HashMap<String, Utente> utentiReg;
 
-    /**
-     * 
-     */
+    public UtenteRegDaoImpl() {
+        utentiReg = new HashMap<String, Utente>();
+    }
+
     @Override
     public boolean isRegistered(String id) {
-        
+
         return false;
+    }
+
+    @Override
+    public Utente inserisciUtente(String id, Utente user) {
+        utentiReg.put(id, user);
+        return utentiReg.get(id);
     }
 
 }

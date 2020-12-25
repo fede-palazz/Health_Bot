@@ -57,7 +57,7 @@ public class Utente {
 
     /**
      * 
-     * @return
+     * @return Sesso dell'utente
      */
     public Optional<Character> getSesso() {
         return Optional.ofNullable(sesso);
@@ -73,7 +73,7 @@ public class Utente {
 
     /**
      * 
-     * @return
+     * @return Altezza [cm]
      */
     public Optional<Integer> getAltezza() {
         return Optional.ofNullable(altezza);
@@ -89,7 +89,7 @@ public class Utente {
 
     /**
      * 
-     * @return
+     * @return Peso al momento della registrazione
      */
     public Optional<Float> getPeso() {
         return Optional.ofNullable(peso);
@@ -106,7 +106,7 @@ public class Utente {
     /**
      * Metodo che calcola l'età a aprtire dall'anno di nascita
      * 
-     * @return eta
+     * @return età
      */
     public Optional<Integer> getEta() {
         if (Optional.ofNullable(annoNascita).isPresent()) {
@@ -118,6 +118,15 @@ public class Utente {
     }
 
     /**
+     * Getter di annoNascita
+     * 
+     * @return Anno di nascita
+     */
+    public Optional<Integer> getAnnoNascita() {
+        return Optional.ofNullable(this.annoNascita);
+    }
+
+    /**
      * Setter di annoNascita
      * 
      * @param annoNascita
@@ -125,6 +134,5 @@ public class Utente {
     public void setAnnoNascita(int annoNascita) {
         this.annoNascita = annoNascita;
     }
-    
 
 }
