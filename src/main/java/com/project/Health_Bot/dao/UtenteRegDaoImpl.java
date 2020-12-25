@@ -32,7 +32,7 @@ public class UtenteRegDaoImpl implements UtenteRegDao {
     }
 
     @Override
-    public void inserisciMisurazione(String id) {
+    public void inserisciMisurazione(String id, float peso, float lbm, float bmi) {
         // TODO Auto-generated method stub
 
     }

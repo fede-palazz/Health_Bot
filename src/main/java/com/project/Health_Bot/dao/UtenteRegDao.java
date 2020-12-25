@@ -29,5 +29,12 @@ public interface UtenteRegDao {
      */
     public Utente inserisciUtente(String id, Utente user);
 
-    public void inserisciMisurazione(String id, )
+    /**
+     * 
+     * @param id
+     * @param peso
+     * @param lbm
+     * @param bmi
+     */
+    public void inserisciMisurazione(String id, float peso, float lbm, float bmi);
 }
