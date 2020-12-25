@@ -20,13 +20,14 @@ public class Registrazione {
     /**
      * Restituisce la vista relativa al sesso insieme al messaggio di Welcome
      * 
-     * @return
+     * @return mess
      */
-    public static SendMessage getVistaSesso() {
+    public static SendMessage getVistaSesso(String username) {
         SendMessage mess = new SendMessage();
         // Testo del messaggio
-        mess.setText("Benvenuto su Health_Bot! 😉\n"
-                + "Prima di poter accedere alle sue funzionalità è necessario inserire qualche dato iniziale\n\n"
+        mess.setText("Ciao " + username + ". 👋😊\n"
+        		+ "Benvenuto su Health_Bot! 😉\n"
+                + "Prima di iniziare e poter accedere alle mie funzionalità, mi servirrebbe qualche tuo dato iniziale... \n\n"
                 + "Sei un maschio ♀️ o una femmina ♂️ ?");
         // Testo dei pulsanti della tastiera
         Vector<String> pulsanti = new Vector<String>();
@@ -39,7 +40,7 @@ public class Registrazione {
     /**
      * Restituisce la vista relativa al peso
      * 
-     * @return
+     * @return mess
      */
     public static SendMessage getVistaPeso() {
         SendMessage mess = new SendMessage();
@@ -53,7 +54,7 @@ public class Registrazione {
     /**
      * Restituisce la vista relativa all'altezza
      * 
-     * @return
+     * @return mess
      */
     public static SendMessage getVistaAltezza() {
         SendMessage mess = new SendMessage();
@@ -68,7 +69,7 @@ public class Registrazione {
     /**
      * Restituisce la vista relativa all'anno di nascita
      * 
-     * @return
+     * @return mess
      */
     public static SendMessage getVistaAnno() {
         SendMessage mess = new SendMessage();
@@ -82,7 +83,7 @@ public class Registrazione {
     /**
      * Metodo che restituisce il livello di att. fisica selezionato dall'utente
      * 
-     * @return
+     * @return mess
      */
     public static SendMessage getVistaAttivita() {
     	SendMessage mess = new SendMessage();
@@ -107,7 +108,7 @@ public class Registrazione {
     /**
      * Restituisce una vista di errore sui dati inseriti dall'utente
      * 
-     * @return
+     * @return mess
      */
     public static SendMessage getVistaErrore() {
         SendMessage mess = new SendMessage();
