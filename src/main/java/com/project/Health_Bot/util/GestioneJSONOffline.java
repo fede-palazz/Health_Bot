@@ -159,68 +159,61 @@ public class GestioneJSONOffline {
 		}
 		return null;
 	}
-/* funziona fino allo switch
-	public UtenteRegDao getTipo(JSONObject utente) {
-		String tipo = (String) utente.get("tipo");
-		switch (tipo) {
-		case "sport":
-			Utente sport = new Sportivo();
-			sport.setAltezza((int) utente.get("altezza"));
-			break;
-		case "pes":
-			Utente pes = new Pesista();
-
-			break;
-		case "sed":
-			Utente sed = new Sedentario();
-
-			break;
-
-		}
-
-		return null;
-
-	}*/
-	
 	/*
-	 * Per la creazione del JSONArray contenente le informazioni relatve agli utenti già registrati,
-	 * si utilizza un metodo che si estende a matriosca, partendo da "dentro".
-	 * Creo lo storico; 
-	 * lo inserisco dentro il JSONArray misurazioni;
-	 * inserisco misurazioni dentro utente;
-	 * inserisco dunque utente dentro il general;
-	 * inserisco il general dentro un JSONArray totale.
+	 * funziona fino allo switch public UtenteRegDao getTipo(JSONObject utente) {
+	 * String tipo = (String) utente.get("tipo"); switch (tipo) { case "sport":
+	 * Utente sport = new Sportivo(); sport.setAltezza((int) utente.get("altezza"));
+	 * break; case "pes": Utente pes = new Pesista();
+	 * 
+	 * break; case "sed": Utente sed = new Sedentario();
+	 * 
+	 * break;
+	 * 
+	 * }
+	 * 
+	 * return null;
+	 * 
+	 * }
 	 */
-	
+
+	/*
+	 * Per la creazione del JSONArray contenente le informazioni relatve agli utenti
+	 * già registrati, si utilizza un metodo che si estende a matriosca, partendo da
+	 * "dentro". Creo lo storico; lo inserisco dentro il JSONArray misurazioni;
+	 * inserisco misurazioni dentro utente; inserisco dunque utente dentro il
+	 * general; inserisco il general dentro un JSONArray totale.
+	 */
+
 	/**
 	 * Metodo che ritorna un JSONArray, dopo aver ricevuto in input un JSONObject.
+	 * 
 	 * @param generale
 	 * @return totale
 	 */
-	public JSONArray setArray (JSONObject generale) {
+	public JSONArray setArray(JSONObject generale) {
 		JSONArray totale = new JSONArray();
 		totale.add(generale);
-		return totale ;
+		return totale;
 	}
-	
+
 	/**
-	 * Metodo che ritorna un JSONObject, 
-	 * dopo aver ricevuto in input un JSONObject e l'id dell'utente selezionato.
+	 * Metodo che ritorna un JSONObject, dopo aver ricevuto in input un JSONObject e
+	 * l'id dell'utente selezionato.
 	 * 
 	 * @param utente
 	 * @param id
 	 * @return generale
 	 */
-	public JSONObject setGenerale (Utente utente, String id) {
+	public JSONObject setGenerale(Utente utente, String id) {
 		JSONObject generale = new JSONObject();
 		generale.put("id", id);
-		generale.put("utente", utente);		
+		generale.put("utente", utente);
 		return generale;
 	}
-	
+
 	/**
-	 * Metodo che ritorna un JSONObject, dopo aver ricevuto in input tutti i parametri 
-	 * che descrivono l'utente, tra cui lo storico delle misurazioni.
+	 * Metodo che ritorna un JSONObject, dopo aver ricevuto in input tutti i
+	 * parametri che descrivono l'utente, tra cui lo storico delle misurazioni.
 	 * 
 	 * @param username
 	 * @param sesso
@@ -230,97 +223,77 @@ public class GestioneJSONOffline {
 	 * @param stileDiVita
 	 * @param misurazioni
 	 * @return utente
-	 */ 
-	private JSONObject setUtente (String username, char sesso, float pesoAttuale, int altezza, int annoNascita, String stileDiVita, JSONArray misurazioni) {
-		
+	 */
+	private JSONObject setUtente(String username, char sesso, float pesoAttuale, int altezza, int annoNascita,
+			String stileDiVita, JSONArray misurazioni) {
+
 		JSONObject utente = new JSONObject();
 
-		//inserire JSONOBJ dati dentro JSONArray misurazioni
+		// inserire JSONOBJ dati dentro JSONArray misurazioni
 		utente.put("username", username);
 		utente.put("sesso", sesso);
 		utente.put("pesoAttuale", pesoAttuale);
 		utente.put("altezza", altezza);
 		utente.put("annoNascita", annoNascita);
-		utente.put("stileDiVita", stileDiVita);    
+		utente.put("stileDiVita", stileDiVita);
 		utente.put("misurazioni", misurazioni);
-		
+
 		return utente;
-		
+
 	}
-	
+
 	/**
-	 * Metodo che ritorna un JSONObect, dopo aver ricevuto in input il vector mis di tipo Misurazione.
-	 * Lo storico é l'insieme delle misurazioni compiute dall'utente.
+	 * Metodo che ritorna un JSONObect, dopo aver ricevuto in input il vector mis di
+	 * tipo Misurazione. Lo storico é l'insieme delle misurazioni compiute
+	 * dall'utente.
 	 * 
 	 * @param mis
 	 * @return
 	 */
-	private JSONObject setStorico (Vector<Misurazione> mis) {	
+	private JSONObject setStorico(Vector<Misurazione> mis) {
 		JSONObject storico = new JSONObject();
-		
+
 		storico.put("peso", mis.get(0));
-        storico.put("data", mis.get(1));
-        storico.put("lbm", mis.get(2));
-        storico.put("bmi", mis.get(3));
-   
-        return storico;
-	
+		storico.put("data", mis.get(1));
+		storico.put("lbm", mis.get(2));
+		storico.put("bmi", mis.get(3));
+
+		return storico;
+
 	}
-	
+
 	/**
 	 * Metodo che carica l'allenamento dal file e lo restituisce
+	 * 
 	 * @param tipo Stile di vita (sed, sport, pes)
-	 * @param n variabile generata randomicamente
+	 * @param n    variabile generata randomicamente
 	 * @return String un possibile allenamento
 	 */
 	public static String getAllenamento(String tipo, int n) {
 
 		JSONArray array = caricaARRAYFile("resources/allenamenti.json");
-		
+
 		switch (tipo) {
 		case "pes":
 			// mi prende allenamenti PESISTA
 			JSONObject allenamentiPesista = (JSONObject) array.get(0);
 			JSONObject listPes = (JSONObject) allenamentiPesista.get("allenamentiPesista");
+			return (String) listPes.get(String.valueOf(n + 1));
 
-			switch (n) {
-			case 0:
-				return (String) listPes.get("1").toString();
-			case 1:
-				return (String) listPes.get("2").toString();
-			case 2:
-				return (String) listPes.get("3").toString();
-			}
 		case "sport":
 			// mi prende allenamenti SPORTIVO
 			JSONObject allenamentiSportivo = (JSONObject) array.get(1);
 			JSONObject listSport = (JSONObject) allenamentiSportivo.get("allenamentiSportivo");
+			return (String) listSport.get(String.valueOf(n + 1));
 
-			switch (n) {
-			case 0:
-				return (String) listSport.get("1").toString();
-			case 1:
-				return (String) listSport.get("2").toString();
-			case 2:
-				return (String) listSport.get("3").toString();
-			}
-			
 		case "sed":
 			// mi prende allenamenti SEDENTARIO
 			JSONObject allenamentiSedentario = (JSONObject) array.get(2);
 			JSONObject listSed = (JSONObject) allenamentiSedentario.get("allenamentiSedentario");
+			return (String) listSed.get(String.valueOf(n + 1));
 
-			switch (n) {
-			case 0:
-				return (String) listSed.get("1").toString();
-			case 1:
-				return (String) listSed.get("2").toString();
-			case 2:
-				return (String) listSed.get("3").toString();
-			}
 		}
 		return null;
 	}
-
 
 }
