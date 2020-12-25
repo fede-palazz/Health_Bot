@@ -1,0 +1,239 @@
+{
+    "colazioni": {
+        "1": [
+            {
+                "nome": "latte",
+                "qta": 250,
+                "kcal": 160
+            },
+            {
+                "nome": "pane",
+                "qta": 50,
+                "kcal": 135
+            },
+            {
+                "nome": "marmellata",
+                "qta": 20,
+                "kcal": 44
+            }
+        ],
+        "2": [
+            {
+                "nome": "the'",
+                "qta": 300,
+                "kcal": 30
+            },
+            {
+                "nome": "fette biscottate",
+                "qta": 50,
+                "kcal": 150
+            },
+            {
+                "nome": "miele",
+                "qta": 50,
+                "kcal": 175
+            }
+        ],
+        "3": [
+            {
+                "nome": "latte",
+                "qta": 250,
+                "kcal": 160
+            },
+            {
+                "nome": "cornflackes",
+                "qta": 50,
+                "kcal": 180
+            },
+            {
+                "nome": "caffe'",
+                "qta": 100,
+                "kcal": 10
+            }
+        ]
+    },
+    "pranzi": {
+        "1": [
+            {
+                "nome": "maccheroni",
+                "qta": 80,
+                "kcal": 282
+            },
+            {
+                "nome": "passata di pomodoro",
+                "qta": 80,
+                "kcal": 17
+            },
+            {
+                "nome": "carne macinata",
+                "qta": 35,
+                "kcal": 60
+            },
+            {
+                "nome": "patate",
+                "qta": 150,
+                "kcal": 130
+            },
+            {
+                "nome": "mandarini",
+                "qta": 200,
+                "kcal": 144
+            }
+        ],
+        "2": [
+            {
+                "nome": "bistecca",
+                "qta": 200,
+                "kcal": 542
+            },
+            {
+                "nome": "pane",
+                "qta": 50,
+                "kcal": 135
+            },
+            {
+                "nome": "patate",
+                "qta": 150,
+                "kcal": 130
+            },
+            {
+                "nome": "mela",
+                "qta": 100,
+                "kcal": 52
+            }
+        ],
+        "3": [
+            {
+                "nome": "salmone",
+                "qta": 200,
+                "kcal": 416
+            },
+            {
+                "nome": "pane",
+                "qta": 50,
+                "kcal": 135
+            },
+            {
+                "nome": "patate",
+                "qta": 150,
+                "kcal": 130
+            },
+            {
+                "nome": "arancia",
+                "qta": 100,
+                "kcal": 47
+            }
+        ]
+    },
+    "spuntino": {
+        "1": [
+            {
+                "nome": "yogurt intero",
+                "qta": 125,
+                "kcal": 40
+            },
+            {
+                "nome": "frutta secca",
+                "qta": 100,
+                "kcal": 360
+            }
+        ],
+        "2": [
+            {
+                "nome": "cracker salati",
+                "qta": 30,
+                "kcal": 128
+            },
+            {
+                "nome": "prosciutto crudo",
+                "qta": 100,
+                "kcal": 145
+            }
+        ],
+        "3": [
+            {
+                "nome": "thè",
+                "qta": 300,
+                "kcal": 30
+            },
+            {
+                "nome": "biscotti integrali",
+                "qta": 100,
+                "kcal": 350
+            }
+        ]
+    },
+    "cena": {
+        "1": [
+            {
+                "nome": "minestrone di verdure",
+                "qta": 150,
+                "kcal": 104
+            },
+            {
+                "nome": "pane",
+                "qta": 60,
+                "kcal": 165
+            },
+            {
+                "nome": "bistecca",
+                "qta": 100,
+                "kcal": 271
+            },
+            {
+                "nome": "crostini da inserire nel minestrone",
+                "qta": 40,
+                "kcal": 142
+            }
+        ],
+        "2": [
+            {
+                "nome": "spaghetti",
+                "qta": 100,
+                "kcal": 158
+            },
+            {
+                "nome": "passata di pomodoro",
+                "qta": 80,
+                "kcal": 17
+            },
+            {
+                "nome": "carne macinata",
+                "qta": 35,
+                "kcal": 60
+            },
+            {
+                "nome": "spinaci",
+                "qta": 100,
+                "kcal": 25
+            },
+            {
+                "nome": "mandarini",
+                "qta": 100,
+                "kcal": 53
+            }
+        ],
+        "3": [
+            {
+                "nome": "petto di pollo",
+                "qta": 200,
+                "kcal": 330
+            },
+            {
+                "nome": "pane",
+                "qta": 60,
+                "kcal": 165
+            },
+            {
+                "nome": "patate",
+                "qta": 150,
+                "kcal": 130
+            },
+            {
+                "nome": "insalata",
+                "qta": 100,
+                "kcal": 15
+            }
+        ]
+    }
+}
