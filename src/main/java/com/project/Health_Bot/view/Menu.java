@@ -14,25 +14,14 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
  * 
  */
 public class Menu {
-<<<<<<< HEAD
-	
-	/**
-	 * Metodo che restituisce il menù del bot
-	 * 
-	 * @return mess
-	 */
-	public static SendMessage getVistaAttivita() {
-    	SendMessage mess = new SendMessage();
-=======
 
     /**
      * Metodo che restituisce il menù del bot
      * 
      * @return
      */
-    public static SendMessage getVistaAttivita() {
+    public static SendMessage getVistaMenu() {
         SendMessage mess = new SendMessage();
->>>>>>> 6229d9ab7353f7aa94a8b15943afc2721ebe5a41
         // Testo del messaggio
         mess.setText("MENU' Health_Bot");
         // Testo dei pulsanti della tastiera
@@ -61,15 +50,6 @@ public class Menu {
         mess.setReplyMarkup(Tastiera.getTastiera(pulsanti));
         return mess;
     }
-<<<<<<< HEAD
-	
-	/**
-	 * Metodo che permette di aggornare il peso dell'utente
-	 * 
-	 * @return mess
-	 */
-	public static SendMessage getVistaAggPeso() {
-=======
 
     /**
      * Metodo che permette di aggornare il peso dell'utente
@@ -77,7 +57,6 @@ public class Menu {
      * @return
      */
     public static SendMessage getVistaAggPeso() {
->>>>>>> 6229d9ab7353f7aa94a8b15943afc2721ebe5a41
         SendMessage mess = new SendMessage();
         // Testo del messaggio
         mess.setText("Qual è il tuo peso attuale? ⚖");
@@ -148,7 +127,6 @@ public class Menu {
      * 
      * @return mess
      */
-<<<<<<< HEAD
     public static SendMessage getVistaRiepilogoSalute(String tipo, float peso, float iw, float fcg, float bmr, float bmi, float lbm) {	
         SendMessage mess = new SendMessage();
         // Testo del messaggio
@@ -159,15 +137,7 @@ public class Menu {
         		+ "BMR: " + bmr + "[Kcal] \\n"
         		+ "BMI: " + bmi + "\n"
         		+ "LBM: " + lbm + "[Kg] \n");
-=======
-    public static SendMessage getVistaRiepilogoSalute(String tipo, float peso, float iw, float fcg, float bmi,
-            float lbm) {
-        SendMessage mess = new SendMessage();
-        // Testo del messaggio
-        mess.setText("Riepilogo SALUTE \n" + "livello di attività fisica 💪: " + tipo + "\n" + "peso: " + peso
-                + "[Kg] \n" + "FCG: " + fcg + "[Kcal] \n" + "BMI: " + bmi + "\n" + "LBM: " + lbm + "[Kg] \n");
->>>>>>> 6229d9ab7353f7aa94a8b15943afc2721ebe5a41
-        // Rimuove l'eventuale tastiera visualizzata
+     // Rimuove l'eventuale tastiera visualizzata
         mess.setReplyMarkup(Tastiera.rimuoviTastiera());
         return mess;
     }
@@ -184,7 +154,6 @@ public class Menu {
     public static SendMessage getVistaDiag(float bmi, String condizione, float peso, float iw) {
         SendMessage mess = new SendMessage();
         // Testo del messaggio
-<<<<<<< HEAD
         mess.setText("Dato il tuo BMI, pari a: " + bmi + ", la tua condizione di salute è: \n" 
         		+ condizione + "\n"
         		+ "Dato il tuo peso attuale, pari a: " + peso + ", il tuo peso ideale 🔝 sarebbe: " + iw + "[Kg] \n");
@@ -221,7 +190,7 @@ public class Menu {
     }
     
     /**
-     * Metodo che torna quattro diversi bottoni informativi
+     * Metodo che torna cinque diversi bottoni informativi
      * 
      * @return mess
      */
@@ -321,7 +290,7 @@ public class Menu {
         mess.setText("L'indice di Fabbisogno Calorico Giornaliero (abbreviato: FCG) è un parametro utile per valutare la quantità di Kcal necessarie per il tuo fabbisogno quotidiano. \n"
         		+ "Per calcolarlo è stata utilizzata l’equazione di Harris e Benedict, universalmente accettata in campo scientifico, che tiene conto del BMR e del tipo di attività fisica praticata dall'individuo. \n" 
         		+ "Come forse hai visto, io ho già calcolato l'FCG per te in base, alle tue caratteristische. 😉\n"
-        		+ "1) Clicca sul pulsante Riepilogo salute ⛑, se vuoi sapere il valore del tuo FCG \n"
+        		+ "Clicca sul pulsante Riepilogo salute ⛑, se vuoi sapere il valore del tuo FCG \n"
         		);
         // Rimuove l'eventuale tastiera visualizzata
         mess.setReplyMarkup(Tastiera.rimuoviTastiera());
@@ -342,20 +311,10 @@ public class Menu {
         		+ "1) Clicca sul pulsante Riepilogo salute ⛑, se vuoi sapere il valore del tuo LBM \n"
         		+ "2) Clicca sul pulsante Statistiche, se invece vuoi conoscere alcune statistiche che riguardano il tuo LBM \n"
         		);
-=======
-        mess.setText("Dato il tuo BMI, pari a: " + bmi + ", la tua condizione di salute è: \n" + condizione + "\n"
-                + "Dato il tuo peso, pari a: " + peso + ", il tuo peso ideale 🔝 sarebbe: " + iw + "[Kg] \n");
->>>>>>> 6229d9ab7353f7aa94a8b15943afc2721ebe5a41
         // Rimuove l'eventuale tastiera visualizzata
         mess.setReplyMarkup(Tastiera.rimuoviTastiera());
         return mess;
     }
-<<<<<<< HEAD
-    
-    
-=======
 
-    // metodo statistiche
 
->>>>>>> 6229d9ab7353f7aa94a8b15943afc2721ebe5a41
 }
