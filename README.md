@@ -18,7 +18,7 @@ Lo scopo del progetto è quello di realizzare un Web Service in grado di interag
 
 ## LOGICA DI FUNZIONAMENTO
 
-![](resources/Funzionamento_BOT.png)
+![](img/Funzionamento_BOT.png)
 
 
 
@@ -26,7 +26,7 @@ Lo scopo del progetto è quello di realizzare un Web Service in grado di interag
 
 Per poter iniziare è necessario creare un bot su Telegram interagendo direttamente con il BotFather, come mostrato nella gif sotto:
 
-![](resources/IntrGIUSTA.gif)
+![](img/IntrGIUSTA.gif)
 
 Successivamente, seguendo le istruzioni indicate da BotFather, sarà possibile, per esempio:
 
@@ -44,19 +44,19 @@ Inoltre BotFather fornisce all'utente il token da utilizzare per comandare il bo
 
 Diagramma dei casi d'uso:
 
-![](resources/UML/Health_Bot_UseCaseDiagram.png)
+![](img/UML/Health_Bot_UseCaseDiagram.png)
 
 
 
 Diagrammi delle classi:
 
-<img src="resources/UML/class_diagram-Diagramma classi.png" style="zoom:80%;" />
+<img src="img/UML/class_diagram-Diagramma classi.png" style="zoom:80%;" />
 
 
 
 Diagrammi delle sequenze:
 
-![](resources/UML/Seq_diagram-Seq_Updates.png)
+![](img/UML/Seq_diagram-Seq_Updates.png)
 
 ## TECNOLOGIE UTILIZZATE
 - Eclipse (IDE)
