@@ -275,7 +275,7 @@ public class GestioneJSONOffline {
 	 */
 	public static String getAllenamento(String tipo, int n) {
 
-		JSONArray array = caricaARRAYFile("allenamenti.json");
+		JSONArray array = caricaARRAYFile("resources/allenamenti.json");
 		
 		switch (tipo) {
 		case "pes":
