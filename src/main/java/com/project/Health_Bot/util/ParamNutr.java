@@ -82,9 +82,9 @@ public class ParamNutr {
      */
     public static float calcolaIW(char sesso, int altezza) {
         if (sesso == 'M')
-            return (float) (Math.pow(altezza / 100, 2) * 22.1);
+            return (float) (Math.pow(altezza/100, 2) * 22.1);
         else
-            return (float) (Math.pow(altezza / 100, 2) * 20.6);
+            return (float) (Math.pow(altezza/100, 2) * 20.6);
     }
     
     /**
