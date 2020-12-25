@@ -18,22 +18,23 @@ public class UtenteRegDaoImpl implements UtenteRegDao {
     /**
      * Insieme utenti registrati al sistema
      */
-    private static HashMap<String, Utente> utentiReg;
-
-    public UtenteRegDaoImpl() {
-        utentiReg = new HashMap<String, Utente>();
-    }
+    private static HashMap<String, Utente> utentiReg = new HashMap<String, Utente>();
 
     @Override
     public boolean isRegistered(String id) {
-
-        return false;
+        return utentiReg.containsKey(id);
     }
 
     @Override
     public Utente inserisciUtente(String id, Utente user) {
         utentiReg.put(id, user);
         return utentiReg.get(id);
+    }
+
+    @Override
+    public void inserisciMisurazione(String id) {
+        // TODO Auto-generated method stub
+
     }
 
 }

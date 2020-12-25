@@ -31,7 +31,7 @@ public interface UtenteNonRegDao {
     public String getCampoVuoto(String id);
 
     /**
-     * Restituisce l'utente con l'id specificato
+     * Restituisce l'utente con l'id specificato, null se non è presente
      * 
      * @param id
      * @return

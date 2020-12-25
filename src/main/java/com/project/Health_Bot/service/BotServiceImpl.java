@@ -11,7 +11,9 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import com.project.Health_Bot.dao.UtenteNonRegDao;
 import com.project.Health_Bot.dao.UtenteRegDao;
+import com.project.Health_Bot.model.Pesista;
 import com.project.Health_Bot.model.Sedentario;
+import com.project.Health_Bot.model.Sportivo;
 import com.project.Health_Bot.model.Utente;
 import com.project.Health_Bot.view.Registrazione;
 
@@ -159,7 +161,7 @@ public class BotServiceImpl implements BotService {
                 // Rimuove l'utente dalla lista di quelli in fase di registrazione
                 user = utenteNonRegDao.rimuoviUtente(userId);
                 // Aggiunge l'utente alla lista di quelli registrati
-                utenteRegDao.inserisciUtente(userId, new Sedentario(user.getSesso().get(), user.getAltezza().get(),
+                utenteRegDao.inserisciUtente(userId, new Sportivo(user.getSesso().get(), user.getAltezza().get(),
                         user.getPeso().get(), user.getAnnoNascita().get()));
                 // TODO Aggiunge una misurazione iniziale
                 // TODO Restituisce la vista del menu principale
@@ -169,7 +171,7 @@ public class BotServiceImpl implements BotService {
                 // Rimuove l'utente dalla lista di quelli in fase di registrazione
                 user = utenteNonRegDao.rimuoviUtente(userId);
                 // Aggiunge l'utente alla lista di quelli registrati
-                utenteRegDao.inserisciUtente(userId, new Sedentario(user.getSesso().get(), user.getAltezza().get(),
+                utenteRegDao.inserisciUtente(userId, new Pesista(user.getSesso().get(), user.getAltezza().get(),
                         user.getPeso().get(), user.getAnnoNascita().get()));
                 // TODO Aggiunge una misurazione iniziale
                 // TODO Restituisce la vista del menu principale

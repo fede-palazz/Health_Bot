@@ -6,41 +6,40 @@ package com.project.Health_Bot.model;
 /**
  * @author FedePalaz & GiovanniNovelli9 & Baldellaux
  * 
- * Classe che modella il generico alimento
+ *         Classe che modella il generico alimento
  *
  */
 public class Alimento {
 
-    protected String nome;
-    protected float energia;
-    protected float proteine;
-    protected float lipidi;
-    protected float carbo;
-/**
- * Costruttore
- * 
- * @param nome
- */
+    private String nome;
+    private float kcal;
+    /**
+     * Quantità in grammi
+     */
+    private int qta;
+
+    /**
+     * Costruttore
+     * 
+     * @param nome
+     */
     public Alimento(String nome) {
         this.nome = nome;
     }
-/**
- * Costruttore
- * 
- * @param nome
- * @param energia
- * @param proteine
- * @param lipidi
- * @param carbo
- */
-    public Alimento(String nome, float energia, float proteine, float lipidi, float carbo) {
+
+    /**
+     * Costruttore
+     * 
+     * @param nome
+     * @param kcal
+     * @param qta
+     */
+    public Alimento(String nome, float kcal, int qta) {
         this.nome = nome;
-        this.energia = energia;
-        this.proteine = proteine;
-        this.lipidi = lipidi;
-        this.carbo = carbo;
+        this.kcal = kcal;
+        this.qta = qta;
     }
-    
+
     /**
      * 
      * @return nome
@@ -48,7 +47,7 @@ public class Alimento {
     public String getNome() {
         return nome;
     }
-    
+
     /**
      * 
      * @param nome
@@ -56,70 +55,38 @@ public class Alimento {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
+
     /**
      * 
      * @return energia
      */
-    public double getEnergia() {
-        return energia;
+    public double getKcal() {
+        return kcal;
     }
-    
+
     /**
      * 
      * @param energia
      */
-    public void setEnergia(float energia) {
-        this.energia = energia;
-    }
-    
-    /**
-     * 
-     * @return energia
-     */
-    public double getProteine() {
-        return proteine;
-    }
-    
-    /**
-     * 
-     * @param proteine
-     */
-    public void setProteine(float proteine) {
-        this.proteine = proteine;
-    }
-    
-    /**
-     * 
-     * @return lipidi
-     */
-    public double getLipidi() {
-        return lipidi;
-    }
-    
-    /**
-     * 
-     * @param lipidi
-     */
-    public void setLipidi(float lipidi) {
-        this.lipidi = lipidi;
-    }
-    
-    /**
-     * 
-     * @return carbo
-     */
-    public double getCarbo() {
-        return carbo;
-    }
-    
-    /**
-     * 
-     * @param carbo
-     */
-    public void setCarbo(float carbo) {
-        this.carbo = carbo;
+    public void setKcal(float kcal) {
+        this.kcal = kcal;
     }
 
-    
+    /**
+     * 
+     * @return Quantità in grammi
+     */
+    public int getQta() {
+        return qta;
+    }
+
+    /**
+     * Imposta la quantità [g]
+     * 
+     * @param qta
+     */
+    public void setQta(int qta) {
+        this.qta = qta;
+    }
+
 }

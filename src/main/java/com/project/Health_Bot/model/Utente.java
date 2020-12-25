@@ -67,7 +67,7 @@ public class Utente {
      * 
      * @param sesso
      */
-    public void setGenere(char sesso) {
+    public void setSesso(char sesso) {
         this.sesso = sesso;
     }
 
