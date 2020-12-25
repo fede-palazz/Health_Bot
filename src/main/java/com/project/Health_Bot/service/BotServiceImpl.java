@@ -11,7 +11,8 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import com.project.Health_Bot.dao.UtenteNonRegDao;
 import com.project.Health_Bot.dao.UtenteRegDao;
-import com.project.Health_Bot.exception.BadGenderException;
+import com.project.Health_Bot.model.Sedentario;
+import com.project.Health_Bot.model.Utente;
 import com.project.Health_Bot.view.Registrazione;
 
 /**
@@ -97,7 +98,7 @@ public class BotServiceImpl implements BotService {
         case "peso":
             // Verifico che il peso ottenuto sia valido
             try {
-                float peso = Float.parseFloat(mess.getText());
+                float peso = Float.parseFloat(mess.getText().replace(',', '.'));
                 if (peso > 0 && peso < 300) {
                     // Peso valido
                     utenteNonRegDao.registraPeso(userId, peso);
@@ -111,7 +112,7 @@ public class BotServiceImpl implements BotService {
         case "altezza":
             // Verifico che l'altezza ottenuta sia valida
             try {
-                int altezza = Integer.parseInt(mess.getText());
+                int altezza = Integer.parseInt(mess.getText().replace(',', '.'));
                 if (altezza > 30 && altezza < 280) {
                     // Registro il valore e restituisco la prossima vista
                     utenteNonRegDao.registraAltezza(userId, altezza);
@@ -131,7 +132,7 @@ public class BotServiceImpl implements BotService {
                 if ((annoCorrente - annoNascita) >= 0 && (annoCorrente - annoNascita) < 120) {
                     // Registro il valore e restituisco la prossima vista
                     utenteNonRegDao.registraAnno(userId, annoNascita);
-                    //return Registrazione.getVista();
+                    return Registrazione.getVistaAttivita();
                 }
             }
             catch (Exception e) {
@@ -140,8 +141,43 @@ public class BotServiceImpl implements BotService {
             }
 
         case "tipo": // Inserimento livello attività fisica
-            return null;
+            Utente user;
+            switch (mess.getText()) {
+
+            case "Sedentario 🧘🏿‍♀️":
+                // Rimuove l'utente dalla lista di quelli in fase di registrazione
+                user = utenteNonRegDao.rimuoviUtente(userId);
+                // Aggiunge l'utente alla lista di quelli registrati
+                utenteRegDao.inserisciUtente(userId, new Sedentario(user.getSesso().get(), user.getAltezza().get(),
+                        user.getPeso().get(), user.getAnnoNascita().get()));
+                // TODO Aggiunge una misurazione iniziale
+                // TODO Restituisce la vista del menu principale
+
+                break;
+
+            case "Moderato 🏃‍♂️":
+                // Rimuove l'utente dalla lista di quelli in fase di registrazione
+                user = utenteNonRegDao.rimuoviUtente(userId);
+                // Aggiunge l'utente alla lista di quelli registrati
+                utenteRegDao.inserisciUtente(userId, new Sedentario(user.getSesso().get(), user.getAltezza().get(),
+                        user.getPeso().get(), user.getAnnoNascita().get()));
+                // TODO Aggiunge una misurazione iniziale
+                // TODO Restituisce la vista del menu principale
+                break;
+
+            case "Pesante 🏋️‍♀️":
+                // Rimuove l'utente dalla lista di quelli in fase di registrazione
+                user = utenteNonRegDao.rimuoviUtente(userId);
+                // Aggiunge l'utente alla lista di quelli registrati
+                utenteRegDao.inserisciUtente(userId, new Sedentario(user.getSesso().get(), user.getAltezza().get(),
+                        user.getPeso().get(), user.getAnnoNascita().get()));
+                // TODO Aggiunge una misurazione iniziale
+                // TODO Restituisce la vista del menu principale
+                break;
+            }
         }
+        return null;
+
     }
 
     @Override

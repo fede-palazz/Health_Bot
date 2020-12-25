@@ -5,16 +5,16 @@ package com.project.Health_Bot.view;
 
 import java.util.List;
 import java.util.Vector;
-
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
 /**
  * @author FedePalaz & GiovanniNovelli9 & Baldellaux
  * 
- * Classe che modella la parte di menù principale dell'utente.
+ *         Classe che modella la parte di menù principale dell'utente.
  * 
  */
 public class Menu {
+<<<<<<< HEAD
 	
 	/**
 	 * Metodo che restituisce il menù del bot
@@ -23,34 +23,45 @@ public class Menu {
 	 */
 	public static SendMessage getVistaAttivita() {
     	SendMessage mess = new SendMessage();
+=======
+
+    /**
+     * Metodo che restituisce il menù del bot
+     * 
+     * @return
+     */
+    public static SendMessage getVistaAttivita() {
+        SendMessage mess = new SendMessage();
+>>>>>>> 6229d9ab7353f7aa94a8b15943afc2721ebe5a41
         // Testo del messaggio
         mess.setText("MENU' Health_Bot");
         // Testo dei pulsanti della tastiera
         List<Vector<String>> pulsanti = new Vector<>();
-        
+
         Vector<String> pulsanti1 = new Vector<>();
         pulsanti1.add("Aggiorna peso");
         pulsanti1.add("Aggiorna att. fisica 💪");
         pulsanti.add(pulsanti1);
-        
+
         Vector<String> pulsanti2 = new Vector<>();
         pulsanti2.add("Info nutrizionali");
         pulsanti2.add("Riepilogo salute ⛑");
         pulsanti.add(pulsanti2);
-        
+
         Vector<String> pulsanti3 = new Vector<>();
         pulsanti3.add("Diagnostica");
         pulsanti3.add("Statistiche");
         pulsanti.add(pulsanti3);
-        
+
         Vector<String> pulsanti4 = new Vector<>();
         pulsanti4.add("Dieta consigliata 😋");
         pulsanti4.add("Info generali ℹ️");
         pulsanti.add(pulsanti4);
-        
+
         mess.setReplyMarkup(Tastiera.getTastiera(pulsanti));
         return mess;
     }
+<<<<<<< HEAD
 	
 	/**
 	 * Metodo che permette di aggornare il peso dell'utente
@@ -58,6 +69,15 @@ public class Menu {
 	 * @return mess
 	 */
 	public static SendMessage getVistaAggPeso() {
+=======
+
+    /**
+     * Metodo che permette di aggornare il peso dell'utente
+     * 
+     * @return
+     */
+    public static SendMessage getVistaAggPeso() {
+>>>>>>> 6229d9ab7353f7aa94a8b15943afc2721ebe5a41
         SendMessage mess = new SendMessage();
         // Testo del messaggio
         mess.setText("Qual è il tuo peso attuale? ⚖");
@@ -72,21 +92,21 @@ public class Menu {
      * @return mess
      */
     public static SendMessage getVistaAggAttivita() {
-    	SendMessage mess = new SendMessage();
+        SendMessage mess = new SendMessage();
         // Testo del messaggio
         mess.setText("Aggiorna il tuo livello di attività fisica 💪: ");
         // Testo dei pulsanti della tastiera
         List<Vector<String>> pulsanti = new Vector<>();
-        
+
         Vector<String> pulsanti1 = new Vector<>();
         pulsanti1.add("Pesante 🏋️‍♀️");
         pulsanti1.add("Moderato 🏃‍♂️");
         pulsanti.add(pulsanti1);
-        
+
         Vector<String> pulsanti2 = new Vector<>();
         pulsanti2.add("Sedentario 🧘🏿‍♀️");
         pulsanti.add(pulsanti2);
-        
+
         mess.setReplyMarkup(Tastiera.getTastiera(pulsanti));
         return mess;
     }
@@ -104,7 +124,7 @@ public class Menu {
         mess.setReplyMarkup(Tastiera.rimuoviTastiera());
         return mess;
     }
-    
+
     /**
      * Metodo che restituisce i valori nutrionali di un cibo
      * 
@@ -128,6 +148,7 @@ public class Menu {
      * 
      * @return mess
      */
+<<<<<<< HEAD
     public static SendMessage getVistaRiepilogoSalute(String tipo, float peso, float iw, float fcg, float bmr, float bmi, float lbm) {	
         SendMessage mess = new SendMessage();
         // Testo del messaggio
@@ -138,11 +159,19 @@ public class Menu {
         		+ "BMR: " + bmr + "[Kcal] \\n"
         		+ "BMI: " + bmi + "\n"
         		+ "LBM: " + lbm + "[Kg] \n");
+=======
+    public static SendMessage getVistaRiepilogoSalute(String tipo, float peso, float iw, float fcg, float bmi,
+            float lbm) {
+        SendMessage mess = new SendMessage();
+        // Testo del messaggio
+        mess.setText("Riepilogo SALUTE \n" + "livello di attività fisica 💪: " + tipo + "\n" + "peso: " + peso
+                + "[Kg] \n" + "FCG: " + fcg + "[Kcal] \n" + "BMI: " + bmi + "\n" + "LBM: " + lbm + "[Kg] \n");
+>>>>>>> 6229d9ab7353f7aa94a8b15943afc2721ebe5a41
         // Rimuove l'eventuale tastiera visualizzata
         mess.setReplyMarkup(Tastiera.rimuoviTastiera());
         return mess;
     }
-    
+
     /**
      * Metodo che diagnostica parametri in base al BMI ed al peso
      * 
@@ -155,6 +184,7 @@ public class Menu {
     public static SendMessage getVistaDiag(float bmi, String condizione, float peso, float iw) {
         SendMessage mess = new SendMessage();
         // Testo del messaggio
+<<<<<<< HEAD
         mess.setText("Dato il tuo BMI, pari a: " + bmi + ", la tua condizione di salute è: \n" 
         		+ condizione + "\n"
         		+ "Dato il tuo peso attuale, pari a: " + peso + ", il tuo peso ideale 🔝 sarebbe: " + iw + "[Kg] \n");
@@ -312,10 +342,20 @@ public class Menu {
         		+ "1) Clicca sul pulsante Riepilogo salute ⛑, se vuoi sapere il valore del tuo LBM \n"
         		+ "2) Clicca sul pulsante Statistiche, se invece vuoi conoscere alcune statistiche che riguardano il tuo LBM \n"
         		);
+=======
+        mess.setText("Dato il tuo BMI, pari a: " + bmi + ", la tua condizione di salute è: \n" + condizione + "\n"
+                + "Dato il tuo peso, pari a: " + peso + ", il tuo peso ideale 🔝 sarebbe: " + iw + "[Kg] \n");
+>>>>>>> 6229d9ab7353f7aa94a8b15943afc2721ebe5a41
         // Rimuove l'eventuale tastiera visualizzata
         mess.setReplyMarkup(Tastiera.rimuoviTastiera());
         return mess;
     }
+<<<<<<< HEAD
     
     
+=======
+
+    // metodo statistiche
+
+>>>>>>> 6229d9ab7353f7aa94a8b15943afc2721ebe5a41
 }

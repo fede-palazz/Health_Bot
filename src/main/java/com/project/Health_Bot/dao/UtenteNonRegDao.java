@@ -3,6 +3,8 @@
  */
 package com.project.Health_Bot.dao;
 
+import com.project.Health_Bot.model.Utente;
+
 /**
  * Interfaccia che modella l'utente non ancora registrato
  * 
@@ -29,7 +31,15 @@ public interface UtenteNonRegDao {
     public String getCampoVuoto(String id);
 
     /**
-     * Aggiunge un nuovo utente al sistema (attributi nulli)
+     * Restituisce l'utente con l'id specificato
+     * 
+     * @param id
+     * @return
+     */
+    public Utente getUtente(String id);
+
+    /**
+     * Registra un nuovo utente al sistema (attributi nulli)
      * 
      * @param id
      */
@@ -66,5 +76,12 @@ public interface UtenteNonRegDao {
      * @param anno
      */
     public void registraAnno(String id, int anno);
+
+    /**
+     * Rimuove un utente da quelli in fase di registrazione e lo restituisce
+     * 
+     * @param id
+     */
+    public Utente rimuoviUtente(String id);
 
 }
