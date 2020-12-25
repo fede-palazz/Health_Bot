@@ -6,7 +6,6 @@ package com.project.Health_Bot.service;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import com.project.Health_Bot.exception.BadGenderException;
 
 /**
  * Interfaccia contenente i metodi che gestiscono la logica di business dell'applicazione.

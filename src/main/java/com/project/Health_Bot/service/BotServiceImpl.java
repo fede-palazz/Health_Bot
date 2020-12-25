@@ -63,7 +63,7 @@ public class BotServiceImpl implements BotService {
             else {
                 // Nuovo utente
                 utenteNonRegDao.nuovoUtente(userId); // Registrazione
-                response = Registrazione.getVistaSesso(); // Vista iniziale
+                response = Registrazione.getVistaSesso(update.getMessage().getFrom().getUserName()); // Vista iniziale
             }
 
             // Restituisce la risposta con il relativo chatId
