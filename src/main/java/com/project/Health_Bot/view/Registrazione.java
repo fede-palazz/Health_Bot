@@ -3,7 +3,6 @@
  */
 package com.project.Health_Bot.view;
 
-
 import com.pengrad.telegrambot.model.request.Keyboard;
 import com.pengrad.telegrambot.model.request.ReplyKeyboardMarkup;
 import com.pengrad.telegrambot.request.SendMessage;
@@ -73,7 +72,7 @@ public class Registrazione {
      */
     public static SendMessage getVistaAltezza(long chatId) {
         // Testo del messaggio
-        String mess = ("Inserisci la tua altezza [cm]");
+        String mess = ("Inserisci la tua altezza [cm] 📏");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
         
@@ -87,7 +86,7 @@ public class Registrazione {
      */
     public static SendMessage getVistaAnno(long chatId) {
         // Testo del messaggio
-    	String mess = ("Inserisci il tuo anno di nascita");
+    	String mess = ("Inserisci il tuo anno di nascita 👶");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
        
@@ -138,7 +137,8 @@ public class Registrazione {
      */
     public static SendMessage getVistaErrore(long chatId) {
         // Testo del messaggio
-        String mess = ("Valore inserito non corretto. Riprovare.");
+        String mess = ("Valore inserito non corretto. ❌ n\" "
+        		+ "Riprovare.");
         // Creo l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
         

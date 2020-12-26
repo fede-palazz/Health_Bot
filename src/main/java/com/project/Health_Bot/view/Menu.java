@@ -3,9 +3,6 @@
  */
 package com.project.Health_Bot.view;
 
-import java.util.List;
-import java.util.Vector;
-
 import com.pengrad.telegrambot.model.request.Keyboard;
 import com.pengrad.telegrambot.model.request.ReplyKeyboardMarkup;
 import com.pengrad.telegrambot.request.SendMessage;
@@ -30,9 +27,9 @@ public class Menu {
     	SendMessage response = new SendMessage(chatId, mess);
     	// Aggiungo dei pulsanti alla risposta
         Keyboard tastiera = new ReplyKeyboardMarkup(
-        		new String[]{"Aggiorna peso", "Aggiorna att. fisica 💪"},
-                new String[]{"Info nutrizionali", "Riepilogo salute ⛑"},
-                new String[]{"Diagnostica", "Statistiche"},
+        		new String[]{"Aggiorna peso ⚖", "Aggiorna att. fisica 💪"},
+                new String[]{"Info nutrizionali 👩‍🍳‍️", "Riepilogo salute ⛑"},
+                new String[]{"Diagnostica 🩺", "📊Statistiche📈"},
                 new String[]{"Dieta consigliata 😋", "Info generali ℹ️"})
                 .oneTimeKeyboard(true)   // Riduce "ad icona" la tastiera una volta premuto un tasto
                 .resizeKeyboard(true);   // Visualizzazione compatta della tastiera (più carina)
@@ -43,18 +40,18 @@ public class Menu {
         List<Vector<String>> pulsanti = new Vector<>();
 
         Vector<String> pulsanti1 = new Vector<>();
-        pulsanti1.add("Aggiorna peso");
+        pulsanti1.add("Aggiorna peso ⚖");
         pulsanti1.add("Aggiorna att. fisica 💪");
         pulsanti.add(pulsanti1);
 
         Vector<String> pulsanti2 = new Vector<>();
-        pulsanti2.add("Info nutrizionali");
+        pulsanti2.add("Info nutrizionali 👩‍🍳");
         pulsanti2.add("Riepilogo salute ⛑");
         pulsanti.add(pulsanti2);
 
         Vector<String> pulsanti3 = new Vector<>();
-        pulsanti3.add("Diagnostica");
-        pulsanti3.add("Statistiche");
+        pulsanti3.add("Diagnostica 🩺");
+        pulsanti3.add("📊Statistiche📈");
         pulsanti.add(pulsanti3);
 
         Vector<String> pulsanti4 = new Vector<>();
@@ -69,6 +66,7 @@ public class Menu {
     }
 
     /**
+     * Tato (1)
      * Metodo che permette di aggornare il peso dell'utente
      * 
      * @return response
@@ -83,6 +81,7 @@ public class Menu {
     }
 
     /**
+     * Tasto (2)
      * Metodo che fa aggiornare il livello di att. fisica selezionato dall'utente
      * 
      * @return response
@@ -104,13 +103,14 @@ public class Menu {
     }
 
     /**
+     * Tasto(3), pt1
      * Metodo che permette all'utente di inserire il nome di un cibo
      * 
      * @return response
      */
     public static SendMessage getVistaAlimento(long chatId) {
         // Testo del messaggio
-    	String mess = ("Inserisci il nome di un alimento (solo inglese)");
+    	String mess = ("Inserisci il nome inglese di un alimento 🍗🥚🍔");
     	// Crea l'oggetto di risposta
     	SendMessage response = new SendMessage(chatId, mess);
     	
@@ -118,6 +118,7 @@ public class Menu {
     }
 
     /**
+     * Tasto(3), pt2
      * Metodo che restituisce i valori nutrionali di un cibo
      * 
      * @return response
@@ -125,9 +126,9 @@ public class Menu {
     public static SendMessage getVistaAlimentoVal(long chatId, float Kcaltot, float carbo, float prot, float lip) {
         // Testo del messaggio
     	String mess = ("L'alimento scelto fornisce " + Kcaltot + "[Kcal], ripartite in: \n"
-        		+ carbo + "carboidrati \n"
-        		+ prot + "proteine \n"
-        		+ lip + "grassi \n");
+        		+ carbo + "carboidrati 🍝\n"
+        		+ prot + "proteine 🥩\n"
+        		+ lip + "grassi 🧈\n");
         // Crea l'oggetto di risposta
     	SendMessage response = new SendMessage(chatId, mess);
     	
@@ -135,6 +136,7 @@ public class Menu {
     }
     
     /**
+     * 
      * Restituisce la vista relativa al riepilogo
      * dei parametri salutari
      * 
@@ -144,7 +146,7 @@ public class Menu {
         // Testo del messaggio
     	String mess = ("Riepilogo SALUTE \n"
         		+ "livello di attività fisica 💪: " + tipo + "\n"
-        		+ "peso: " + peso + "[Kg] \n"
+        		+ "peso: " + peso + "[Kg] ⚖\n"
         		+ "FCG: " + fcg + "[Kcal] \n"
         		+ "BMR: " + bmr + "[Kcal] \\n"
         		+ "BMI: " + bmi + "\n"
@@ -168,7 +170,7 @@ public class Menu {
         // Testo del messaggio
     	String mess = ("Dato il tuo BMI, pari a: " + bmi + ", la tua condizione di salute è: \n" 
         		+ condizione + "\n"
-        		+ "Dato il tuo peso attuale, pari a: " + peso + ", il tuo peso ideale 🔝 sarebbe: " + iw + "[Kg] \n");
+        		+ "Dato il tuo peso attuale ⚖, pari a: " + peso + ", il tuo peso ideale 🔝 sarebbe: " + iw + "[Kg] \n");
     	// Crea l'oggetto di risposta
     	SendMessage response = new SendMessage(chatId, mess);
     	
@@ -184,7 +186,7 @@ public class Menu {
      */
     public static SendMessage getVistaStats(long chatId) {
         // Testo del messaggio
-    	String mess = ("Statistiche e confronti");
+    	String mess = ("📊Statistiche e 📈confronti📉");
     	// Crea l'oggetto di risposta
     	SendMessage response = new SendMessage(chatId, mess);
     	
@@ -200,7 +202,7 @@ public class Menu {
      */
     public static SendMessage getVistaDieta(long chatId, float fcg, String dieta) {
         // Testo del messaggio
-    	String mess = ("La dieta consigliata, scelta in base al valore del tuo FCG é : \n" + dieta );
+    	String mess = ("La dieta consigliata 😋, scelta in base al valore del tuo FCG é : \n" + dieta );
     	// Crea l'oggetto di risposta
     	SendMessage response = new SendMessage(chatId, mess);
     	
@@ -214,7 +216,7 @@ public class Menu {
      */
     public static SendMessage getVistaInfo(long chatId) {
         // Testo del messaggio
-    	String mess = ("Ottieni le informazioni che cerchi, clicca nei pulsanti sottostanti e scopri il significato degli  indici!");
+    	String mess = ("ℹℹℹ Ottieni le informazioni che cerchi, clicca nei pulsanti sottostanti e scopri il significato degli  indici! ℹℹℹ");
     	// Crea l'oggetto di risposta
     	SendMessage response = new SendMessage(chatId, mess);
     	// Aggiungo dei pulsanti alla risposta
@@ -258,11 +260,11 @@ public class Menu {
     public static SendMessage getVistaInfoBMI(long chatId) {
         // Testo del messaggio
     	String mess = ("L'indice di massa corporea (abbreviato: IMC o BMI) è un parametro utile per valutare l'adeguatezza del peso negli individui sani. \n"
-        		+ "Per farlo, vengono messi in relazione il peso l'altezza dell'individuo attraverso una semplice operazione algebrica, cioè il rapporto tra il peso espresso in chilogrammi ed il quadrato dell'altezza, in metri quadri. \n" 
+        		+ "Per farlo, vengono messi in relazione il peso l'altezza dell'individuo attraverso una semplice operazione algebrica ➕➖, cioè il rapporto ➗ tra il peso espresso in chilogrammi ed il quadrato dell'altezza, in metri quadri. \n" 
         		+ "Come forse hai visto, io ho già calcolato il BMI per te, in base alle tue caratteristische. 😉\n"
         		+ "1) Clicca sul pulsante Riepilogo salute ⛑, se vuoi sapere il valore del tuo BMI \n"
-        		+ "2) Clicca sul pulsante Diagnostica, se vuoi sapere il tuo livello di adeguatezza fisica in base al BMI"
-        		+ "3) Clicca sul pulsante Statistiche, se invece vuoi conoscere alcune statistiche che riguardano il tuo BMI"
+        		+ "2) Clicca sul pulsante Diagnostica 🩺, se vuoi sapere il tuo livello di adeguatezza fisica in base al BMI"
+        		+ "3) Clicca sul pulsante 📊Statistiche📈, se invece vuoi conoscere alcune statistiche che riguardano il tuo BMI"
         		);
     	// Crea l'oggetto di risposta
     	SendMessage response = new SendMessage(chatId, mess);
@@ -278,9 +280,9 @@ public class Menu {
     public static SendMessage getVistaInfoIW(long chatId) {
         // Testo del messaggio
     	String mess = ("L'indice di peso ideale (abbreviato: PI o IW) è il parametro che indica il peso migliore a cui si può aspirare in base alla propria altezza. \n"
-        		+ "Esistono varie formula per calcolarlo, noi abbiamo implementato per te quella più utilizzata, cioè una variante della fomula di Travia. \n" 
+        		+ "Esistono varie formule 📝 per calcolarlo, noi abbiamo implementato per te quella più utilizzata, cioè una variante della fomula di Travia. \n" 
         		+ "Come forse hai visto, io ho già calcolato l'IW per te, in base alle tue caratteristische. 😉\n"
-        		+ "Clicca sul pulsante Diagnostica, se vuoi sapere il valore del tuo IW, calcolato in base al tuo peso attuale"
+        		+ "Clicca sul pulsante Diagnostica 🩺, se vuoi sapere il valore del tuo IW, calcolato in base al tuo peso attuale"
         		);
     	// Crea l'oggetto di risposta
     	SendMessage response = new SendMessage(chatId, mess);
@@ -318,7 +320,7 @@ public class Menu {
     public static SendMessage getVistaInfoFCG(long chatId) {
         // Testo del messaggio
     	String mess = ("L'indice di Fabbisogno Calorico Giornaliero (abbreviato: FCG) è un parametro utile per valutare la quantità di Kcal necessarie per il tuo fabbisogno quotidiano. \n"
-        		+ "Per calcolarlo è stata utilizzata l’equazione di Harris e Benedict, universalmente accettata in campo scientifico, che tiene conto del BMR e del tipo di attività fisica praticata dall'individuo. \n" 
+        		+ "Per calcolarlo è stata utilizzata ➕➖ l’equazione di Harris e Benedict ✖️➗, universalmente accettata in campo scientifico, che tiene conto del BMR e del tipo di attività fisica praticata dall'individuo. \n" 
         		+ "Come forse hai visto, io ho già calcolato l'FCG per te in base, alle tue caratteristische. 😉\n"
         		+ "Clicca sul pulsante Riepilogo salute ⛑, se vuoi sapere il valore del tuo FCG \n"
         		);
@@ -336,10 +338,10 @@ public class Menu {
     public static SendMessage getVistaInfoLBM(long chatId) {
         // Testo del messaggio
     	String mess = ("L'indice di massa magra (abbreviato: LBM) è un parametro utile per rappresentare tutto ciò che resta dell'organismo dopo averlo privato del grasso di deposito (tessuto adiposo). \n"
-        		+ "Per calcolarlo è stata utilizzata la formula di James, che tiene conto del sesso, dell'altezza e del peso dell'individuo. \n" 
+        		+ "Per calcolarlo è stata utilizzata la formula di James 📝, che tiene conto del sesso, dell'altezza e del peso dell'individuo. \n" 
         		+ "Come forse hai visto, io ho già calcolato l'LBM per te, in base alle tue caratteristische. 😉\n"
         		+ "1) Clicca sul pulsante Riepilogo salute ⛑, se vuoi sapere il valore del tuo LBM \n"
-        		+ "2) Clicca sul pulsante Statistiche, se invece vuoi conoscere alcune statistiche che riguardano il tuo LBM \n"
+        		+ "2) Clicca sul pulsante 📊Statistiche📈, se invece vuoi conoscere alcune statistiche che riguardano il tuo LBM \n"
         		);
         // Crea l'oggetto di risposta
     	SendMessage response = new SendMessage(chatId, mess);
