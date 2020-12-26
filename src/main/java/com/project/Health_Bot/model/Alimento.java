@@ -60,7 +60,7 @@ public class Alimento {
      * 
      * @return energia
      */
-    public float getKcal() {
+    public int getKcal() {
         return kcal;
     }
 
