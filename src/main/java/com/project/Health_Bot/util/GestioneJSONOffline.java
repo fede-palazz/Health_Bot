@@ -181,7 +181,7 @@ public class GestioneJSONOffline {
 	 * 
 	 * }
 	 */
-
+	
 	/*
 	 * Per la creazione del JSONArray contenente le informazioni relatve agli utenti
 	 * già registrati, si utilizza un metodo che si estende a matriosca, partendo da
