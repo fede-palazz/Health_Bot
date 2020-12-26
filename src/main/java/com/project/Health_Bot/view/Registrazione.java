@@ -3,8 +3,7 @@
  */
 package com.project.Health_Bot.view;
 
-import java.util.List;
-import java.util.Vector;
+
 import com.pengrad.telegrambot.model.request.Keyboard;
 import com.pengrad.telegrambot.model.request.ReplyKeyboardMarkup;
 import com.pengrad.telegrambot.request.SendMessage;
@@ -12,7 +11,7 @@ import com.pengrad.telegrambot.request.SendMessage;
 /**
  * @author FedePalaz & GiovanniNovelli9 & Baldellaux
  * 
- *         Classe che modella la fase di registrazione dell'utente.
+ * Classe che modella la fase di registrazione dell'utente.
  * 
  */
 public class Registrazione {
@@ -20,7 +19,7 @@ public class Registrazione {
     /**
      * Restituisce la vista relativa al sesso insieme al messaggio di Welcome
      * 
-     * @return mess
+     * @return response
      */
     public static SendMessage getVistaSesso(long chatId, String username) {
 
@@ -56,56 +55,65 @@ public class Registrazione {
     /**
      * Restituisce la vista relativa al peso
      * 
-     * @return mess
+     * @return response
      */
     public static SendMessage getVistaPeso(long chatId) {
-        SendMessage mess = new SendMessage();
-        // Testo del messaggio
-        mess.setText("Quanto pesi attualmente [Kg]? ⚖");
-        // Rimuove l'eventuale tastiera visualizzata
-        mess.setReplyMarkup(Tastiera.rimuoviTastiera());
-        return mess;
+         // Testo del messaggio
+    	 String mess = ("Quanto pesi attualmente [Kg]? ⚖");
+    	 // Crea l'oggetto di risposta
+         SendMessage response = new SendMessage(chatId, mess);
+         
+        return response;
     }
 
     /**
      * Restituisce la vista relativa all'altezza
      * 
-     * @return mess
+     * @return response
      */
     public static SendMessage getVistaAltezza(long chatId) {
-        SendMessage mess = new SendMessage();
         // Testo del messaggio
-        mess.setText("Inserisci la tua altezza [cm]");
-        // Rimuove l'eventuale tastiera visualizzata
-        mess.setReplyMarkup(Tastiera.rimuoviTastiera());
-        return mess;
-
-    }
+        String mess = ("Inserisci la tua altezza [cm]");
+        // Crea l'oggetto di risposta
+        SendMessage response = new SendMessage(chatId, mess);
+        
+       return response;
+   }
 
     /**
      * Restituisce la vista relativa all'anno di nascita
      * 
-     * @return mess
+     * @return response
      */
     public static SendMessage getVistaAnno(long chatId) {
-        SendMessage mess = new SendMessage();
         // Testo del messaggio
-        mess.setText("Inserisci il tuo anno di nascita");
-        // Rimuove l'eventuale tastiera visualizzata
-        mess.setReplyMarkup(Tastiera.rimuoviTastiera());
-        return mess;
-    }
+    	String mess = ("Inserisci il tuo anno di nascita");
+        // Crea l'oggetto di risposta
+        SendMessage response = new SendMessage(chatId, mess);
+       
+       return response;
+   }
 
     /**
      * Metodo che restituisce il livello di att. fisica selezionato dall'utente
      * 
-     * @return mess
+     * @return response
      */
     public static SendMessage getVistaAttivita(long chatId) {
-        SendMessage mess = new SendMessage();
         // Testo del messaggio
-        mess.setText("Seleziona il tuo livello di attività fisica 💪: ");
-        // Testo dei pulsanti della tastiera
+    	String mess = ("Seleziona il tuo livello di attività fisica 💪: ");
+    	// Crea l'oggetto di risposta
+    	SendMessage response = new SendMessage(chatId, mess);
+        // Aggiungo dei pulsanti alla risposta
+        Keyboard tastiera = new ReplyKeyboardMarkup(
+                new String[]{"Pesante 🏋️‍♀️", "Moderato 🏃‍♂️"},
+                new String[]{"Sedentario 🧘🏿‍♀️"})
+                .oneTimeKeyboard(true)   // Riduce "ad icona" la tastiera una volta premuto un tasto
+                .resizeKeyboard(true);   // Visualizzazione compatta della tastiera (più carina)
+                response.replyMarkup(tastiera);   
+    	
+        /*
+        // Testo dei vecchi pulsanti della tastiera
         List<Vector<String>> pulsanti = new Vector<>();
 
         Vector<String> pulsanti1 = new Vector<>();
@@ -117,22 +125,24 @@ public class Registrazione {
         pulsanti2.add("Sedentario 🧘🏿‍♀️");
         pulsanti.add(pulsanti2);
 
-        mess.setReplyMarkup(Tastiera.getTastiera(pulsanti));
-        return mess;
+        me000ss.setReplyMarkup(Tastiera.getTastiera(pulsanti));
+        */
+                
+        return response;
     }
 
     /**
      * Restituisce una vista di errore sui dati inseriti dall'utente
      * 
-     * @return mess
+     * @return response
      */
     public static SendMessage getVistaErrore(long chatId) {
-        SendMessage mess = new SendMessage();
         // Testo del messaggio
-        mess.setText("Valore inserito non corretto. Riprovare.");
-        // Rimuove l'eventuale tastiera visualizzata
-        mess.setReplyMarkup(Tastiera.rimuoviTastiera());
-        return mess;
+        String mess = ("Valore inserito non corretto. Riprovare.");
+        // Creo l'oggetto di risposta
+        SendMessage response = new SendMessage(chatId, mess);
+        
+        return response;
     }
 
 }
