@@ -3,12 +3,15 @@
  */
 package com.project.Health_Bot.controller;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import com.pengrad.telegrambot.TelegramBot;
+import com.pengrad.telegrambot.UpdatesListener;
+import com.pengrad.telegrambot.model.Update;
+import com.pengrad.telegrambot.request.SendMessage;
+import com.pengrad.telegrambot.response.SendResponse;
 import com.project.Health_Bot.service.BotService;
 
 /**
@@ -18,47 +21,39 @@ import com.project.Health_Bot.service.BotService;
  *
  */
 @RestController
-public class BotController extends TelegramLongPollingBot {
+public class BotController {
 
-    @Autowired // Iniezione della dipendenza
+    @Autowired
     private BotService service;
-    private String botUsername; // Bot username
-    private String botToken; // Bot token
+    private TelegramBot bot;
+    private String botToken;
+
+    public BotController() {
+        // TODO Leggere il token da file
+        botToken = "1459389445:AAHYimVPCfD7bGv9xfxSWSWQODbSWuXi2Sc";
+        bot = new TelegramBot(botToken);
+        riceviUpdate();
+    }
+
+    @GetMapping("/ciao")
+    public String Welcome() {
+        return service.Welcome();
+    }
 
     /**
-     * 
-     * @param username
-     * @throws Exception
+     * Imposta un Listener per ricevere gli update in arrivo da Telegram
      */
-    public BotController(String username) throws Exception {
-        this.botUsername = username;
-        String path = "src/main/resources/application.properties";
-        this.botToken = Property.getProp(path, "token"); // Legge il token dal file
-        if (botToken.isBlank() || botToken.isEmpty())
-            throw new Exception("Il token presente nel file " + path + " non può essere nullo");
-    }
+    private void riceviUpdate() {
+        bot.setUpdatesListener(new UpdatesListener() {
 
-    @Override
-    public void onUpdateReceived(Update update) {
-        // Invocato al ricevimento di un nuovo update (messaggio)
-        try {
-            SendMessage mess = service.gestisciUpdate(update);
-            if (mess != null)
-                execute(mess);
-        }
-        catch (TelegramApiException e) {
-            e.printStackTrace();
-        }
+            @Override
+            public int process(List<Update> updates) {
+                for (Update update : updates) {
+                    SendMessage message = service.gestisciUpdate(update);
+                    SendResponse response = bot.execute(message);
+                }
+                return UpdatesListener.CONFIRMED_UPDATES_ALL;
+            }
+        });
     }
-
-    @Override
-    public String getBotUsername() {
-        return this.botUsername;
-    }
-
-    @Override
-    public String getBotToken() {
-        return botToken;
-    }
-
 }

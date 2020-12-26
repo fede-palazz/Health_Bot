@@ -6,9 +6,9 @@ package com.project.Health_Bot.service;
 import java.util.Calendar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.objects.Message;
-import org.telegram.telegrambots.meta.api.objects.Update;
+import com.pengrad.telegrambot.model.Message;
+import com.pengrad.telegrambot.model.Update;
+import com.pengrad.telegrambot.request.SendMessage;
 import com.project.Health_Bot.dao.UtenteNonRegDao;
 import com.project.Health_Bot.dao.UtenteRegDao;
 import com.project.Health_Bot.model.Pesista;
@@ -41,33 +41,31 @@ public class BotServiceImpl implements BotService {
      * Ricostruisce lo stato dell'applicazione
      * 
      * @param update Updates
-     * @throws BadGenderException
      */
     @Override
     public SendMessage gestisciUpdate(Update update) {
 
-        if (update.hasMessage() && update.getMessage().hasText()) { // Messaggio valido
+        if (update.message() != null && !update.message().text().isEmpty()) { // Messaggio valido
 
-            SendMessage response = new SendMessage();
-            String chatId = update.getMessage().getChatId().toString(); // Id della chat
-            String userId = update.getMessage().getFrom().getId().toString(); // Id utente
+            SendMessage response; // Risposta
+            long chatId = update.message().chat().id(); // Id della chat
+            String userId = update.message().from().id().toString(); // Id utente
 
             if (utenteNonRegDao.isRegistering(userId)) {
                 // Utente in fase di registrazione
-                response = gestisciReg(update.getMessage(), userId);
+                response = gestisciReg(update.message(), userId);
             }
             else if (utenteRegDao.isRegistered(userId)) {
                 // Utente già registrato nel sistema
-                response = gestisciMenu(update.getMessage(), userId);
+                response = gestisciMenu(update.message(), userId);
             }
             else {
                 // Nuovo utente
                 utenteNonRegDao.nuovoUtente(userId); // Registrazione
-                response = Registrazione.getVistaSesso(update.getMessage().getFrom().getUserName()); // Vista iniziale
+                response = Registrazione.getVistaSesso(update.message().from().username()); // Vista iniziale
             }
 
             // Restituisce la risposta con il relativo chatId
-            response.setChatId(chatId);
             return response;
         }
         else
@@ -89,9 +87,9 @@ public class BotServiceImpl implements BotService {
         case "sesso":
             // Verifico se il genere ottenuto è valido
 
-            if (mess.getText().toUpperCase() == "M" || mess.getText().toUpperCase() == "F") {
+            if (mess.text().toUpperCase() == "M" || mess.text().toUpperCase() == "F") {
                 // Lo registro e restituisco la prossima vista
-                utenteNonRegDao.registraSesso(userId, mess.getText().toUpperCase().charAt(0));
+                utenteNonRegDao.registraSesso(userId, mess.text().toUpperCase().charAt(0));
                 return Registrazione.getVistaPeso();
             }
             else // Sesso inserito non valido
@@ -100,7 +98,7 @@ public class BotServiceImpl implements BotService {
         case "peso":
             // Verifico che il peso ottenuto sia valido
             try {
-                float peso = Float.parseFloat(mess.getText().replace(',', '.'));
+                float peso = Float.parseFloat(mess.text().replace(',', '.'));
                 if (peso > 0 && peso < 300) {
                     // Peso valido
                     utenteNonRegDao.registraPeso(userId, peso);
@@ -114,7 +112,7 @@ public class BotServiceImpl implements BotService {
         case "altezza":
             // Verifico che l'altezza ottenuta sia valida
             try {
-                int altezza = Integer.parseInt(mess.getText().replace(',', '.'));
+                int altezza = Integer.parseInt(mess.text().replace(',', '.'));
                 if (altezza > 30 && altezza < 280) {
                     // Registro il valore e restituisco la prossima vista
                     utenteNonRegDao.registraAltezza(userId, altezza);
@@ -129,7 +127,7 @@ public class BotServiceImpl implements BotService {
         case "annoNascita":
             // Verifico l'anno inserito sia valido
             try {
-                int annoNascita = Integer.parseInt(mess.getText());
+                int annoNascita = Integer.parseInt(mess.text());
                 int annoCorrente = Calendar.getInstance().get(Calendar.YEAR);
                 if ((annoCorrente - annoNascita) >= 0 && (annoCorrente - annoNascita) < 120) {
                     // Registro il valore e restituisco la prossima vista
@@ -144,7 +142,7 @@ public class BotServiceImpl implements BotService {
 
         case "tipo": // Inserimento livello attività fisica
             Utente user;
-            switch (mess.getText()) {
+            switch (mess.text()) {
 
             case "Sedentario 🧘🏿‍♀️":
                 // Rimuove l'utente dalla lista di quelli in fase di registrazione
@@ -186,6 +184,11 @@ public class BotServiceImpl implements BotService {
     public SendMessage gestisciMenu(Message mess, String userId) {
 
         return null;
+    }
+
+    @Override
+    public String Welcome() {
+        return "Ciaooo";
     }
 
 }
