@@ -14,7 +14,7 @@ public class AlimentoInfo extends Alimento {
      * @param lipidi
      * @param carbo
      */
-    public AlimentoInfo(String nome, float kcal, int qta, float proteine, float lipidi, float carbo) {
+    public AlimentoInfo(String nome, int kcal, int qta, float proteine, float lipidi, float carbo) {
         super(nome, kcal, qta);
         this.proteine = proteine;
         this.lipidi = lipidi;

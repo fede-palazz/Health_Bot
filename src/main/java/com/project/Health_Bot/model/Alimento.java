@@ -12,7 +12,7 @@ package com.project.Health_Bot.model;
 public class Alimento {
 
     private String nome;
-    private float kcal;
+    private int kcal;
     /**
      * Quantità in grammi
      */
@@ -34,7 +34,7 @@ public class Alimento {
      * @param kcal
      * @param qta
      */
-    public Alimento(String nome, float kcal, int qta) {
+    public Alimento(String nome, int kcal, int qta) {
         this.nome = nome;
         this.kcal = kcal;
         this.qta = qta;
@@ -68,7 +68,7 @@ public class Alimento {
      * 
      * @param energia
      */
-    public void setKcal(float kcal) {
+    public void setKcal(int kcal) {
         this.kcal = kcal;
     }
 

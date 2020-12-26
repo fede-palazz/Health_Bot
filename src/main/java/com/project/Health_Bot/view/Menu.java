@@ -29,7 +29,7 @@ public class Menu {
         Keyboard tastiera = new ReplyKeyboardMarkup(
         		new String[]{"Aggiornamenti 🆙👆", "Consigli 😜"},
                 new String[]{"🍽 Info nutrizionali 👩‍🍳‍️", "Riepilogo salute ⛑"},
-                new String[]{"‍️Conosci il tuo corpo 🧘🏿‍♀️", "Info generali ℹ️"})
+                new String[]{"‍️Conosci il tuo corpo 🧘‍♂️️", "Info generali ℹ️"})
                 .oneTimeKeyboard(true)   // Riduce "ad icona" la tastiera una volta premuto un tasto
                 .resizeKeyboard(true);   // Visualizzazione compatta della tastiera (più carina)
                 response.replyMarkup(tastiera);  
