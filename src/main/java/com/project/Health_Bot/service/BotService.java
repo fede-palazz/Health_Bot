@@ -1,4 +1,6 @@
-
+/**
+ * 
+ */
 package com.project.Health_Bot.service;
 
 import com.pengrad.telegrambot.model.Message;
@@ -7,6 +9,8 @@ import com.pengrad.telegrambot.request.SendMessage;
 
 /**
  * Interfaccia contenente i metodi che gestiscono la logica di business dell'applicazione.
+ *
+ * @author FedePalaz & GiovanniNovelli9 & Baldellaux
  *
  */
 public interface BotService {

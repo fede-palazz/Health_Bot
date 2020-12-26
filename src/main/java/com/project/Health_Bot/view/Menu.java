@@ -136,7 +136,7 @@ public class Menu {
     }
     
     /**
-     * 
+     * Tasto (4)
      * Restituisce la vista relativa al riepilogo
      * dei parametri salutari
      * 
@@ -158,6 +158,7 @@ public class Menu {
     }
 
     /**
+     * Tasto (5)
      * Metodo che diagnostica parametri in base al BMI ed al peso
      * 
      * @param bmi
@@ -179,6 +180,7 @@ public class Menu {
     
     
     /** 
+     * Tasto (6)
      * Da finire con le statistiche scelte
      * 
      * @param chatId
@@ -194,6 +196,7 @@ public class Menu {
     }
     
     /**
+     * Tasto (7)
      * Metodo che consiglia una dieta in base all'fcg dell'utente.
      * 
      * @param fcg
@@ -210,6 +213,7 @@ public class Menu {
     }
     
     /**
+     * Tasto (8)
      * Metodo che torna cinque diversi bottoni informativi
      * 
      * @return response

@@ -183,31 +183,4 @@ public class StatsSingole {
 		}
 
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	
-	/*
-	for (int i=0; i<pesi.size(); i++) {
-		
-		// cerca il minimo nelle posizioni tra i e pesi.size()...
-		int posmin=i; //...portandosi dietro l'indice
-		for (int j = 1; j<(pesi.size()+1); j++) {
-			if (pesi.get(j) < pesi.get(posmin)) 
-				posmin = j;
-		}
-		
-		// scambia il minimo con l'elemento in posizione i
-		Float tmp = pesi.get(i);
-		pesi.get(i) = pesi.get(posmin);
-		pesi.get(posmin) = tmp;
-	}
-	*/
-	
 }

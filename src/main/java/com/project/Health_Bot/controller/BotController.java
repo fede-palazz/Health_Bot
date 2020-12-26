@@ -28,6 +28,9 @@ public class BotController {
     private TelegramBot bot;
     private String botToken;
 
+    /**
+     * 
+     */
     public BotController() {
         // TODO Leggere il token da file
         botToken = "1459389445:AAHYimVPCfD7bGv9xfxSWSWQODbSWuXi2Sc";
@@ -35,6 +38,10 @@ public class BotController {
         riceviUpdate();
     }
 
+    /**
+     * 
+     * @return
+     */
     @GetMapping("/ciao")
     public String Welcome() {
         return service.Welcome();

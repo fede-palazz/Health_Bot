@@ -55,6 +55,7 @@ public class Sportivo extends Utente {
     
     /**
 	 * Metodo che genera un numero casuale e restituisce un allenamento salvato nel file
+	 * 
 	 * @return Allenamento per utente Sportivo 
 	 */
     public String getAllenamento() {

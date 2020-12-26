@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.project.Health_Bot.model.Utente;
 
 /**
+ * Classe che modella l'implementazione dell'interfaccia UtenteRegDao
  * 
  * @author FedePalaz & GiovanniNovelli9 & Baldellaux
  *
@@ -25,12 +26,18 @@ public class UtenteRegDaoImpl implements UtenteRegDao {
         return utentiReg.containsKey(id);
     }
 
+    /**
+     * 
+     */
     @Override
     public Utente inserisciUtente(String id, Utente user) {
         utentiReg.put(id, user);
         return utentiReg.get(id);
     }
 
+    /**
+     * 
+     */
     @Override
     public void inserisciMisurazione(String id, float peso, float lbm, float bmi) {
         // TODO Auto-generated method stub

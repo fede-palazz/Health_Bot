@@ -25,7 +25,7 @@ public class AlimentoInfo extends Alimento {
      * 
      * @return energia
      */
-    public double getProteine() {
+    public float getProteine() {
         return proteine;
     }
 
@@ -41,7 +41,7 @@ public class AlimentoInfo extends Alimento {
      * 
      * @return lipidi
      */
-    public double getLipidi() {
+    public float getLipidi() {
         return lipidi;
     }
 
@@ -57,7 +57,7 @@ public class AlimentoInfo extends Alimento {
      * 
      * @return carboidrati
      */
-    public double getCarbo() {
+    public float getCarbo() {
         return carbo;
     }
 

@@ -18,6 +18,7 @@ import com.project.Health_Bot.model.Utente;
 import com.project.Health_Bot.view.Registrazione;
 
 /**
+ * Classe che implementa l'interfaccia BotService
  * 
  * @author FedePalaz & GiovanniNovelli9 & Baldellaux
  *

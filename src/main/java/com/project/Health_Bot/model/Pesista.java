@@ -54,6 +54,7 @@ public class Pesista extends Utente {
 
 	/**
 	 * Metodo che genera un numero casuale e restituisce un allenamento salvato nel file
+	 * 
 	 * @return Allenamento per utente Pesista
 	 */
 	public String getAllenamento() {

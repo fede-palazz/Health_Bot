@@ -92,6 +92,12 @@ public class GestioneJSONOffline {
 
 	}
 
+	/**
+	 * Metodo per salvare un JSONArray in un file locale.
+	 * 
+	 * @param nome_file
+	 * @param ja
+	 */
 	public static void salvaARRAYFile(String nome_file, JSONArray ja) {
 
 		try {

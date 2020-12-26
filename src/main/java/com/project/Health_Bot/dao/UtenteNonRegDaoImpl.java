@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.project.Health_Bot.model.Utente;
 
 /**
+ * Classe che modella l'implementazione dell'interfaccia UtenteNonRegDao
  * 
  * @author FedePalaz & GiovanniNovelli9 & Baldellaux
  *
@@ -20,31 +21,49 @@ public class UtenteNonRegDaoImpl implements UtenteNonRegDao {
      */
     private static HashMap<String, Utente> utentiNonReg = new HashMap<String, Utente>();
 
+    /**
+     * 
+     */
     @Override
     public void registraSesso(String id, char sesso) {
         utentiNonReg.get(id).setSesso(sesso);
     }
 
+    /**
+     * 
+     */
     @Override
     public void registraPeso(String id, float peso) {
         utentiNonReg.get(id).setPeso(peso);
     }
 
+    /**
+     * 
+     */
     @Override
     public void registraAltezza(String id, int altezza) {
         utentiNonReg.get(id).setAltezza(altezza);
     }
 
+    /**
+     * 
+     */
     @Override
     public void registraAnno(String id, int anno) {
         utentiNonReg.get(id).setAnnoNascita(anno);
     }
 
+    /**
+     * 
+     */
     @Override
     public Boolean isRegistering(String id) {
         return utentiNonReg.containsKey(id);
     }
 
+    /**
+     * 
+     */
     @Override
     public String getCampoVuoto(String id) {
         Utente user = utentiNonReg.get(id);
@@ -64,16 +83,25 @@ public class UtenteNonRegDaoImpl implements UtenteNonRegDao {
             return null;
     }
 
+    /**
+     * 
+     */
     @Override
     public void nuovoUtente(String id) {
         utentiNonReg.put(id, new Utente());
     }
 
+    /**
+     * 
+     */
     @Override
     public Utente getUtente(String id) {
         return utentiNonReg.get(id);
     }
 
+    /**
+     * 
+     */
     @Override
     public Utente rimuoviUtente(String id) {
         return utentiNonReg.remove("id");
