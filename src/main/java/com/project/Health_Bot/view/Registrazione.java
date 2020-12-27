@@ -21,12 +21,13 @@ public class Registrazione {
      * 
      * @param chatId
      * @param username
-     * @return
+     * @return response
      */
     public static SendMessage getVistaWelcome(long chatId, String username) {
         String mess = ("Ciao " + username + " 👋🏻😊 Benvenuto su Health_Bot! 😉\n"
                 + "Prima di iniziare e poter accedere alle mie funzionalità, mi servirebbe qualche tuo dato iniziale...");
         SendMessage response = new SendMessage(chatId, mess);
+        //Rimuove la tastiera
         Keyboard tastiera = new ReplyKeyboardRemove();
         response.replyMarkup(tastiera);
         return response;
@@ -40,7 +41,8 @@ public class Registrazione {
     public static SendMessage getVistaSesso(long chatId) {
         String mess = ("Sei un maschio ♀️ o una femmina ♂️ ?");
         SendMessage response = new SendMessage(chatId, mess);
-        Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "M", "F" }).oneTimeKeyboard(true)
+        Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "M", "F" })
+        		.oneTimeKeyboard(true)
                 .resizeKeyboard(true);
         response.replyMarkup(tastiera);
         return response;
@@ -56,6 +58,7 @@ public class Registrazione {
         String mess = ("Quanto pesi attualmente? ⚖ [Kg]");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
+        //Rimuove la tastiera
         Keyboard tastiera = new ReplyKeyboardRemove();
         response.replyMarkup(tastiera);
         return response;
@@ -71,6 +74,7 @@ public class Registrazione {
         String mess = ("Inserisci la tua altezza 📏  [cm]");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
+        //Rimuove la tastiera
         Keyboard tastiera = new ReplyKeyboardRemove();
         response.replyMarkup(tastiera);
         return response;
@@ -86,6 +90,7 @@ public class Registrazione {
         String mess = ("Inserisci il tuo anno di nascita 👶🏻");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
+        //Rimuove la tastiera
         Keyboard tastiera = new ReplyKeyboardRemove();
         response.replyMarkup(tastiera);
         return response;
@@ -103,10 +108,10 @@ public class Registrazione {
         SendMessage response = new SendMessage(chatId, mess);
         // Aggiungo dei pulsanti alla risposta
         Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "Pesante 🏋🏻", "Moderato 🏃🏻‍♂️" },
-                new String[] { "Sedentario 🧘🏻‍♂️" }).oneTimeKeyboard(true) // Riduce "ad icona" la tastiera una volta premuto un tasto
+                        new String[] { "Sedentario 🧘🏻‍♂️" })
+        		        .oneTimeKeyboard(true) // Riduce "ad icona" la tastiera una volta premuto un tasto
                         .resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
         response.replyMarkup(tastiera);
-
         return response;
     }
 
@@ -114,13 +119,15 @@ public class Registrazione {
      * Restituisce la vista relativa alla completa registrazione dell'utente
      * 
      * @param chatId
-     * @return
+     * @return response
      */
     public static SendMessage getVistaRegistrato(long chatId) {
         // Testo del messaggio
-        String mess = "Registrazione completata!";
+        String mess = ("Registrazione completata! \n"
+        		+ "Ora potrai accedere al menù principale e divertirti un po' con me 😊😊");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
+        //Rimuove la tastiera
         Keyboard tastiera = new ReplyKeyboardRemove();
         response.replyMarkup(tastiera);
         return response;
@@ -136,6 +143,9 @@ public class Registrazione {
         String mess = ("Valore inserito non corretto ❌ \n" + "Riprovare!");
         // Creo l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
+        //Rimuove la tastiera
+        Keyboard tastiera = new ReplyKeyboardRemove();
+        response.replyMarkup(tastiera);
         return response;
     }
 
