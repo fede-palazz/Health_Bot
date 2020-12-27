@@ -32,7 +32,8 @@ public class UtenteRegDaoImpl implements UtenteRegDao {
 
     @Override
     public void inserisciMisurazione(String id, float peso, float lbm, float bmi) {
-
+        utentiReg.get(id).inserisciMisurazione(peso, lbm, bmi);
+        // TODO Togliere metodo da Utente ed utilizzare qui typeof con casting
     }
 
 }

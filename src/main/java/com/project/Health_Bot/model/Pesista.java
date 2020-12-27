@@ -3,6 +3,7 @@
  */
 package com.project.Health_Bot.model;
 
+import java.util.Date;
 import java.util.Vector;
 import com.project.Health_Bot.util.GestioneJSONOffline;
 
@@ -12,7 +13,7 @@ import com.project.Health_Bot.util.GestioneJSONOffline;
  * @author FedePalaz & GiovanniNovelli9 & Baldellaux
  *
  */
-public class Pesista extends Utente {
+public class Pesista extends Utente implements Misura {
 
     private Vector<Misurazione> misurazioni;
 
@@ -21,8 +22,9 @@ public class Pesista extends Utente {
      */
     public Pesista() {
         super();
+        misurazioni = new Vector<Misurazione>();
     }
-    
+
     /**
      * Costruttore
      * 
@@ -43,7 +45,6 @@ public class Pesista extends Utente {
      * @param altezza
      * @param peso
      * @param età
-     * @param stileDiVita
      */
     public Pesista(Character sesso, int altezza, float peso, int annoNascita, Vector<Misurazione> misurazioni) {
         super(sesso, altezza, peso, annoNascita);
@@ -52,17 +53,23 @@ public class Pesista extends Utente {
             this.misurazioni.add(m);
     }
 
-	/**
-	 * Metodo che genera un numero casuale e restituisce un allenamento salvato nel file
-	 * 
-	 * @return Allenamento per utente Pesista
-	 */
-	public String getAllenamento() {
-		// numero da 0 e 2 inclusi
-		int n = (int) (Math.random() * 3);
-		// chiamata metodo JSONOffline
-		return GestioneJSONOffline.getAllenamento("pes", n);
+    /**
+     * Metodo che genera un numero casuale e restituisce un allenamento salvato nel file
+     * 
+     * @return Allenamento per utente Pesista
+     */
+    public String getAllenamento() {
+        // numero da 0 e 2 inclusi
+        int n = (int) (Math.random() * 3);
+        // chiamata metodo JSONOffline
+        return GestioneJSONOffline.getAllenamento("pes", n);
 
-	}
+    }
+
+    @Override
+    public void inserisciMisurazione(float peso, float lbm, float bmi) {
+        misurazioni.add(new Misurazione(peso, lbm, bmi, new Date()));
+        // TODO Verificare la presenza di una misurazione con stesso giorno e, in caso, aggiornare i dati mantenendo la data
+    }
 
 }

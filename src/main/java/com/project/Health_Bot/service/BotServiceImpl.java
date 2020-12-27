@@ -146,7 +146,9 @@ public class BotServiceImpl implements BotService {
                 // Aggiunge l'utente alla lista di quelli registrati
                 utenteRegDao.inserisciUtente(userId, new Sedentario(user.getSesso().get(), user.getAltezza().get(),
                         user.getPeso().get(), user.getAnnoNascita().get()));
-                // TODO Aggiunge una misurazione iniziale
+                // Aggiunge una misurazione iniziale
+                utenteRegDao.
+                
                 // TODO Restituisce la vista del menu principale
                 return new SendMessage(chatId, "Ti sei registrato!");
             //break;
