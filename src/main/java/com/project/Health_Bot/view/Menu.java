@@ -3,6 +3,8 @@
  */
 package com.project.Health_Bot.view;
 
+import java.util.Vector;
+
 import com.pengrad.telegrambot.model.request.Keyboard;
 import com.pengrad.telegrambot.model.request.ReplyKeyboardMarkup;
 import com.pengrad.telegrambot.request.SendMessage;
@@ -169,12 +171,15 @@ public class Menu {
      * 
      * @return response
      */
-    public static SendMessage getVistaInfoNutr(long chatId, float Kcaltot, float carbo, float prot, float lip) {
+    public static SendMessage getVistaInfoNutr(long chatId, Vector<Object> alimento) {
         // Testo del messaggio
-        String mess = ("L'alimento scelto fornisce " + Kcaltot + "[Kcal], ripartite in: \n" + carbo + "carboidrati 🍝\n"
-                + prot + "proteine 🥩\n" + lip + "grassi 🧈\n");
+    	String mess = ("L'alimento scelto fornisce " + alimento.get(0) + "[Kcal], ripartite in: \n"
+        		+ alimento.get(2) + " carboidrati 🍝\n"
+        		+ alimento.get(1) + " proteine 🥩\n"
+        		+ alimento.get(3) + " grassi 🧈\n");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
+        
         return response;
     }
 
@@ -188,9 +193,13 @@ public class Menu {
     public static SendMessage getVistaRiepilogoSalute(long chatId, String tipo, float peso, float iw, float fcg,
             float bmr, float bmi, float lbm) {
         // Testo del messaggio
-        String mess = ("⛑ Riepilogo dati SALUTE ⛑\n" + "livello di attività fisica 💪🏻: " + tipo + "\n" + "peso: "
-                + peso + "[Kg] ⚖\n" + "FCG: " + fcg + "[Kcal] \n" + "BMR: " + bmr + "[Kcal] \n" + "BMI: " + bmi
-                + " 🔢 \n" + "LBM: " + lbm + "[Kg] \n");
+        String mess = ("⛑ Riepilogo dati SALUTE ⛑\n" 
+                + "livello di attività fisica 💪🏻: " + tipo + "\n" 
+        		+ "peso: " + peso + "[Kg] ⚖\n" 
+                + "FCG: " + fcg + "[Kcal] \n" 
+        		+ "BMR: " + bmr + "[Kcal] \n" 
+                + "BMI: " + bmi + " 🔢 \n" 
+        		+ "LBM: " + lbm + "[Kg] \n");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
         return response;
@@ -202,7 +211,7 @@ public class Menu {
      * 
      * @param chatId
      * @param username
-     * @return
+     * @return response
      */
     public static SendMessage getVistaConosciCorpo(long chatId, String username) {
         // Testo del messaggio

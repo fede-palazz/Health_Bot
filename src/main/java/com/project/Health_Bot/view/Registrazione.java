@@ -21,7 +21,7 @@ public class Registrazione {
      * 
      * @param chatId
      * @param username
-     * @return
+     * @return response
      */
     public static SendMessage getVistaWelcome(long chatId, String username) {
         String mess = ("Ciao " + username + " 👋🏻😊 Benvenuto su Health_Bot! 😉\n"
@@ -118,7 +118,7 @@ public class Registrazione {
      */
     public static SendMessage getVistaRegistrato(long chatId) {
         // Testo del messaggio
-        String mess = "Registrazione completata!";
+        String mess = ("Registrazione completata!");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
         Keyboard tastiera = new ReplyKeyboardRemove();
