@@ -44,7 +44,7 @@ Inoltre BotFather fornisce all'utente il token da utilizzare per comandare il bo
 
 Diagramma dei casi d'uso:
 
-![](img/UML/Health_Bot_UseCaseDiagram.png)
+![](img/UML/Case_Diagram.png)
 
 
 

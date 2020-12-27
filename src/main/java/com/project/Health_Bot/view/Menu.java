@@ -27,10 +27,9 @@ public class Menu {
     	SendMessage response = new SendMessage(chatId, mess);
     	// Aggiungo dei pulsanti alla risposta
         Keyboard tastiera = new ReplyKeyboardMarkup(
-        		new String[]{"Aggiorna peso ⚖", "Aggiorna att. fisica 💪"},
-                new String[]{"Info nutrizionali 👩‍🍳‍️", "Riepilogo salute ⛑"},
-                new String[]{"Diagnostica 🩺", "📊Statistiche📈"},
-                new String[]{"Dieta consigliata 😋", "Info generali ℹ️"})
+        		new String[]{"Aggiornamenti 🆙👆", "Consigli 😜"},
+                new String[]{"🍽 Info nutrizionali 👩‍🍳‍️", "Riepilogo salute ⛑"},
+                new String[]{"‍️Conosci il tuo corpo 🧘‍♂️️", "Info generali ℹ️"})
                 .oneTimeKeyboard(true)   // Riduce "ad icona" la tastiera una volta premuto un tasto
                 .resizeKeyboard(true);   // Visualizzazione compatta della tastiera (più carina)
                 response.replyMarkup(tastiera);  
@@ -66,7 +65,30 @@ public class Menu {
     }
 
     /**
-     * Tato (1)
+     * Tasto (1)
+     * Metodo che permette di selezionare gli aggiornamenti
+     * 
+     * @param chatId
+     * @return response
+     */
+    public static SendMessage getVistaAggiornamenti(long chatId) {
+        // Testo del messaggio
+    	String mess = ("🆙 Ottieni i tuoi aggiornamenti 👇");
+    	// Crea l'oggetto di risposta
+    	SendMessage response = new SendMessage(chatId, mess);
+    	// Aggiungo dei pulsanti alla risposta
+        Keyboard tastiera = new ReplyKeyboardMarkup(
+        		new String[]{"Aggiorna peso ⚖", "Aggiorna att. fisica 💪"},
+        		new String[]{"Torna al menù 🔄"})
+                .oneTimeKeyboard(true)   // Riduce "ad icona" la tastiera una volta premuto un tasto
+                .resizeKeyboard(true);   // Visualizzazione compatta della tastiera (più carina)
+                response.replyMarkup(tastiera);  
+        
+                return response;
+    }
+    
+    /**
+     * Tasto (1.1)
      * Metodo che permette di aggornare il peso dell'utente
      * 
      * @return response
@@ -81,7 +103,7 @@ public class Menu {
     }
 
     /**
-     * Tasto (2)
+     * Tasto (1.2)
      * Metodo che fa aggiornare il livello di att. fisica selezionato dall'utente
      * 
      * @return response
@@ -101,9 +123,75 @@ public class Menu {
                 
         return response;
     }
+    
+    /**
+     * Tasto (2)
+     * Metodo che consiglia all'utente come tenersi in forma
+     * 
+     * @param chatId
+     * @param username
+     * @return response
+     */
+    public static SendMessage getVistaConsigli(long chatId, String username) {
+        // Testo del messaggio
+    	String mess = ("Caro " + username + "sei molto importante per noi 🥰😎... \n"
+    			+ "per questo abbiamo pensato di regalarti qualche consiglio per tenerti in forma. 💪💪"
+    			+ "Scegli l'ambito che più ti interessa!");
+    	// Crea l'oggetto di risposta
+    	SendMessage response = new SendMessage(chatId, mess);
+    	// Aggiungo dei pulsanti alla risposta
+        Keyboard tastiera = new ReplyKeyboardMarkup(
+        		new String[]{"Dieta consigliata 😋", "Allenamento consigliato 🏋️"},
+        		new String[]{"Torna al menù 🔄"})
+                .oneTimeKeyboard(true)   // Riduce "ad icona" la tastiera una volta premuto un tasto
+                .resizeKeyboard(true);   // Visualizzazione compatta della tastiera (più carina)
+                response.replyMarkup(tastiera);  
+        
+                return response;
+    }
+    
+    /**
+     * Tasto (2.1)
+     * Metodo che consiglia una dieta in base all'fcg dell'utente.
+     * 
+     * @param fcg
+     * @param dieta
+     * @return response
+     */
+    public static SendMessage getVistaDieta(long chatId, String username, float fcg, String dieta) {
+        // Testo del messaggio
+    	String mess = ("Caro " + username + ", \n" 
+                + "la dieta 🍽 che ti consiglio 😋, scelta accuratamente in base al valore del tuo FCG é la seguente: \n" 
+    			+ dieta);
+    	// Crea l'oggetto di risposta
+    	SendMessage response = new SendMessage(chatId, mess);
+    	
+        return response;
+    }
 
     /**
-     * Tasto(3), pt1
+     * Tasto(2.2)
+     * Metodo che consiglia l'allenamento in base al livello di attività dell'utente.
+     * 
+     * @param chatId
+     * @param tipo
+     * @param username
+     * @param allenamento
+     * @return response
+     */
+    public static SendMessage getVistaAllenamento(long chatId, String tipo, String username, String allenamento) {
+        // Testo del messaggio
+    	String mess = ("Caro " + username + ", \n" 
+    			+ "dopo aver studiato attentamente il tuo tenore di attività fisica 💪, siamo sicuri che il miglior allenamento che tu possa seguire é il seguente: \n" 
+    			+ allenamento );
+    	// Crea l'oggetto di risposta
+    	SendMessage response = new SendMessage(chatId, mess);
+    	
+        return response;
+    }
+    
+    /**
+     * Tasto(3.1)
      * Metodo che permette all'utente di inserire il nome di un cibo
      * 
      * @return response
@@ -118,12 +206,12 @@ public class Menu {
     }
 
     /**
-     * Tasto(3), pt2
+     * Tasto(3.2)
      * Metodo che restituisce i valori nutrionali di un cibo
      * 
      * @return response
      */
-    public static SendMessage getVistaAlimentoVal(long chatId, float Kcaltot, float carbo, float prot, float lip) {
+    public static SendMessage getVistaInfoNutr(long chatId, float Kcaltot, float carbo, float prot, float lip) {
         // Testo del messaggio
     	String mess = ("L'alimento scelto fornisce " + Kcaltot + "[Kcal], ripartite in: \n"
         		+ carbo + "carboidrati 🍝\n"
@@ -144,7 +232,7 @@ public class Menu {
      */
     public static SendMessage getVistaRiepilogoSalute(long chatId, String tipo, float peso, float iw, float fcg, float bmr, float bmi, float lbm) {	
         // Testo del messaggio
-    	String mess = ("Riepilogo SALUTE \n"
+    	String mess = ("⛑ Riepilogo dati SALUTE ⛑\n"
         		+ "livello di attività fisica 💪: " + tipo + "\n"
         		+ "peso: " + peso + "[Kg] ⚖\n"
         		+ "FCG: " + fcg + "[Kcal] \n"
@@ -159,6 +247,35 @@ public class Menu {
 
     /**
      * Tasto (5)
+     * Metodo che implementa il tasto conosci il tuo corpo
+     * 
+     * @param chatId
+     * @param username
+     * @return
+     */
+    public static SendMessage getVistaConosciCorpo(long chatId, String username) {
+        // Testo del messaggio
+    	String mess = ("Ciao " + username + " !\n"
+    			+ "Sai come si vive bene ed in armonia con il mondo? 🧘‍♂️"
+    			+ "Conoscendo e curando il proprio corpo, come ricorda una celebre citazione di Jim Rohn, che recita: \n"
+    			+ " -Abbi buona cura del tuo corpo, è l'unico posto in cui devi vivere.- \n”"
+    			+ "Per questo predisposto per te le seguenti funzioni, che ti permettono di diagnosticare la condizione del tuo fisico e informarti di alcune statistiche, suoi tuoi progressi e in confronto agli altri. "
+    			);
+    	// Crea l'oggetto di risposta
+    	SendMessage response = new SendMessage(chatId, mess);
+    	// Aggiungo dei pulsanti alla risposta
+        Keyboard tastiera = new ReplyKeyboardMarkup(
+        		new String[]{"Diagnostica 🩺", "📊Statistiche📈"},
+        		new String[]{"Torna al menù 🔄"})
+                .oneTimeKeyboard(true)   // Riduce "ad icona" la tastiera una volta premuto un tasto
+                .resizeKeyboard(true);   // Visualizzazione compatta della tastiera (più carina)
+                response.replyMarkup(tastiera);  
+        
+                return response;
+    }
+    
+    /**
+     * Tasto (5.1)
      * Metodo che diagnostica parametri in base al BMI ed al peso
      * 
      * @param bmi
@@ -178,9 +295,8 @@ public class Menu {
         return response;
     }
     
-    
     /** 
-     * Tasto (6)
+     * Tasto (5.2)
      * Da finire con le statistiche scelte
      * 
      * @param chatId
@@ -196,24 +312,7 @@ public class Menu {
     }
     
     /**
-     * Tasto (7)
-     * Metodo che consiglia una dieta in base all'fcg dell'utente.
-     * 
-     * @param fcg
-     * @param dieta
-     * @return response
-     */
-    public static SendMessage getVistaDieta(long chatId, float fcg, String dieta) {
-        // Testo del messaggio
-    	String mess = ("La dieta consigliata 😋, scelta in base al valore del tuo FCG é : \n" + dieta );
-    	// Crea l'oggetto di risposta
-    	SendMessage response = new SendMessage(chatId, mess);
-    	
-        return response;
-    }
-    
-    /**
-     * Tasto (8)
+     * Tasto (6)
      * Metodo che torna cinque diversi bottoni informativi
      * 
      * @return response
@@ -227,7 +326,7 @@ public class Menu {
         Keyboard tastiera = new ReplyKeyboardMarkup(
                 new String[]{"BMI", "IW‍"},
                 new String[]{"BMR️", "FCG"},
-                new String[]{"LBM️"})
+                new String[]{"LBM️", "Torna al menù 🔄"})
                 .oneTimeKeyboard(true)   // Riduce "ad icona" la tastiera una volta premuto un tasto
                 .resizeKeyboard(true);   // Visualizzazione compatta della tastiera (più carina)
                 response.replyMarkup(tastiera);   
@@ -257,6 +356,7 @@ public class Menu {
     }
     
     /**
+     * Tasto (6.1)
      * Metodo che spiega cos'è il BMI e come è utilizzato nel bot
      * 
      * @return response
@@ -277,6 +377,7 @@ public class Menu {
     }
     
     /**
+     * Tasto (6.2)
      * Metodo che spiega cos'è l'IW e come è utilizzato nel bot
      * 
      * @return response
@@ -295,6 +396,7 @@ public class Menu {
     }
     
     /**
+     * Tasto (6.3)
      * Metodo che spiega cos'è il BMR e come è utilizzato nel bot
      * 
      * @return mess
@@ -317,6 +419,7 @@ public class Menu {
     }
     
     /**
+     * Tasto (6.4)
      * Metodo che spiega cos'è l'FCG e come è utilizzato nel bot
      * 
      * @return response
@@ -335,6 +438,7 @@ public class Menu {
     }
     
     /**
+     * Tasto (6.5)
      * Metodo che spiega cos'è l'LBM e come è utilizzato nel bot
      * 
      * @return response
