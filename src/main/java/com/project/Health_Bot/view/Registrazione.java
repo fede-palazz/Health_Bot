@@ -5,12 +5,13 @@ package com.project.Health_Bot.view;
 
 import com.pengrad.telegrambot.model.request.Keyboard;
 import com.pengrad.telegrambot.model.request.ReplyKeyboardMarkup;
+import com.pengrad.telegrambot.model.request.ReplyKeyboardRemove;
 import com.pengrad.telegrambot.request.SendMessage;
 
 /**
  * @author FedePalaz & GiovanniNovelli9 & Baldellaux
  * 
- * Classe che modella la fase di registrazione dell'utente.
+ *         Classe che modella la fase di registrazione dell'utente.
  * 
  */
 public class Registrazione {
@@ -54,11 +55,12 @@ public class Registrazione {
      * @return response
      */
     public static SendMessage getVistaPeso(long chatId) {
-         // Testo del messaggio
-    	 String mess = ("Quanto pesi attualmente? ⚖ [Kg]");
-    	 // Crea l'oggetto di risposta
-         SendMessage response = new SendMessage(chatId, mess);
-         
+        // Testo del messaggio
+        String mess = ("Quanto pesi attualmente? ⚖ [Kg]");
+        // Crea l'oggetto di risposta
+        SendMessage response = new SendMessage(chatId, mess);
+        Keyboard tastiera = new ReplyKeyboardRemove();
+        response.replyMarkup(tastiera);
         return response;
     }
 
@@ -72,9 +74,10 @@ public class Registrazione {
         String mess = ("Inserisci la tua altezza 📏  [cm]");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
-        
-       return response;
-   }
+        Keyboard tastiera = new ReplyKeyboardRemove();
+        response.replyMarkup(tastiera);
+        return response;
+    }
 
     /**
      * Restituisce la vista relativa all'anno di nascita
@@ -83,12 +86,13 @@ public class Registrazione {
      */
     public static SendMessage getVistaAnno(long chatId) {
         // Testo del messaggio
-    	String mess = ("Inserisci il tuo anno di nascita 👶🏻");
+        String mess = ("Inserisci il tuo anno di nascita 👶🏻");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
-       
-       return response;
-   }
+        Keyboard tastiera = new ReplyKeyboardRemove();
+        response.replyMarkup(tastiera);
+        return response;
+    }
 
     /**
      * Metodo che restituisce il livello di att. fisica selezionato dall'utente
@@ -97,17 +101,15 @@ public class Registrazione {
      */
     public static SendMessage getVistaAttivita(long chatId) {
         // Testo del messaggio
-    	String mess = ("Seleziona il tuo livello di attività fisica 💪🏻: ");
-    	// Crea l'oggetto di risposta
-    	SendMessage response = new SendMessage(chatId, mess);
+        String mess = ("Seleziona il tuo livello di attività fisica 💪🏻: ");
+        // Crea l'oggetto di risposta
+        SendMessage response = new SendMessage(chatId, mess);
         // Aggiungo dei pulsanti alla risposta
-        Keyboard tastiera = new ReplyKeyboardMarkup(
-                new String[]{"Pesante 🏋️🏻️️‍️", "Moderato 🏃🏻‍♂️"},
-                new String[]{"Sedentario 🧘🏻‍♂️"})
-                .oneTimeKeyboard(true)   // Riduce "ad icona" la tastiera una volta premuto un tasto
-                .resizeKeyboard(true);   // Visualizzazione compatta della tastiera (più carina)
-                response.replyMarkup(tastiera);   
-    	
+        Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "Pesante 🏋️🏻️️‍️", "Moderato 🏃🏻‍♂️" },
+                new String[] { "Sedentario 🧘🏻‍♂️" }).oneTimeKeyboard(true) // Riduce "ad icona" la tastiera una volta premuto un tasto
+                        .resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
+        response.replyMarkup(tastiera);
+
         return response;
     }
 
@@ -118,11 +120,9 @@ public class Registrazione {
      */
     public static SendMessage getVistaErrore(long chatId) {
         // Testo del messaggio
-        String mess = ("Valore inserito non corretto ❌ \n"
-        		+ "Riprovare!");
+        String mess = ("Valore inserito non corretto ❌ \n" + "Riprovare!");
         // Creo l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
-        
         return response;
     }
 
