@@ -18,6 +18,7 @@ import com.project.Health_Bot.model.Sedentario;
 import com.project.Health_Bot.model.Sportivo;
 import com.project.Health_Bot.model.Utente;
 import com.project.Health_Bot.util.ParamNutr;
+import com.project.Health_Bot.view.Menu;
 import com.project.Health_Bot.view.Registrazione;
 
 /**
@@ -166,7 +167,7 @@ public class BotServiceImpl implements BotService {
                         ParamNutr.calcolaBMI(user.getPeso().get(), user.getAltezza().get()));
                 // Restituisce la vista di registrazione completata
                 view.add(Registrazione.getVistaRegistrato(chatId));
-                // TODO Restituisce la vista del menu principale
+                view.add(Menu.getVistaMenu(chatId));
                 return view;
 
             case "Moderato 🏃🏻‍♂️":
@@ -181,7 +182,7 @@ public class BotServiceImpl implements BotService {
                         ParamNutr.calcolaBMI(user.getPeso().get(), user.getAltezza().get()));
                 // Restituisce la vista di registrazione completata
                 view.add(Registrazione.getVistaRegistrato(chatId));
-                // TODO Restituisce la vista del menu principale
+                view.add(Menu.getVistaMenu(chatId));
                 return view;
 
             case "Pesante 🏋🏻":
@@ -196,17 +197,15 @@ public class BotServiceImpl implements BotService {
                         ParamNutr.calcolaBMI(user.getPeso().get(), user.getAltezza().get()));
                 // Restituisce la vista di registrazione completata
                 view.add(Registrazione.getVistaRegistrato(chatId));
-                // TODO Restituisce la vista del menu principale
+                view.add(Menu.getVistaMenu(chatId));
                 return view;
 
-            default:
+            default: // Non ha premuto un pulsante
                 view.add(Registrazione.getVistaErrore(chatId));
                 return view;
-
             }
         }
         return null;
-
     }
 
     @Override

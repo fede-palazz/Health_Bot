@@ -49,7 +49,8 @@ public class BotController {
                     try {
                         // Per ogni update riceve ed invia la lista dei messaggi di risposta
                         for (SendMessage message : service.gestisciUpdate(update))
-                            bot.execute(message);
+                            if (message != null)
+                                bot.execute(message);
                     }
                     catch (InvalidUpdateException e) {
                         e.printStackTrace();
@@ -57,7 +58,6 @@ public class BotController {
                     catch (Exception e) {
                         e.printStackTrace();
                     }
-
                     //SendResponse response = bot.execute(message);
                 }
                 return UpdatesListener.CONFIRMED_UPDATES_ALL; // Conferma tutti gli updates ricevuti
