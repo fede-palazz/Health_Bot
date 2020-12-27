@@ -27,40 +27,13 @@ public class Menu {
     	SendMessage response = new SendMessage(chatId, mess);
     	// Aggiungo dei pulsanti alla risposta
         Keyboard tastiera = new ReplyKeyboardMarkup(
-        		new String[]{"Aggiornamenti 🆙👆", "Consigli 😜"},
+        		new String[]{"Aggiorna parametri 🆙👇🏻", "Consigli 😜"},
                 new String[]{"🍽 Info nutrizionali 👩‍🍳‍️", "Riepilogo salute ⛑"},
-                new String[]{"‍️Conosci il tuo corpo 🧘‍♂️️", "Info generali ℹ️"})
+                new String[]{"‍️Conosci il tuo corpo 🧘🏻‍♂️️", "Info generali ℹ️"})
                 .oneTimeKeyboard(true)   // Riduce "ad icona" la tastiera una volta premuto un tasto
                 .resizeKeyboard(true);   // Visualizzazione compatta della tastiera (più carina)
                 response.replyMarkup(tastiera);  
         
-        /*
-        // Testo dei pulsanti della tastiera
-        List<Vector<String>> pulsanti = new Vector<>();
-
-        Vector<String> pulsanti1 = new Vector<>();
-        pulsanti1.add("Aggiorna peso ⚖");
-        pulsanti1.add("Aggiorna att. fisica 💪");
-        pulsanti.add(pulsanti1);
-
-        Vector<String> pulsanti2 = new Vector<>();
-        pulsanti2.add("Info nutrizionali 👩‍🍳");
-        pulsanti2.add("Riepilogo salute ⛑");
-        pulsanti.add(pulsanti2);
-
-        Vector<String> pulsanti3 = new Vector<>();
-        pulsanti3.add("Diagnostica 🩺");
-        pulsanti3.add("📊Statistiche📈");
-        pulsanti.add(pulsanti3);
-
-        Vector<String> pulsanti4 = new Vector<>();
-        pulsanti4.add("Dieta consigliata 😋");
-        pulsanti4.add("Info generali ℹ️");
-        pulsanti.add(pulsanti4);
-
-        mess.setReplyMarkup(Tastiera.getTastiera(pulsanti));
-        */
-        		
         return response;
     }
 
@@ -73,12 +46,12 @@ public class Menu {
      */
     public static SendMessage getVistaAggiornamenti(long chatId) {
         // Testo del messaggio
-    	String mess = ("🆙 Ottieni i tuoi aggiornamenti 👇");
+    	String mess = ("🆙 Aggiorna i tuoi parametri 👇🏻");
     	// Crea l'oggetto di risposta
     	SendMessage response = new SendMessage(chatId, mess);
     	// Aggiungo dei pulsanti alla risposta
         Keyboard tastiera = new ReplyKeyboardMarkup(
-        		new String[]{"Aggiorna peso ⚖", "Aggiorna att. fisica 💪"},
+        		new String[]{"Aggiorna peso ⚖", "Aggiorna att. fisica 💪🏻"},
         		new String[]{"Torna al menù 🔄"})
                 .oneTimeKeyboard(true)   // Riduce "ad icona" la tastiera una volta premuto un tasto
                 .resizeKeyboard(true);   // Visualizzazione compatta della tastiera (più carina)
@@ -110,13 +83,13 @@ public class Menu {
      */
     public static SendMessage getVistaAttivita(long chatId) {
         // Testo del messaggio
-    	String mess = ("Seleziona il tuo livello di attività fisica 💪: ");
+    	String mess = ("Seleziona il tuo livello di attività fisica 💪🏻: ");
     	// Crea l'oggetto di risposta
     	SendMessage response = new SendMessage(chatId, mess);
         // Aggiungo dei pulsanti alla risposta
         Keyboard tastiera = new ReplyKeyboardMarkup(
-                new String[]{"Pesante 🏋️‍♀️", "Moderato 🏃‍♂️"},
-                new String[]{"Sedentario 🧘🏿‍♀️"})
+                new String[]{"Pesante 🏋️🏻️‍️", "Moderato 🏃🏻‍♂️"},
+                new String[]{"Sedentario 🧘🏻️"})
                 .oneTimeKeyboard(true)   // Riduce "ad icona" la tastiera una volta premuto un tasto
                 .resizeKeyboard(true);   // Visualizzazione compatta della tastiera (più carina)
                 response.replyMarkup(tastiera);   
@@ -135,13 +108,13 @@ public class Menu {
     public static SendMessage getVistaConsigli(long chatId, String username) {
         // Testo del messaggio
     	String mess = ("Caro " + username + "sei molto importante per noi 🥰😎... \n"
-    			+ "per questo abbiamo pensato di regalarti qualche consiglio per tenerti in forma. 💪💪"
-    			+ "Scegli l'ambito che più ti interessa!");
+    			+ "per questo abbiamo pensato di regalarti qualche consiglio per tenerti in forma! 💪🏻💪🏻"
+    			+ "Scegli l'ambito che più ti interessa");
     	// Crea l'oggetto di risposta
     	SendMessage response = new SendMessage(chatId, mess);
     	// Aggiungo dei pulsanti alla risposta
         Keyboard tastiera = new ReplyKeyboardMarkup(
-        		new String[]{"Dieta consigliata 😋", "Allenamento consigliato 🏋️"},
+        		new String[]{"Dieta consigliata 😋", "Allenamento consigliato 🏋️🏻️"},
         		new String[]{"Torna al menù 🔄"})
                 .oneTimeKeyboard(true)   // Riduce "ad icona" la tastiera una volta premuto un tasto
                 .resizeKeyboard(true);   // Visualizzazione compatta della tastiera (più carina)
@@ -182,7 +155,7 @@ public class Menu {
     public static SendMessage getVistaAllenamento(long chatId, String tipo, String username, String allenamento) {
         // Testo del messaggio
     	String mess = ("Caro " + username + ", \n" 
-    			+ "dopo aver studiato attentamente il tuo tenore di attività fisica 💪, siamo sicuri che il miglior allenamento che tu possa seguire é il seguente: \n" 
+    			+ "dopo aver studiato attentamente il tuo tenore di attività fisica 💪🏻, siamo sicuri che il miglior allenamento per te é il seguente: \n" 
     			+ allenamento );
     	// Crea l'oggetto di risposta
     	SendMessage response = new SendMessage(chatId, mess);
@@ -198,7 +171,7 @@ public class Menu {
      */
     public static SendMessage getVistaAlimento(long chatId) {
         // Testo del messaggio
-    	String mess = ("Inserisci il nome inglese di un alimento 🍗🥚🍔");
+    	String mess = ("Inserisci il nome di un alimento (solo in inglese) 🍗🥚🍔");
     	// Crea l'oggetto di risposta
     	SendMessage response = new SendMessage(chatId, mess);
     	
@@ -233,11 +206,11 @@ public class Menu {
     public static SendMessage getVistaRiepilogoSalute(long chatId, String tipo, float peso, float iw, float fcg, float bmr, float bmi, float lbm) {	
         // Testo del messaggio
     	String mess = ("⛑ Riepilogo dati SALUTE ⛑\n"
-        		+ "livello di attività fisica 💪: " + tipo + "\n"
+        		+ "livello di attività fisica 💪🏻: " + tipo + "\n"
         		+ "peso: " + peso + "[Kg] ⚖\n"
         		+ "FCG: " + fcg + "[Kcal] \n"
-        		+ "BMR: " + bmr + "[Kcal] \\n"
-        		+ "BMI: " + bmi + "\n"
+        		+ "BMR: " + bmr + "[Kcal] \n"
+        		+ "BMI: " + bmi + " 🔢 \n"
         		+ "LBM: " + lbm + "[Kg] \n");
     	// Crea l'oggetto di risposta
     	SendMessage response = new SendMessage(chatId, mess);
@@ -256,10 +229,10 @@ public class Menu {
     public static SendMessage getVistaConosciCorpo(long chatId, String username) {
         // Testo del messaggio
     	String mess = ("Ciao " + username + " !\n"
-    			+ "Sai come si vive bene ed in armonia con il mondo? 🧘‍♂️"
+    			+ "Sai come si vive bene ed in armonia con il mondo? 🧘🏻"
     			+ "Conoscendo e curando il proprio corpo, come ricorda una celebre citazione di Jim Rohn, che recita: \n"
     			+ " -Abbi buona cura del tuo corpo, è l'unico posto in cui devi vivere.- \n”"
-    			+ "Per questo predisposto per te le seguenti funzioni, che ti permettono di diagnosticare la condizione del tuo fisico e informarti di alcune statistiche, suoi tuoi progressi e in confronto agli altri. "
+    			+ "Per questo ho predisposto per te le seguenti funzioni, che ti permettono di diagnosticare la condizione del tuo fisico e informarti riguardo alcune statistiche, suoi tuoi progressi e in confronto agli altri utenti. "
     			);
     	// Crea l'oggetto di risposta
     	SendMessage response = new SendMessage(chatId, mess);
@@ -330,27 +303,6 @@ public class Menu {
                 .oneTimeKeyboard(true)   // Riduce "ad icona" la tastiera una volta premuto un tasto
                 .resizeKeyboard(true);   // Visualizzazione compatta della tastiera (più carina)
                 response.replyMarkup(tastiera);   
-    	
-    	/*
-        // Testo dei pulsanti della tastiera
-        List<Vector<String>> pulsanti = new Vector<>();
-        
-        Vector<String> pulsanti1 = new Vector<>();
-        pulsanti1.add("BMI");
-        pulsanti1.add("IW‍");
-        pulsanti.add(pulsanti1);
-        
-        Vector<String> pulsanti2 = new Vector<>();
-        pulsanti2.add("BMR️");
-        pulsanti2.add("FCG");
-        pulsanti.add(pulsanti2);
-        
-        Vector<String> pulsanti3 = new Vector<>();
-        pulsanti3.add("LBM️");
-        pulsanti.add(pulsanti3);
-        
-        mess.setReplyMarkup(Tastiera.getTastiera(pulsanti));
-        */ 
         
        return response;
     }

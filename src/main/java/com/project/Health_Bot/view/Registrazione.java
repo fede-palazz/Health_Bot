@@ -22,7 +22,7 @@ public class Registrazione {
      */
     public static SendMessage getVistaSesso(long chatId, String username) {
         // 1) Inserire testo del messaggio
-        String mess = ("Ciao " + username + " 👋😊 Benvenuto su Health_Bot! 😉\n"
+        String mess = ("Ciao " + username + " 👋🏻😊 Benvenuto su Health_Bot! 😉\n"
                 + "Prima di iniziare e poter accedere alle mie funzionalità, mi servirebbe qualche tuo dato iniziale... \n\n"
                 + "Sei un maschio ♀️ o una femmina ♂️ ?");
         // 2) Creare l'oggetto di risposta
@@ -97,33 +97,17 @@ public class Registrazione {
      */
     public static SendMessage getVistaAttivita(long chatId) {
         // Testo del messaggio
-    	String mess = ("Seleziona il tuo livello di attività fisica 💪: ");
+    	String mess = ("Seleziona il tuo livello di attività fisica 💪🏻: ");
     	// Crea l'oggetto di risposta
     	SendMessage response = new SendMessage(chatId, mess);
         // Aggiungo dei pulsanti alla risposta
         Keyboard tastiera = new ReplyKeyboardMarkup(
-                new String[]{"Pesante 🏋️‍♀️", "Moderato 🏃‍♂️"},
-                new String[]{"Sedentario 🧘‍♂️"})
+                new String[]{"Pesante 🏋️🏻️️‍️", "Moderato 🏃🏻‍♂️"},
+                new String[]{"Sedentario 🧘🏻‍♂️"})
                 .oneTimeKeyboard(true)   // Riduce "ad icona" la tastiera una volta premuto un tasto
                 .resizeKeyboard(true);   // Visualizzazione compatta della tastiera (più carina)
                 response.replyMarkup(tastiera);   
     	
-        /*
-        // Testo dei vecchi pulsanti della tastiera
-        List<Vector<String>> pulsanti = new Vector<>();
-
-        Vector<String> pulsanti1 = new Vector<>();
-        pulsanti1.add("Pesante 🏋️‍♀️");
-        pulsanti1.add("Moderato 🏃‍♂️");
-        pulsanti.add(pulsanti1);
-
-        Vector<String> pulsanti2 = new Vector<>();
-        pulsanti2.add("Sedentario 🧘🏿‍♀️");
-        pulsanti.add(pulsanti2);
-
-        me000ss.setReplyMarkup(Tastiera.getTastiera(pulsanti));
-        */
-                
         return response;
     }
 
