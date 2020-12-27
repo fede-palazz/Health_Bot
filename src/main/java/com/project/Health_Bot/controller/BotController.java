@@ -5,19 +5,18 @@ package com.project.Health_Bot.controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.UpdatesListener;
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.SendMessage;
-import com.pengrad.telegrambot.response.SendResponse;
+import com.project.Health_Bot.exception.InvalidUpdateException;
 import com.project.Health_Bot.service.BotService;
 
 /**
  * @author FedePalaz & GiovanniNovelli9 & Baldellaux
  *
- *         Classe Controller del Bot.
+ *         Classe Controller del Bot
  *
  */
 @RestController
@@ -29,22 +28,13 @@ public class BotController {
     private String botToken;
 
     /**
-     * 
+     * Costruttore
      */
     public BotController() {
         // TODO Leggere il token da file
         botToken = "1459389445:AAHYimVPCfD7bGv9xfxSWSWQODbSWuXi2Sc";
         bot = new TelegramBot(botToken);
         riceviUpdate();
-    }
-
-    /**
-     * 
-     * @return
-     */
-    @GetMapping("/ciao")
-    public String Welcome() {
-        return service.Welcome();
     }
 
     /**
@@ -56,10 +46,21 @@ public class BotController {
             @Override
             public int process(List<Update> updates) {
                 for (Update update : updates) {
-                    SendMessage message = service.gestisciUpdate(update);
-                    SendResponse response = bot.execute(message);
+                    SendMessage message;
+                    try {
+                        message = service.gestisciUpdate(update);
+                        bot.execute(message);
+                    }
+                    catch (InvalidUpdateException e) {
+                        e.printStackTrace();
+                    }
+                    catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    //SendResponse response = bot.execute(message);
                 }
-                return UpdatesListener.CONFIRMED_UPDATES_ALL;
+                return UpdatesListener.CONFIRMED_UPDATES_ALL; // Conferma tutti gli updates ricevuti
             }
         });
     }

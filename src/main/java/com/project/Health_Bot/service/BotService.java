@@ -5,6 +5,7 @@ package com.project.Health_Bot.service;
 
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.SendMessage;
+import com.project.Health_Bot.exception.InvalidUpdateException;
 
 /**
  * Interfaccia contenente i metodi che gestiscono la logica di business dell'applicazione.
@@ -15,12 +16,13 @@ import com.pengrad.telegrambot.request.SendMessage;
 public interface BotService {
 
     /**
-     * Ricostruisce lo stato dell'applicazione in base alla richiesta dell'utente
+     * Ricostruisce lo stato dell'applicazione
      * 
      * @param update
+     * @throws InvalidUpdateException
      *
      */
-    public SendMessage gestisciUpdate(Update update);
+    public SendMessage gestisciUpdate(Update update) throws InvalidUpdateException;
 
     /**
      * Gestisce la fase di registrazione di un nuovo utente
@@ -28,7 +30,7 @@ public interface BotService {
      * @param mess
      * @param userId
      * @param chatId
-     * @return
+     * @return prossima vista da mostrare all'utente in fase di registrazione
      */
     public SendMessage gestisciReg(String mess, String userId, long chatId);
 
@@ -38,10 +40,8 @@ public interface BotService {
      * @param mess
      * @param userId
      * @param chatId
-     * @return
+     * @return menù principale del bot o sottomenù richiesto dall'utente
      */
     public SendMessage gestisciMenu(String mess, String userId, long chatId);
-
-    public String Welcome();
 
 }

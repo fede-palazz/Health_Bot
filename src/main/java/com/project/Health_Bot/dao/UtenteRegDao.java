@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package com.project.Health_Bot.dao;
 
 import com.project.Health_Bot.model.Utente;
@@ -22,7 +20,7 @@ public interface UtenteRegDao {
     public boolean isRegistered(String id);
 
     /**
-     * Inserisce un nuovo utente non appena viene registrato nel sistema
+     * Inserisce un nuovo utente in fase di registrazione
      * 
      * @param id
      * @param user
@@ -30,6 +28,7 @@ public interface UtenteRegDao {
     public Utente inserisciUtente(String id, Utente user);
 
     /**
+     * Inserisce una nuova misurazione per l'utente specificato
      * 
      * @param id
      * @param peso

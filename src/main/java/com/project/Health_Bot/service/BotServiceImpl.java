@@ -10,6 +10,7 @@ import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.SendMessage;
 import com.project.Health_Bot.dao.UtenteNonRegDao;
 import com.project.Health_Bot.dao.UtenteRegDao;
+import com.project.Health_Bot.exception.InvalidUpdateException;
 import com.project.Health_Bot.model.Pesista;
 import com.project.Health_Bot.model.Sedentario;
 import com.project.Health_Bot.model.Sportivo;
@@ -37,15 +38,10 @@ public class BotServiceImpl implements BotService {
     @Autowired
     private UtenteNonRegDao utenteNonRegDao;
 
-    /**
-     * Ricostruisce lo stato dell'applicazione
-     * 
-     * @param update Updates
-     */
     @Override
-    public SendMessage gestisciUpdate(Update update) {
+    public SendMessage gestisciUpdate(Update update) throws InvalidUpdateException {
 
-        if (update.message() != null && !update.message().text().isEmpty()) { // Messaggio valido
+        if (update.message() != null && !update.message().text().isEmpty()) { // Messaggio ricevuto valido
 
             SendMessage response; // Risposta
             long chatId = update.message().chat().id(); // Id della chat
@@ -62,23 +58,21 @@ public class BotServiceImpl implements BotService {
             else {
                 // Nuovo utente
                 utenteNonRegDao.nuovoUtente(userId); // Registrazione
-                response = Registrazione.getVistaSesso(chatId, update.message().from().username()); // Vista iniziale
+                // Determinazione dell'username
+                String username;
+                if ((username = update.message().from().username()) == null)
+                    if ((username = update.message().from().firstName()) == null)
+                        username = "utente";
+                response = Registrazione.getVistaSesso(chatId, username); // Vista iniziale
             }
 
             // Restituisce la risposta con il relativo chatId
             return response;
         }
-        else
-            return null; // TODO 
+        else // Messaggio ricevuto non valido
+            throw new InvalidUpdateException("Update ricevuto nullo o non valido");
     }
 
-    /**
-     * Gestisce la fase di registrazione di un utente
-     * 
-     * @param mess
-     * @param userId
-     * @throws BadGenderException
-     */
     @Override
     public SendMessage gestisciReg(String mess, String userId, long chatId) {
 
@@ -146,7 +140,7 @@ public class BotServiceImpl implements BotService {
             Utente user;
             switch (mess) {
 
-            case "Sedentario 🧘🏿‍♀️":
+            case "Sedentario 🧘🏻‍♂️":
                 // Rimuove l'utente dalla lista di quelli in fase di registrazione
                 user = utenteNonRegDao.rimuoviUtente(userId);
                 // Aggiunge l'utente alla lista di quelli registrati
@@ -154,10 +148,10 @@ public class BotServiceImpl implements BotService {
                         user.getPeso().get(), user.getAnnoNascita().get()));
                 // TODO Aggiunge una misurazione iniziale
                 // TODO Restituisce la vista del menu principale
-                return new SendMessage(chatId, "Ti sei registrato porca madonna");
+                return new SendMessage(chatId, "Ti sei registrato!");
             //break;
 
-            case "Moderato 🏃‍♂️":
+            case "Moderato 🏃🏻‍♂️":
                 // Rimuove l'utente dalla lista di quelli in fase di registrazione
                 user = utenteNonRegDao.rimuoviUtente(userId);
                 // Aggiunge l'utente alla lista di quelli registrati
@@ -165,9 +159,9 @@ public class BotServiceImpl implements BotService {
                         user.getPeso().get(), user.getAnnoNascita().get()));
                 // TODO Aggiunge una misurazione iniziale
                 // TODO Restituisce la vista del menu principale
-                return new SendMessage(chatId, "Ti sei registrato porca madonna");
+                return new SendMessage(chatId, "Ti sei registrato!");
             //break;
-            case "Pesante 🏋️‍♀️":
+            case "Pesante 🏋️🏻️️":
                 // Rimuove l'utente dalla lista di quelli in fase di registrazione
                 user = utenteNonRegDao.rimuoviUtente(userId);
                 // Aggiunge l'utente alla lista di quelli registrati
@@ -175,7 +169,7 @@ public class BotServiceImpl implements BotService {
                         user.getPeso().get(), user.getAnnoNascita().get()));
                 // TODO Aggiunge una misurazione iniziale
                 // TODO Restituisce la vista del menu principale
-                return new SendMessage(chatId, "Ti sei registrato porca madonna");
+                return new SendMessage(chatId, "Ti sei registrato!");
             //break;
             }
         }
@@ -187,11 +181,6 @@ public class BotServiceImpl implements BotService {
     public SendMessage gestisciMenu(String mess, String userId, long chatId) {
 
         return null;
-    }
-
-    @Override
-    public String Welcome() {
-        return "Ciaooo";
     }
 
 }
