@@ -139,14 +139,4 @@ public class Utente {
         this.annoNascita = annoNascita;
     }
 
-    /**
-     * Inserisce una nuova misurazione (implementato solo dalle sottoclassi)
-     * 
-     * @param peso
-     * @param lbm
-     * @param bmi
-     */
-    public void inserisciMisurazione(float peso, float lbm, float bmi) {
-    }
-
 }

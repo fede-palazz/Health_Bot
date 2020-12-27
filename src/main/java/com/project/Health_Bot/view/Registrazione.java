@@ -17,35 +17,32 @@ import com.pengrad.telegrambot.request.SendMessage;
 public class Registrazione {
 
     /**
-     * Restituisce la vista relativa al sesso insieme al messaggio di Welcome
+     * Restituisce la vista iniziale
+     * 
+     * @param chatId
+     * @param username
+     * @return
+     */
+    public static SendMessage getVistaWelcome(long chatId, String username) {
+        String mess = ("Ciao " + username + " 👋🏻😊 Benvenuto su Health_Bot! 😉\n"
+                + "Prima di iniziare e poter accedere alle mie funzionalità, mi servirebbe qualche tuo dato iniziale...");
+        SendMessage response = new SendMessage(chatId, mess);
+        Keyboard tastiera = new ReplyKeyboardRemove();
+        response.replyMarkup(tastiera);
+        return response;
+    }
+
+    /**
+     * Restituisce la vista relativa al sesso
      * 
      * @return response
      */
-    public static SendMessage getVistaSesso(long chatId, String username) {
-        // 1) Inserire testo del messaggio
-        String mess = ("Ciao " + username + " 👋🏻😊 Benvenuto su Health_Bot! 😉\n"
-                + "Prima di iniziare e poter accedere alle mie funzionalità, mi servirebbe qualche tuo dato iniziale... \n\n"
-                + "Sei un maschio ♀️ o una femmina ♂️ ?");
-        // 2) Creare l'oggetto di risposta
+    public static SendMessage getVistaSesso(long chatId) {
+        String mess = ("Sei un maschio ♀️ o una femmina ♂️ ?");
         SendMessage response = new SendMessage(chatId, mess);
-        // 3) Aggiungere / togliere la tastiera
         Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "M", "F" }).oneTimeKeyboard(true)
                 .resizeKeyboard(true);
         response.replyMarkup(tastiera);
-        /*
-         * Esempio:
-         * Per aggiungere la tastiera:
-               Keyboard tastiera = new ReplyKeyboardMarkup(
-                    new String[]{"pulsante_1 riga_1", "pulsante_2 riga_2"},
-                    new String[]{"pulsante_1 riga_2", "pulsante_2 riga_2"})
-                    .oneTimeKeyboard(true)   // Riduce "ad icona" la tastiera una volta premuto un tasto
-                    .resizeKeyboard(true);    // Visualizzazione compatta della tastiera (più carina)
-                
-           Per rimuovere la tastiera:
-               Keyboard tastiera = new ReplyKeyboardRemove();
-         */
-
-        // 4) Restituire la risposta
         return response;
     }
 
@@ -105,11 +102,27 @@ public class Registrazione {
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
         // Aggiungo dei pulsanti alla risposta
-        Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "Pesante 🏋️🏻️️‍️", "Moderato 🏃🏻‍♂️" },
+        Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "Pesante 🏋🏻", "Moderato 🏃🏻‍♂️" },
                 new String[] { "Sedentario 🧘🏻‍♂️" }).oneTimeKeyboard(true) // Riduce "ad icona" la tastiera una volta premuto un tasto
                         .resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
         response.replyMarkup(tastiera);
 
+        return response;
+    }
+
+    /**
+     * Restituisce la vista relativa alla completa registrazione dell'utente
+     * 
+     * @param chatId
+     * @return
+     */
+    public static SendMessage getVistaRegistrato(long chatId) {
+        // Testo del messaggio
+        String mess = "Registrazione completata!";
+        // Crea l'oggetto di risposta
+        SendMessage response = new SendMessage(chatId, mess);
+        Keyboard tastiera = new ReplyKeyboardRemove();
+        response.replyMarkup(tastiera);
         return response;
     }
 

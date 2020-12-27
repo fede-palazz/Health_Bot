@@ -46,10 +46,10 @@ public class BotController {
             @Override
             public int process(List<Update> updates) {
                 for (Update update : updates) {
-                    SendMessage message;
                     try {
-                        message = service.gestisciUpdate(update);
-                        bot.execute(message);
+                        // Per ogni update riceve ed invia la lista dei messaggi di risposta
+                        for (SendMessage message : service.gestisciUpdate(update))
+                            bot.execute(message);
                     }
                     catch (InvalidUpdateException e) {
                         e.printStackTrace();
