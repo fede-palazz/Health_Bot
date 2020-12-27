@@ -17,19 +17,19 @@ public class Utente {
     /**
      * Sesso ('M' o 'F')
      */
-    protected char sesso;
+    protected Character sesso;
     /**
      * Altezza in cm
      */
-    protected int altezza;
+    protected Integer altezza;
     /**
      * Peso inserito in fase di registrazione
      */
-    protected float peso;
+    protected Float peso;
     /**
      * Anno di nascita
      */
-    protected int annoNascita;
+    protected Integer annoNascita;
 
     /**
      * Costruttore di default utilizzato al momento della registrazione di un nuovo utente (i campi sono
@@ -38,6 +38,10 @@ public class Utente {
      * @param username
      */
     public Utente() {
+        this.sesso = null;
+        this.peso = null;
+        this.altezza = null;
+        this.annoNascita = null;
     }
 
     /**

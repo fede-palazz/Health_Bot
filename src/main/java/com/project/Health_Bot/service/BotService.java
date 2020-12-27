@@ -3,7 +3,6 @@
  */
 package com.project.Health_Bot.service;
 
-import com.pengrad.telegrambot.model.Message;
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.SendMessage;
 
@@ -28,18 +27,20 @@ public interface BotService {
      * 
      * @param mess
      * @param userId
+     * @param chatId
      * @return
      */
-    public SendMessage gestisciReg(Message mess, String userId);
+    public SendMessage gestisciReg(String mess, String userId, long chatId);
 
     /**
      * Gestisce la navigazione attraverso il menù principale del bot
      * 
      * @param mess
      * @param userId
+     * @param chatId
      * @return
      */
-    public SendMessage gestisciMenu(Message mess, String userId);
+    public SendMessage gestisciMenu(String mess, String userId, long chatId);
 
     public String Welcome();
 

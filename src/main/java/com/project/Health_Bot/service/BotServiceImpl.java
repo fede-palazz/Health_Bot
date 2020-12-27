@@ -6,7 +6,6 @@ package com.project.Health_Bot.service;
 import java.util.Calendar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.pengrad.telegrambot.model.Message;
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.SendMessage;
 import com.project.Health_Bot.dao.UtenteNonRegDao;
@@ -54,16 +53,16 @@ public class BotServiceImpl implements BotService {
 
             if (utenteNonRegDao.isRegistering(userId)) {
                 // Utente in fase di registrazione
-                response = gestisciReg(update.message(), userId);
+                response = gestisciReg(update.message().text(), userId, chatId);
             }
             else if (utenteRegDao.isRegistered(userId)) {
                 // Utente già registrato nel sistema
-                response = gestisciMenu(update.message(), userId);
+                response = gestisciMenu(update.message().text(), userId, chatId);
             }
             else {
                 // Nuovo utente
                 utenteNonRegDao.nuovoUtente(userId); // Registrazione
-                response = Registrazione.getVistaSesso(update.message().from().username()); // Vista iniziale
+                response = Registrazione.getVistaSesso(chatId, update.message().from().username()); // Vista iniziale
             }
 
             // Restituisce la risposta con il relativo chatId
@@ -81,69 +80,71 @@ public class BotServiceImpl implements BotService {
      * @throws BadGenderException
      */
     @Override
-    public SendMessage gestisciReg(Message mess, String userId) {
+    public SendMessage gestisciReg(String mess, String userId, long chatId) {
 
         // Individuo quale campo deve essere ancora compilato ed restituisco la vista corrispondente
         switch (utenteNonRegDao.getCampoVuoto(userId)) {
         case "sesso":
             // Verifico se il genere ottenuto è valido
 
-            if (mess.text().toUpperCase() == "M" || mess.text().toUpperCase() == "F") {
+            if (mess.toUpperCase().equals("M") || mess.toUpperCase().equals("F")) {
                 // Lo registro e restituisco la prossima vista
-                utenteNonRegDao.registraSesso(userId, mess.text().toUpperCase().charAt(0));
-                return Registrazione.getVistaPeso();
+                utenteNonRegDao.registraSesso(userId, mess.toUpperCase().charAt(0));
+                return Registrazione.getVistaPeso(chatId);
             }
             else // Sesso inserito non valido
-                return Registrazione.getVistaErrore();
+                return Registrazione.getVistaErrore(chatId);
 
         case "peso":
             // Verifico che il peso ottenuto sia valido
             try {
-                float peso = Float.parseFloat(mess.text().replace(',', '.'));
+                float peso = Float.parseFloat(mess.replace(',', '.'));
                 if (peso > 0 && peso < 300) {
                     // Peso valido
                     utenteNonRegDao.registraPeso(userId, peso);
-                    return Registrazione.getVistaAltezza();
+                    return Registrazione.getVistaAltezza(chatId);
                 }
             }
             catch (Exception e) {
                 // Peso inserito non valido
-                return Registrazione.getVistaErrore();
+                return Registrazione.getVistaErrore(chatId);
             }
         case "altezza":
             // Verifico che l'altezza ottenuta sia valida
             try {
-                int altezza = Integer.parseInt(mess.text().replace(',', '.'));
+                int altezza = Integer.parseInt(mess.replace(',', '.'));
                 if (altezza > 30 && altezza < 280) {
                     // Registro il valore e restituisco la prossima vista
                     utenteNonRegDao.registraAltezza(userId, altezza);
-                    return Registrazione.getVistaAnno();
+                    return Registrazione.getVistaAnno(chatId);
                 }
             }
             catch (Exception e) {
                 // Altezza inserita non valida
-                return Registrazione.getVistaErrore();
+                return Registrazione.getVistaErrore(chatId);
             }
 
         case "annoNascita":
             // Verifico l'anno inserito sia valido
             try {
-                int annoNascita = Integer.parseInt(mess.text());
+                int annoNascita = Integer.parseInt(mess);
                 int annoCorrente = Calendar.getInstance().get(Calendar.YEAR);
                 if ((annoCorrente - annoNascita) >= 0 && (annoCorrente - annoNascita) < 120) {
                     // Registro il valore e restituisco la prossima vista
                     utenteNonRegDao.registraAnno(userId, annoNascita);
-                    return Registrazione.getVistaAttivita();
+                    return Registrazione.getVistaAttivita(chatId);
                 }
+                else
+                    return Registrazione.getVistaErrore(chatId);
             }
             catch (Exception e) {
                 // Anno di nascita inserito non valido
-                return Registrazione.getVistaErrore();
+                return Registrazione.getVistaErrore(chatId);
             }
 
         case "tipo": // Inserimento livello attività fisica
             Utente user;
-            switch (mess.text()) {
+            switch (mess) {
 
             case "Sedentario 🧘🏿‍♀️":
                 // Rimuove l'utente dalla lista di quelli in fase di registrazione
@@ -153,8 +154,8 @@ public class BotServiceImpl implements BotService {
                         user.getPeso().get(), user.getAnnoNascita().get()));
                 // TODO Aggiunge una misurazione iniziale
                 // TODO Restituisce la vista del menu principale
-
-                break;
+                return new SendMessage(chatId, "Ti sei registrato porca madonna");
+            //break;
 
             case "Moderato 🏃‍♂️":
                 // Rimuove l'utente dalla lista di quelli in fase di registrazione
@@ -164,8 +165,8 @@ public class BotServiceImpl implements BotService {
                         user.getPeso().get(), user.getAnnoNascita().get()));
                 // TODO Aggiunge una misurazione iniziale
                 // TODO Restituisce la vista del menu principale
-                break;
-
+                return new SendMessage(chatId, "Ti sei registrato porca madonna");
+            //break;
             case "Pesante 🏋️‍♀️":
                 // Rimuove l'utente dalla lista di quelli in fase di registrazione
                 user = utenteNonRegDao.rimuoviUtente(userId);
@@ -174,7 +175,8 @@ public class BotServiceImpl implements BotService {
                         user.getPeso().get(), user.getAnnoNascita().get()));
                 // TODO Aggiunge una misurazione iniziale
                 // TODO Restituisce la vista del menu principale
-                break;
+                return new SendMessage(chatId, "Ti sei registrato porca madonna");
+            //break;
             }
         }
         return null;
@@ -182,7 +184,7 @@ public class BotServiceImpl implements BotService {
     }
 
     @Override
-    public SendMessage gestisciMenu(Message mess, String userId) {
+    public SendMessage gestisciMenu(String mess, String userId, long chatId) {
 
         return null;
     }

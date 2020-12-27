@@ -104,7 +104,7 @@ public class UtenteNonRegDaoImpl implements UtenteNonRegDao {
      */
     @Override
     public Utente rimuoviUtente(String id) {
-        return utentiNonReg.remove("id");
+        return utentiNonReg.remove(id);
     }
 
 }
