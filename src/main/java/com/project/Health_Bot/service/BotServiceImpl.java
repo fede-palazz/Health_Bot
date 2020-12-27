@@ -51,12 +51,12 @@ public class BotServiceImpl implements BotService {
             String userId = update.message().from().id().toString(); // Id utente
 
             if (utenteNonRegDao.isRegistering(userId)) {
-                // Utente in fase di registrazione
+                // Utente in fase di registrazione, è presente nell'hash_map degli utenti che si stanno registrando 
                 return gestisciReg(update.message().text(), userId, chatId);
             }
             else if (utenteRegDao.isRegistered(userId)) {
-                // Utente già registrato nel sistema
-                return gestisciMenu(update.message().text(), userId, chatId);
+                // Utente già registrato nel sistema, è presente nell'hash_map degli utenti che si sono già registrati 
+                return gestisciMenu(update.message().text(), userId, update.message().from().username(), chatId);
             }
             else {
                 // Nuovo utente
@@ -81,7 +81,7 @@ public class BotServiceImpl implements BotService {
     public List<SendMessage> gestisciReg(String mess, String userId, long chatId) {
 
         List<SendMessage> view = new Vector<SendMessage>();
-        // Individuo quale campo deve essere ancora compilato ed restituisco la vista corrispondente
+        // Individuo quale campo deve essere ancora compilato e restituisco la vista corrispondente
         switch (utenteNonRegDao.getCampoVuoto(userId)) {
         case "sesso":
             // Verifico se il genere ottenuto è valido
@@ -209,8 +209,109 @@ public class BotServiceImpl implements BotService {
     }
 
     @Override
-    public List<SendMessage> gestisciMenu(String mess, String userId, long chatId) {
+    public List<SendMessage> gestisciMenu(String mess, String userId, String username, long chatId) {
 
+        List<SendMessage> view = new Vector<SendMessage>();
+
+        switch (mess) {
+
+        case "Aggiorna parametri 🆙👇🏻":
+            view.add(Menu.getVistaAggiornamenti(chatId));
+            return view;
+
+        case "Consigli ️🤔🙌🏻":
+            view.add(Menu.getVistaConsigli(chatId, username));
+            return view;
+
+        case "Info nutrizionali 🍽":
+            view.add(Menu.getVistaAlimento(chatId));
+            return view;
+
+        case "Riepilogo salute ⛑":
+            String tipo = null;
+            Utente utente = utenteRegDao.getUtente(userId);
+            if (utente instanceof Sedentario)
+                tipo = "sedentario";
+            else if (utente instanceof Sportivo)
+                tipo = "moderata";
+            else if (utente instanceof Pesista)
+                tipo = "pesante";
+            float bmi = ParamNutr.calcolaBMI(utente.getPeso().get(), utente.getAltezza().get());
+            float lbm = ParamNutr.calcolaLBM(utente.getSesso().get(), utente.getPeso().get(),
+                    utente.getAltezza().get());
+            float bmr = ParamNutr.calcolaBMR(utente.getSesso().get(), lbm, utente.getAltezza().get(),
+                    utente.getEta().get());
+            float fcg = ParamNutr.calcolaFCG(bmr, tipo);
+            float iw = ParamNutr.calcolaIW(utente.getSesso().get(), utente.getAltezza().get());
+
+            view.add(Menu.getVistaRiepilogoSalute(chatId, tipo, utente.getPeso().get(), iw, fcg, bmr, bmi, lbm));
+            return view;
+
+        case "‍️Conosci il tuo corpo 🧘🏻‍♂️️":
+            view.add(Menu.getVistaConosciCorpo(chatId, username));
+            return view;
+
+        case "Info generali ℹ️":
+            view.add(Menu.getVistaInfo(chatId));
+            return view;
+
+        /*
+        case "peso":
+            // Verifico che il peso ottenuto sia valido
+            try {
+                float peso = Float.parseFloat(mess.replace(',', '.'));
+                if (peso > 0 && peso < 300) {
+                    // Peso valido
+                    utenteRegDao.aggiornaPeso(userId, peso);
+                    view.add(Menu.getVistaAttivita(chatId));
+                    return view;
+                }
+            }
+            catch (Exception e) {
+                // Peso inserito non valido
+                view.add(Menu.getVistaErrore(chatId));
+                return view;
+            }
+        
+            // Tasto (1.2)    
+        case "tipo": // Aggiornamento livello attività fisica
+            Utente user;
+            switch (mess) {
+        
+            case "Sedentario 🧘🏻‍♂️":
+                // Aggiorna la misurazione iniziale
+                utenteRegDao.inserisciMisurazione(userId, user.getPeso().get(),
+                        ParamNutr.calcolaLBM(user.getSesso().get(), user.getPeso().get(), user.getAltezza().get()),
+                        ParamNutr.calcolaBMI(user.getPeso().get(), user.getAltezza().get()));
+                // Restituisce la vista del menù
+                view.add(Menu.getVistaMenu(chatId));
+                return view;
+        
+            case "Moderato 🏃🏻‍♂️":
+                // Aggiorna la misurazione iniziale
+                utenteRegDao.inserisciMisurazione(userId, user.getPeso().get(),
+                        ParamNutr.calcolaLBM(user.getSesso().get(), user.getPeso().get(), user.getAltezza().get()),
+                        ParamNutr.calcolaBMI(user.getPeso().get(), user.getAltezza().get()));
+                // Restituisce la vista del menù
+                view.add(Menu.getVistaMenu(chatId));
+                return view;
+        
+            case "Pesante 🏋🏻":
+                // Aggiunge una misurazione iniziale
+                utenteRegDao.inserisciMisurazione(userId, user.getPeso().get(),
+                        ParamNutr.calcolaLBM(user.getSesso().get(), user.getPeso().get(), user.getAltezza().get()),
+                        ParamNutr.calcolaBMI(user.getPeso().get(), user.getAltezza().get()));
+                // Restituisce la vista del menù
+                view.add(Menu.getVistaMenu(chatId));
+                return view;
+        
+            default: // Non ha premuto un pulsante
+                view.add(Registrazione.getVistaErrore(chatId));
+                return view;
+            }
+            */
+
+        }
         return null;
     }
 

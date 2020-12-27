@@ -4,7 +4,6 @@
 package com.project.Health_Bot.view;
 
 import java.util.Vector;
-
 import com.pengrad.telegrambot.model.request.Keyboard;
 import com.pengrad.telegrambot.model.request.ReplyKeyboardMarkup;
 import com.pengrad.telegrambot.model.request.ReplyKeyboardRemove;
@@ -19,21 +18,21 @@ import com.pengrad.telegrambot.request.SendMessage;
 public class Menu {
 
     /**
+     * Tasto (0)
      * Metodo che restituisce il menù del bot
      * 
      * @return response
      */
     public static SendMessage getVistaMenu(long chatId) {
         // Testo del messaggio
-        String mess = ("Di cosa hai bisogno? ");
+        String mess = ("☦️ MENU' Health_Bot 🏥 \n" + "Di cosa hai bisogno? ");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
-        // Aggiungo dei pulsanti alla risposta
-        Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "Aggiorna parametri 🆙👇🏻", "Consigli ☺️🙂" },
+        // Pulsanti del menù
+        Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "Aggiorna parametri 🆙👇🏻", "Consigli ️🤔🙌🏻" },
                 new String[] { "Info nutrizionali 🍽‍️", "Riepilogo salute ⛑" },
-                new String[] { "‍️Conosci il tuo corpo 🧘🏻‍♂️️", "Info generali ℹ️" })
-        		.oneTimeKeyboard(true) // Riduce "ad icona" la tastiera una volta premuto un tasto
-                .resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
+                new String[] { "‍️Conosci il tuo corpo 🧘🏻‍♂️️", "Info generali ℹ️" }).oneTimeKeyboard(true) // Riduce "ad icona" la tastiera una volta premuto un tasto
+                        .resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
         response.replyMarkup(tastiera);
         return response;
     }
@@ -52,9 +51,8 @@ public class Menu {
         SendMessage response = new SendMessage(chatId, mess);
         // Aggiungo dei pulsanti alla risposta
         Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "Aggiorna peso ⚖", "Aggiorna att. fisica 💪🏻" },
-                new String[] { "Torna al menù 🔄" })
-        		.oneTimeKeyboard(true) // Riduce "ad icona" la tastiera una volta premuto un tasto
-                .resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
+                new String[] { "Torna al menù 🔄" }).oneTimeKeyboard(true) // Riduce "ad icona" la tastiera una volta premuto un tasto
+                        .resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
         response.replyMarkup(tastiera);
         return response;
     }
@@ -89,9 +87,8 @@ public class Menu {
         SendMessage response = new SendMessage(chatId, mess);
         // Aggiungo dei pulsanti alla risposta
         Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "Pesante 🏋️🏻️‍️", "Moderato 🏃🏻‍♂️" },
-                new String[] { "Sedentario 🧘🏻️" })
-        		.oneTimeKeyboard(true) // Riduce "ad icona" la tastiera una volta premuto un tasto
-                .resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
+                new String[] { "Sedentario 🧘🏻️", "Torna al menù 🔄" }).oneTimeKeyboard(true) // Riduce "ad icona" la tastiera una volta premuto un tasto
+                        .resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
         response.replyMarkup(tastiera);
         return response;
     }
@@ -114,9 +111,8 @@ public class Menu {
         // Aggiungo dei pulsanti alla risposta
         Keyboard tastiera = new ReplyKeyboardMarkup(
                 new String[] { "Dieta consigliata 😋", "Allenamento consigliato 🏋️🏻️" },
-                new String[] { "Torna al menù 🔄" })
-        		.oneTimeKeyboard(true) // Riduce "ad icona" la tastiera una volta premuto un tasto
-                .resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
+                new String[] { "Torna al menù 🔄" }).oneTimeKeyboard(true) // Riduce "ad icona" la tastiera una volta premuto un tasto
+                        .resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
         response.replyMarkup(tastiera);
         return response;
     }
@@ -136,8 +132,11 @@ public class Menu {
                 + dieta);
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
-        //Rimuove la tastiera
-        Keyboard tastiera = new ReplyKeyboardRemove();
+        // Aggiungo la tastiera del menù
+        Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "Aggiorna parametri 🆙👇🏻", "Consigli ☺️🙂" },
+                new String[] { "Info nutrizionali 🍽‍️", "Riepilogo salute ⛑" },
+                new String[] { "‍️Conosci il tuo corpo 🧘🏻‍♂️️", "Info generali ℹ️" }).oneTimeKeyboard(true) // Riduce "ad icona" la tastiera una volta premuto un tasto
+                        .resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
         response.replyMarkup(tastiera);
         return response;
     }
@@ -159,8 +158,11 @@ public class Menu {
                 + allenamento);
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
-        //Rimuove la tastiera
-        Keyboard tastiera = new ReplyKeyboardRemove();
+        // Aggiungo la tastiera del menù
+        Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "Aggiorna parametri 🆙👇🏻", "Consigli ☺️🙂" },
+                new String[] { "Info nutrizionali 🍽‍️", "Riepilogo salute ⛑" },
+                new String[] { "‍️Conosci il tuo corpo 🧘🏻‍♂️️", "Info generali ℹ️" }).oneTimeKeyboard(true) // Riduce "ad icona" la tastiera una volta premuto un tasto
+                        .resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
         response.replyMarkup(tastiera);
         return response;
     }
@@ -190,14 +192,15 @@ public class Menu {
      */
     public static SendMessage getVistaInfoNutr(long chatId, Vector<Object> alimento) {
         // Testo del messaggio
-    	String mess = ("L'alimento scelto fornisce " + alimento.get(0) + "[Kcal], ripartite in: \n"
-        		+ alimento.get(2) + " carboidrati 🍝\n"
-        		+ alimento.get(1) + " proteine 🥩\n"
-        		+ alimento.get(3) + " grassi 🧈\n");
+        String mess = ("L'alimento scelto fornisce " + alimento.get(0) + "[Kcal], ripartite in: \n" + alimento.get(2)
+                + " carboidrati 🍝\n" + alimento.get(1) + " proteine 🥩\n" + alimento.get(3) + " grassi 🧈\n");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
-        //Rimuove la tastiera
-        Keyboard tastiera = new ReplyKeyboardRemove();
+        // Aggiungo la tastiera del menù
+        Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "Aggiorna parametri 🆙👇🏻", "Consigli ☺️🙂" },
+                new String[] { "Info nutrizionali 🍽‍️", "Riepilogo salute ⛑" },
+                new String[] { "‍️Conosci il tuo corpo 🧘🏻‍♂️️", "Info generali ℹ️" }).oneTimeKeyboard(true) // Riduce "ad icona" la tastiera una volta premuto un tasto
+                        .resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
         response.replyMarkup(tastiera);
         return response;
     }
@@ -212,17 +215,16 @@ public class Menu {
     public static SendMessage getVistaRiepilogoSalute(long chatId, String tipo, float peso, float iw, float fcg,
             float bmr, float bmi, float lbm) {
         // Testo del messaggio
-        String mess = ("⛑ Riepilogo dati SALUTE ⛑\n" 
-                + "livello di attività fisica 💪🏻: " + tipo + "\n" 
-        		+ "peso: " + peso + "[Kg] ⚖\n" 
-                + "FCG: " + fcg + "[Kcal] \n" 
-        		+ "BMR: " + bmr + "[Kcal] \n" 
-                + "BMI: " + bmi + " 🔢 \n" 
-        		+ "LBM: " + lbm + "[Kg] \n");
+        String mess = ("⛑ Riepilogo dati SALUTE ⛑\n" + "livello di attività fisica 💪🏻: " + tipo + "\n" + "peso: "
+                + peso + "[Kg] ⚖\n" + "FCG: " + fcg + "[Kcal] \n" + "BMR: " + bmr + "[Kcal] \n" + "BMI: " + bmi
+                + " 🔢 \n" + "LBM: " + lbm + "[Kg] \n");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
-        //Rimuove la tastiera
-        Keyboard tastiera = new ReplyKeyboardRemove();
+        // Aggiungo la tastiera del menù
+        Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "Aggiorna parametri 🆙👇🏻", "Consigli ☺️🙂" },
+                new String[] { "Info nutrizionali 🍽‍️", "Riepilogo salute ⛑" },
+                new String[] { "‍️Conosci il tuo corpo 🧘🏻‍♂️️", "Info generali ℹ️" }).oneTimeKeyboard(true) // Riduce "ad icona" la tastiera una volta premuto un tasto
+                        .resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
         response.replyMarkup(tastiera);
         return response;
     }
@@ -245,9 +247,8 @@ public class Menu {
         SendMessage response = new SendMessage(chatId, mess);
         // Aggiungo dei pulsanti alla risposta
         Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "Diagnostica 🩺", "📊Statistiche📈" },
-                new String[] { "Torna al menù 🔄" })
-        		.oneTimeKeyboard(true) // Riduce "ad icona" la tastiera una volta premuto un tasto
-                .resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
+                new String[] { "Torna al menù 🔄" }).oneTimeKeyboard(true) // Riduce "ad icona" la tastiera una volta premuto un tasto
+                        .resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
         response.replyMarkup(tastiera);
         return response;
     }
@@ -264,13 +265,15 @@ public class Menu {
      */
     public static SendMessage getVistaDiag(long chatId, float bmi, String condizione, float peso, float iw) {
         // Testo del messaggio
-        String mess = ("Dato il tuo BMI, pari a: " + bmi + ", la tua condizione di salute è: \n" 
-                + condizione + "\n"
+        String mess = ("Dato il tuo BMI, pari a: " + bmi + ", la tua condizione di salute è: \n" + condizione + "\n"
                 + "Dato il tuo peso attuale ⚖, pari a: " + peso + ", il tuo peso ideale 🔝 sarebbe: " + iw + "[Kg] \n");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
-        //Rimuove la tastiera
-        Keyboard tastiera = new ReplyKeyboardRemove();
+        // Aggiungo la tastiera del menù
+        Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "Aggiorna parametri 🆙👇🏻", "Consigli ☺️🙂" },
+                new String[] { "Info nutrizionali 🍽‍️", "Riepilogo salute ⛑" },
+                new String[] { "‍️Conosci il tuo corpo 🧘🏻‍♂️️", "Info generali ℹ️" }).oneTimeKeyboard(true) // Riduce "ad icona" la tastiera una volta premuto un tasto
+                        .resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
         response.replyMarkup(tastiera);
         return response;
     }
@@ -287,8 +290,11 @@ public class Menu {
         String mess = ("📊Statistiche e 📈confronti📉");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
-        //Rimuove la tastiera
-        Keyboard tastiera = new ReplyKeyboardRemove();
+        // Aggiungo la tastiera del menù
+        Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "Aggiorna parametri 🆙👇🏻", "Consigli ☺️🙂" },
+                new String[] { "Info nutrizionali 🍽‍️", "Riepilogo salute ⛑" },
+                new String[] { "‍️Conosci il tuo corpo 🧘🏻‍♂️️", "Info generali ℹ️" }).oneTimeKeyboard(true) // Riduce "ad icona" la tastiera una volta premuto un tasto
+                        .resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
         response.replyMarkup(tastiera);
         return response;
     }
@@ -305,12 +311,9 @@ public class Menu {
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
         // Aggiungo dei pulsanti alla risposta
-        Keyboard tastiera = new ReplyKeyboardMarkup(
-        		new String[] { "BMI", "IW‍" }, 
-        		new String[] { "BMR️", "FCG" },
-                new String[] { "LBM️", "Torna al menù 🔄" })
-        		.oneTimeKeyboard(true) // Riduce "ad icona" la tastiera una volta premuto un tasto
-                .resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
+        Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "BMI", "IW‍" }, new String[] { "BMR️", "FCG" },
+                new String[] { "LBM️", "Torna al menù 🔄" }).oneTimeKeyboard(true) // Riduce "ad icona" la tastiera una volta premuto un tasto
+                        .resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
         response.replyMarkup(tastiera);
         return response;
     }
@@ -331,8 +334,11 @@ public class Menu {
                 + "3) Clicca sul pulsante 📊Statistiche📈, se invece vuoi conoscere alcune statistiche che riguardano il tuo BMI");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
-        //Rimuove la tastiera
-        Keyboard tastiera = new ReplyKeyboardRemove();
+        // Aggiungo la tastiera del menù
+        Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "Aggiorna parametri 🆙👇🏻", "Consigli ☺️🙂" },
+                new String[] { "Info nutrizionali 🍽‍️", "Riepilogo salute ⛑" },
+                new String[] { "‍️Conosci il tuo corpo 🧘🏻‍♂️️", "Info generali ℹ️" }).oneTimeKeyboard(true) // Riduce "ad icona" la tastiera una volta premuto un tasto
+                        .resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
         response.replyMarkup(tastiera);
         return response;
     }
@@ -351,8 +357,11 @@ public class Menu {
                 + "Clicca sul pulsante Diagnostica 🩺, se vuoi sapere il valore del tuo IW, calcolato in base al tuo peso attuale");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
-        //Rimuove la tastiera
-        Keyboard tastiera = new ReplyKeyboardRemove();
+        // Aggiungo la tastiera del menù
+        Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "Aggiorna parametri 🆙👇🏻", "Consigli ☺️🙂" },
+                new String[] { "Info nutrizionali 🍽‍️", "Riepilogo salute ⛑" },
+                new String[] { "‍️Conosci il tuo corpo 🧘🏻‍♂️️", "Info generali ℹ️" }).oneTimeKeyboard(true) // Riduce "ad icona" la tastiera una volta premuto un tasto
+                        .resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
         response.replyMarkup(tastiera);
         return response;
     }
@@ -373,8 +382,11 @@ public class Menu {
                 + "Clicca sul pulsante Riepilogo salute ⛑, se vuoi sapere il valore del tuo BMR \n");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
-        //Rimuove la tastiera
-        Keyboard tastiera = new ReplyKeyboardRemove();
+        // Aggiungo la tastiera del menù
+        Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "Aggiorna parametri 🆙👇🏻", "Consigli ☺️🙂" },
+                new String[] { "Info nutrizionali 🍽‍️", "Riepilogo salute ⛑" },
+                new String[] { "‍️Conosci il tuo corpo 🧘🏻‍♂️️", "Info generali ℹ️" }).oneTimeKeyboard(true) // Riduce "ad icona" la tastiera una volta premuto un tasto
+                        .resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
         response.replyMarkup(tastiera);
         return response;
     }
@@ -393,8 +405,11 @@ public class Menu {
                 + "Clicca sul pulsante Riepilogo salute ⛑, se vuoi sapere il valore del tuo FCG \n");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
-        //Rimuove la tastiera
-        Keyboard tastiera = new ReplyKeyboardRemove();
+        // Aggiungo la tastiera del menù
+        Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "Aggiorna parametri 🆙👇🏻", "Consigli ☺️🙂" },
+                new String[] { "Info nutrizionali 🍽‍️", "Riepilogo salute ⛑" },
+                new String[] { "‍️Conosci il tuo corpo 🧘🏻‍♂️️", "Info generali ℹ️" }).oneTimeKeyboard(true) // Riduce "ad icona" la tastiera una volta premuto un tasto
+                        .resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
         response.replyMarkup(tastiera);
         return response;
     }
@@ -413,6 +428,25 @@ public class Menu {
                 + "1) Clicca sul pulsante Riepilogo salute ⛑, se vuoi sapere il valore del tuo LBM \n"
                 + "2) Clicca sul pulsante 📊Statistiche📈, se invece vuoi conoscere alcune statistiche che riguardano il tuo LBM \n");
         // Crea l'oggetto di risposta
+        SendMessage response = new SendMessage(chatId, mess);
+        // Aggiungo la tastiera del menù
+        Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "Aggiorna parametri 🆙👇🏻", "Consigli ☺️🙂" },
+                new String[] { "Info nutrizionali 🍽‍️", "Riepilogo salute ⛑" },
+                new String[] { "‍️Conosci il tuo corpo 🧘🏻‍♂️️", "Info generali ℹ️" }).oneTimeKeyboard(true) // Riduce "ad icona" la tastiera una volta premuto un tasto
+                        .resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
+        response.replyMarkup(tastiera);
+        return response;
+    }
+
+    /**
+     * Restituisce una vista di errore sui dati inseriti dall'utente
+     * 
+     * @return response
+     */
+    public static SendMessage getVistaErrore(long chatId) {
+        // Testo del messaggio
+        String mess = ("Valore inserito non corretto ❌ \n" + "Riprovare!");
+        // Creo l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
         //Rimuove la tastiera
         Keyboard tastiera = new ReplyKeyboardRemove();

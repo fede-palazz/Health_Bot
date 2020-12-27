@@ -34,6 +34,16 @@ public class UtenteRegDaoImpl implements UtenteRegDao {
     }
 
     @Override
+    public void aggiornaPeso(String id, float peso) {
+        utentiReg.get(id).setPeso(peso);
+    }
+
+    @Override
+    public void aggiornaAltezza(String id, int altezza) {
+        utentiReg.get(id).setAltezza(altezza);
+    }
+
+    @Override
     public void inserisciMisurazione(String id, float peso, float lbm, float bmi) {
         Utente user = utentiReg.get(id);
         if (user instanceof Sedentario) {
@@ -49,6 +59,12 @@ public class UtenteRegDaoImpl implements UtenteRegDao {
             ((Pesista) user).inserisciMisurazione(peso, lbm, bmi);
         }
         // TODO Togliere metodo da Utente ed utilizzare qui typeof con casting
+    }
+
+    @Override
+    public Utente getUtente(String id) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

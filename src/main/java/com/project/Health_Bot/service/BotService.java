@@ -43,6 +43,6 @@ public interface BotService {
      * @param chatId
      * @return menù principale del bot o sottomenù richiesto dall'utente
      */
-    public List<SendMessage> gestisciMenu(String mess, String userId, long chatId);
+    public List<SendMessage> gestisciMenu(String mess, String userId, String username, long chatId);
 
 }

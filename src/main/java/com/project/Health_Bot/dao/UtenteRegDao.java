@@ -28,6 +28,22 @@ public interface UtenteRegDao {
     public Utente inserisciUtente(String id, Utente user);
 
     /**
+     * Aggiorna il peso attuale dell'utente
+     * 
+     * @param id
+     * @param peso
+     */
+    public void aggiornaPeso(String id, float peso);
+
+    /**
+     * Aggiorna l'altezza in cm dell'utente
+     * 
+     * @param id
+     * @param altezza
+     */
+    public void aggiornaAltezza(String id, int altezza);
+
+    /**
      * Inserisce una nuova misurazione per l'utente specificato
      * 
      * @param id
@@ -36,4 +52,6 @@ public interface UtenteRegDao {
      * @param bmi
      */
     public void inserisciMisurazione(String id, float peso, float lbm, float bmi);
+
+    public Utente getUtente(String id);
 }
