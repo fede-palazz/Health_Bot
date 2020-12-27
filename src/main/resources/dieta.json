@@ -73,12 +73,8 @@
                 "nome": "patate",
                 "qta": 150,
                 "kcal": 130
-            },
-            {
-                "nome": "mandarini",
-                "qta": 200,
-                "kcal": 144
             }
+            
         ],
         "2": [
             {
@@ -152,7 +148,7 @@
         ],
         "3": [
             {
-                "nome": "thè",
+                "nome": "the'",
                 "qta": 300,
                 "kcal": 30
             },
@@ -199,18 +195,13 @@
             },
             {
                 "nome": "carne macinata",
-                "qta": 35,
-                "kcal": 60
+                "qta": 50,
+                "kcal": 86
             },
             {
                 "nome": "spinaci",
                 "qta": 100,
                 "kcal": 25
-            },
-            {
-                "nome": "mandarini",
-                "qta": 100,
-                "kcal": 53
             }
         ],
         "3": [
