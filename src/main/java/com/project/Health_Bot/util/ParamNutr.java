@@ -19,7 +19,7 @@ public class ParamNutr {
      * @return valore del BMI
      */
     public static float calcolaBMI(float peso, int altezza) {
-        return (float) (peso / Math.pow(altezza, 2));
+        return (float) ((float) Math.round((peso / Math.pow(altezza, 2)) * 100) / 100);
     }
 
     /**
