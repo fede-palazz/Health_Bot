@@ -74,7 +74,7 @@ public class JSONOnline {
 	 * @return il JSONObject contente i valori nutrizionali del cibo scelto
 	 * @throws ParseException
 	 */
-	public Vector<Object> FOOD_API(String cibo) throws ParseException {
+	public Vector<Integer> FOOD_API(String cibo) throws ParseException {
 		HttpRequest request = HttpRequest.newBuilder()
 				.uri(URI.create("https://food-calorie-data-search.p.rapidapi.com/api/search?keyword=" + cibo))
 				.header("x-rapidapi-key", "b799bcf831msha880494b27071fbp184accjsna4aba3b9c35d")
@@ -109,16 +109,16 @@ public class JSONOnline {
 			jo = (JSONObject) array.get(0);
 		}
 		// Casto tutti i valori a Object
-		Object d0 = ((Object) jo.get("energ_kcal"));
-		Object d1 = ((Object) jo.get("protein"));
-		Object d2 = ((Object) jo.get("carbohydrt"));
-		Object d3 = ((Object) jo.get("lipid_tot"));
+		int kcal = (Integer.parseInt(((JSONObject) jo.get("energ_kcal")).toString()));
+		int protein = (Integer.parseInt(((JSONObject) jo.get("protein")).toString()));
+		int carbo = (Integer.parseInt(((JSONObject) jo.get("carbohydrt")).toString()));
+		int lipid = (Integer.parseInt(((JSONObject) jo.get("lipid_tot")).toString()));
 
-		Vector<Object> nut = new Vector<Object>();
-		nut.add(0, d0);
-		nut.add(1, d1);
-		nut.add(2, d2);
-		nut.add(3, d3);
+		Vector<Integer> nut = new Vector<Integer>();
+		nut.add(kcal);
+		nut.add(protein);
+		nut.add(carbo);
+		nut.add(lipid);
 
 		return nut;
 	}
