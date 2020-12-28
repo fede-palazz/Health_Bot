@@ -117,45 +117,6 @@ public class GestioneJSONOnline {
 
     /**
      * 
-     * Metodo che formatta un JSONObject, utilizzato per far funzionare il metodo
-     * precedente
-     * 
-     * @param jo
-     * @return jo1
-     */
-    public JSONObject FoodJSON(JSONObject jo) {
-        // Casto tutti i valori a Object
-        Object d0 = ((Object) jo.get("energ_kcal"));
-        Object d1 = ((Object) jo.get("protein"));
-        Object d2 = ((Object) jo.get("carbohydrt"));
-        Object d3 = ((Object) jo.get("lipid_tot"));
-
-        Vector<Object> nut = new Vector<Object>();
-        nut.add(0, d0);
-        nut.add(1, d1);
-        nut.add(2, d2);
-        nut.add(3, d3);
-
-        /*
-         * double[] nutr = new double [5]; nutr[0] = (double) jo.get("energ_kcal");
-         * nutr[1] = (double) jo.get("protein"); nutr[2] = (double)
-         * jo.get("carbohydrt"); nutr[3] = (double) jo.get("lipid_tot");
-         */
-
-        // Cibo c = new Cibo();
-
-        // Creo un nuovo oggetto JSONObject, che è il formattato di jo
-        JSONObject jo1 = new JSONObject();
-        jo1.put("energ_kcal", d0);
-        jo1.put("lipid_tot", d1);
-        jo1.put("protein", d2);
-        jo1.put("carbohydrt", d3);
-
-        return jo1;
-    }
-
-    /**
-     * 
      * Metodo che salva un JSONObject in un file di testo .json.
      * 
      * @param nome_file

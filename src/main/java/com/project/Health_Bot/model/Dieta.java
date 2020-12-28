@@ -9,7 +9,7 @@ import com.project.Health_Bot.util.GestioneJSONOffline;
 
 public class Dieta {
 
-	// alimento per ogni singolo pasto
+	// vector di alimenti per ogni singolo pasto
 	private Vector<Alimento> colazione;
 	private Vector<Alimento> pranzo;
 	private Vector<Alimento> spuntino;
@@ -38,6 +38,12 @@ public class Dieta {
 		return cena;
 	}
 
+	/**
+	 * Genera una dieta calcolata accuratamente in base al valore del FCG
+	 * dell'utente
+	 * 
+	 * @param fcg Fabbisogno calorico giornaliero
+	 */
 	public void generaDieta(float fcg) {
 
 		// kcal dieta standard per ogni pasto
@@ -53,13 +59,13 @@ public class Dieta {
 		int calspu = 0;
 		int calcen = 0;
 
-		//svuota Vector 
+		// svuota Vector
 		colazione.clear();
 		pranzo.clear();
 		spuntino.clear();
 		cena.clear();
 
-		// numero da 0 e 2 inclusi
+		// numero da 0 e 2 inclusi casuale
 		int n = (int) (Math.random() * 3);
 
 		// carica JSONObject da file
@@ -69,40 +75,40 @@ public class Dieta {
 		JSONObject listCol = (JSONObject) dieta.get("colazioni");
 		JSONArray col = (JSONArray) listCol.get(String.valueOf(n + 1));
 
-		//mette dentro il Vector colazione tutto il pasto con i vari alimenti
+		// mette dentro il Vector colazione i vari alimenti del pasto
 		getPasto(col, colazione);
 
-		//mi calcola le kcal totali della colazione
+		// mi calcola le kcal totali della colazione
 		kcalColazione = getKcal(colazione);
 
 		// PRANZO
 		JSONObject listPra = (JSONObject) dieta.get("pranzi");
 		JSONArray pra = (JSONArray) listPra.get(String.valueOf(n + 1));
 
-		//mette dentro il Vector pranzo tutto il pasto con i vari alimenti
+		// mette dentro il Vector pranzo i vari alimenti del pasto
 		getPasto(pra, pranzo);
 
-		//mi calcola le kcal totali del pranzo
+		// mi calcola le kcal totali del pranzo
 		kcalPranzo = getKcal(pranzo);
 
 		// SPUNTINO
 		JSONObject listSpu = (JSONObject) dieta.get("spuntino");
 		JSONArray spu = (JSONArray) listSpu.get(String.valueOf(n + 1));
 
-		//mette dentro il Vector spuntino tutto il pasto con i vari alimenti
+		// mette dentro il Vector spuntino i vari alimenti del pasto
 		getPasto(spu, spuntino);
 
-		//mi calcola le kcal totali dello spuntino
+		// mi calcola le kcal totali dello spuntino
 		kcalSpuntino = getKcal(spuntino);
 
 		// CENA
 		JSONObject listCena = (JSONObject) dieta.get("cena");
 		JSONArray cen = (JSONArray) listCena.get(String.valueOf(n + 1));
 
-		//mette dentro il Vector cena tutto il pasto con i vari alimenti
+		// mette dentro il Vector cena i vari alimenti del pasto
 		getPasto(cen, cena);
 
-		//mi calcola le kcal totali della cena
+		// mi calcola le kcal totali della cena
 		kcalCena = getKcal(cena);
 
 		ktot = kcalCena + kcalColazione + kcalPranzo + kcalSpuntino;
@@ -116,7 +122,7 @@ public class Dieta {
 			calcen = (int) ((fcg * kcalCena) / ktot);
 		}
 
-		//mi aggiorna i valori delle kcal e quantita in base al fcg dell'utente
+		// mi aggiorna i valori delle kcal e quantita in base al fcg dell'utente
 		setAlimento(colazione, calcol, kcalColazione);
 
 		setAlimento(pranzo, calpra, kcalPranzo);
@@ -128,8 +134,22 @@ public class Dieta {
 	}
 
 	/**
-	 * Metodo che setta il Vector con i nuovi elementi calcolati in base al fcg 
-	 * dell'utente
+	 * Metodo che inserisce l'oggetto Alimento nel Vector(Alimento) del pasto scelto
+	 * 
+	 * @param ja JSONArray che contiene il pasto selezionato
+	 */
+	private void getPasto(JSONArray ja, Vector<Alimento> pasto) {
+
+		for (int i = 0; i < ja.size(); i++) {
+			JSONObject jo = (JSONObject) ja.get(i);
+			pasto.add(new Alimento((String) jo.get("nome"), ((Long) jo.get("kcal")).intValue(),
+					((Long) jo.get("qta")).intValue()));
+		}
+	}
+
+	/**
+	 * Metodo che setta il Vector con i nuovi elementi (kcal, quantita') calcolati
+	 * in base al fcg dell'utente
 	 * 
 	 * @param pasto
 	 * @param newkcal
@@ -147,20 +167,6 @@ public class Dieta {
 	}
 
 	/**
-	 * Metodo che inserisce l'oggetto Alimento nel Vector(Alimento) del pasto
-	 * 
-	 * @param ja JSONArray che contiene il pasto colazione
-	 */
-	private void getPasto(JSONArray ja, Vector<Alimento> pasto) {
-
-		for (int i = 0; i < ja.size(); i++) {
-			JSONObject jo = (JSONObject) ja.get(i);
-			pasto.add(new Alimento((String) jo.get("nome"), ((Long) jo.get("kcal")).intValue(),
-					((Long) jo.get("qta")).intValue()));
-		}
-	}
-
-	/**
 	 * Metodo che calcola le Kcal di un pasto
 	 * 
 	 * @param pasto
@@ -172,7 +178,10 @@ public class Dieta {
 			n += pasto.get(i).getKcal();
 		return n;
 	}
-	
+
+	/**
+	 * Metodo toString()
+	 */
 	@Override
 	public String toString() {
 		String colaz = null;
@@ -180,7 +189,5 @@ public class Dieta {
 			colaz += al.toString();
 		return colaz;
 	}
-
-	
 
 }
