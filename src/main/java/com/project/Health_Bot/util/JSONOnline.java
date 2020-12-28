@@ -3,8 +3,6 @@
  */
 package com.project.Health_Bot.util;
 
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -16,16 +14,16 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import com.project.Health_Bot.exception.APIResponseException;
+
 /**
  * Classe che contiene i metodi che gestiscono i file JSON in online
  * 
  * @author FedePalaz & GiovanniNovelli9 & Baldellaux
  *
  */
-public class GestioneJSONOnline {
+public class JSONOnline {
 
-	private FileWriter file;
-	protected double bmi;
 
 	/**
 	 * 
@@ -33,8 +31,9 @@ public class GestioneJSONOnline {
 	 * 
 	 * @return valore del BMI
 	 * @throws ParseException
+	 * @throws APIResponseException
 	 */
-	public double BMI_API(float peso, int altezza) throws ParseException {
+	public float BMI_API(float peso, int altezza) throws ParseException, APIResponseException {
 
 		HttpRequest request = HttpRequest.newBuilder()
 				.uri(URI.create("https://body-mass-index-bmi-calculator.p.rapidapi.com/metric?weight=" + peso
@@ -46,10 +45,15 @@ public class GestioneJSONOnline {
 
 		try {
 			response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+			if (response == null) {
+				throw new APIResponseException("API_BMI non risponde");
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
+		} catch (APIResponseException e) {
+			return ParamNutr.calcolaBMI(peso, altezza);
 		}
 
 		System.out.println(response.body()); // mi da una stringa java
@@ -60,7 +64,7 @@ public class GestioneJSONOnline {
 		JSONObject obj = (JSONObject) parser.parse(risposta);
 
 		// System.out.println(obj.get("bmi")); //mi da il valore del BMI
-		bmi = (float) obj.get("bmi");
+		float bmi = (float) obj.get("bmi");
 		// Un modo per troncare a due cifre dopo la virgola...
 		return (float) Math.round(bmi * 100) / 100;
 	}
@@ -83,10 +87,15 @@ public class GestioneJSONOnline {
 		// Aggiungere eccezione personalizzata
 		try {
 			response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+			if (response == null) {
+				throw new APIResponseException("API_FOOD non risponde");
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
+		} catch (APIResponseException e) {
+			return null;
 		}
 
 		JSONParser parser = new JSONParser();
@@ -111,104 +120,4 @@ public class GestioneJSONOnline {
 		return nut;
 	}
 
-	/**
-	 * 
-	 * Metodo che salva un JSONObject in un file di testo .json.
-	 * 
-	 * @param nome_file
-	 * @param obj
-	 */
-	public void salvaOBJFile(String nome_file, JSONObject obj) {
-		try {
-			// true = non sovrascive il file
-			file = new FileWriter(nome_file, true);
-			file.write(obj.toJSONString());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		finally {
-
-			try {
-				file.flush(); // svuota il buffer
-				file.close(); // chiude la lettura del file
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-
-		}
-
-	}
-
-	/**
-	 * 
-	 * Metodo per caricare un JSONObject salvato in un file locale.
-	 * 
-	 * @param nome_file
-	 * @return
-	 */
-	public JSONObject caricaOBJFile(String nome_file) {
-		JSONParser parser = new JSONParser();
-		try {
-			Object obj = parser.parse(new FileReader(nome_file));
-			JSONObject jsonObject = (JSONObject) obj;
-			return jsonObject;
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-
-		return null;
-	}
-
-	/**
-	 * Metodo un JSONArray in un file di testo .json.
-	 * 
-	 * @param nome_file
-	 * @param ja
-	 */
-	public void salvaARRAYFile(String nome_file, JSONArray ja) {
-
-		try {
-			// true = non sovrascive il file
-			file = new FileWriter(nome_file, true);
-			file.write(ja.toJSONString());
-		} catch (IOException e) {
-			e.printStackTrace();
-
-		} finally {
-
-			try {
-				file.flush();
-				file.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
-	/**
-	 * Metodo per caricare un JSONArray salvato in un file locale.
-	 * 
-	 * @param nome_file
-	 * @return JSONArray
-	 */
-
-	public JSONArray caricaARRAYFile(String nome_file) {
-		// caricare JSONObject salvato in locale su un file .JSON
-		JSONParser parser = new JSONParser();
-		try {
-			Object obj = parser.parse(new FileReader(nome_file));
-			JSONArray ja = (JSONArray) obj;
-			return ja;
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return null;
-
-	}
 }
