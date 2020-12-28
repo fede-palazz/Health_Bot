@@ -82,43 +82,47 @@ public class ParamNutr {
      */
     public static float calcolaIW(char sesso, int altezza) {
         if (sesso == 'M')
-            return (float) (Math.pow(altezza/100, 2) * 22.1);
+            return (float) (Math.pow(altezza / 100, 2) * 22.1);
         else
-            return (float) (Math.pow(altezza/100, 2) * 20.6);
+            return (float) (Math.pow(altezza / 100, 2) * 20.6);
     }
-    
+
     /**
      * Metodo che ritorna la condizione di salute dell'utente
      * 
      * @param bmi
      * @return condizione utente
      */
-    public static String condCorp (float bmi) {
-		if (bmi<16) {
-			System.out.println("La tua condizone è: GRAVE MAGREZZA");
-			return "GRAVE MAGREZZA";
-		} else if (bmi >= 16 && bmi <= 18.49) {
-			System.out.println("La tua condizone è: SOTTOPESO");
-		    return "SOTTOPESO";
-		} else if (bmi >= 18.5 && bmi <= 24.99) {
-			System.out.println("La tua condizone è: NORMOPESO");
-		    return "NORMOPESO";   
-		} else if (bmi >= 25 && bmi <= 29.99) {
-			System.out.println("La tua condizone è: SOVRAPPESO");
-		    return "SOVRAPPESO";
-		} else if (bmi >= 30 && bmi <= 34.99) {
-			System.out.println("La tua condizone è: OBESITÀ CLASSE I (lieve)");
-		    return "OBESITÀ CLASSE I (lieve)";   
-		} else if (bmi >= 35 && bmi <= 39.99) {
-			System.out.println("La tua condizone è: OBESITÀ CLASSE II (media)");
-		    return "OBESITÀ CLASSE II (media)";
-		} else if (bmi >= 40) {
-			System.out.println("La tua condizone è: OBESITÀCLASSE III (grave)");
-		    return "OBESITÀCLASSE III (grave)";
+    public static String condCorp(float bmi) {
+        if (bmi < 16) {
+            System.out.println("La tua condizone è: GRAVE MAGREZZA");
+            return "GRAVE MAGREZZA";
         }
-		return null;    
+        else if (bmi >= 16 && bmi <= 18.49) {
+            System.out.println("La tua condizone è: SOTTOPESO");
+            return "SOTTOPESO";
+        }
+        else if (bmi >= 18.5 && bmi <= 24.99) {
+            System.out.println("La tua condizone è: NORMOPESO");
+            return "NORMOPESO";
+        }
+        else if (bmi >= 25 && bmi <= 29.99) {
+            System.out.println("La tua condizone è: SOVRAPPESO");
+            return "SOVRAPPESO";
+        }
+        else if (bmi >= 30 && bmi <= 34.99) {
+            System.out.println("La tua condizone è: OBESITÀ CLASSE I (lieve)");
+            return "OBESITÀ CLASSE I (lieve)";
+        }
+        else if (bmi >= 35 && bmi <= 39.99) {
+            System.out.println("La tua condizone è: OBESITÀ CLASSE II (media)");
+            return "OBESITÀ CLASSE II (media)";
+        }
+        else if (bmi >= 40) {
+            System.out.println("La tua condizone è: OBESITÀCLASSE III (grave)");
+            return "OBESITÀCLASSE III (grave)";
+        }
+        return null;
     }
-	
-
 
 }

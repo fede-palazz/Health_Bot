@@ -53,5 +53,11 @@ public interface UtenteRegDao {
      */
     public void inserisciMisurazione(String id, float peso, float lbm, float bmi);
 
+    /**
+     * 
+     * @param id
+     * @return
+     */
     public Utente getUtente(String id);
+
 }

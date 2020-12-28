@@ -208,6 +208,7 @@ public class BotServiceImpl implements BotService {
         return null;
     }
 
+    // Tasto (0)
     @Override
     public List<SendMessage> gestisciMenu(String mess, String userId, String username, long chatId) {
 
@@ -215,19 +216,51 @@ public class BotServiceImpl implements BotService {
 
         switch (mess) {
 
-        case "Aggiorna parametri 🆙👇🏻":
+        case "Aggiorna parametri 🔄": // tasto (1)
             view.add(Menu.getVistaAggiornamenti(chatId));
             return view;
 
-        case "Consigli ️🤔🙌🏻":
+        case "Aggiorna peso ⚖": // Tasto (1.1)
+            view.add(Menu.getVistaAggPeso(chatId)); // TODO
+            return view;
+
+        // Tasto (1.2) TODO 
+
+        case "Consigli ️🤔🙌🏻": // Tasto (2)
             view.add(Menu.getVistaConsigli(chatId, username));
             return view;
 
-        case "Info nutrizionali 🍽":
+        case "Dieta consigliata 😋": // Tasto (2.1)
+            Utente utente = utenteRegDao.getUtente(userId);
+            float fabcalgior = ParamNutr.calcolaFCG(
+                    ParamNutr.calcolaBMR(utente.getSesso().get(),
+                            ParamNutr.calcolaLBM(utente.getSesso().get(), utente.getPeso().get(),
+                                    utente.getAltezza().get()),
+                            utente.getAltezza().get(), utente.getEta().get()),
+                    utente.getTipo());
+
+            view.add(Menu.getVistaDieta(chatId, username, fabcalgior, dieta));
+            view.add(Menu.getVistaMenu(chatId));
+            return view;
+
+        case "Allenamento consigliato 🏋️🏻️": // Tasto (2.2)
+            view.add(Menu.getVistaAllenamento(chatId, utenteRegDao.getUtente(userId).getTipo(), username, allenamento));
+            view.add(Menu.getVistaMenu(chatId));
+            return view;
+
+        case "Torna al menù ⬅️":
+            view.add(Menu.getVistaMenu(chatId));
+            return view;
+
+        case "Info nutrizionali 🍽": // Tasto (3)
             view.add(Menu.getVistaAlimento(chatId));
             return view;
 
-        case "Riepilogo salute ⛑":
+        // Tasto (3.1) TODO
+
+        // Tasto (3.2) TODO    
+
+        case "Riepilogo salute ⛑": // Tasto (4)
             String tipo = null;
             Utente utente = utenteRegDao.getUtente(userId);
             if (utente instanceof Sedentario)
@@ -236,6 +269,7 @@ public class BotServiceImpl implements BotService {
                 tipo = "moderata";
             else if (utente instanceof Pesista)
                 tipo = "pesante";
+            // TODO prendi dall'ultima misurazione
             float bmi = ParamNutr.calcolaBMI(utente.getPeso().get(), utente.getAltezza().get());
             float lbm = ParamNutr.calcolaLBM(utente.getSesso().get(), utente.getPeso().get(),
                     utente.getAltezza().get());
@@ -245,74 +279,110 @@ public class BotServiceImpl implements BotService {
             float iw = ParamNutr.calcolaIW(utente.getSesso().get(), utente.getAltezza().get());
 
             view.add(Menu.getVistaRiepilogoSalute(chatId, tipo, utente.getPeso().get(), iw, fcg, bmr, bmi, lbm));
+            view.add(Menu.getVistaMenu(chatId));
             return view;
 
-        case "‍️Conosci il tuo corpo 🧘🏻‍♂️️":
+        case "‍️Conosci il tuo corpo 🧘🏻‍♂️️": // Tasto (5)
             view.add(Menu.getVistaConosciCorpo(chatId, username));
             return view;
 
-        case "Info generali ℹ️":
+        case "Diagnostica 🩺": // Tasto (5.1)
+            float pi = ParamNutr.calcolaIW(utente.getSesso().get(), utente.getAltezza().get());
+            String condizione = ParamNutr
+                    .condCorp(ParamNutr.calcolaBMI(utente.getPeso().get(), utente.getAltezza().get()));
+
+            view.add(Menu.getVistaDiag(chatId, bmi, condizione, utente.getPeso().get(), pi));
+            view.add(Menu.getVistaMenu(chatId));
+            return view;
+
+        case "📊Statistiche📈": // Tasto (5.2)
+            view.add(Menu.getVistaStats(chatId));
+            view.add(Menu.getVistaMenu(chatId));
+            return view;
+
+        case "Info generali ℹ️": // Tasto (6)
             view.add(Menu.getVistaInfo(chatId));
             return view;
 
-        /*
-        case "peso":
-            // Verifico che il peso ottenuto sia valido
-            try {
-                float peso = Float.parseFloat(mess.replace(',', '.'));
-                if (peso > 0 && peso < 300) {
-                    // Peso valido
-                    utenteRegDao.aggiornaPeso(userId, peso);
-                    view.add(Menu.getVistaAttivita(chatId));
-                    return view;
-                }
-            }
-            catch (Exception e) {
-                // Peso inserito non valido
-                view.add(Menu.getVistaErrore(chatId));
-                return view;
-            }
-        
-            // Tasto (1.2)    
-        case "tipo": // Aggiornamento livello attività fisica
-            Utente user;
-            switch (mess) {
-        
-            case "Sedentario 🧘🏻‍♂️":
-                // Aggiorna la misurazione iniziale
-                utenteRegDao.inserisciMisurazione(userId, user.getPeso().get(),
-                        ParamNutr.calcolaLBM(user.getSesso().get(), user.getPeso().get(), user.getAltezza().get()),
-                        ParamNutr.calcolaBMI(user.getPeso().get(), user.getAltezza().get()));
-                // Restituisce la vista del menù
-                view.add(Menu.getVistaMenu(chatId));
-                return view;
-        
-            case "Moderato 🏃🏻‍♂️":
-                // Aggiorna la misurazione iniziale
-                utenteRegDao.inserisciMisurazione(userId, user.getPeso().get(),
-                        ParamNutr.calcolaLBM(user.getSesso().get(), user.getPeso().get(), user.getAltezza().get()),
-                        ParamNutr.calcolaBMI(user.getPeso().get(), user.getAltezza().get()));
-                // Restituisce la vista del menù
-                view.add(Menu.getVistaMenu(chatId));
-                return view;
-        
-            case "Pesante 🏋🏻":
-                // Aggiunge una misurazione iniziale
-                utenteRegDao.inserisciMisurazione(userId, user.getPeso().get(),
-                        ParamNutr.calcolaLBM(user.getSesso().get(), user.getPeso().get(), user.getAltezza().get()),
-                        ParamNutr.calcolaBMI(user.getPeso().get(), user.getAltezza().get()));
-                // Restituisce la vista del menù
-                view.add(Menu.getVistaMenu(chatId));
-                return view;
-        
-            default: // Non ha premuto un pulsante
-                view.add(Registrazione.getVistaErrore(chatId));
-                return view;
-            }
-            */
+        case "BMI": // Tasto (6.1)
+            view.add(Menu.getVistaInfoBMI(chatId));
+            return view;
+
+        case "IW‍": // Tasto (6.2)
+            view.add(Menu.getVistaInfoIW(chatId));
+            return view;
+
+        case "BMR️": // Tasto (6.3)
+            view.add(Menu.getVistaInfoBMR(chatId));
+            return view;
+
+        case "FCG": // Tasto (6.4)
+            view.add(Menu.getVistaInfoFCG(chatId));
+            return view;
+
+        case "LBM": // Tasto (6.5)
+            view.add(Menu.getVistaInfoLBM(chatId));
+            return view;
 
         }
+
         return null;
     }
+
+    /*
+    case "peso":
+        // Verifico che il peso ottenuto sia valido
+        try {
+            float peso = Float.parseFloat(mess.replace(',', '.'));
+            if (peso > 0 && peso < 300) {
+                // Peso valido
+                utenteRegDao.aggiornaPeso(userId, peso);
+                view.add(Menu.getVistaAttivita(chatId));
+                return view;
+            }
+        }
+        catch (Exception e) {
+            // Peso inserito non valido
+            view.add(Menu.getVistaErrore(chatId));
+            return view;
+        }
+    
+        // Tasto (1.2)    
+    case "tipo": // Aggiornamento livello attività fisica
+        Utente user;
+        switch (mess) {
+    
+        case "Sedentario 🧘🏻‍♂️":
+            // Aggiorna la misurazione iniziale
+            utenteRegDao.inserisciMisurazione(userId, user.getPeso().get(),
+                    ParamNutr.calcolaLBM(user.getSesso().get(), user.getPeso().get(), user.getAltezza().get()),
+                    ParamNutr.calcolaBMI(user.getPeso().get(), user.getAltezza().get()));
+            // Restituisce la vista del menù
+            view.add(Menu.getVistaMenu(chatId));
+            return view;
+    
+        case "Moderato 🏃🏻‍♂️":
+            // Aggiorna la misurazione iniziale
+            utenteRegDao.inserisciMisurazione(userId, user.getPeso().get(),
+                    ParamNutr.calcolaLBM(user.getSesso().get(), user.getPeso().get(), user.getAltezza().get()),
+                    ParamNutr.calcolaBMI(user.getPeso().get(), user.getAltezza().get()));
+            // Restituisce la vista del menù
+            view.add(Menu.getVistaMenu(chatId));
+            return view;
+    
+        case "Pesante 🏋🏻":
+            // Aggiunge una misurazione iniziale
+            utenteRegDao.inserisciMisurazione(userId, user.getPeso().get(),
+                    ParamNutr.calcolaLBM(user.getSesso().get(), user.getPeso().get(), user.getAltezza().get()),
+                    ParamNutr.calcolaBMI(user.getPeso().get(), user.getAltezza().get()));
+            // Restituisce la vista del menù
+            view.add(Menu.getVistaMenu(chatId));
+            return view;
+    
+        default: // Non ha premuto un pulsante
+            view.add(Registrazione.getVistaErrore(chatId));
+            return view;
+        }
+        */
 
 }

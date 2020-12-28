@@ -31,6 +31,10 @@ public class Utente {
      */
     protected Integer annoNascita;
 
+    protected String tipo;
+
+    protected String allenamento;
+
     /**
      * Costruttore di default utilizzato al momento della registrazione di un nuovo utente (i campi sono
      * nulli)
@@ -143,6 +147,14 @@ public class Utente {
     public String toString() {
         return "Utente [sesso=" + sesso + ", altezza=" + altezza + ", peso=" + peso + ", annoNascita=" + annoNascita
                 + "]";
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public String getAllenamento() {
+        return allenamento;
     }
 
 }
