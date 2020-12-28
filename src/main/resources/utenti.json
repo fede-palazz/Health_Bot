@@ -4,7 +4,7 @@
 		"utente" :	
 		{		
 			"sesso" : "M",
-			"pesoIniziale" : "69.4",
+			"peso" : "69.4",
 			"altezza" : "173",
 			"annoNascita" : "1999",
 			"tipo" : "pes",
@@ -114,7 +114,7 @@
 		"utente" :
 		{			
 			"sesso" : "M",
-			"pesoAttuale" : "84",
+			"peso" : "84",
 			"altezza" : "180",
 			"annoNascita" : "1999",
 			"tipo" : "sport",
@@ -225,7 +225,7 @@
 		"utente" :
 		{			
 			"sesso" : "M",
-			"pesoAttuale" : "60",
+			"peso" : "60",
 			"altezza" : "182",
 			"annoNascita" : "1999",
 			"tipo" : "sport",
