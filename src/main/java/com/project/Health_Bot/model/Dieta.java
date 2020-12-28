@@ -51,7 +51,7 @@ public class Dieta {
      * 
      * @param fcg Fabbisogno calorico giornaliero
      */
-    public void generaDieta(float fcg) {
+    public void generaDieta(int fcg) {
 
         // kcal dieta standard per ogni pasto
         int kcalColazione = 0;

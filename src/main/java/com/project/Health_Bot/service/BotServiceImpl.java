@@ -213,6 +213,23 @@ public class BotServiceImpl implements BotService {
     public List<SendMessage> gestisciMenu(String mess, String userId, String username, long chatId) {
 
         List<SendMessage> view = new Vector<SendMessage>();
+        Utente utente = utenteRegDao.getUtente(userId);
+
+        String tipo = null;
+
+        if (utente instanceof Sedentario)
+            tipo = "sedentario";
+        else if (utente instanceof Sportivo)
+            tipo = "moderata";
+        else if (utente instanceof Pesista)
+            tipo = "pesante";
+
+        float bmi = ParamNutr.calcolaBMI(utente.getPeso().get(), utente.getAltezza().get());
+        float lbm = ParamNutr.calcolaLBM(utente.getSesso().get(), utente.getPeso().get(), utente.getAltezza().get());
+        float bmr = ParamNutr.calcolaBMR(utente.getSesso().get(), lbm, utente.getAltezza().get(),
+                utente.getEta().get());
+        int fcg = ParamNutr.calcolaFCG(bmr, tipo);
+        float iw = ParamNutr.calcolaIW(utente.getSesso().get(), utente.getAltezza().get());
 
         switch (mess) {
 
@@ -231,20 +248,13 @@ public class BotServiceImpl implements BotService {
             return view;
 
         case "Dieta consigliata 😋": // Tasto (2.1)
-            Utente utente = utenteRegDao.getUtente(userId);
-            float fabcalgior = ParamNutr.calcolaFCG(
-                    ParamNutr.calcolaBMR(utente.getSesso().get(),
-                            ParamNutr.calcolaLBM(utente.getSesso().get(), utente.getPeso().get(),
-                                    utente.getAltezza().get()),
-                            utente.getAltezza().get(), utente.getEta().get()),
-                    utente.getTipo());
-
-            view.add(Menu.getVistaDieta(chatId, username, fabcalgior, dieta));
+            view.add(Menu.getVistaDieta(chatId, username, fcg, utente.getDieta()));
             view.add(Menu.getVistaMenu(chatId));
             return view;
 
         case "Allenamento consigliato 🏋️🏻️": // Tasto (2.2)
-            view.add(Menu.getVistaAllenamento(chatId, utenteRegDao.getUtente(userId).getTipo(), username, allenamento));
+            view.add(Menu.getVistaAllenamento(chatId, utenteRegDao.getUtente(userId).getTipo(), username,
+                    utenteRegDao.getUtente(userId).getAllenamento()));
             view.add(Menu.getVistaMenu(chatId));
             return view;
 
@@ -261,22 +271,8 @@ public class BotServiceImpl implements BotService {
         // Tasto (3.2) TODO    
 
         case "Riepilogo salute ⛑": // Tasto (4)
-            String tipo = null;
-            Utente utente = utenteRegDao.getUtente(userId);
-            if (utente instanceof Sedentario)
-                tipo = "sedentario";
-            else if (utente instanceof Sportivo)
-                tipo = "moderata";
-            else if (utente instanceof Pesista)
-                tipo = "pesante";
+
             // TODO prendi dall'ultima misurazione
-            float bmi = ParamNutr.calcolaBMI(utente.getPeso().get(), utente.getAltezza().get());
-            float lbm = ParamNutr.calcolaLBM(utente.getSesso().get(), utente.getPeso().get(),
-                    utente.getAltezza().get());
-            float bmr = ParamNutr.calcolaBMR(utente.getSesso().get(), lbm, utente.getAltezza().get(),
-                    utente.getEta().get());
-            float fcg = ParamNutr.calcolaFCG(bmr, tipo);
-            float iw = ParamNutr.calcolaIW(utente.getSesso().get(), utente.getAltezza().get());
 
             view.add(Menu.getVistaRiepilogoSalute(chatId, tipo, utente.getPeso().get(), iw, fcg, bmr, bmi, lbm));
             view.add(Menu.getVistaMenu(chatId));
@@ -287,11 +283,9 @@ public class BotServiceImpl implements BotService {
             return view;
 
         case "Diagnostica 🩺": // Tasto (5.1)
-            float pi = ParamNutr.calcolaIW(utente.getSesso().get(), utente.getAltezza().get());
-            String condizione = ParamNutr
-                    .condCorp(ParamNutr.calcolaBMI(utente.getPeso().get(), utente.getAltezza().get()));
+            String condizione = ParamNutr.condCorp(bmi);
 
-            view.add(Menu.getVistaDiag(chatId, bmi, condizione, utente.getPeso().get(), pi));
+            view.add(Menu.getVistaDiag(chatId, bmi, condizione, utente.getPeso().get(), iw));
             view.add(Menu.getVistaMenu(chatId));
             return view;
 

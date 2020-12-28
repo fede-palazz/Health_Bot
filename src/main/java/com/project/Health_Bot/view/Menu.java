@@ -3,11 +3,13 @@
  */
 package com.project.Health_Bot.view;
 
+import java.util.List;
 import java.util.Vector;
 import com.pengrad.telegrambot.model.request.Keyboard;
 import com.pengrad.telegrambot.model.request.ReplyKeyboardMarkup;
 import com.pengrad.telegrambot.model.request.ReplyKeyboardRemove;
 import com.pengrad.telegrambot.request.SendMessage;
+import com.project.Health_Bot.model.Alimento;
 
 /**
  * @author FedePalaz & GiovanniNovelli9 & Baldellaux
@@ -125,11 +127,20 @@ public class Menu {
      * @param dieta
      * @return response
      */
-    public static SendMessage getVistaDieta(long chatId, String username, float fcg, String dieta) {
+    public static SendMessage getVistaDieta(long chatId, String username, float fcg, List<Vector<Alimento>> dieta) {
         // Testo del messaggio
         String mess = ("Caro " + username + ", \n"
-                + "la dieta 🍽 che ti consiglio 😋, scelta accuratamente in base al valore del tuo FCG é la seguente: \n"
-                + dieta);
+                + "la dieta 🍽 che ti consiglio 😋, scelta accuratamente in base al valore del tuo FCG é la seguente: \n");
+
+        int i = 0;
+        String[] nomePasti = { "Colazione", "Pranzo", "Spuntino", "Cena" };
+        for (Vector<Alimento> pasto : dieta) {
+            mess += nomePasti[i++] + "\n";
+            for (Alimento al : pasto) {
+                mess += "- " + al.getNome() + "  " + al.getQta() + "g  " + al.getKcal() + " Kcal\n";
+            }
+        }
+
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
         //Rimuove la tastiera

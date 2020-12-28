@@ -61,14 +61,14 @@ public class ParamNutr {
      * @param tipo
      * @return valore dell'FCG
      */
-    public static float calcolaFCG(float bmr, String tipo) {
+    public static int calcolaFCG(float bmr, String tipo) {
         switch (tipo) {
         case "sed":
-            return (float) (1.0 * bmr);
+            return (int) (1.0 * bmr);
         case "sport":
-            return (float) (1.2 * bmr);
+            return (int) (1.2 * bmr);
         case "pes":
-            return (float) (1.4 * bmr);
+            return (int) (1.4 * bmr);
         }
         return 0;
 

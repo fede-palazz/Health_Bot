@@ -3,6 +3,7 @@
  */
 package com.project.Health_Bot.model;
 
+import java.util.List;
 import java.util.Vector;
 
 /**
@@ -48,4 +49,6 @@ public interface Misura {
      * @return Tipo di utente
      */
     public String getTipo();
+
+    public List<Vector<Alimento>> getDieta(int fcg);
 }
