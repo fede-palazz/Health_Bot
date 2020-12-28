@@ -56,7 +56,6 @@ public class JSONOnline {
 			return ParamNutr.calcolaBMI(peso, altezza);
 		}
 
-		System.out.println(response.body()); // mi da una stringa java
 		String risposta = response.body();
 
 		// convertire da JSONString a JSONObject
@@ -84,7 +83,6 @@ public class JSONOnline {
 				.method("GET", HttpRequest.BodyPublishers.noBody()).build();
 		HttpResponse<String> response = null;
 
-		// Aggiungere eccezione personalizzata
 		try {
 			response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
 			if (response == null) {
