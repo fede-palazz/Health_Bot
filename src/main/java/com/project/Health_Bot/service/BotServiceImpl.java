@@ -49,6 +49,11 @@ public class BotServiceImpl implements BotService {
 
             long chatId = update.message().chat().id(); // Id della chat
             String userId = update.message().from().id().toString(); // Id utente
+            // Determinazione dell'username
+            String username;
+            if ((username = update.message().from().username()) == null)
+                if ((username = update.message().from().firstName()) == null)
+                    username = "utente";
 
             if (utenteNonRegDao.isRegistering(userId)) {
                 // Utente in fase di registrazione, è presente nell'hash_map degli utenti che si stanno registrando 
@@ -56,16 +61,11 @@ public class BotServiceImpl implements BotService {
             }
             else if (utenteRegDao.isRegistered(userId)) {
                 // Utente già registrato nel sistema, è presente nell'hash_map degli utenti che si sono già registrati 
-                return gestisciMenu(update.message().text(), userId, update.message().from().username(), chatId);
+                return gestisciMenu(update.message().text(), userId, username, chatId);
             }
             else {
                 // Nuovo utente
                 utenteNonRegDao.nuovoUtente(userId); // Registrazione
-                // Determinazione dell'username
-                String username;
-                if ((username = update.message().from().username()) == null)
-                    if ((username = update.message().from().firstName()) == null)
-                        username = "utente";
                 // Restituisce le vista di benvenuto ed inserimento del sesso
                 List<SendMessage> response = new Vector<SendMessage>(); // Messaggi di risposta
                 response.add(Registrazione.getVistaWelcome(chatId, username));
@@ -208,7 +208,6 @@ public class BotServiceImpl implements BotService {
         return null;
     }
 
-    // Tasto (0)
     @Override
     public List<SendMessage> gestisciMenu(String mess, String userId, String username, long chatId) {
 
@@ -253,7 +252,7 @@ public class BotServiceImpl implements BotService {
             return view;
 
         case "Allenamento consigliato 🏋️🏻️": // Tasto (2.2)
-            view.add(Menu.getVistaAllenamento(chatId, utenteRegDao.getUtente(userId).getTipo(), username,
+            view.add(Menu.getVistaAllenamento(chatId, utenteRegDao.getTipo(utenteRegDao.getUtente(userId)), username,
                     utenteRegDao.getUtente(userId).getAllenamento()));
             view.add(Menu.getVistaMenu(chatId));
             return view;

@@ -3,11 +3,12 @@
  */
 package com.project.Health_Bot.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
  * 
- * Classe che contiene i parametri ed i metodi descriventi 
+ * Classe che contiene i parametri ed i metodi descriventi
  * lo storico delle misurazioni
  * 
  * @author FedePalaz & GiovanniNovelli9 & Baldellaux
@@ -16,10 +17,22 @@ import java.util.Date;
  */
 public class Misurazione {
 
-    private float peso;
-    private float lbm;
-    private float bmi;
+    private Float peso;
+    private Float lbm;
+    private Float bmi;
     private Date data;
+
+    /**
+     * Costruttore di default
+     * 
+     * @param data
+     */
+    public Misurazione(Date data) {
+        this.peso = null;
+        this.lbm = null;
+        this.bmi = null;
+        this.data = data;
+    }
 
     /**
      * Costruttore
@@ -90,6 +103,27 @@ public class Misurazione {
      */
     public Date getData() {
         return data;
+    }
+
+    /**
+     * Restituisce true se la misurazione è vuota
+     * 
+     * @return
+     */
+    public boolean isEmpty() {
+        if (this.peso == null && this.lbm == null && this.bmi == null)
+            return true;
+        else
+            return false;
+    }
+
+    /**
+     * Metodo toString
+     */
+    @Override
+    public String toString() {
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy"); // Oggetto formattatore di date
+        return "Misurazione [peso=" + peso + ", lbm=" + lbm + ", bmi=" + bmi + ", data=" + df.format(data) + "]";
     }
 
 }

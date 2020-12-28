@@ -31,6 +31,11 @@ public interface Misura {
     public void inserisciMisurazione(Misurazione misura);
 
     /**
+     * Inserisce una misurazione vuota o annulla tutti i campi dell'ultima misurazione giornaliera
+     */
+    public void inserisciMisurazione();
+
+    /**
      * Restituisce le misurazioni dell'utente
      */
     public Vector<Misurazione> getMisurazioni();
@@ -50,5 +55,11 @@ public interface Misura {
      */
     public String getTipo();
 
+    /**
+     * Restituisce una dieta casuale sulla base del fcg
+     * 
+     * @param fcg
+     * @return
+     */
     public List<Vector<Alimento>> getDieta(int fcg);
 }

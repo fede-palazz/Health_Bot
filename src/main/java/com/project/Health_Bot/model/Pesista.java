@@ -18,7 +18,6 @@ import com.project.Health_Bot.util.JSONOffline;
 public class Pesista extends Utente implements Misura {
 
     private Vector<Misurazione> misurazioni;
-
     private Dieta dieta;
 
     /**
@@ -70,7 +69,19 @@ public class Pesista extends Utente implements Misura {
         int n = (int) (Math.random() * 3);
         // chiamata metodo JSONOffline
         return JSONOffline.getAllenamento("pes", n);
+    }
 
+    @Override
+    public void inserisciMisurazione() {
+        // Controllo se esiste una misurazione effettuata nello stesso giorno
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy"); // Oggetto formattatore di date
+        String dataOggi = df.format(new Date());
+        // Confronto la data con quella dell'ultima misurazione
+        if (misurazioni.size() > 0 && df.format(misurazioni.get(misurazioni.size() - 1).getData()).equals(dataOggi))
+            // Elimino l'ultima misurazione
+            misurazioni.remove(misurazioni.size() - 1);
+        // Aggiungo una nuova misurazione vuota
+        misurazioni.add(new Misurazione(new Date()));
     }
 
     @Override
@@ -110,7 +121,6 @@ public class Pesista extends Utente implements Misura {
                 misure.add(misurazioni.get(i));
             return misure;
         }
-
     }
 
     @Override

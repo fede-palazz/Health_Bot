@@ -74,6 +74,19 @@ public class Sportivo extends Utente implements Misura {
     }
 
     @Override
+    public void inserisciMisurazione() {
+        // Controllo se esiste una misurazione effettuata nello stesso giorno
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy"); // Oggetto formattatore di date
+        String dataOggi = df.format(new Date());
+        // Confronto la data con quella dell'ultima misurazione
+        if (misurazioni.size() > 0 && df.format(misurazioni.get(misurazioni.size() - 1).getData()).equals(dataOggi))
+            // Elimino l'ultima misurazione
+            misurazioni.remove(misurazioni.size() - 1);
+        // Aggiungo una nuova misurazione vuota
+        misurazioni.add(new Misurazione(new Date()));
+    }
+
+    @Override
     public void inserisciMisurazione(float peso, float lbm, float bmi) {
         // Controllo se esiste una misurazione effettuata nello stesso giorno
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy"); // Oggetto formattatore di date
