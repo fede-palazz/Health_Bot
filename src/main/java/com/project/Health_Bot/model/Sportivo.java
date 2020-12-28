@@ -104,7 +104,6 @@ public class Sportivo extends Utente implements Misura {
                 misure.add(misurazioni.get(i));
             return misure;
         }
-
     }
 
     @Override

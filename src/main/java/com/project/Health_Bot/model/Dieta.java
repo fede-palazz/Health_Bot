@@ -1,8 +1,7 @@
 package com.project.Health_Bot.model;
 
+import java.util.List;
 import java.util.Vector;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import com.project.Health_Bot.util.JSONOffline;
 
 public class Dieta {
@@ -12,12 +11,22 @@ public class Dieta {
     private Vector<Alimento> pranzo;
     private Vector<Alimento> spuntino;
     private Vector<Alimento> cena;
+    /**
+     * Numero pasti giornalieri
+     */
+    private int numPasti;
+    /**
+     * Numero di possibili pasti diversi generabili per ogni pasto
+     */
+    private int tipiPasti;
 
     public Dieta() {
         colazione = new Vector<Alimento>();
         pranzo = new Vector<Alimento>();
         spuntino = new Vector<Alimento>();
         cena = new Vector<Alimento>();
+        tipiPasti = 3;
+        numPasti = 4;
     }
 
     public Vector<Alimento> getColazione() {
@@ -64,47 +73,39 @@ public class Dieta {
         cena.clear();
 
         // numero da 0 e 2 inclusi casuale
-        int n = (int) (Math.random() * 3);
+        int n = (int) (Math.random() * tipiPasti);
 
-        // carica JSONObject da file
-        JSONObject dieta = JSONOffline.caricaObj("src/main/resources/dieta.json");
-
-        // COLAZIONE
-        JSONObject listCol = (JSONObject) dieta.get("colazioni");
-        JSONArray col = (JSONArray) listCol.get(String.valueOf(n + 1));
-
-        // mette dentro il Vector colazione i vari alimenti del pasto
-        getPasto(col, colazione);
+        // Genera la dieta e la carica nelle quattro liste
+        List<Vector<Alimento>> pasti = JSONOffline.getDieta(n, numPasti);
+        for (int i = 0; i < numPasti; i++) {
+            switch (i) {
+            case 0: // Colazione
+                for (Alimento al : pasti.get(i))
+                    colazione.add(al);
+                break;
+            case 1: // Pranzo
+                for (Alimento al : pasti.get(i))
+                    pranzo.add(al);
+                break;
+            case 2: // Spuntino
+                for (Alimento al : pasti.get(i))
+                    spuntino.add(al);
+                break;
+            case 3: // Cena
+                for (Alimento al : pasti.get(i))
+                    cena.add(al);
+                break;
+            }
+        }
 
         // mi calcola le kcal totali della colazione
         kcalColazione = getKcal(colazione);
 
-        // PRANZO
-        JSONObject listPra = (JSONObject) dieta.get("pranzi");
-        JSONArray pra = (JSONArray) listPra.get(String.valueOf(n + 1));
-
-        // mette dentro il Vector pranzo i vari alimenti del pasto
-        getPasto(pra, pranzo);
-
         // mi calcola le kcal totali del pranzo
         kcalPranzo = getKcal(pranzo);
 
-        // SPUNTINO
-        JSONObject listSpu = (JSONObject) dieta.get("spuntino");
-        JSONArray spu = (JSONArray) listSpu.get(String.valueOf(n + 1));
-
-        // mette dentro il Vector spuntino i vari alimenti del pasto
-        getPasto(spu, spuntino);
-
         // mi calcola le kcal totali dello spuntino
         kcalSpuntino = getKcal(spuntino);
-
-        // CENA
-        JSONObject listCena = (JSONObject) dieta.get("cena");
-        JSONArray cen = (JSONArray) listCena.get(String.valueOf(n + 1));
-
-        // mette dentro il Vector cena i vari alimenti del pasto
-        getPasto(cen, cena);
 
         // mi calcola le kcal totali della cena
         kcalCena = getKcal(cena);
@@ -129,20 +130,6 @@ public class Dieta {
 
         setAlimento(cena, calcen, kcalCena);
 
-    }
-
-    /**
-     * Metodo che inserisce l'oggetto Alimento nel Vector(Alimento) del pasto scelto
-     * 
-     * @param ja JSONArray che contiene il pasto selezionato
-     */
-    private void getPasto(JSONArray ja, Vector<Alimento> pasto) {
-
-        for (int i = 0; i < ja.size(); i++) {
-            JSONObject jo = (JSONObject) ja.get(i);
-            pasto.add(new Alimento((String) jo.get("nome"), ((Long) jo.get("kcal")).intValue(),
-                    ((Long) jo.get("qta")).intValue()));
-        }
     }
 
     /**

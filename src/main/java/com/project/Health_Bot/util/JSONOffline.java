@@ -6,11 +6,13 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Vector;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import com.project.Health_Bot.model.Alimento;
 import com.project.Health_Bot.model.Misurazione;
 import com.project.Health_Bot.model.Pesista;
 import com.project.Health_Bot.model.Sedentario;
@@ -344,4 +346,74 @@ public class JSONOffline {
         }
         return null;
     }
+
+    /**
+     * Carica una dieta da file e la restituice
+     * 
+     * @return Lista di pasti
+     */
+    public static List<Vector<Alimento>> getDieta(int n, int numPasti) {
+
+        List<Vector<Alimento>> pasti = new Vector<Vector<Alimento>>();
+        // Aggiunge liste colazione, pranzo, spuntino, cena
+        for (int i = 0; i < numPasti; i++)
+            pasti.add(new Vector<Alimento>());
+        // carica JSONObject da file
+        JSONObject dieta = JSONOffline.caricaObj(pathDieta);
+
+        // COLAZIONE
+        // Lista colazioni
+        JSONObject listCol = (JSONObject) dieta.get("colazioni");
+        // Colazione specifica
+        JSONArray col = (JSONArray) listCol.get(String.valueOf(n + 1));
+
+        // mette dentro il Vector colazione i vari alimenti del pasto
+        getPasto(col, pasti.get(0));
+
+        // PRANZO
+        // Lista pranzi
+        JSONObject listPra = (JSONObject) dieta.get("pranzi");
+        // Pranzo specifico
+        JSONArray pra = (JSONArray) listPra.get(String.valueOf(n + 1));
+
+        // mette dentro il Vector pranzo i vari alimenti del pasto
+        getPasto(pra, pasti.get(1));
+
+        // SPUNTINO
+        // Lista spuntini
+        JSONObject listSpu = (JSONObject) dieta.get("spuntino");
+        // Spuntino specifico
+        JSONArray spu = (JSONArray) listSpu.get(String.valueOf(n + 1));
+
+        // mette dentro il Vector spuntino i vari alimenti del pasto
+        getPasto(spu, pasti.get(2));
+
+        // CENA
+        // Lista cene
+        JSONObject listCena = (JSONObject) dieta.get("cena");
+        // Cena specifica
+        JSONArray cen = (JSONArray) listCena.get(String.valueOf(n + 1));
+
+        // mette dentro il Vector cena i vari alimenti del pasto
+        getPasto(cen, pasti.get(3));
+
+        // Restituisce i pasti generati
+        return pasti;
+    }
+
+    /**
+     * Metodo che inserisce l'oggetto Alimento nel Vector(Alimento) del pasto scelto
+     * 
+     * @param ja JSONArray che contiene il pasto selezionato
+     */
+    @SuppressWarnings("unused")
+    private static void getPasto(JSONArray ja, Vector<Alimento> pasto) {
+
+        for (int i = 0; i < ja.size(); i++) {
+            JSONObject jo = (JSONObject) ja.get(i);
+            pasto.add(new Alimento((String) jo.get("nome"), ((Long) jo.get("kcal")).intValue(),
+                    ((Long) jo.get("qta")).intValue()));
+        }
+    }
+
 }
