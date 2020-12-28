@@ -107,4 +107,9 @@ public class Sportivo extends Utente implements Misura {
 
     }
 
+    @Override
+    public String getTipo() {
+        return "sport";
+    }
+
 }

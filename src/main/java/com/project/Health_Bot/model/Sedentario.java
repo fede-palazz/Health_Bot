@@ -106,4 +106,9 @@ public class Sedentario extends Utente implements Misura {
 
     }
 
+    @Override
+    public String getTipo() {
+        return "sed";
+    }
+
 }

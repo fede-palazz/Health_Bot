@@ -41,4 +41,11 @@ public interface Misura {
      * @return
      */
     public Vector<Misurazione> getMisurazioni(int ultimeN);
+
+    /**
+     * Restituisce il tipo di utente {"sed", "sport", "pes"}
+     * 
+     * @return Tipo di utente
+     */
+    public String getTipo();
 }

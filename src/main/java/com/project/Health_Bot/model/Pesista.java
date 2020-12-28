@@ -107,4 +107,9 @@ public class Pesista extends Utente implements Misura {
 
     }
 
+    @Override
+    public String getTipo() {
+        return "pes";
+    }
+
 }
