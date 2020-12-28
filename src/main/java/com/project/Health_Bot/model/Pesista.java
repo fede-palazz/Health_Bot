@@ -5,6 +5,7 @@ package com.project.Health_Bot.model;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Vector;
 import com.project.Health_Bot.util.JSONOffline;
 
@@ -18,12 +19,15 @@ public class Pesista extends Utente implements Misura {
 
     private Vector<Misurazione> misurazioni;
 
+    private Dieta dieta;
+
     /**
      * Costruttore di default
      */
     public Pesista() {
         super();
         misurazioni = new Vector<Misurazione>();
+        dieta = new Dieta();
     }
 
     /**
@@ -37,6 +41,7 @@ public class Pesista extends Utente implements Misura {
     public Pesista(Character sesso, int altezza, float peso, int annoNascita) {
         super(sesso, altezza, peso, annoNascita);
         misurazioni = new Vector<Misurazione>();
+        dieta = new Dieta();
     }
 
     /**
@@ -50,6 +55,7 @@ public class Pesista extends Utente implements Misura {
     public Pesista(Character sesso, int altezza, float peso, int annoNascita, Vector<Misurazione> misurazioni) {
         super(sesso, altezza, peso, annoNascita);
         this.misurazioni = new Vector<Misurazione>();
+        this.dieta = new Dieta();
         for (Misurazione m : misurazioni) // Trasferisce la lista di misurazioni
             this.misurazioni.add(m);
     }
@@ -110,6 +116,17 @@ public class Pesista extends Utente implements Misura {
     @Override
     public String getTipo() {
         return "pes";
+    }
+
+    @Override
+    public List<Vector<Alimento>> getDieta(int fcg) {
+        dieta.generaDieta(fcg);
+        List<Vector<Alimento>> pasti = new Vector<Vector<Alimento>>();
+        pasti.add(dieta.getColazione());
+        pasti.add(dieta.getPranzo());
+        pasti.add(dieta.getSpuntino());
+        pasti.add(dieta.getCena());
+        return pasti;
     }
 
 }

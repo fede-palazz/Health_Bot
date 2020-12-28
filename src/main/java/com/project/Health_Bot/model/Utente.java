@@ -4,7 +4,9 @@
 package com.project.Health_Bot.model;
 
 import java.util.Calendar;
+import java.util.List;
 import java.util.Optional;
+import java.util.Vector;
 
 /**
  * Classe che modella l'utente
@@ -30,10 +32,6 @@ public class Utente {
      * Anno di nascita
      */
     protected Integer annoNascita;
-
-    protected String tipo;
-
-    protected String allenamento;
 
     /**
      * Costruttore di default utilizzato al momento della registrazione di un nuovo utente (i campi sono
@@ -150,11 +148,15 @@ public class Utente {
     }
 
     public String getTipo() {
-        return tipo;
+        return null;
     }
 
     public String getAllenamento() {
-        return allenamento;
+        return null;
+    }
+
+    public List<Vector<Alimento>> getDieta() {
+        return null;
     }
 
 }
