@@ -24,7 +24,6 @@ import com.project.Health_Bot.exception.APIResponseException;
  */
 public class JSONOnline {
 
-
 	/**
 	 * 
 	 * Metodo che chiama l'API del BMI
@@ -99,10 +98,16 @@ public class JSONOnline {
 		JSONParser parser = new JSONParser();
 		// il parsing trasforma il dato in long o double
 		JSONArray array = (JSONArray) parser.parse(response.body());
-
-		// prende il quinto JSON Object di un array
-		JSONObject jo = (JSONObject) array.get(4);
-
+		if (array.isEmpty())
+			return null;
+		JSONObject jo = null;
+		if (array.size() >= 4) {
+			// prende il quinto JSON Object di un array
+			jo = (JSONObject) array.get(4);
+		} else {
+			// prende il quinto JSON Object di un array
+			jo = (JSONObject) array.get(0);
+		}
 		// Casto tutti i valori a Object
 		Object d0 = ((Object) jo.get("energ_kcal"));
 		Object d1 = ((Object) jo.get("protein"));
