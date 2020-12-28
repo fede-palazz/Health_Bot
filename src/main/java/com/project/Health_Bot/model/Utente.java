@@ -139,4 +139,10 @@ public class Utente {
         this.annoNascita = annoNascita;
     }
 
+    @Override
+    public String toString() {
+        return "Utente [sesso=" + sesso + ", altezza=" + altezza + ", peso=" + peso + ", annoNascita=" + annoNascita
+                + "]";
+    }
+
 }
