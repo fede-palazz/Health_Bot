@@ -12,6 +12,7 @@ import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.SendMessage;
 import com.project.Health_Bot.exception.InvalidUpdateException;
 import com.project.Health_Bot.service.BotService;
+import com.project.Health_Bot.util.JSONOffline;
 
 /**
  * @author FedePalaz & GiovanniNovelli9 & Baldellaux
@@ -31,8 +32,7 @@ public class BotController {
      * Costruttore
      */
     public BotController() {
-        // TODO Leggere il token da file
-        botToken = "1459389445:AAHYimVPCfD7bGv9xfxSWSWQODbSWuXi2Sc";
+        botToken = JSONOffline.getBotToken();
         bot = new TelegramBot(botToken);
         riceviUpdate();
     }
@@ -64,4 +64,5 @@ public class BotController {
             }
         });
     }
+
 }

@@ -1,0 +1,17 @@
+{
+	"bot" : 
+    {"token" : "1459389445:AAHYimVPCfD7bGv9xfxSWSWQODbSWuXi2Sc"
+    },
+        "bmiAPI" : 
+        {
+            "URL" : "https://body-mass-index-bmi-calculator.p.rapidapi.com/",
+            "rapidapi-key" : "b799bcf831msha880494b27071fbp184accjsna4aba3b9c35d", 
+            "rapidapi-host" : "body-mass-index-bmi-calculator.p.rapidapi.com"
+        },
+        "foodAPI" : 
+        {
+            "URL" : "https://food-calorie-data-search.p.rapidapi.com/",
+            "rapidapi-key" : "b799bcf831msha880494b27071fbp184accjsna4aba3b9c35d",
+            "rapidapi-host" : "food-calorie-data-search.p.rapidapi.com"
+        }
+ }   

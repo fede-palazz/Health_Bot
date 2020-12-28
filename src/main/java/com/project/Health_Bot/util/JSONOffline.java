@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package com.project.Health_Bot.util;
 
 import java.io.FileReader;
@@ -22,6 +25,8 @@ import com.project.Health_Bot.model.Utente;
 /**
  * Gestisce la lettura/scrittura di un file JSON locale
  *
+ * @author FedePalaz & GiovanniNovelli9 & Baldellaux
+ * 
  */
 public class JSONOffline {
 
@@ -29,14 +34,22 @@ public class JSONOffline {
      * Percorso del DB degli utenti
      */
     private final static String pathUtenti = "src/main/resources/utenti.json";
+
     /**
      * Percorso del file contenente gli allenamenti
      */
     private final static String pathAllenamenti = "src/main/resources/allenamenti.json";
+
     /**
      * Percorso del file contenente le diete
      */
     private final static String pathDieta = "src/main/resources/dieta.json";
+
+    /**
+     * Percorso del file contenente le info sul BOT e sulle chiamate alle API
+     */
+    private final static String pathConfig = "src/main/resources/config.json";
+
     /**
      * Oggetto FileWriter utilizzato per leggere/scrivere su file JSON
      */
@@ -402,7 +415,7 @@ public class JSONOffline {
     }
 
     /**
-     * Metodo che inserisce l'oggetto Alimento nel Vector(Alimento) del pasto scelto
+     * Inserisce l'oggetto Alimento nel Vector(Alimento) del pasto scelto
      * 
      * @param ja JSONArray che contiene il pasto selezionato
      */
@@ -414,6 +427,18 @@ public class JSONOffline {
             pasto.add(new Alimento((String) jo.get("nome"), ((Long) jo.get("kcal")).intValue(),
                     ((Long) jo.get("qta")).intValue()));
         }
+    }
+
+    /**
+     * Restituisce il token del bot
+     * 
+     * @return token
+     */
+    public static String getBotToken() {
+        JSONObject jo = caricaObj(pathConfig);
+        JSONObject bot = (JSONObject) jo.get("bot");
+
+        return (String) bot.get("token").toString();
     }
 
 }
