@@ -1,4 +1,6 @@
-
+/**
+ * 
+ */
 package com.project.Health_Bot.dao;
 
 import java.util.HashMap;
@@ -75,6 +77,7 @@ public class UtenteRegDaoImpl implements UtenteRegDao {
         }
     }
 
+    @Override
     public void inserisciMisurazione(String id) {
         Utente user = utentiReg.get(id);
         switch (getTipo(user)) {

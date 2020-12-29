@@ -4,7 +4,7 @@
 package com.project.Health_Bot.util;
 
 /**
- * Classen che contiene metodi per i calcoli dei parametri
+ * Classe che contiene metodi per i calcoli dei parametri
  * 
  * @author FedePalaz & GiovanniNovelli9 & Baldellaux
  *

@@ -227,7 +227,7 @@ public class Menu {
      * 
      * @return response
      */
-    public static SendMessage getVistaRiepilogoSalute(long chatId, String tipo, float peso, float iw, float fcg,
+    public static SendMessage getVistaRiepilogoSalute(long chatId, String tipo, float peso, float iw, int fcg,
             float bmr, float bmi, float lbm) {
         // Testo del messaggio
         String mess = ("⛑ Riepilogo dati SALUTE ⛑\n" + "livello di attività fisica 💪🏻: " + tipo + "\n" + "peso: "

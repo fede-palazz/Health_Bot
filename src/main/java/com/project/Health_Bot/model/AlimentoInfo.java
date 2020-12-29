@@ -1,8 +1,17 @@
+/**
+ * 
+ */
 package com.project.Health_Bot.model;
 
+/**
+ * @author FedePalaz & GiovanniNovelli9 & Baldellaux
+ * 
+ *         Sottoclasse di Alimento che modella il generico alimento, aggiungendo informazioni
+ *
+ */
 public class AlimentoInfo extends Alimento {
 
-    private float proteine, lipidi, carbo;
+    private int proteine, lipidi, carbo;
 
     /**
      * Costruttore
@@ -14,7 +23,7 @@ public class AlimentoInfo extends Alimento {
      * @param lipidi
      * @param carbo
      */
-    public AlimentoInfo(String nome, int kcal, int qta, float proteine, float lipidi, float carbo) {
+    public AlimentoInfo(String nome, int kcal, int qta, int proteine, int lipidi, int carbo) {
         super(nome, kcal, qta);
         this.proteine = proteine;
         this.lipidi = lipidi;
@@ -25,7 +34,7 @@ public class AlimentoInfo extends Alimento {
      * 
      * @return energia
      */
-    public float getProteine() {
+    public int getProteine() {
         return proteine;
     }
 
@@ -33,7 +42,7 @@ public class AlimentoInfo extends Alimento {
      * 
      * @param proteine
      */
-    public void setProteine(float proteine) {
+    public void setProteine(int proteine) {
         this.proteine = proteine;
     }
 
@@ -41,7 +50,7 @@ public class AlimentoInfo extends Alimento {
      * 
      * @return lipidi
      */
-    public float getLipidi() {
+    public int getLipidi() {
         return lipidi;
     }
 
@@ -49,7 +58,7 @@ public class AlimentoInfo extends Alimento {
      * 
      * @param lipidi
      */
-    public void setLipidi(float lipidi) {
+    public void setLipidi(int lipidi) {
         this.lipidi = lipidi;
     }
 
@@ -57,7 +66,7 @@ public class AlimentoInfo extends Alimento {
      * 
      * @return carboidrati
      */
-    public float getCarbo() {
+    public int getCarbo() {
         return carbo;
     }
 
@@ -65,7 +74,7 @@ public class AlimentoInfo extends Alimento {
      * 
      * @param carboidrati
      */
-    public void setCarbo(float carbo) {
+    public void setCarbo(int carbo) {
         this.carbo = carbo;
     }
 

@@ -1,4 +1,6 @@
-
+/**
+ * 
+ */
 package com.project.Health_Bot.dao;
 
 import com.project.Health_Bot.model.Misurazione;

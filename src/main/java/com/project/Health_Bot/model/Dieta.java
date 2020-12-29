@@ -1,9 +1,18 @@
+/**
+ * 
+ */
 package com.project.Health_Bot.model;
 
 import java.util.List;
 import java.util.Vector;
 import com.project.Health_Bot.util.JSONOffline;
 
+/**
+ * Classe che modella l'oggetto dieta
+ * 
+ * @author FedePalaz & GiovanniNovelli9 & Baldellaux
+ *
+ */
 public class Dieta {
 
     // vector di alimenti per ogni singolo pasto
@@ -20,6 +29,9 @@ public class Dieta {
      */
     private int tipiPasti;
 
+    /**
+     * Costruttore
+     */
     public Dieta() {
         colazione = new Vector<Alimento>();
         pranzo = new Vector<Alimento>();
