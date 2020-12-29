@@ -58,6 +58,7 @@ public class JSONOnlineTest extends TestCase{
 		Vector<Object> nutrienti = JSONOnline.FOOD_API(cibo);
 		assertNotNull(nutrienti);
 	}
-	
+	//test su APIResponseException
+	//TODO
 }
 

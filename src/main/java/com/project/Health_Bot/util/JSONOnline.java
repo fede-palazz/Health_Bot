@@ -94,7 +94,7 @@ public class JSONOnline {
         try {
             response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
             if (response == null) {
-                throw new Exception("API_FOOD non risponde");
+                throw new APIResponseException("API_FOOD non risponde");
             }
         }
         catch (IOException e) {
@@ -103,7 +103,7 @@ public class JSONOnline {
         catch (InterruptedException e) {
             e.printStackTrace();
         }
-        catch (Exception e) {
+        catch (APIResponseException e) {
             return null;
         }
 
