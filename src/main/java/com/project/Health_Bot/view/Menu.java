@@ -96,6 +96,23 @@ public class Menu {
     }
 
     /**
+     * Tasto (1.3)
+     * 
+     * @param chatId
+     * @return
+     */
+    public static SendMessage getVistaPesoSucc(long chatId) {
+        // Testo del messaggio
+        String mess = ("Peso registrato con successo!");
+        // Crea l'oggetto di risposta
+        SendMessage response = new SendMessage(chatId, mess);
+        //Rimuove la tastiera
+        Keyboard tastiera = new ReplyKeyboardRemove();
+        response.replyMarkup(tastiera);
+        return response;
+    }
+
+    /**
      * Tasto (2)
      * Metodo che consiglia all'utente come tenersi in forma
      * 
@@ -195,7 +212,7 @@ public class Menu {
      * 
      * @return response
      */
-    public static SendMessage getVistaInfoNutr(long chatId, Vector<Object> alimento) {
+    public static SendMessage getVistaInfoNutr(long chatId, Vector<Integer> alimento) {
         // Testo del messaggio
         String mess = ("L'alimento scelto fornisce " + alimento.get(0) + "[Kcal], ripartite in: \n" + alimento.get(2)
                 + " carboidrati 🍝\n" + alimento.get(1) + " proteine 🥩\n" + alimento.get(3) + " grassi 🧈\n");
@@ -277,6 +294,7 @@ public class Menu {
     /**
      * Tasto (5.2)
      * Da finire con le statistiche scelte
+     * TODO
      * 
      * @param chatId
      * @return response
