@@ -54,7 +54,7 @@ public class Utente {
      * @param peso
      * @param annoNascita
      */
-    public Utente(char sesso, int altezza, float peso, int annoNascita) {
+    public Utente(Character sesso, int altezza, float peso, int annoNascita) {
         this.sesso = sesso;
         this.altezza = altezza;
         this.peso = peso;
@@ -73,7 +73,7 @@ public class Utente {
      * 
      * @param sesso
      */
-    public void setSesso(char sesso) {
+    public void setSesso(Character sesso) {
         this.sesso = sesso;
     }
 
