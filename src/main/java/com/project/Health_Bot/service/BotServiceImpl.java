@@ -242,6 +242,7 @@ public class BotServiceImpl implements BotService {
                 utente.getEta().get());
         int fcg = ParamNutr.calcolaFCG(bmr, tipo);
         float iw = ParamNutr.calcolaIW(utente.getSesso().get(), utente.getAltezza().get());
+        Float peso = utenteRegDao.getUltimaMisurazione(utente).getPeso();
 
         switch (mess) {
 
@@ -269,8 +270,7 @@ public class BotServiceImpl implements BotService {
             return view;
 
         case "Allenamento consigliato 🏋️🏻️": // Tasto (2.2)
-            view.add(Menu.getVistaAllenamento(chatId, utenteRegDao.getTipo(utenteRegDao.getUtente(userId)), username,
-                    utenteRegDao.getUtente(userId).getAllenamento()));
+            view.add(Menu.getVistaAllenamento(chatId, utenteRegDao.getTipo(utente), username, utente.getAllenamento()));
             view.add(Menu.getVistaMenu(chatId));
             return view;
 
@@ -285,7 +285,7 @@ public class BotServiceImpl implements BotService {
             return view;
 
         case "Riepilogo salute ⛑": // Tasto (4)
-            view.add(Menu.getVistaRiepilogoSalute(chatId, tipo, utente.getPeso().get(), iw, fcg, bmr, bmi, lbm));
+            view.add(Menu.getVistaRiepilogoSalute(chatId, tipo, peso, iw, fcg, bmr, bmi, lbm));
             view.add(Menu.getVistaMenu(chatId));
             return view;
 
@@ -296,7 +296,7 @@ public class BotServiceImpl implements BotService {
         case "Diagnostica 🩺": // Tasto (5.1)
             String condizione = ParamNutr.condCorp(bmi);
 
-            view.add(Menu.getVistaDiag(chatId, bmi, condizione, utente.getPeso().get(), iw));
+            view.add(Menu.getVistaDiag(chatId, bmi, condizione, peso, iw));
             view.add(Menu.getVistaMenu(chatId));
             return view;
 
@@ -355,11 +355,14 @@ public class BotServiceImpl implements BotService {
         if (utenteRegDao.getUltimaMisurazione(utente).isEmpty()) {
             // mess = nuovo peso
             try {
-                float peso = Float.parseFloat(mess);
-                lbm = ParamNutr.calcolaLBM(utente.getSesso().get(), peso, utente.getAltezza().get());
-                //bmi = JSONOnline.BMI_API(peso, utente.getAltezza().get());
-                bmi = ParamNutr.calcolaBMI(peso, utente.getAltezza().get());
+                float pesoNuovo = Float.parseFloat(mess);
+                lbm = ParamNutr.calcolaLBM(utente.getSesso().get(), pesoNuovo, utente.getAltezza().get());
+                bmi = JSONOnline.BMI_API(pesoNuovo, utente.getAltezza().get());
+                // Aggiorna la misurazione
                 utenteRegDao.inserisciMisurazione(userId, peso, lbm, bmi);
+                // Salvo lo stato del DB in locale
+                utenteRegDao.salvaDB();
+                // Ritorno la vista del menù
                 view.add(Menu.getVistaPesoSucc(chatId));
                 view.add(Menu.getVistaMenu(chatId));
             }

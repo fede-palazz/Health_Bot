@@ -103,4 +103,9 @@ public interface UtenteRegDao {
      */
     public boolean isLastMisEmpty(Utente user);
 
+    /**
+     * Salva il DB degli utenti e delle misurazioni nel file JSON locale
+     */
+    public void salvaDB();
+
 }

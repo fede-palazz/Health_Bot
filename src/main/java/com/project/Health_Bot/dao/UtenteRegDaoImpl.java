@@ -135,4 +135,9 @@ public class UtenteRegDaoImpl implements UtenteRegDao {
             return false;
     }
 
+    @Override
+    public void salvaDB() {
+        JSONOffline.salvaDB(utentiReg);
+    }
+
 }

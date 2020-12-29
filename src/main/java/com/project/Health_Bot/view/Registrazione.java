@@ -41,9 +41,7 @@ public class Registrazione {
     public static SendMessage getVistaSesso(long chatId) {
         String mess = ("Sei un maschio ♀️ o una femmina ♂️ ?");
         SendMessage response = new SendMessage(chatId, mess);
-        Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "M", "F" })
-        		.oneTimeKeyboard(true)
-                .resizeKeyboard(true);
+        Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "M", "F" }).resizeKeyboard(true);
         response.replyMarkup(tastiera);
         return response;
     }
@@ -108,9 +106,7 @@ public class Registrazione {
         SendMessage response = new SendMessage(chatId, mess);
         // Aggiungo dei pulsanti alla risposta
         Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "Pesante 🏋🏻", "Moderato 🏃🏻‍♂️" },
-                        new String[] { "Sedentario 🧘🏻‍♂️" })
-        		        .oneTimeKeyboard(true) // Riduce "ad icona" la tastiera una volta premuto un tasto
-                        .resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
+                new String[] { "Sedentario 🧘🏻‍♂️" }).resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
         response.replyMarkup(tastiera);
         return response;
     }
@@ -124,7 +120,7 @@ public class Registrazione {
     public static SendMessage getVistaRegistrato(long chatId) {
         // Testo del messaggio
         String mess = ("Registrazione completata! \n"
-        		+ "Ora potrai accedere al menù principale e divertirti un po' con me 😊😊");
+                + "Ora potrai accedere al menù principale e divertirti un po' con me 😊😊");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
         //Rimuove la tastiera

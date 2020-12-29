@@ -34,13 +34,14 @@ public class JSONOnline {
     public static float BMI_API(float peso, int altezza) throws ParseException, APIResponseException {
 
         JSONObject jo = (JSONObject) JSONOffline.caricaObj("src/main/resources/config.json").get("bmiAPI");
-        String url = ((JSONObject) jo.get("URL")).toString();
-        String key = ((JSONObject) jo.get("key")).toString();
-        String host = ((JSONObject) jo.get("host")).toString();
-
-        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(url + peso + "&height=" + altezza))
-                .header("x-rapidapi-key", key).header("x-rapidapi-host", host)
-                .method("GET", HttpRequest.BodyPublishers.noBody()).build();
+        String url = jo.get("URL").toString();
+        String key = jo.get("key").toString();
+        String host = jo.get("host").toString();
+        // L'altezza deve essere convertita da cm a m
+        float altezzaMetr = (float) altezza / 100;
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url + "weight=" + peso + "&height=" + altezzaMetr)).header("x-rapidapi-key", key)
+                .header("x-rapidapi-host", host).method("GET", HttpRequest.BodyPublishers.noBody()).build();
         HttpResponse<String> response = null;
 
         try {
@@ -66,9 +67,14 @@ public class JSONOnline {
         JSONObject obj = (JSONObject) parser.parse(risposta);
 
         // System.out.println(obj.get("bmi")); //mi da il valore del BMI
-        float bmi = (float) obj.get("bmi");
-        // Un modo per troncare a due cifre dopo la virgola...
-        return (float) Math.round(bmi * 100) / 100;
+        try {
+            float bmi = Float.parseFloat(Double.toString((double) obj.get("bmi")));
+            // Un modo per troncare a due cifre dopo la virgola...
+            return (float) Math.round(bmi * 100) / 100;
+        }
+        catch (Exception e) {
+            return ParamNutr.calcolaBMI(peso, altezza);
+        }
     }
 
     /**
@@ -81,9 +87,9 @@ public class JSONOnline {
     public static Vector<Integer> FOOD_API(String cibo) throws ParseException {
 
         JSONObject j0 = (JSONObject) JSONOffline.caricaObj("src/main/resources/config.json").get("foodAPI");
-        String url = ((JSONObject) j0.get("URL")).toString();
-        String key = ((JSONObject) j0.get("key")).toString();
-        String host = ((JSONObject) j0.get("host")).toString();
+        String url = j0.get("URL").toString();
+        String key = j0.get("key").toString();
+        String host = j0.get("host").toString();
 
         HttpRequest request = HttpRequest.newBuilder().uri(URI.create(url + cibo)).header("x-rapidapi-key", key)
                 .header("x-rapidapi-host", host).method("GET", HttpRequest.BodyPublishers.noBody()).build();

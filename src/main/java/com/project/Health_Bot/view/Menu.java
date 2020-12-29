@@ -33,8 +33,7 @@ public class Menu {
         // Pulsanti del menù
         Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "Aggiorna parametri 🔄", "Consigli ️🤔🙌🏻" },
                 new String[] { "Info nutrizionali 🍽‍️", "Riepilogo salute ⛑" },
-                new String[] { "‍️Conosci il tuo corpo 🧘🏻‍♂️️", "Info generali ℹ️" }).oneTimeKeyboard(true) // Riduce "ad icona" la tastiera una volta premuto un tasto
-                        .resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
+                new String[] { "‍️Conosci il tuo corpo 🧘🏻‍♂️️", "Info generali ℹ️" }).resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
         response.replyMarkup(tastiera);
         return response;
     }
@@ -53,8 +52,7 @@ public class Menu {
         SendMessage response = new SendMessage(chatId, mess);
         // Aggiungo dei pulsanti alla risposta
         Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "Aggiorna peso ⚖", "Aggiorna att. fisica 💪🏻" },
-                new String[] { "Torna al menù ⬅️" }).oneTimeKeyboard(true) // Riduce "ad icona" la tastiera una volta premuto un tasto
-                        .resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
+                new String[] { "Torna al menù ⬅️" }).resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
         response.replyMarkup(tastiera);
         return response;
     }
@@ -89,8 +87,7 @@ public class Menu {
         SendMessage response = new SendMessage(chatId, mess);
         // Aggiungo dei pulsanti alla risposta
         Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "Pesante 🏋️🏻️‍️", "Moderato 🏃🏻‍♂️" },
-                new String[] { "Sedentario 🧘🏻️", "Torna al menù ⬅️" }).oneTimeKeyboard(true) // Riduce "ad icona" la tastiera una volta premuto un tasto
-                        .resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
+                new String[] { "Sedentario 🧘🏻️", "Torna al menù ⬅️" }).resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
         response.replyMarkup(tastiera);
         return response;
     }
@@ -130,8 +127,7 @@ public class Menu {
         // Aggiungo dei pulsanti alla risposta
         Keyboard tastiera = new ReplyKeyboardMarkup(
                 new String[] { "Dieta consigliata 😋", "Allenamento consigliato 🏋️🏻️" },
-                new String[] { "Torna al menù ⬅️" }).oneTimeKeyboard(true) // Riduce "ad icona" la tastiera una volta premuto un tasto
-                        .resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
+                new String[] { "Torna al menù ⬅️" }).resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
         response.replyMarkup(tastiera);
         return response;
     }
@@ -263,8 +259,7 @@ public class Menu {
         SendMessage response = new SendMessage(chatId, mess);
         // Aggiungo dei pulsanti alla risposta
         Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "Diagnostica 🩺", "📊Statistiche📈" },
-                new String[] { "Torna al menù ⬅️" }).oneTimeKeyboard(true) // Riduce "ad icona" la tastiera una volta premuto un tasto
-                        .resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
+                new String[] { "Torna al menù ⬅️" }).resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
         response.replyMarkup(tastiera);
         return response;
     }
@@ -323,8 +318,7 @@ public class Menu {
         SendMessage response = new SendMessage(chatId, mess);
         // Aggiungo dei pulsanti alla risposta
         Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "BMI", "IW‍" }, new String[] { "BMR️", "FCG" },
-                new String[] { "LBM️", "Torna al menù ⬅️" }).oneTimeKeyboard(true) // Riduce "ad icona" la tastiera una volta premuto un tasto
-                        .resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
+                new String[] { "LBM️", "Torna al menù ⬅️" }).resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
         response.replyMarkup(tastiera);
         return response;
     }

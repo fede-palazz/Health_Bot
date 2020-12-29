@@ -269,12 +269,24 @@ public class JSONOffline {
     @SuppressWarnings("unchecked")
     public static void salvaDB(HashMap<String, Utente> db) {
 
-        JSONArray ja = new JSONArray();
+        JSONArray ja = new JSONArray(); // JSONArray di utenti di cui salvare lo stato
+        // Copio gli utenti in memoria nell'array
         db.forEach((id, utente) -> {
             JSONObject user = new JSONObject();
             user.put("id", id);
             user.put("utente", getUtenteObj(utente));
             ja.add(user);
+        });
+        // Ora devo caricare anche gli utenti salvati in locale che non sono in memoria
+        HashMap<String, Utente> dbLocale = caricaDB(); // Carica tutto il db locale in memoria
+        // Devo scartare gli utenti che sono presenti in db (database in memoria)
+        dbLocale.forEach((id, utente) -> {
+            if (!db.containsKey(id)) {// Se l'utente non era presente in memoria
+                JSONObject user = new JSONObject();
+                user.put("id", id);
+                user.put("utente", getUtenteObj(utente));
+                ja.add(user);
+            }
         });
         salvaJSONArray(pathUtenti, ja);
     }
