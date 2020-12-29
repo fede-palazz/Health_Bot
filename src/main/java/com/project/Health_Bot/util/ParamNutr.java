@@ -33,9 +33,11 @@ public class ParamNutr {
      */
     public static float calcolaBMR(char sesso, float lbm, int altezza, int eta) {
         if (sesso == 'M')
-            return (float) (66 + (13.7 * (lbm)) + (5 * altezza) - (6.8 * eta));
+            return (float) (Math
+                    .round(((66 + (13.7 * (lbm)) + (5 * altezza) - (6.8 * eta)) / Math.pow(altezza, 2)) * 100d) / 100d);
         else
-            return (float) (65 + (9.6 * (lbm)) + (1.8 * altezza) - (4.7 * eta));
+            return (float) (Math.round(
+                    ((65 + (9.6 * (lbm)) + (1.8 * altezza) - (4.7 * eta)) / Math.pow(altezza, 2)) * 100d) / 100d);
     }
 
     /**
@@ -48,10 +50,10 @@ public class ParamNutr {
      */
     public static float calcolaLBM(char sesso, float peso, int altezza) {
         if (sesso == 'M')
-            return (float) ((1.1 * peso) - 128 * (Math.pow((peso / altezza), 2)));
+            return (float) (Math.round(((1.1 * peso) - 128 * (Math.pow((peso / altezza), 2))) * 100d) / 100d);
 
         else
-            return (float) ((1.07 * peso) - 148 * (Math.pow((peso / altezza), 2)));
+            return (float) (Math.round(((1.07 * peso) - 148 * (Math.pow((peso / altezza), 2))) * 100d) / 100d);
     }
 
     /**
