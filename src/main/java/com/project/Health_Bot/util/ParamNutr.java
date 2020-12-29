@@ -35,11 +35,9 @@ public class ParamNutr {
      */
     public static float calcolaBMR(char sesso, float lbm, int altezza, int eta) {
         if (sesso == 'M')
-            return (float) (Math
-                    .round(((66 + (13.7 * (lbm)) + (5 * altezza) - (6.8 * eta)) / Math.pow(altezza, 2)) * 100d) / 100d);
+            return (float) (Math.round(((66 + (13.7 * lbm) + (5 * altezza) - (6.8 * eta)) * 100d) / 100d));
         else
-            return (float) (Math.round(
-                    ((65 + (9.6 * (lbm)) + (1.8 * altezza) - (4.7 * eta)) / Math.pow(altezza, 2)) * 100d) / 100d);
+            return (float) (Math.round(((65 + (9.6 * lbm) + (1.8 * altezza) - (4.7 * eta)) * 100d) / 100d));
     }
 
     /**
