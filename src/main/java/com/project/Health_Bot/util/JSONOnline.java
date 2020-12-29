@@ -23,68 +23,64 @@ import com.project.Health_Bot.exception.APIResponseException;
  */
 public class JSONOnline {
 
-    /**
-     * 
-     * Metodo che chiama l'API del BMI
-     * 
-     * @return valore del BMI
-     * @throws ParseException
-     * @throws APIResponseException
-     */
-    public static float BMI_API(float peso, int altezza) throws ParseException, APIResponseException {
+	/**
+	 * 
+	 * Metodo che chiama l'API del BMI
+	 * 
+	 * @return valore del BMI
+	 * @throws ParseException
+	 * @throws APIResponseException
+	 */
+	public static float BMI_API(float peso, int altezza) throws ParseException, APIResponseException {
 
-        JSONObject jo = (JSONObject) JSONOffline.caricaObj("src/main/resources/config.json").get("bmiAPI");
-        String url = jo.get("URL").toString();
-        String key = jo.get("key").toString();
-        String host = jo.get("host").toString();
-        // L'altezza deve essere convertita da cm a m
-        float altezzaMetr = (float) altezza / 100;
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url + "weight=" + peso + "&height=" + altezzaMetr)).header("x-rapidapi-key", key)
-                .header("x-rapidapi-host", host).method("GET", HttpRequest.BodyPublishers.noBody()).build();
-        HttpResponse<String> response = null;
+		JSONObject jo = (JSONObject) JSONOffline.caricaObj("src/main/resources/config.json").get("bmiAPI");
+		String url = jo.get("URL").toString();
+		String key = jo.get("key").toString();
+		String host = jo.get("host").toString();
+		// L'altezza deve essere convertita da cm a m
+		float altezzaMetr = (float) altezza / 100;
+		HttpRequest request = HttpRequest.newBuilder()
+				.uri(URI.create(url + "weight=" + peso + "&height=" + altezzaMetr)).header("x-rapidapi-key", key)
+				.header("x-rapidapi-host", host).method("GET", HttpRequest.BodyPublishers.noBody()).build();
+		HttpResponse<String> response = null;
 
-        try {
-            response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
-            if (response == null) {
-                throw new APIResponseException("API_BMI non risponde");
-            }
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-        catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        catch (APIResponseException e) {
-            return ParamNutr.calcolaBMI(peso, altezza);
-        }
+		try {
+			response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+			if (response == null) {
+				throw new APIResponseException("API_BMI non risponde");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (APIResponseException e) {
+			return ParamNutr.calcolaBMI(peso, altezza);
+		}
 
-        String risposta = response.body();
+		String risposta = response.body();
 
-        // convertire da JSONString a JSONObject
-        JSONParser parser = new JSONParser();
-        JSONObject obj = (JSONObject) parser.parse(risposta);
+		// convertire da JSONString a JSONObject
+		JSONParser parser = new JSONParser();
+		JSONObject obj = (JSONObject) parser.parse(risposta);
 
-        // System.out.println(obj.get("bmi")); //mi da il valore del BMI
-        try {
-            float bmi = Float.parseFloat(Double.toString((double) obj.get("bmi")));
-            // Un modo per troncare a due cifre dopo la virgola...
-            return (float) Math.round(bmi * 100) / 100;
-        }
-        catch (Exception e) {
-            return ParamNutr.calcolaBMI(peso, altezza);
-        }
-    }
+		// System.out.println(obj.get("bmi")); //mi da il valore del BMI
+		try {
+			float bmi = Float.parseFloat(Double.toString((double) obj.get("bmi")));
+			// Un modo per troncare a due cifre dopo la virgola...
+			return (float) Math.round(bmi * 100) / 100;
+		} catch (Exception e) {
+			return ParamNutr.calcolaBMI(peso, altezza);
+		}
+	}
 
-    /**
-     * 
-     * Metodo che chiama l'API del FOOD
-     * 
-     * @return il JSONObject contente i valori nutrizionali del cibo scelto
-     * @throws ParseException
-     */
-    public static Vector<Integer> FOOD_API(String cibo) throws ParseException {
+	/**
+	 * 
+	 * Metodo che chiama l'API del FOOD
+	 * 
+	 * @return il JSONObject contente i valori nutrizionali del cibo scelto
+	 * @throws ParseException
+	 */
+	public static Vector<Object> FOOD_API(String cibo) throws ParseException {
 
         JSONObject j0 = (JSONObject) JSONOffline.caricaObj("src/main/resources/config.json").get("foodAPI");
         String url = j0.get("URL").toString();
@@ -98,7 +94,7 @@ public class JSONOnline {
         try {
             response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
             if (response == null) {
-                throw new APIResponseException("API_FOOD non risponde");
+                throw new Exception("API_FOOD non risponde");
             }
         }
         catch (IOException e) {
@@ -107,7 +103,7 @@ public class JSONOnline {
         catch (InterruptedException e) {
             e.printStackTrace();
         }
-        catch (APIResponseException e) {
+        catch (Exception e) {
             return null;
         }
 
@@ -125,13 +121,14 @@ public class JSONOnline {
             // prende il quinto JSON Object di un array
             jo = (JSONObject) array.get(0);
         }
+        
         // Casto tutti i valori a Object
-        int kcal = (Integer.parseInt(((JSONObject) jo.get("energ_kcal")).toString()));
-        int protein = (Integer.parseInt(((JSONObject) jo.get("protein")).toString()));
-        int carbo = (Integer.parseInt(((JSONObject) jo.get("carbohydrt")).toString()));
-        int lipid = (Integer.parseInt(((JSONObject) jo.get("lipid_tot")).toString()));
+        Object kcal =  jo.get("energ_kcal");
+		Object protein = jo.get("protein");
+		Object carbo =  jo.get("carbohydrt");
+		Object lipid = jo.get("lipid_tot");
 
-        Vector<Integer> nut = new Vector<Integer>();
+        Vector<Object> nut = new Vector<Object>();
         nut.add(kcal);
         nut.add(protein);
         nut.add(carbo);

@@ -208,7 +208,7 @@ public class Menu {
      * 
      * @return response
      */
-    public static SendMessage getVistaInfoNutr(long chatId, Vector<Integer> alimento) {
+    public static SendMessage getVistaInfoNutr(long chatId, Vector<Object> alimento) {
         // Testo del messaggio
         String mess = ("L'alimento scelto fornisce " + alimento.get(0) + "[Kcal], ripartite in: \n" + alimento.get(2)
                 + " carboidrati 🍝\n" + alimento.get(1) + " proteine 🥩\n" + alimento.get(3) + " grassi 🧈\n");
