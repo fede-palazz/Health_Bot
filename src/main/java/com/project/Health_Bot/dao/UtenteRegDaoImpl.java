@@ -75,6 +75,21 @@ public class UtenteRegDaoImpl implements UtenteRegDao {
         }
     }
 
+    public void inserisciMisurazione(String id) {
+        Utente user = utentiReg.get(id);
+        switch (getTipo(user)) {
+        case "sed":
+            ((Sedentario) user).inserisciMisurazione();
+            break;
+        case "sport":
+            ((Sportivo) user).inserisciMisurazione();
+            break;
+        case "pes":
+            ((Pesista) user).inserisciMisurazione();
+            break;
+        }
+    }
+
     @Override
     public Utente getUtente(String id) {
         return utentiReg.get(id);

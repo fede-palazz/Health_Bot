@@ -31,9 +31,8 @@ public class JSONOnline {
      * @throws ParseException
      * @throws APIResponseException
      */
-    public float BMI_API(float peso, int altezza) throws ParseException, APIResponseException {
+    public static float BMI_API(float peso, int altezza) throws ParseException, APIResponseException {
 
-        JSONOffline.caricaObj("src/main/resources/config.json");
         JSONObject jo = (JSONObject) JSONOffline.caricaObj("src/main/resources/config.json").get("bmiAPI");
         String url = ((JSONObject) jo.get("URL")).toString();
         String key = ((JSONObject) jo.get("key")).toString();
@@ -79,9 +78,8 @@ public class JSONOnline {
      * @return il JSONObject contente i valori nutrizionali del cibo scelto
      * @throws ParseException
      */
-    public Vector<Integer> FOOD_API(String cibo) throws ParseException {
+    public static Vector<Integer> FOOD_API(String cibo) throws ParseException {
 
-        JSONOffline.caricaObj("src/main/resources/config.json");
         JSONObject j0 = (JSONObject) JSONOffline.caricaObj("src/main/resources/config.json").get("foodAPI");
         String url = ((JSONObject) j0.get("URL")).toString();
         String key = ((JSONObject) j0.get("key")).toString();

@@ -78,6 +78,16 @@ public interface UtenteRegDao {
     public void inserisciMisurazione(String id, float peso, float lbm, float bmi);
 
     /**
+     * Inserisce o aggiorna una misurazione vuota
+     * 
+     * @param id
+     * @param peso
+     * @param lbm
+     * @param bmi
+     */
+    public void inserisciMisurazione(String id);
+
+    /**
      * Restituisce l'ultima misurazione registrata dell'utente specificato
      * 
      * @param id

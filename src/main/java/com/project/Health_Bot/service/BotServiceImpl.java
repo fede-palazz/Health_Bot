@@ -4,8 +4,10 @@
 package com.project.Health_Bot.service;
 
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.pengrad.telegrambot.model.Update;
@@ -13,10 +15,12 @@ import com.pengrad.telegrambot.request.SendMessage;
 import com.project.Health_Bot.dao.UtenteNonRegDao;
 import com.project.Health_Bot.dao.UtenteRegDao;
 import com.project.Health_Bot.exception.InvalidUpdateException;
+import com.project.Health_Bot.model.Misurazione;
 import com.project.Health_Bot.model.Pesista;
 import com.project.Health_Bot.model.Sedentario;
 import com.project.Health_Bot.model.Sportivo;
 import com.project.Health_Bot.model.Utente;
+import com.project.Health_Bot.util.JSONOnline;
 import com.project.Health_Bot.util.ParamNutr;
 import com.project.Health_Bot.view.Menu;
 import com.project.Health_Bot.view.Registrazione;
@@ -29,6 +33,11 @@ import com.project.Health_Bot.view.Registrazione;
  */
 @Service
 public class BotServiceImpl implements BotService {
+
+    /**
+     * Se è true significa che l'utente ha richiesto le info nutrizionali di un alimento
+     */
+    private static HashMap<String, Boolean> richiestaInfoNutr = new HashMap<String, Boolean>();
 
     /**
      * Interfaccia di accesso ai dati degli utenti non registrati
@@ -210,7 +219,6 @@ public class BotServiceImpl implements BotService {
 
     @Override
     public List<SendMessage> gestisciMenu(String mess, String userId, String username, long chatId) {
-
         List<SendMessage> view = new Vector<SendMessage>();
         Utente utente = utenteRegDao.getUtente(userId);
 
@@ -223,8 +231,13 @@ public class BotServiceImpl implements BotService {
         else if (utente instanceof Pesista)
             tipo = "pesante";
 
-        float bmi = ParamNutr.calcolaBMI(utente.getPeso().get(), utente.getAltezza().get());
-        float lbm = ParamNutr.calcolaLBM(utente.getSesso().get(), utente.getPeso().get(), utente.getAltezza().get());
+        // Ultima misurazione registrata
+        Misurazione ultimaMisura = utenteRegDao.getUltimaMisurazione(utente);
+        float bmi = 0, lbm = 0;
+        if (!ultimaMisura.isEmpty()) {
+            bmi = ultimaMisura.getBmi();
+            lbm = ultimaMisura.getLbm();
+        }
         float bmr = ParamNutr.calcolaBMR(utente.getSesso().get(), lbm, utente.getAltezza().get(),
                 utente.getEta().get());
         int fcg = ParamNutr.calcolaFCG(bmr, tipo);
@@ -237,10 +250,14 @@ public class BotServiceImpl implements BotService {
             return view;
 
         case "Aggiorna peso ⚖": // Tasto (1.1)
-            view.add(Menu.getVistaAggPeso(chatId)); // TODO
+            // Inserisce una misurazione vuota o svuota l'ultima giornaliera
+            utenteRegDao.inserisciMisurazione(userId);
+            view.add(Menu.getVistaAggPeso(chatId));
             return view;
 
-        // Tasto (1.2) TODO 
+        case "Aggiorna att. fisica 💪🏻": // Tasto (1.2)
+            view.add(Menu.getVistaAttivita(chatId));
+            return view;
 
         case "Consigli ️🤔🙌🏻": // Tasto (2)
             view.add(Menu.getVistaConsigli(chatId, username));
@@ -262,17 +279,12 @@ public class BotServiceImpl implements BotService {
             return view;
 
         case "Info nutrizionali 🍽": // Tasto (3)
+            // Aggiorno lo stato di richiestaInfoNutr
+            richiestaInfoNutr.put(userId, true);
             view.add(Menu.getVistaAlimento(chatId));
             return view;
 
-        // Tasto (3.1) TODO
-
-        // Tasto (3.2) TODO    
-
         case "Riepilogo salute ⛑": // Tasto (4)
-
-            // TODO prendi dall'ultima misurazione
-
             view.add(Menu.getVistaRiepilogoSalute(chatId, tipo, utente.getPeso().get(), iw, fcg, bmr, bmi, lbm));
             view.add(Menu.getVistaMenu(chatId));
             return view;
@@ -299,83 +311,68 @@ public class BotServiceImpl implements BotService {
 
         case "BMI": // Tasto (6.1)
             view.add(Menu.getVistaInfoBMI(chatId));
+            view.add(Menu.getVistaInfo(chatId));
             return view;
 
         case "IW‍": // Tasto (6.2)
             view.add(Menu.getVistaInfoIW(chatId));
+            view.add(Menu.getVistaInfo(chatId));
             return view;
 
         case "BMR️": // Tasto (6.3)
             view.add(Menu.getVistaInfoBMR(chatId));
+            view.add(Menu.getVistaInfo(chatId));
             return view;
 
         case "FCG": // Tasto (6.4)
             view.add(Menu.getVistaInfoFCG(chatId));
+            view.add(Menu.getVistaInfo(chatId));
             return view;
 
         case "LBM": // Tasto (6.5)
             view.add(Menu.getVistaInfoLBM(chatId));
+            view.add(Menu.getVistaInfo(chatId));
             return view;
 
+        // TODO Aggiorna livello attività fisica
+
         }
-
-        return null;
-    }
-
-    /*
-    case "peso":
-        // Verifico che il peso ottenuto sia valido
-        try {
-            float peso = Float.parseFloat(mess.replace(',', '.'));
-            if (peso > 0 && peso < 300) {
-                // Peso valido
-                utenteRegDao.aggiornaPeso(userId, peso);
-                view.add(Menu.getVistaAttivita(chatId));
+        // Casi particolari
+        // 1 - Utente ha inserito il nome di un cibo --> chiama API Food
+        if (richiestaInfoNutr.get(userId) != null && richiestaInfoNutr.get(userId)) {
+            // mess = nomeCibo
+            try {
+                richiestaInfoNutr.put(userId, false);
+                view.add(Menu.getVistaInfoNutr(chatId, JSONOnline.FOOD_API(mess)));
+                view.add(Menu.getVistaMenu(chatId));
                 return view;
             }
+            catch (ParseException e) {
+                e.printStackTrace();
+            }
         }
-        catch (Exception e) {
-            // Peso inserito non valido
-            view.add(Menu.getVistaErrore(chatId));
-            return view;
-        }
-    
-        // Tasto (1.2)    
-    case "tipo": // Aggiornamento livello attività fisica
-        Utente user;
-        switch (mess) {
-    
-        case "Sedentario 🧘🏻‍♂️":
-            // Aggiorna la misurazione iniziale
-            utenteRegDao.inserisciMisurazione(userId, user.getPeso().get(),
-                    ParamNutr.calcolaLBM(user.getSesso().get(), user.getPeso().get(), user.getAltezza().get()),
-                    ParamNutr.calcolaBMI(user.getPeso().get(), user.getAltezza().get()));
-            // Restituisce la vista del menù
-            view.add(Menu.getVistaMenu(chatId));
-            return view;
-    
-        case "Moderato 🏃🏻‍♂️":
-            // Aggiorna la misurazione iniziale
-            utenteRegDao.inserisciMisurazione(userId, user.getPeso().get(),
-                    ParamNutr.calcolaLBM(user.getSesso().get(), user.getPeso().get(), user.getAltezza().get()),
-                    ParamNutr.calcolaBMI(user.getPeso().get(), user.getAltezza().get()));
-            // Restituisce la vista del menù
-            view.add(Menu.getVistaMenu(chatId));
-            return view;
-    
-        case "Pesante 🏋🏻":
-            // Aggiunge una misurazione iniziale
-            utenteRegDao.inserisciMisurazione(userId, user.getPeso().get(),
-                    ParamNutr.calcolaLBM(user.getSesso().get(), user.getPeso().get(), user.getAltezza().get()),
-                    ParamNutr.calcolaBMI(user.getPeso().get(), user.getAltezza().get()));
-            // Restituisce la vista del menù
-            view.add(Menu.getVistaMenu(chatId));
-            return view;
-    
-        default: // Non ha premuto un pulsante
-            view.add(Registrazione.getVistaErrore(chatId));
+        // 2 - Utente vuole aggiornare il peso (nuova misurazione)
+        if (utenteRegDao.getUltimaMisurazione(utente).isEmpty()) {
+            // mess = nuovo peso
+            try {
+                float peso = Float.parseFloat(mess);
+                lbm = ParamNutr.calcolaLBM(utente.getSesso().get(), peso, utente.getAltezza().get());
+                //bmi = JSONOnline.BMI_API(peso, utente.getAltezza().get());
+                bmi = ParamNutr.calcolaBMI(peso, utente.getAltezza().get());
+                utenteRegDao.inserisciMisurazione(userId, peso, lbm, bmi);
+                view.add(Menu.getVistaPesoSucc(chatId));
+                view.add(Menu.getVistaMenu(chatId));
+            }
+            catch (Exception e) {
+                view.add(Menu.getVistaErrore(chatId));
+            }
             return view;
         }
-        */
+        // 3 - Se inserisce un testo qualsiasi restituisco il menù
+        view.add(Menu.getVistaMenu(chatId));
+
+        return view;
+
+    }
 
 }
