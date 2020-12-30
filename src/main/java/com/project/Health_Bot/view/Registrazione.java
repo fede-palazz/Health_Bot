@@ -24,7 +24,7 @@ public class Registrazione {
      * @return response
      */
     public static SendMessage getVistaWelcome(long chatId, String username) {
-        String mess = ("Ciao " + username + " 👋🏻😊 Benvenuto su Health_Bot! 😉\n"
+        String mess = ("Ciao " + username + " 👋🏻😊 Benvenuto/a su Health_Bot! 😉\n"
                 + "Prima di iniziare e poter accedere alle mie funzionalità, mi servirebbe qualche tuo dato iniziale...");
         SendMessage response = new SendMessage(chatId, mess);
         //Rimuove la tastiera
@@ -119,7 +119,7 @@ public class Registrazione {
      */
     public static SendMessage getVistaRegistrato(long chatId) {
         // Testo del messaggio
-        String mess = ("Registrazione completata! \n"
+        String mess = ("Registrazione completata!  🎉🎉 \n"
                 + "Ora potrai accedere al menù principale e divertirti un po' con me 😊😊");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);

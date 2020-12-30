@@ -58,10 +58,42 @@ Diagrammi delle sequenze:
 
 ![](img/UML/Seq_diagram-Seq_Updates.png)
 
+
+
 ## TECNOLOGIE UTILIZZATE
+
 - Eclipse (IDE)
+
+- Software utilizzati
+
+  
+
+  • Eclipse- ambiente di sviluppo integrato;
+
+  
+
+  • SpringBoot-framework per sviluppo applicazioni Java;
+
+  
+
+  • Postman-API Testing;
+
+  
+
+  • UMLGenerator-ambiente che genera diagrammi UML;
+
+  
+
+  • Maven-strumento di gestione di progetti.
+
 - Spring Boot (Framework backend Java)
-- Telegram BOT API (Documentazione)
+
+- Telegram BOT API (Documentazione) (https://core.telegram.org/bots/api)
+
+
+
+- CalorieNinjas (https://rapidapi.com/calorieninjas/api/calorieninjas/endpoints)
+- BMI Calculator (https://rapidapi.com/SharkAPIs/api/body-mass-index-bmi-calculator/)
 
 
 

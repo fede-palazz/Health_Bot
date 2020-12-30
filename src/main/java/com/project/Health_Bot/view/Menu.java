@@ -82,7 +82,7 @@ public class Menu {
      */
     public static SendMessage getVistaAttivita(long chatId, String tipo, String username) {
         // Testo del messaggio
-        String mess = ("Caro " + username + ", il tuo attuale livello 💪🏻 è: " + tipo + "\n"
+        String mess = ("Caro/a " + username + ", il tuo attuale livello 💪🏻 è: " + tipo + "\n"
                 + "Se vuoi cambiarlo, seleziona il tuo nuovo livello di attività fisica ⬇️: ");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
@@ -135,7 +135,7 @@ public class Menu {
      */
     public static SendMessage getVistaConsigli(long chatId, String username) {
         // Testo del messaggio
-        String mess = ("Caro " + username + "... \n" + "vogliamo aiutarti a raggiungere i tuoi obiettivi, "
+        String mess = ("Caro/a " + username + "... \n" + "vogliamo aiutarti a raggiungere i tuoi obiettivi, "
                 + "per questo abbiamo pensato di regalarti qualche consiglio per tenerti in forma! 💪🏻💪🏻 \n"
                 + "Scegli l'ambito che più ti interessa");
         // Crea l'oggetto di risposta
@@ -158,7 +158,7 @@ public class Menu {
      */
     public static SendMessage getVistaDieta(long chatId, String username, float fcg, List<Vector<Alimento>> dieta) {
         // Testo del messaggio
-        String mess = ("Caro " + username + ", \n"
+        String mess = ("Caro/a " + username + ", \n"
                 + "la dieta 🍽 che ti consiglio 😋, scelta accuratamente in base al valore del tuo FCG, pari a: " + fcg
                 + " é la seguente: \n\n");
 
@@ -194,7 +194,7 @@ public class Menu {
      */
     public static SendMessage getVistaAllenamento(long chatId, String tipo, String username, String allenamento) {
         // Testo del messaggio
-        String mess = ("Caro " + username + ", \n"
+        String mess = ("Caro/a " + username + ", \n"
                 + "dopo aver studiato attentamente il tuo tenore di attività fisica 💪🏻, siamo sicuri che il miglior allenamento per te sia il seguente: \n\n"
                 + allenamento);
         // Crea l'oggetto di risposta
@@ -257,7 +257,7 @@ public class Menu {
                 + "Prova a ricontrollare la traduzione in inglese del nome del cibo scelto.";
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
-        //Rimuove la tastiera
+        //Aggiungo una tastiera
         Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "Torna al menù ⬅️" }).resizeKeyboard(true);
         response.replyMarkup(tastiera);
         return response;
@@ -287,9 +287,10 @@ public class Menu {
         String newTipo = setTipo(tipo);
 
         // Testo del messaggio
-        String mess = ("⛑ Riepilogo dati SALUTE ⛑ \n\n" + "livello di attività fisica 💪🏻: " + newTipo + "\n"
-                + "peso: " + peso + " [Kg]; ⚖\n" + "FCG: " + fcg + " [Kcal]; \n" + "BMR: " + bmr + " [Kcal]; \n"
-                + "BMI: " + bmi + "; \n" + "LBM: " + lbm + " [Kg]. \n");
+        String mess = ("⛑ Riepilogo dati SALUTE ⛑ \n\n" + "- livello di attività fisica 💪🏻: " + newTipo + "\n"
+                + "- peso: " + peso + " [Kg]; \n" + "- FCG: " + fcg + " [Kcal]; \n" + "- BMR: " + bmr + " [Kcal]; \n"
+                + "- BMI: " + bmi + "; \n" + "- LBM: " + lbm + " [Kg]. \n\n"
+                + "Per sapere il significato di questi parametri, premi il tasto Info generali ℹ️");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
         //Rimuove la tastiera
@@ -308,7 +309,7 @@ public class Menu {
      */
     public static SendMessage getVistaConosciCorpo(long chatId, String username) {
         // Testo del messaggio
-        String mess = ("Ciao " + username + " !\n" + "Sai come si vive bene ed in armonia con il mondo? 🧘🏻"
+        String mess = ("Ciao " + username + " !\n" + "Sai come si vive bene ed in armonia con il mondo? 🧘🏻" + "\n"
                 + "Conoscendo e curando il proprio corpo, come ricorda una celebre citazione di Jim Rohn, che recita: \n"
                 + "- Abbi buona cura del tuo corpo, è l'unico posto in cui devi vivere -. \n"
                 + "Per questo ho predisposto per te le seguenti funzioni ⬇️, che ti permettono di diagnosticare la condizione del tuo fisico e informarti riguardo alcune statistiche, suoi tuoi progressi e in confronto agli altri utenti. ");
