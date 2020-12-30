@@ -251,7 +251,7 @@ public class BotServiceImpl implements BotService {
             return view;
 
         case "Aggiorna att. fisica 💪🏻": // Tasto (1.2)
-            view.add(Menu.getVistaAttivita(chatId));
+            view.add(Menu.getVistaAttivita(chatId, tipo, username));
             return view;
 
         case "Consigli ️🙌🏻": // Tasto (2)
@@ -260,7 +260,6 @@ public class BotServiceImpl implements BotService {
 
         case "Dieta consigliata 😋": // Tasto (2.1)
             view.add(Menu.getVistaDieta(chatId, username, fcg, utenteRegDao.getDieta(utente, fcg)));
-            view.add(Menu.getVistaMenu(chatId));
             return view;
 
         case "Allenamento consigliato 🏋🏻": // Tasto (2.2)

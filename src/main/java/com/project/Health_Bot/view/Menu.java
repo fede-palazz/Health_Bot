@@ -80,9 +80,10 @@ public class Menu {
      * 
      * @return response
      */
-    public static SendMessage getVistaAttivita(long chatId) {
+    public static SendMessage getVistaAttivita(long chatId, String tipo, String username) {
         // Testo del messaggio
-        String mess = ("Seleziona il tuo livello di attività fisica 💪🏻: ");
+        String mess = ("Caro " + username + ", il tuo attuale livello 💪🏻 è: " + tipo + "\n"
+                + "Se vuoi cambiarlo, seleziona il tuo nuovo livello di attività fisica ⬇️: ");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
         // Aggiungo dei pulsanti alla risposta
@@ -101,7 +102,7 @@ public class Menu {
      */
     public static SendMessage getVistaPesoSucc(long chatId) {
         // Testo del messaggio
-        String mess = ("Peso registrato con successo!");
+        String mess = ("Peso registrato con successo! ⚖");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
         //Rimuove la tastiera
@@ -118,7 +119,7 @@ public class Menu {
      */
     public static SendMessage getVistaAttivitaSucc(long chatId) {
         // Testo del messaggio
-        String mess = ("Livello di attività fisica aggiornato con successo!");
+        String mess = ("Livello di attività fisica aggiornato con successo! 💪🏻");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
         return response;
@@ -158,22 +159,26 @@ public class Menu {
     public static SendMessage getVistaDieta(long chatId, String username, float fcg, List<Vector<Alimento>> dieta) {
         // Testo del messaggio
         String mess = ("Caro " + username + ", \n"
-                + "la dieta 🍽 che ti consiglio 😋, scelta accuratamente in base al valore del tuo FCG, é la seguente: \n");
+                + "la dieta 🍽 che ti consiglio 😋, scelta accuratamente in base al valore del tuo FCG, pari a: " + fcg
+                + " é la seguente: \n\n");
 
         int i = 0;
         String[] nomePasti = { "Colazione", "Pranzo", "Spuntino", "Cena" };
         for (Vector<Alimento> pasto : dieta) {
             mess += nomePasti[i++] + "\n";
             for (Alimento al : pasto) {
-                mess += "- " + al.getNome() + "  " + al.getQta() + "g  " + al.getKcal() + " Kcal\n";
+                mess += "- " + al.getNome() + ":  " + al.getQta() + "g,  " + al.getKcal() + " Kcal\n";
             }
         }
 
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
-        //Rimuove la tastiera
-        Keyboard tastiera = new ReplyKeyboardRemove();
+        // Aggiungo dei pulsanti alla risposta
+        Keyboard tastiera = new ReplyKeyboardMarkup(
+                new String[] { "Dieta consigliata 😋", "Allenamento consigliato 🏋🏻" },
+                new String[] { "Torna al menù ⬅️" }).resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
         response.replyMarkup(tastiera);
+
         return response;
     }
 
@@ -190,10 +195,16 @@ public class Menu {
     public static SendMessage getVistaAllenamento(long chatId, String tipo, String username, String allenamento) {
         // Testo del messaggio
         String mess = ("Caro " + username + ", \n"
-                + "dopo aver studiato attentamente il tuo tenore di attività fisica 💪🏻, siamo sicuri che il miglior allenamento per te sia il seguente: \n"
+                + "dopo aver studiato attentamente il tuo tenore di attività fisica 💪🏻, siamo sicuri che il miglior allenamento per te sia il seguente: \n\n"
                 + allenamento);
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
+        // Aggiungo dei pulsanti alla risposta
+        Keyboard tastiera = new ReplyKeyboardMarkup(
+                new String[] { "Dieta consigliata 😋", "Allenamento consigliato 🏋🏻" },
+                new String[] { "Torna al menù ⬅️" }).resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
+        response.replyMarkup(tastiera);
+
         return response;
     }
 
@@ -222,7 +233,7 @@ public class Menu {
      */
     public static SendMessage getVistaInfoNutr(long chatId, Vector<Object> alimento) {
         // Testo del messaggio
-        String mess = ("L'alimento " + alimento.get(0) + ", nella seguente quantità in grammi: " + alimento.get(1)
+        String mess = ("L'alimento '" + alimento.get(0) + "', nella seguente quantità in grammi: " + alimento.get(1)
                 + ", \n" + "fornisce " + alimento.get(2) + " [Kcal], ripartite in: \n" + alimento.get(4)
                 + " carboidrati 🍝\n" + alimento.get(3) + " proteine 🥩\n" + alimento.get(5) + " grassi 🧈\n"
                 + "Buon appetito! 🥢🍴 ");
@@ -252,6 +263,18 @@ public class Menu {
         return response;
     }
 
+    public static String setTipo(String tipo) {
+        switch (tipo) {
+        case "sed":
+            return "Sedentario 🧘🏻️";
+        case "sport":
+            return "Moderato 🏃";
+        case "pes":
+            return "Pesante 🏋🏻";
+        }
+        return null;
+    }
+
     /**
      * Tasto (4)
      * Vista di riepilogo dei parametri registrati e calcolati
@@ -260,10 +283,13 @@ public class Menu {
      */
     public static SendMessage getVistaRiepilogoSalute(long chatId, String tipo, float peso, float iw, int fcg,
             float bmr, float bmi, float lbm) {
+
+        String newTipo = setTipo(tipo);
+
         // Testo del messaggio
-        String mess = ("⛑ Riepilogo dati SALUTE ⛑\n\n" + "livello di attività fisica 💪🏻: " + tipo + "\n" + "peso: "
-                + peso + " [Kg]; ⚖\n" + "FCG: " + fcg + " [Kcal]; \n" + "BMR: " + bmr + " [Kcal]; \n" + "BMI: " + bmi
-                + "; \n" + "LBM: " + lbm + " [Kg]; \n");
+        String mess = ("⛑ Riepilogo dati SALUTE ⛑ \n\n" + "livello di attività fisica 💪🏻: " + newTipo + "\n"
+                + "peso: " + peso + " [Kg]; ⚖\n" + "FCG: " + fcg + " [Kcal]; \n" + "BMR: " + bmr + " [Kcal]; \n"
+                + "BMI: " + bmi + "; \n" + "LBM: " + lbm + " [Kg]. \n");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
         //Rimuove la tastiera
@@ -284,8 +310,8 @@ public class Menu {
         // Testo del messaggio
         String mess = ("Ciao " + username + " !\n" + "Sai come si vive bene ed in armonia con il mondo? 🧘🏻"
                 + "Conoscendo e curando il proprio corpo, come ricorda una celebre citazione di Jim Rohn, che recita: \n"
-                + " -Abbi buona cura del tuo corpo, è l'unico posto in cui devi vivere.- \n”"
-                + "Per questo ho predisposto per te le seguenti funzioni, che ti permettono di diagnosticare la condizione del tuo fisico e informarti riguardo alcune statistiche, suoi tuoi progressi e in confronto agli altri utenti. ");
+                + "- Abbi buona cura del tuo corpo, è l'unico posto in cui devi vivere -. \n"
+                + "Per questo ho predisposto per te le seguenti funzioni ⬇️, che ti permettono di diagnosticare la condizione del tuo fisico e informarti riguardo alcune statistiche, suoi tuoi progressi e in confronto agli altri utenti. ");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
         // Aggiungo dei pulsanti alla risposta
