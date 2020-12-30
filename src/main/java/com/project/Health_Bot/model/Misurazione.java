@@ -53,7 +53,7 @@ public class Misurazione {
      * 
      * @return peso
      */
-    public float getPeso() {
+    public Float getPeso() {
         return peso;
     }
 
@@ -69,7 +69,7 @@ public class Misurazione {
      * 
      * @return lbm
      */
-    public float getLbm() {
+    public Float getLbm() {
         return lbm;
     }
 
@@ -85,7 +85,7 @@ public class Misurazione {
      * 
      * @return bmi
      */
-    public float getBmi() {
+    public Float getBmi() {
         return bmi;
     }
 

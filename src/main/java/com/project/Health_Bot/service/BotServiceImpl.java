@@ -222,14 +222,7 @@ public class BotServiceImpl implements BotService {
         List<SendMessage> view = new Vector<SendMessage>();
         Utente utente = utenteRegDao.getUtente(userId);
 
-        String tipo = null;
-
-        if (utente instanceof Sedentario)
-            tipo = "sedentario";
-        else if (utente instanceof Sportivo)
-            tipo = "moderata";
-        else if (utente instanceof Pesista)
-            tipo = "pesante";
+        String tipo = utenteRegDao.getTipo(utente);
 
         // Ultima misurazione registrata
         Misurazione ultimaMisura = utenteRegDao.getUltimaMisurazione(utente);
@@ -271,14 +264,13 @@ public class BotServiceImpl implements BotService {
 
         case "Allenamento consigliato 🏋️🏻️": // Tasto (2.2)
             view.add(Menu.getVistaAllenamento(chatId, utenteRegDao.getTipo(utente), username, utente.getAllenamento()));
-            view.add(Menu.getVistaMenu(chatId));
             return view;
 
         case "Torna al menù ⬅️":
             view.add(Menu.getVistaMenu(chatId));
             return view;
 
-        case "Info nutrizionali 🍽": // Tasto (3)
+        case "Info nutrizionali 🍽‍️": // Tasto (3)
             // Aggiorno lo stato di richiestaInfoNutr
             richiestaInfoNutr.put(userId, true);
             view.add(Menu.getVistaAlimento(chatId));
@@ -359,7 +351,7 @@ public class BotServiceImpl implements BotService {
                 lbm = ParamNutr.calcolaLBM(utente.getSesso().get(), pesoNuovo, utente.getAltezza().get());
                 bmi = JSONOnline.BMI_API(pesoNuovo, utente.getAltezza().get());
                 // Aggiorna la misurazione
-                utenteRegDao.inserisciMisurazione(userId, peso, lbm, bmi);
+                utenteRegDao.inserisciMisurazione(userId, pesoNuovo, lbm, bmi);
                 // Salvo lo stato del DB in locale
                 utenteRegDao.salvaDB();
                 // Ritorno la vista del menù

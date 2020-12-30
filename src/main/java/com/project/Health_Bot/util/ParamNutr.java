@@ -83,10 +83,15 @@ public class ParamNutr {
      * @return valore dell'IW
      */
     public static float calcolaIW(char sesso, int altezza) {
-        if (sesso == 'M')
-            return (float) (Math.pow(altezza / 100, 2) * 22.1);
-        else
-            return (float) (Math.pow(altezza / 100, 2) * 20.6);
+        float altezzaMetr = (float) altezza / 100;
+        if (sesso == 'M') {
+            float iw = (float) altezzaMetr * altezzaMetr * (float) 22.1;
+            return (float) (Math.round(iw * 100d) / 100d);
+        }
+        else {
+            float iw = (float) altezzaMetr * altezzaMetr * (float) 20.6;
+            return (float) (Math.round(iw * 100d) / 100d);
+        }
     }
 
     /**

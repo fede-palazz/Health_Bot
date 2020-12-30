@@ -180,8 +180,8 @@ public class Menu {
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
         //Rimuove la tastiera
-        Keyboard tastiera = new ReplyKeyboardRemove();
-        response.replyMarkup(tastiera);
+        //Keyboard tastiera = new ReplyKeyboardRemove();
+        //response.replyMarkup(tastiera);
         return response;
     }
 
