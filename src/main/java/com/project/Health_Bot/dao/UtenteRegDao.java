@@ -3,6 +3,7 @@
  */
 package com.project.Health_Bot.dao;
 
+import java.util.Vector;
 import com.project.Health_Bot.model.Misurazione;
 import com.project.Health_Bot.model.Utente;
 
@@ -39,11 +40,11 @@ public interface UtenteRegDao {
     public Utente getUtente(String id);
 
     /**
-     * Rimuove l'utente specificato dal DB
+     * Rimuove l'utente specificato dal DB e lo restituisce
      * 
      * @param id
      */
-    public void rimuoviUtente(String id);
+    public Utente rimuoviUtente(String id);
 
     /**
      * Restituisce il tipo di utente ("sed", "sport", "pes")
@@ -88,6 +89,24 @@ public interface UtenteRegDao {
      * @param bmi
      */
     public void inserisciMisurazione(String id);
+
+    /**
+     * Inserisce una misurazione già esistente
+     * 
+     * @param id
+     * @param peso
+     * @param lbm
+     * @param bmi
+     */
+    public void inserisciMisurazione(String id, Misurazione misura);
+
+    /**
+     * Restituisce tutte le misurazioni registrate di un utente
+     * 
+     * @param user
+     * @return
+     */
+    public Vector<Misurazione> getMisurazioni(Utente user);
 
     /**
      * Restituisce l'ultima misurazione registrata dell'utente specificato

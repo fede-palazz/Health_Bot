@@ -10,8 +10,8 @@
         },
         "foodAPI" : 
         {
-            "URL" : "https://food-calorie-data-search.p.rapidapi.com/api/search?keyword=",
-            "key" : "b799bcf831msha880494b27071fbp184accjsna4aba3b9c35d",
-            "host" : "food-calorie-data-search.p.rapidapi.com"
+            "URL" : "https://calorieninjas.p.rapidapi.com/v1/nutrition?query=",
+            "key" : "369152b3f8msh5e2150a6ff28e66p157cb2jsnea2814699668",
+            "host" : "calorieninjas.p.rapidapi.com"
         }
  }   

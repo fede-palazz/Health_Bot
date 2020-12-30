@@ -14,6 +14,7 @@ import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.SendMessage;
 import com.project.Health_Bot.dao.UtenteNonRegDao;
 import com.project.Health_Bot.dao.UtenteRegDao;
+import com.project.Health_Bot.exception.APIResponseException;
 import com.project.Health_Bot.exception.InvalidUpdateException;
 import com.project.Health_Bot.model.Misurazione;
 import com.project.Health_Bot.model.Pesista;
@@ -303,30 +304,92 @@ public class BotServiceImpl implements BotService {
 
         case "BMI": // Tasto (6.1)
             view.add(Menu.getVistaInfoBMI(chatId));
-            view.add(Menu.getVistaInfo(chatId));
             return view;
 
         case "IW‍": // Tasto (6.2)
             view.add(Menu.getVistaInfoIW(chatId));
-            view.add(Menu.getVistaInfo(chatId));
             return view;
 
         case "BMR️": // Tasto (6.3)
             view.add(Menu.getVistaInfoBMR(chatId));
-            view.add(Menu.getVistaInfo(chatId));
             return view;
 
         case "FCG": // Tasto (6.4)
             view.add(Menu.getVistaInfoFCG(chatId));
-            view.add(Menu.getVistaInfo(chatId));
             return view;
 
         case "LBM": // Tasto (6.5)
             view.add(Menu.getVistaInfoLBM(chatId));
-            view.add(Menu.getVistaInfo(chatId));
             return view;
 
-        // TODO Aggiorna livello attività fisica
+        // Verificare che il tipo di utente non sia lo stesso del pulsante premuto (in tal caso non fare nulla)    
+        case "Pesante 🏋🏻":
+            if (tipo != "pes") {
+                // Elimina l'utente dal DB in memoria
+                utenteRegDao.rimuoviUtente(userId);
+                // Ricrea l'utente cambiandone il tipo
+                utenteRegDao.inserisciUtente(userId, new Pesista(utente.getSesso().get(), utente.getAltezza().get(),
+                        utente.getPeso().get(), utente.getAnnoNascita().get()));
+                // Reinserisco le misurazioni salvate
+                for (Misurazione misura : utenteRegDao.getMisurazioni(utente))
+                    utenteRegDao.inserisciMisurazione(userId, misura);
+                // Salvo il DB in memoria su file
+                utenteRegDao.salvaDB();
+                // Restituisce le viste di operazione completata
+                view.add(Menu.getVistaAttivitaSucc(chatId));
+                view.add(Menu.getVistaMenu(chatId));
+                return view;
+            }
+            else {
+                view.add(Menu.getVistaAttivitaSucc(chatId));
+                view.add(Menu.getVistaMenu(chatId));
+                return view;
+            }
+
+        case "Moderato 🏃🏻‍♂️":
+            if (tipo != "sport") {
+                // Elimina l'utente dal DB in memoria
+                utenteRegDao.rimuoviUtente(userId);
+                // Ricrea l'utente cambiandone il tipo
+                utenteRegDao.inserisciUtente(userId, new Sportivo(utente.getSesso().get(), utente.getAltezza().get(),
+                        utente.getPeso().get(), utente.getAnnoNascita().get()));
+                // Reinserisco le misurazioni salvate
+                for (Misurazione misura : utenteRegDao.getMisurazioni(utente))
+                    utenteRegDao.inserisciMisurazione(userId, misura);
+                // Salvo il DB in memoria su file
+                utenteRegDao.salvaDB();
+                // Restituisce le viste di operazione completata
+                view.add(Menu.getVistaAttivitaSucc(chatId));
+                view.add(Menu.getVistaMenu(chatId));
+                return view;
+            }
+            else {
+                view.add(Menu.getVistaAttivitaSucc(chatId));
+                view.add(Menu.getVistaMenu(chatId));
+                return view;
+            }
+        case "Sedentario 🧘🏻️":
+            if (tipo != "sed") {
+                // Elimina l'utente dal DB in memoria
+                utenteRegDao.rimuoviUtente(userId);
+                // Ricrea l'utente cambiandone il tipo
+                utenteRegDao.inserisciUtente(userId, new Sedentario(utente.getSesso().get(), utente.getAltezza().get(),
+                        utente.getPeso().get(), utente.getAnnoNascita().get()));
+                // Reinserisco le misurazioni salvate
+                for (Misurazione misura : utenteRegDao.getMisurazioni(utente))
+                    utenteRegDao.inserisciMisurazione(userId, misura);
+                // Salvo il DB in memoria su file
+                utenteRegDao.salvaDB();
+                // Restituisce le viste di operazione completata
+                view.add(Menu.getVistaAttivitaSucc(chatId));
+                view.add(Menu.getVistaMenu(chatId));
+                return view;
+            }
+            else {
+                view.add(Menu.getVistaAttivitaSucc(chatId));
+                view.add(Menu.getVistaMenu(chatId));
+                return view;
+            }
 
         }
         // Casi particolari
@@ -337,11 +400,15 @@ public class BotServiceImpl implements BotService {
                 richiestaInfoNutr.put(userId, false);
                 view.add(Menu.getVistaInfoNutr(chatId, JSONOnline.FOOD_API(mess)));
                 view.add(Menu.getVistaMenu(chatId));
-                return view;
             }
             catch (ParseException e) {
                 e.printStackTrace();
             }
+            catch (APIResponseException e) {
+                // Nome alimento inserito non valido
+                view.add(Menu.getVistaInfoNutrFail(chatId));
+            }
+            return view;
         }
         // 2 - Utente vuole aggiornare il peso (nuova misurazione)
         if (utenteRegDao.getUltimaMisurazione(utente).isEmpty()) {

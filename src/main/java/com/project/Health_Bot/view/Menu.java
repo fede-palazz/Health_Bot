@@ -21,7 +21,7 @@ public class Menu {
 
     /**
      * Tasto (0)
-     * Metodo che restituisce il menù del bot
+     * Menù principale del bot
      * 
      * @return response
      */
@@ -40,7 +40,7 @@ public class Menu {
 
     /**
      * Tasto (1)
-     * Metodo che permette di selezionare gli aggiornamenti
+     * Vista aggiornamento parametri fisici (peso, livello attività)
      * 
      * @param chatId
      * @return response
@@ -59,7 +59,7 @@ public class Menu {
 
     /**
      * Tasto (1.1)
-     * Metodo che permette di aggornare il peso dell'utente
+     * Vista aggiornamento peso dell'utente
      * 
      * @return response
      */
@@ -76,7 +76,7 @@ public class Menu {
 
     /**
      * Tasto (1.2)
-     * Metodo che fa aggiornare il livello di att. fisica selezionato dall'utente
+     * Vista aggiornamento livello attività fisica
      * 
      * @return response
      */
@@ -86,7 +86,7 @@ public class Menu {
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
         // Aggiungo dei pulsanti alla risposta
-        Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "Pesante 🏋️🏻️‍️", "Moderato 🏃🏻‍♂️" },
+        Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "Pesante 🏋🏻", "Moderato 🏃🏻‍♂️" },
                 new String[] { "Sedentario 🧘🏻️", "Torna al menù ⬅️" }).resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
         response.replyMarkup(tastiera);
         return response;
@@ -94,6 +94,7 @@ public class Menu {
 
     /**
      * Tasto (1.3)
+     * Vista aggiornamento peso completato con successo
      * 
      * @param chatId
      * @return
@@ -110,8 +111,22 @@ public class Menu {
     }
 
     /**
+     * Tasto (1.4)
+     * Vista livello attività fisica aggiornata con successo
+     * 
+     * @return response
+     */
+    public static SendMessage getVistaAttivitaSucc(long chatId) {
+        // Testo del messaggio
+        String mess = ("Livello di attività fisica aggiornato con successo!");
+        // Crea l'oggetto di risposta
+        SendMessage response = new SendMessage(chatId, mess);
+        return response;
+    }
+
+    /**
      * Tasto (2)
-     * Metodo che consiglia all'utente come tenersi in forma
+     * Vista consigli nutrizionali
      * 
      * @param chatId
      * @param username
@@ -134,7 +149,7 @@ public class Menu {
 
     /**
      * Tasto (2.1)
-     * Metodo che consiglia una dieta in base all'fcg dell'utente.
+     * Vista dieta consigliata sulla base dell'fcg
      * 
      * @param fcg
      * @param dieta
@@ -164,7 +179,7 @@ public class Menu {
 
     /**
      * Tasto(2.2)
-     * Metodo che consiglia l'allenamento in base al livello di attività dell'utente.
+     * Vista allenamento consigliato sulla base del livello di attività fisica
      * 
      * @param chatId
      * @param tipo
@@ -179,15 +194,12 @@ public class Menu {
                 + allenamento);
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
-        //Rimuove la tastiera
-        //Keyboard tastiera = new ReplyKeyboardRemove();
-        //response.replyMarkup(tastiera);
         return response;
     }
 
     /**
      * Tasto(3.1)
-     * Metodo che permette all'utente di inserire il nome di un cibo
+     * Vista inserimento nome cibo per analisi dei parametri nutrizionali
      * 
      * @return response
      */
@@ -204,7 +216,7 @@ public class Menu {
 
     /**
      * Tasto(3.2)
-     * Metodo che restituisce i valori nutrionali di un cibo
+     * Vista che restituisce i valori nutrionali di un cibo precedentemente inserito
      * 
      * @return response
      */
@@ -221,9 +233,25 @@ public class Menu {
     }
 
     /**
+     * Tasto(3.3)
+     * Vista che restituisce i valori nutrionali di un cibo precedentemente inserito
+     * 
+     * @return response
+     */
+    public static SendMessage getVistaInfoNutrFail(long chatId) {
+        // Testo del messaggio
+        String mess = "Alimento non trovato. Riprovare!";
+        // Crea l'oggetto di risposta
+        SendMessage response = new SendMessage(chatId, mess);
+        //Rimuove la tastiera
+        Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "Torna al menù ⬅️" }).resizeKeyboard(true);
+        response.replyMarkup(tastiera);
+        return response;
+    }
+
+    /**
      * Tasto (4)
-     * Restituisce la vista relativa al riepilogo
-     * dei parametri salutari
+     * Vista di riepilogo dei parametri registrati e calcolati
      * 
      * @return response
      */
@@ -231,8 +259,8 @@ public class Menu {
             float bmr, float bmi, float lbm) {
         // Testo del messaggio
         String mess = ("⛑ Riepilogo dati SALUTE ⛑\n\n" + "livello di attività fisica 💪🏻: " + tipo + "\n" + "peso: "
-                + peso + "[Kg] ⚖\n" + "FCG: " + fcg + "[Kcal] \n" + "BMR: " + bmr + "[Kcal] \n" + "BMI: " + bmi + " \n"
-                + "LBM: " + lbm + "[Kg] \n");
+                + peso + " [Kg] ⚖\n" + "FCG: " + fcg + " [Kcal] \n" + "BMR: " + bmr + " [Kcal] \n" + "BMI: " + bmi
+                + " \n" + "LBM: " + lbm + " [Kg] \n");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
         //Rimuove la tastiera
@@ -243,7 +271,7 @@ public class Menu {
 
     /**
      * Tasto (5)
-     * Metodo che implementa il tasto conosci il tuo corpo
+     * Vista "conosci il tuo corpo"
      * 
      * @param chatId
      * @param username
@@ -266,7 +294,7 @@ public class Menu {
 
     /**
      * Tasto (5.1)
-     * Metodo che diagnostica parametri in base al BMI ed al peso
+     * Vista diagnostica stato di salute tramite analisi del BMI
      * 
      * @param bmi
      * @param condizione
@@ -288,7 +316,7 @@ public class Menu {
 
     /**
      * Tasto (5.2)
-     * Da finire con le statistiche scelte
+     * Vista relativa alle statistiche sull'andamento del peso e del BMI nel tempo
      * TODO
      * 
      * @param chatId
@@ -307,7 +335,7 @@ public class Menu {
 
     /**
      * Tasto (6)
-     * Metodo che torna cinque diversi bottoni informativi
+     * Menù informativo
      * 
      * @return response
      */
@@ -325,7 +353,7 @@ public class Menu {
 
     /**
      * Tasto (6.1)
-     * Metodo che spiega cos'è il BMI e come è utilizzato nel bot
+     * Vista che spiega cos'è il BMI e come è utilizzato nel bot
      * 
      * @return response
      */
@@ -335,19 +363,16 @@ public class Menu {
                 + "Per farlo, vengono messi in relazione il peso l'altezza dell'individuo attraverso una semplice operazione algebrica ➕➖, cioè il rapporto ➗ tra il peso espresso in chilogrammi ed il quadrato dell'altezza, in metri quadri. \n"
                 + "Come forse hai visto, io ho già calcolato il BMI per te, in base alle tue caratteristische. 😉\n"
                 + "1) Clicca sul pulsante Riepilogo salute ⛑, se vuoi sapere il valore del tuo BMI \n"
-                + "2) Clicca sul pulsante Diagnostica 🩺, se vuoi sapere il tuo livello di adeguatezza fisica in base al BMI"
-                + "3) Clicca sul pulsante 📊Statistiche📈, se invece vuoi conoscere alcune statistiche che riguardano il tuo BMI");
+                + "2) Clicca sul pulsante Diagnostica 🩺 se vuoi sapere il tuo livello di adeguatezza fisica in base al BMI"
+                + "3) Clicca sul pulsante 📊Statistiche📈 se invece vuoi conoscere alcune statistiche che riguardano il tuo BMI");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
-        //Rimuove la tastiera
-        Keyboard tastiera = new ReplyKeyboardRemove();
-        response.replyMarkup(tastiera);
         return response;
     }
 
     /**
      * Tasto (6.2)
-     * Metodo che spiega cos'è l'IW e come è utilizzato nel bot
+     * Vista che spiega cos'è l'IW e come viene utilizzato nel bot
      * 
      * @return response
      */
@@ -359,15 +384,12 @@ public class Menu {
                 + "Clicca sul pulsante Diagnostica 🩺, se vuoi sapere il valore del tuo IW, calcolato in base al tuo peso attuale");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
-        //Rimuove la tastiera
-        Keyboard tastiera = new ReplyKeyboardRemove();
-        response.replyMarkup(tastiera);
         return response;
     }
 
     /**
      * Tasto (6.3)
-     * Metodo che spiega cos'è il BMR e come è utilizzato nel bot
+     * Vista che spiega cos'è il BMR e come viene utilizzato nel bot
      * 
      * @return mess
      */
@@ -381,15 +403,12 @@ public class Menu {
                 + "Clicca sul pulsante Riepilogo salute ⛑, se vuoi sapere il valore del tuo BMR \n");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
-        //Rimuove la tastiera
-        Keyboard tastiera = new ReplyKeyboardRemove();
-        response.replyMarkup(tastiera);
         return response;
     }
 
     /**
      * Tasto (6.4)
-     * Metodo che spiega cos'è l'FCG e come è utilizzato nel bot
+     * Vista che spiega cos'è l'FCG e come viene utilizzato nel bot
      * 
      * @return response
      */
@@ -397,19 +416,16 @@ public class Menu {
         // Testo del messaggio
         String mess = ("L'indice di Fabbisogno Calorico Giornaliero (abbreviato: FCG) è un parametro utile per valutare la quantità di Kcal necessarie per il tuo fabbisogno quotidiano. \n"
                 + "Per calcolarlo è stata utilizzata ➕➖ l’equazione di Harris e Benedict ✖️➗, universalmente accettata in campo scientifico, che tiene conto del BMR e del tipo di attività fisica praticata dall'individuo. \n"
-                + "Come forse hai visto, io ho già calcolato l'FCG per te in base, alle tue caratteristische. 😉\n"
+                + "Come forse hai visto, io ho già calcolato l'FCG per te in base alle tue caratteristische. 😉\n"
                 + "Clicca sul pulsante Riepilogo salute ⛑, se vuoi sapere il valore del tuo FCG \n");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
-        //Rimuove la tastiera
-        Keyboard tastiera = new ReplyKeyboardRemove();
-        response.replyMarkup(tastiera);
         return response;
     }
 
     /**
      * Tasto (6.5)
-     * Metodo che spiega cos'è l'LBM e come è utilizzato nel bot
+     * Vista che spiega cos'è l'LBM e come viene utilizzato nel bot
      * 
      * @return response
      */
@@ -422,9 +438,6 @@ public class Menu {
                 + "2) Clicca sul pulsante 📊Statistiche📈, se invece vuoi conoscere alcune statistiche che riguardano il tuo LBM \n");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
-        //Rimuove la tastiera
-        Keyboard tastiera = new ReplyKeyboardRemove();
-        response.replyMarkup(tastiera);
         return response;
     }
 

@@ -47,8 +47,8 @@ public class UtenteRegDaoImpl implements UtenteRegDao {
         return utentiReg.get(id);
     }
 
-    public void rimuoviUtente(String id) {
-        utentiReg.remove(id);
+    public Utente rimuoviUtente(String id) {
+        return utentiReg.remove(id);
     }
 
     @Override
@@ -94,12 +94,28 @@ public class UtenteRegDaoImpl implements UtenteRegDao {
     }
 
     @Override
+    public void inserisciMisurazione(String id, Misurazione misura) {
+        Utente user = utentiReg.get(id);
+        switch (getTipo(user)) {
+        case "sed":
+            ((Sedentario) user).inserisciMisurazione(misura);
+            break;
+        case "sport":
+            ((Sportivo) user).inserisciMisurazione(misura);
+            break;
+        case "pes":
+            ((Pesista) user).inserisciMisurazione(misura);
+            break;
+        }
+    }
+
+    @Override
     public Utente getUtente(String id) {
         return utentiReg.get(id);
     }
 
     @Override
-    public Misurazione getUltimaMisurazione(Utente user) {
+    public Vector<Misurazione> getMisurazioni(Utente user) {
         Vector<Misurazione> mis = null;
         switch (this.getTipo(user)) {
         case "sed":
@@ -112,6 +128,12 @@ public class UtenteRegDaoImpl implements UtenteRegDao {
             mis = ((Pesista) user).getMisurazioni();
             break;
         }
+        return mis;
+    }
+
+    @Override
+    public Misurazione getUltimaMisurazione(Utente user) {
+        Vector<Misurazione> mis = getMisurazioni(user);
         if (mis.size() > 0)
             return mis.get(mis.size() - 1);
         else
