@@ -176,6 +176,8 @@ public class BotServiceImpl implements BotService {
                 utenteRegDao.inserisciMisurazione(userId, user.getPeso().get(),
                         ParamNutr.calcolaLBM(user.getSesso().get(), user.getPeso().get(), user.getAltezza().get()),
                         ParamNutr.calcolaBMI(user.getPeso().get(), user.getAltezza().get()));
+                // Salva DB in memoria su file
+                utenteRegDao.salvaDB();
                 // Restituisce la vista di registrazione completata
                 view.add(Registrazione.getVistaRegistrato(chatId));
                 view.add(Menu.getVistaMenu(chatId));
@@ -191,6 +193,8 @@ public class BotServiceImpl implements BotService {
                 utenteRegDao.inserisciMisurazione(userId, user.getPeso().get(),
                         ParamNutr.calcolaLBM(user.getSesso().get(), user.getPeso().get(), user.getAltezza().get()),
                         ParamNutr.calcolaBMI(user.getPeso().get(), user.getAltezza().get()));
+                // Salva DB in memoria su file
+                utenteRegDao.salvaDB();
                 // Restituisce la vista di registrazione completata
                 view.add(Registrazione.getVistaRegistrato(chatId));
                 view.add(Menu.getVistaMenu(chatId));
@@ -206,6 +210,8 @@ public class BotServiceImpl implements BotService {
                 utenteRegDao.inserisciMisurazione(userId, user.getPeso().get(),
                         ParamNutr.calcolaLBM(user.getSesso().get(), user.getPeso().get(), user.getAltezza().get()),
                         ParamNutr.calcolaBMI(user.getPeso().get(), user.getAltezza().get()));
+                // Salva DB in memoria su file
+                utenteRegDao.salvaDB();
                 // Restituisce la vista di registrazione completata
                 view.add(Registrazione.getVistaRegistrato(chatId));
                 view.add(Menu.getVistaMenu(chatId));
