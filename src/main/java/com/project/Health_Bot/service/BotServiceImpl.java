@@ -15,6 +15,7 @@ import com.pengrad.telegrambot.request.SendMessage;
 import com.project.Health_Bot.dao.UtenteNonRegDao;
 import com.project.Health_Bot.dao.UtenteRegDao;
 import com.project.Health_Bot.exception.APIResponseException;
+import com.project.Health_Bot.exception.FoodNotFoundException;
 import com.project.Health_Bot.exception.InvalidUpdateException;
 import com.project.Health_Bot.model.Misurazione;
 import com.project.Health_Bot.model.Pesista;
@@ -406,6 +407,10 @@ public class BotServiceImpl implements BotService {
                 e.printStackTrace();
             }
             catch (APIResponseException e) {
+                // API non risponde
+                view.add(Menu.getVistaInfoNutrFail(chatId));
+            }
+            catch (FoodNotFoundException e) {
                 // Nome alimento inserito non valido
                 view.add(Menu.getVistaInfoNutrFail(chatId));
             }
