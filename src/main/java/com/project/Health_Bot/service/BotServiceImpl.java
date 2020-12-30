@@ -253,7 +253,7 @@ public class BotServiceImpl implements BotService {
             view.add(Menu.getVistaAttivita(chatId));
             return view;
 
-        case "Consigli ️🤔🙌🏻": // Tasto (2)
+        case "Consigli ️🙌🏻": // Tasto (2)
             view.add(Menu.getVistaConsigli(chatId, username));
             return view;
 

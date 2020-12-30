@@ -31,7 +31,7 @@ public class Menu {
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
         // Pulsanti del menù
-        Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "Aggiorna parametri 🔄", "Consigli ️🤔🙌🏻" },
+        Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "Aggiorna parametri 🔄", "Consigli ️🙌🏻" },
                 new String[] { "Info nutrizionali 🍽‍️", "Riepilogo salute ⛑" },
                 new String[] { "‍️Conosci il tuo corpo 🧘🏻‍♂️️", "Info generali ℹ️" }).resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
         response.replyMarkup(tastiera);
@@ -119,8 +119,8 @@ public class Menu {
      */
     public static SendMessage getVistaConsigli(long chatId, String username) {
         // Testo del messaggio
-        String mess = ("Caro " + username + "sei molto importante per noi 🥰😎... \n"
-                + "per questo abbiamo pensato di regalarti qualche consiglio per tenerti in forma! 💪🏻💪🏻"
+        String mess = ("Caro " + username + "... \n" + "vogliamo aiutarti a raggiungere i tuoi obiettivi, "
+                + "per questo abbiamo pensato di regalarti qualche consiglio per tenerti in forma! 💪🏻💪🏻 \n"
                 + "Scegli l'ambito che più ti interessa");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
@@ -143,7 +143,7 @@ public class Menu {
     public static SendMessage getVistaDieta(long chatId, String username, float fcg, List<Vector<Alimento>> dieta) {
         // Testo del messaggio
         String mess = ("Caro " + username + ", \n"
-                + "la dieta 🍽 che ti consiglio 😋, scelta accuratamente in base al valore del tuo FCG é la seguente: \n");
+                + "la dieta 🍽 che ti consiglio 😋, scelta accuratamente in base al valore del tuo FCG, é la seguente: \n");
 
         int i = 0;
         String[] nomePasti = { "Colazione", "Pranzo", "Spuntino", "Cena" };
@@ -175,7 +175,7 @@ public class Menu {
     public static SendMessage getVistaAllenamento(long chatId, String tipo, String username, String allenamento) {
         // Testo del messaggio
         String mess = ("Caro " + username + ", \n"
-                + "dopo aver studiato attentamente il tuo tenore di attività fisica 💪🏻, siamo sicuri che il miglior allenamento per te é il seguente: \n"
+                + "dopo aver studiato attentamente il tuo tenore di attività fisica 💪🏻, siamo sicuri che il miglior allenamento per te sia il seguente: \n"
                 + allenamento);
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
@@ -230,9 +230,9 @@ public class Menu {
     public static SendMessage getVistaRiepilogoSalute(long chatId, String tipo, float peso, float iw, int fcg,
             float bmr, float bmi, float lbm) {
         // Testo del messaggio
-        String mess = ("⛑ Riepilogo dati SALUTE ⛑\n" + "livello di attività fisica 💪🏻: " + tipo + "\n" + "peso: "
-                + peso + "[Kg] ⚖\n" + "FCG: " + fcg + "[Kcal] \n" + "BMR: " + bmr + "[Kcal] \n" + "BMI: " + bmi
-                + " 🔢 \n" + "LBM: " + lbm + "[Kg] \n");
+        String mess = ("⛑ Riepilogo dati SALUTE ⛑\n\n" + "livello di attività fisica 💪🏻: " + tipo + "\n" + "peso: "
+                + peso + "[Kg] ⚖\n" + "FCG: " + fcg + "[Kcal] \n" + "BMR: " + bmr + "[Kcal] \n" + "BMI: " + bmi + " \n"
+                + "LBM: " + lbm + "[Kg] \n");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
         //Rimuove la tastiera
