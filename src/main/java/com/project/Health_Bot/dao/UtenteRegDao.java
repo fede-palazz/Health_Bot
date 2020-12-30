@@ -3,7 +3,9 @@
  */
 package com.project.Health_Bot.dao;
 
+import java.util.List;
 import java.util.Vector;
+import com.project.Health_Bot.model.Alimento;
 import com.project.Health_Bot.model.Misurazione;
 import com.project.Health_Bot.model.Utente;
 
@@ -115,6 +117,20 @@ public interface UtenteRegDao {
      * @return
      */
     public Misurazione getUltimaMisurazione(Utente user);
+
+    /**
+     * Restituisce un allenamento casuale in base al tipo di utente
+     * 
+     * @return allenamento
+     */
+    public String getAllenamento(Utente user);
+
+    /**
+     * Restituisce una dieta casuale in base al tipo di utente
+     * 
+     * @return dieta
+     */
+    public List<Vector<Alimento>> getDieta(Utente user, int fcg);
 
     /**
      * Restituisce true se l'ultima misurazione registrata dell'utente è vuota

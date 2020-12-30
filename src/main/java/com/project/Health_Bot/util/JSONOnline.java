@@ -117,7 +117,7 @@ public class JSONOnline {
         // Prende il JSONObjeect esterno
         JSONObject obj = (JSONObject) parser.parse(response.body());
         // Prende il primo array interno
-        JSONArray array = (JSONArray) obj.get(0);
+        JSONArray array = (JSONArray) obj.get("items");
 
         if (array == null || array.isEmpty()) // Cibo inserito non valido
             throw new APIResponseException();

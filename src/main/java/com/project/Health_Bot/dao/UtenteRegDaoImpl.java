@@ -4,8 +4,10 @@
 package com.project.Health_Bot.dao;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Vector;
 import org.springframework.stereotype.Repository;
+import com.project.Health_Bot.model.Alimento;
 import com.project.Health_Bot.model.Misurazione;
 import com.project.Health_Bot.model.Pesista;
 import com.project.Health_Bot.model.Sedentario;
@@ -163,6 +165,38 @@ public class UtenteRegDaoImpl implements UtenteRegDao {
     @Override
     public void salvaDB() {
         JSONOffline.salvaDB(utentiReg);
+    }
+
+    @Override
+    public String getAllenamento(Utente user) {
+
+        switch (this.getTipo(user)) {
+        case "sed":
+            return ((Sedentario) user).getAllenamento();
+
+        case "sport":
+            return ((Sportivo) user).getAllenamento();
+
+        case "pes":
+            return ((Pesista) user).getAllenamento();
+
+        }
+        return null;
+    }
+
+    @Override
+    public List<Vector<Alimento>> getDieta(Utente user, int fcg) {
+        switch (this.getTipo(user)) {
+        case "sed":
+            return ((Sedentario) user).getDieta(fcg);
+
+        case "sport":
+            return ((Sportivo) user).getDieta(fcg);
+
+        case "pes":
+            return ((Pesista) user).getDieta(fcg);
+        }
+        return null;
     }
 
 }

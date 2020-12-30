@@ -259,12 +259,13 @@ public class BotServiceImpl implements BotService {
             return view;
 
         case "Dieta consigliata 😋": // Tasto (2.1)
-            view.add(Menu.getVistaDieta(chatId, username, fcg, utente.getDieta()));
+            view.add(Menu.getVistaDieta(chatId, username, fcg, utenteRegDao.getDieta(utente, fcg)));
             view.add(Menu.getVistaMenu(chatId));
             return view;
 
-        case "Allenamento consigliato 🏋️🏻️": // Tasto (2.2)
-            view.add(Menu.getVistaAllenamento(chatId, utenteRegDao.getTipo(utente), username, utente.getAllenamento()));
+        case "Allenamento consigliato 🏋🏻": // Tasto (2.2)
+            view.add(Menu.getVistaAllenamento(chatId, utenteRegDao.getTipo(utente), username,
+                    utenteRegDao.getAllenamento(utente)));
             return view;
 
         case "Torna al menù ⬅️":

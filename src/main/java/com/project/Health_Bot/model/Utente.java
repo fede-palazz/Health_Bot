@@ -4,9 +4,7 @@
 package com.project.Health_Bot.model;
 
 import java.util.Calendar;
-import java.util.List;
 import java.util.Optional;
-import java.util.Vector;
 
 /**
  * Classe che modella l'utente
@@ -145,24 +143,6 @@ public class Utente {
     public String toString() {
         return "Utente [sesso=" + sesso + ", altezza=" + altezza + ", peso=" + peso + ", annoNascita=" + annoNascita
                 + "]";
-    }
-
-    /**
-     * Metodo implementato dalle sottoclassi che restituisce un allenamento casuale
-     * 
-     * @return allenamento
-     */
-    public String getAllenamento() {
-        return null;
-    }
-
-    /**
-     * Metodo implementato dalle sottoclassi che restituisce una dieta casuale
-     * 
-     * @return dieta
-     */
-    public List<Vector<Alimento>> getDieta() {
-        return null;
     }
 
 }
