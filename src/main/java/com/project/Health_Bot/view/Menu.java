@@ -222,8 +222,10 @@ public class Menu {
      */
     public static SendMessage getVistaInfoNutr(long chatId, Vector<Object> alimento) {
         // Testo del messaggio
-        String mess = ("L'alimento scelto fornisce " + alimento.get(0) + "[Kcal], ripartite in: \n" + alimento.get(2)
-                + " carboidrati 🍝\n" + alimento.get(1) + " proteine 🥩\n" + alimento.get(3) + " grassi 🧈\n");
+        String mess = ("L'alimento: " + alimento.get(0) + ", nella seguente quantità in grammi: " + alimento.get(1)
+                + "\n" + "fornisce " + alimento.get(2) + " [Kcal], ripartite in: \n" + alimento.get(4)
+                + " carboidrati 🍝\n" + alimento.get(3) + " proteine 🥩\n" + alimento.get(5) + " grassi 🧈\n"
+                + "Buon appetito! 🥢🍴 ");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
         //Rimuove la tastiera
@@ -234,7 +236,7 @@ public class Menu {
 
     /**
      * Tasto(3.3)
-     * Vista che restituisce i valori nutrionali di un cibo precedentemente inserito
+     * Avvisa l'utente che il cibo digitato non esiste
      * 
      * @return response
      */
