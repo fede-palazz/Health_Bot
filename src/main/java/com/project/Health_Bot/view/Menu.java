@@ -222,8 +222,8 @@ public class Menu {
      */
     public static SendMessage getVistaInfoNutr(long chatId, Vector<Object> alimento) {
         // Testo del messaggio
-        String mess = ("L'alimento: " + alimento.get(0) + ", nella seguente quantità in grammi: " + alimento.get(1)
-                + "\n" + "fornisce " + alimento.get(2) + " [Kcal], ripartite in: \n" + alimento.get(4)
+        String mess = ("L'alimento " + alimento.get(0) + ", nella seguente quantità in grammi: " + alimento.get(1)
+                + ", \n" + "fornisce " + alimento.get(2) + " [Kcal], ripartite in: \n" + alimento.get(4)
                 + " carboidrati 🍝\n" + alimento.get(3) + " proteine 🥩\n" + alimento.get(5) + " grassi 🧈\n"
                 + "Buon appetito! 🥢🍴 ");
         // Crea l'oggetto di risposta
@@ -242,7 +242,8 @@ public class Menu {
      */
     public static SendMessage getVistaInfoNutrFail(long chatId) {
         // Testo del messaggio
-        String mess = "Alimento non trovato. Riprovare!";
+        String mess = "Alimento non trovato. Riprovare! ❌ \n"
+                + "Prova a ricontrollare la traduzione in inglese del nome del cibo scelto.";
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
         //Rimuove la tastiera
@@ -261,8 +262,8 @@ public class Menu {
             float bmr, float bmi, float lbm) {
         // Testo del messaggio
         String mess = ("⛑ Riepilogo dati SALUTE ⛑\n\n" + "livello di attività fisica 💪🏻: " + tipo + "\n" + "peso: "
-                + peso + " [Kg] ⚖\n" + "FCG: " + fcg + " [Kcal] \n" + "BMR: " + bmr + " [Kcal] \n" + "BMI: " + bmi
-                + " \n" + "LBM: " + lbm + " [Kg] \n");
+                + peso + " [Kg]; ⚖\n" + "FCG: " + fcg + " [Kcal]; \n" + "BMR: " + bmr + " [Kcal]; \n" + "BMI: " + bmi
+                + "; \n" + "LBM: " + lbm + " [Kg]; \n");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
         //Rimuove la tastiera
@@ -364,9 +365,9 @@ public class Menu {
         String mess = ("L'indice di massa corporea (abbreviato: IMC o BMI) è un parametro utile per valutare l'adeguatezza del peso negli individui sani. \n"
                 + "Per farlo, vengono messi in relazione il peso l'altezza dell'individuo attraverso una semplice operazione algebrica ➕➖, cioè il rapporto ➗ tra il peso espresso in chilogrammi ed il quadrato dell'altezza, in metri quadri. \n"
                 + "Come forse hai visto, io ho già calcolato il BMI per te, in base alle tue caratteristische. 😉\n"
-                + "1) Clicca sul pulsante Riepilogo salute ⛑, se vuoi sapere il valore del tuo BMI \n"
-                + "2) Clicca sul pulsante Diagnostica 🩺 se vuoi sapere il tuo livello di adeguatezza fisica in base al BMI"
-                + "3) Clicca sul pulsante 📊Statistiche📈 se invece vuoi conoscere alcune statistiche che riguardano il tuo BMI");
+                + "1) Clicca sul pulsante Riepilogo salute ⛑, se vuoi sapere il valore del tuo BMI. \n"
+                + "2) Clicca sul pulsante Diagnostica 🩺 se vuoi sapere il tuo livello di adeguatezza fisica in base al BMI. \n"
+                + "3) Clicca sul pulsante 📊Statistiche📈 se invece vuoi conoscere alcune statistiche che riguardano il tuo BMI.");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
         return response;
@@ -383,7 +384,7 @@ public class Menu {
         String mess = ("L'indice di peso ideale (abbreviato: PI o IW) è il parametro che indica il peso migliore a cui si può aspirare in base alla propria altezza. \n"
                 + "Esistono varie formule 📝 per calcolarlo, noi abbiamo implementato per te quella più utilizzata, cioè una variante della fomula di Travia. \n"
                 + "Come forse hai visto, io ho già calcolato l'IW per te, in base alle tue caratteristische. 😉\n"
-                + "Clicca sul pulsante Diagnostica 🩺, se vuoi sapere il valore del tuo IW, calcolato in base al tuo peso attuale");
+                + "Clicca sul pulsante Diagnostica 🩺, se vuoi sapere il valore del tuo IW, calcolato in base al tuo peso attuale.");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
         return response;
@@ -397,12 +398,12 @@ public class Menu {
      */
     public static SendMessage getVistaInfoBMR(long chatId) {
         // Testo del messaggio
-        String mess = ("Il metabolismo basale a riposo (abbreviato: MBR o BMR) è un parametro utile per valutare la quantità di calorie consumate svolgendo le funzioni di base per garantire la sopravvivenza, come: "
+        String mess = ("Il metabolismo basale a riposo (abbreviato: MBR o BMR) è un parametro utile per valutare la quantità di calorie consumate svolgendo le funzioni di base per garantire la sopravvivenza, come: \n"
                 + "-la respirazione; \n" + "-la circolazione del sangue; \n"
                 + "-l’elaborazione delle sostanze nutrienti; \n" + "-la riproduzione cellulare. \n"
                 + "Per calcolarlo si tiene conto del sesso dell'individuo, del suo LBM (guarda l'altro tasto infromativo), della sua età e della sua altezza. \n"
                 + "Come hai forse visto, io ho già calcolato il BMR per te, in base alle tue caratteristische. 😉\n"
-                + "Clicca sul pulsante Riepilogo salute ⛑, se vuoi sapere il valore del tuo BMR \n");
+                + "Clicca sul pulsante Riepilogo salute ⛑, se vuoi sapere il valore del tuo BMR.");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
         return response;
@@ -417,9 +418,9 @@ public class Menu {
     public static SendMessage getVistaInfoFCG(long chatId) {
         // Testo del messaggio
         String mess = ("L'indice di Fabbisogno Calorico Giornaliero (abbreviato: FCG) è un parametro utile per valutare la quantità di Kcal necessarie per il tuo fabbisogno quotidiano. \n"
-                + "Per calcolarlo è stata utilizzata ➕➖ l’equazione di Harris e Benedict ✖️➗, universalmente accettata in campo scientifico, che tiene conto del BMR e del tipo di attività fisica praticata dall'individuo. \n"
+                + "Per calcolarlo è stata utilizzata l’equazione di Harris e Benedict 📝, universalmente accettata in campo scientifico, che tiene conto del BMR e del tipo di attività fisica praticata dall'individuo. \n"
                 + "Come forse hai visto, io ho già calcolato l'FCG per te in base alle tue caratteristische. 😉\n"
-                + "Clicca sul pulsante Riepilogo salute ⛑, se vuoi sapere il valore del tuo FCG \n");
+                + "Clicca sul pulsante Riepilogo salute ⛑, se vuoi sapere il valore del tuo FCG.");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
         return response;
@@ -436,8 +437,8 @@ public class Menu {
         String mess = ("L'indice di massa magra (abbreviato: LBM) è un parametro utile per rappresentare tutto ciò che resta dell'organismo dopo averlo privato del grasso di deposito (tessuto adiposo). \n"
                 + "Per calcolarlo è stata utilizzata la formula di James 📝, che tiene conto del sesso, dell'altezza e del peso dell'individuo. \n"
                 + "Come forse hai visto, io ho già calcolato l'LBM per te, in base alle tue caratteristische. 😉\n"
-                + "1) Clicca sul pulsante Riepilogo salute ⛑, se vuoi sapere il valore del tuo LBM \n"
-                + "2) Clicca sul pulsante 📊Statistiche📈, se invece vuoi conoscere alcune statistiche che riguardano il tuo LBM \n");
+                + "1) Clicca sul pulsante Riepilogo salute ⛑, se vuoi sapere il valore del tuo LBM. \n"
+                + "2) Clicca sul pulsante 📊Statistiche📈, se invece vuoi conoscere alcune statistiche che riguardano il tuo LBM.");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
         return response;
