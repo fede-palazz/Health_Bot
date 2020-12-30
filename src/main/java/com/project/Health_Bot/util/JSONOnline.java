@@ -14,6 +14,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import com.project.Health_Bot.exception.APIResponseException;
+import com.project.Health_Bot.exception.FoodNotFoundException;
 
 /**
  * Classe che contiene i metodi che gestiscono i file JSON in online
@@ -84,8 +85,9 @@ public class JSONOnline {
      * @return il JSONObject contente i valori nutrizionali del cibo scelto
      * @throws ParseException
      * @throws APIResponseException
+     * @throws FoodNotFoundException 
      */
-    public static Vector<Object> FOOD_API(String cibo) throws ParseException, APIResponseException {
+    public static Vector<Object> FOOD_API(String cibo) throws ParseException, APIResponseException, FoodNotFoundException {
 
         JSONObject j0 = (JSONObject) JSONOffline.caricaObj("src/main/resources/config.json").get("foodAPI");
         String url = j0.get("URL").toString();
@@ -120,7 +122,7 @@ public class JSONOnline {
         JSONArray array = (JSONArray) obj.get("items");
 
         if (array == null || array.isEmpty()) // Cibo inserito non valido
-            throw new APIResponseException();
+            throw new FoodNotFoundException();
         // JSONObject contenente i valori nutrizionali
         JSONObject jo = (JSONObject) array.get(0);
 
