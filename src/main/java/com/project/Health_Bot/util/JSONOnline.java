@@ -92,6 +92,7 @@ public class JSONOnline {
         String key = j0.get("key").toString();
         String host = j0.get("host").toString();
 
+        cibo = cibo.replaceAll(" ", "%20");
         HttpRequest request = HttpRequest.newBuilder().uri(URI.create(url + cibo)).header("x-rapidapi-key", key)
                 .header("x-rapidapi-host", host).method("GET", HttpRequest.BodyPublishers.noBody()).build();
         HttpResponse<String> response = null;
@@ -118,7 +119,7 @@ public class JSONOnline {
         // Prende il primo array interno
         JSONArray array = (JSONArray) obj.get(0);
 
-        if (array.isEmpty()) // Cibo inserito non valido
+        if (array == null || array.isEmpty()) // Cibo inserito non valido
             throw new APIResponseException();
         // JSONObject contenente i valori nutrizionali
         JSONObject jo = (JSONObject) array.get(0);
