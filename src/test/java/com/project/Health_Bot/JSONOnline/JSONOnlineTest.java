@@ -12,7 +12,7 @@ import com.project.Health_Bot.exception.FoodNotFoundException;
 import com.project.Health_Bot.util.JSONOnline;
 import org.junit.jupiter.api.*;
 
-public class test5 {
+public class JSONOnlineTest {
 	private float peso;
 	private int altezza;
 	private float bmi;
@@ -56,4 +56,5 @@ public class test5 {
 	}
 	
 	//TODO test eccezioni
+	
 }
