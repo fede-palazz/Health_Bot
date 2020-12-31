@@ -2,6 +2,7 @@ package com.project.Health_Bot.JSONOnline;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThrows;
 
 import java.util.Vector;
 
@@ -16,7 +17,8 @@ public class JSONOnlineTest {
 	private float peso;
 	private int altezza;
 	private float bmi;
-	private String cibo;
+	private String cibo_corretto;
+	private String cibo_sbagliato;
 
 	/**
 	 * Inizializza i componenti necessari a testare i metodi.
@@ -27,7 +29,8 @@ public class JSONOnlineTest {
 	void setUp() throws Exception {
 		peso = 80;
 		altezza = 180;
-		cibo = "apple";
+		cibo_corretto = "apple";
+		cibo_sbagliato = "penguin";
 	}
 
 	/**
@@ -51,10 +54,17 @@ public class JSONOnlineTest {
 	@Test
 	@DisplayName("Vettore restituito da FOOD_API è non nullo")
 	public void testToFoodAPI() throws ParseException, APIResponseException, FoodNotFoundException {
-		Vector<Object> nutrienti = JSONOnline.FOOD_API(cibo);
+		Vector<Object> nutrienti = JSONOnline.FOOD_API(cibo_corretto);
 		assertNotNull(nutrienti);
 	}
-	
-	//TODO test eccezioni
-	
+
+	@Test
+	@DisplayName("Corretta generazione dell'eccezione FoodNotFoundException")
+	void testFoodNotFoundException() {
+		
+		FoodNotFoundException e = assertThrows(FoodNotFoundException.class, () -> {JSONOnline.FOOD_API(cibo_sbagliato);});
+		    
+	        assertEquals("Il cibo inserito non è valido", e.getMessage());
+	}
+
 }

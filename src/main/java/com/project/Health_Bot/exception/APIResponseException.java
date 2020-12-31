@@ -32,4 +32,5 @@ public class APIResponseException extends Exception {
 	public APIResponseException(String message) {
 		super(message);
 	}
+	
 }

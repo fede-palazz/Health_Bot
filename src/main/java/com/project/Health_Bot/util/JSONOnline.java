@@ -122,7 +122,7 @@ public class JSONOnline {
         JSONArray array = (JSONArray) obj.get("items");
 
         if (array == null || array.isEmpty()) // Cibo inserito non valido
-            throw new FoodNotFoundException();
+            throw new FoodNotFoundException("Il cibo inserito non è valido");
         // JSONObject contenente i valori nutrizionali
         JSONObject jo = (JSONObject) array.get(0);
 

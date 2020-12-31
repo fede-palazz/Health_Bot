@@ -41,8 +41,7 @@ public class JSONOfflineTest {
 	/**
 	 * metodi da testare
 	 */
-	
-	// TODO isRegistered
+
 	@Test
 	@DisplayName("Verifica se Utente è registrato")
 	public void tesIsRegistred() {
@@ -50,7 +49,6 @@ public class JSONOfflineTest {
 		assertFalse(reg);
 	}
 	
-	// TODO getUtente -> mi da null se non esiste
 	@Test
 	@DisplayName("Verifica se Utente è nullo")
 	public void testGetUtente() {
@@ -58,7 +56,6 @@ public class JSONOfflineTest {
 		assertNotNull(utente);
 	}
 	
-	// TODO getAllenamento -> verifica se mi da null
 	@Test
 	@DisplayName("Verifica se l'allenamento restituito non è nullo")
 	public void testGetAllenamento() {
