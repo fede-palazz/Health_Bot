@@ -1,10 +1,8 @@
 /**
- * TODO
- * Questo package permette al client di fare chiamate attraverso il Bot.
+ * Questo package modella le viste, cioè i messaggi, che il Bot invia all'utente.
  */
 
 /**
  *  @author FedePalaz & GiovanniNovelli9 & Baldellaux
- *
  */
 package com.project.Health_Bot.view;

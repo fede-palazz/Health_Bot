@@ -70,9 +70,9 @@
                 "kcal": 60
             },
             {
-                "nome": "patate",
-                "qta": 150,
-                "kcal": 130
+                "nome": "insalata",
+                "qta": 100,
+                "kcal": 20
             }
             
         ],
@@ -83,9 +83,9 @@
                 "kcal": 542
             },
             {
-                "nome": "pane",
-                "qta": 50,
-                "kcal": 135
+                "nome": "rucola",
+                "qta": 100,
+                "kcal": 28
             },
             {
                 "nome": "patate",
@@ -110,9 +110,9 @@
                 "kcal": 135
             },
             {
-                "nome": "patate",
-                "qta": 150,
-                "kcal": 130
+                "nome": "carote",
+                "qta": 100,
+                "kcal": 41
             },
             {
                 "nome": "arancia",
@@ -211,19 +211,19 @@
                 "kcal": 330
             },
             {
-                "nome": "pane",
-                "qta": 60,
-                "kcal": 165
-            },
-            {
-                "nome": "patate",
-                "qta": 150,
-                "kcal": 130
+                "nome": "purè di patate",
+                "qta": 100,
+                "kcal": 88
             },
             {
                 "nome": "insalata",
                 "qta": 100,
                 "kcal": 15
+            },
+            {
+                "nome": "banana",
+                "qta": 100,
+                "kcal": 89
             }
         ]
     }
