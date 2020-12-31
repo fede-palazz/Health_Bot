@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Vector;
+import com.project.Health_Bot.model.Misurazione;
 
 /**
  * Classe che contiene i metodi che generano le statistiche,
@@ -29,7 +30,7 @@ public class StatsSingole {
      * @param pesi
      * @return valore del peso maggiore
      */
-    public static float pesoMAX(HashMap<Date, Float> pesi) {
+    public static Misurazione pesoMAX(Vector<Misurazione> pesi) {
         // Ordino dal minore al maggiore e ritorno il maggiore
         Collections.sort(pesi);
         // System.out.println("Ecco il peso massimo mai registrato da te: " + pesi.get(pesi.size() - 1));

@@ -160,7 +160,7 @@ public class Menu {
         // Testo del messaggio
         String mess = ("Caro/a " + username + ", \n"
                 + "la dieta 🍽 che ti consiglio 😋, scelta accuratamente in base al valore del tuo FCG, pari a: " + fcg
-                + " é la seguente: \n\n");
+                + " ,é la seguente: \n\n");
 
         int i = 0;
         String[] nomePasti = { "Colazione", "Pranzo", "Spuntino", "Cena" };
@@ -263,18 +263,6 @@ public class Menu {
         return response;
     }
 
-    public static String setTipo(String tipo) {
-        switch (tipo) {
-        case "sed":
-            return "Sedentario 🧘🏻️";
-        case "sport":
-            return "Moderato 🏃";
-        case "pes":
-            return "Pesante 🏋🏻";
-        }
-        return null;
-    }
-
     /**
      * Tasto (4)
      * Vista di riepilogo dei parametri registrati e calcolati
@@ -284,7 +272,19 @@ public class Menu {
     public static SendMessage getVistaRiepilogoSalute(long chatId, String tipo, float peso, float iw, int fcg,
             float bmr, float bmi, float lbm) {
 
-        String newTipo = setTipo(tipo);
+        String newTipo = null;
+
+        switch (tipo) {
+        case "sed":
+            newTipo = "Sedentario 🧘🏻️";
+            break;
+        case "sport":
+            newTipo = "Moderato 🏃";
+            break;
+        case "pes":
+            newTipo = "Pesante 🏋🏻";
+            break;
+        }
 
         // Testo del messaggio
         String mess = ("⛑ Riepilogo dati SALUTE ⛑ \n\n" + "- livello di attività fisica 💪🏻: " + newTipo + "\n"

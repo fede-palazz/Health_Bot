@@ -39,7 +39,7 @@ public class Registrazione {
      * @return response
      */
     public static SendMessage getVistaSesso(long chatId) {
-        String mess = ("Sei un maschio ♀️ o una femmina ♂️ ?");
+        String mess = ("Sei un maschio ♂️ o una femmina ♀ ?");
         SendMessage response = new SendMessage(chatId, mess);
         Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "M", "F" }).resizeKeyboard(true);
         response.replyMarkup(tastiera);
