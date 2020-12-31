@@ -4,15 +4,17 @@
 
 ## INTRODUZIONE
 
-Lo scopo del progetto è quello di realizzare un Web Service in grado di interagire con le API di Telegram e permettere il funzionamento di "Health_Bot", un bot con svariate funzionalità:
+Lo scopo del progetto è quello di realizzare un Web Service in grado di interagire con l' API di Telegram e permettere il funzionamento di "Health_Bot", un bot con svariate funzionalità, tra cui:
 
-- Monitoraggio del peso e del BMI
+- Monitoraggio del peso e del BMI;
 
-- Calcolo del FCG (Fabbisogno Calorico Giornaliero), del PI (Peso ideale) e dell'LBM (Massa magra in kg)
+- Calcolo del FCG (Fabbisogno Calorico Giornaliero), del PI (Peso ideale), del BMR (Fabbisogno Metabolico a Riposo) e dell'LBM (Massa magra in kg);
 
-- Diagnostica della salute (sulla base del BMI)
+- Diagnostica della salute (sulla base del BMI);
 
-- Statistiche su peso e BMI (sia personali per ogni utente, che generali accessibili tramite richieste GET)
+- Consigli sull'allenamento, in base al livello di attività fisica svolta dall'utente, e sulla dieta, in base al valore del suo FCG;
+
+- Statistiche su peso e BMI (sia personali per ogni utente, che generali accessibili tramite richieste GET).
 
   
 
@@ -30,9 +32,9 @@ Per poter iniziare è necessario creare un bot su Telegram interagendo direttame
 
 Successivamente, seguendo le istruzioni indicate da BotFather, sarà possibile, per esempio:
 
-- Scegliere un username per il bot (deve terminare per forza con 'Bot' o 'bot')
+- Scegliere un username per il bot (deve terminare con 'Bot' o 'bot');
 
-- Abilitare/disabilitare il bot ad essere inserito in gruppi
+- Abilitare/disabilitare il bot ad essere inserito in gruppi;
 
 - Scegliere la descrizione tramite il comando '/setdescription'.
 
@@ -62,44 +64,45 @@ Diagrammi delle sequenze:
 
 ## TECNOLOGIE UTILIZZATE
 
-- Eclipse (IDE)
+- Software utilizzati:
 
-- Software utilizzati
+  [Eclipse](https://www.eclipse.org/downloads/) -IDE per scrivere il codice in Java 
+
+  [SpringBoot](https://spring.io/projects/spring-boot) -framework per sviluppo di applicazioni Java
+
+  [PostMan](https://www.postman.com) -Software per l'API Testing
+
+  [UMLGenerator](http://www.umldesigner.org) -utilizzato per il diagramma dei casi d'uso
+
+  [Draw.io](https://app.diagrams.net) -utilizzato per il diagramma delle classi e delle sequenze
+
+  [Typora](https://typora.io) -usato per scrivere il ReadMe.md in formato Markdown
+
+
+
+- Telegram BOT API:
+
+  [Telegram](https://core.telegram.org/bots/api) -Documentazione API telegram 
 
   
 
-  • Eclipse- ambiente di sviluppo integrato;
+- Implentazione per Java (librerie utilizzate):
+
+  [Libreria Pengrad](https://github.com/pengrad/java-telegram-bot-api)
+
+
+
+- REST API esterne:
+
+  [CalorieNinjas](https://rapidapi.com/calorieninjas/api/calorieninjas/endpoints) -API che restituisce le info nutrizionali su di un alimento
+
+  [BMICalculator](https://rapidapi.com/SharkAPIs/api/body-mass-index-bmi-calculator/) -API che calcola automaticamente il BMI di un individuo
 
   
-
-  • SpringBoot-framework per sviluppo applicazioni Java;
-
-  
-
-  • Postman-API Testing;
-
-  
-
-  • UMLGenerator-ambiente che genera diagrammi UML;
-
-  
-
-  • Maven-strumento di gestione di progetti.
-
-- Spring Boot (Framework backend Java)
-
-- Telegram BOT API (Documentazione) (https://core.telegram.org/bots/api)
-
-
-
-- CalorieNinjas (https://rapidapi.com/calorieninjas/api/calorieninjas/endpoints)
-- BMI Calculator (https://rapidapi.com/SharkAPIs/api/body-mass-index-bmi-calculator/)
-
-
 
 ## Contributors
 
-- Federico Palazzi [https://github.com/fedePalazz]
-- Giovanni Novelli [https://github.com/GiovanniNovelli9] 
-- Alessio Baldelli [https://github.com/Baldellaux]
+- [Federico Palazzi](https://github.com/fedePalazz) 
+- [Giovanni Novelli](https://github.com/GiovanniNovelli9) 
+- [Alessio Baldelli](https://github.com/Baldellaux]) 
 
