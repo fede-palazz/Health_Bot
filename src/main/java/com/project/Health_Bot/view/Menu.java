@@ -10,6 +10,7 @@ import com.pengrad.telegrambot.model.request.ReplyKeyboardMarkup;
 import com.pengrad.telegrambot.model.request.ReplyKeyboardRemove;
 import com.pengrad.telegrambot.request.SendMessage;
 import com.project.Health_Bot.model.Alimento;
+import com.project.Health_Bot.model.AlimentoInfo;
 
 /**
  * @author FedePalaz & GiovanniNovelli9 & Baldellaux
@@ -231,12 +232,9 @@ public class Menu {
      * 
      * @return response
      */
-    public static SendMessage getVistaInfoNutr(long chatId, Vector<Object> alimento) {
+    public static SendMessage getVistaInfoNutr(long chatId, AlimentoInfo alimento) {
         // Testo del messaggio
-        String mess = ("L'alimento '" + alimento.get(0) + "', nella seguente quantità in grammi: " + alimento.get(1)
-                + ", \n" + "fornisce " + alimento.get(2) + " [Kcal], ripartite in: \n" + alimento.get(4)
-                + " carboidrati 🍝\n" + alimento.get(3) + " proteine 🥩\n" + alimento.get(5) + " grassi 🧈\n"
-                + "Buon appetito! 🥢🍴 ");
+        String mess = alimento.toString() + "Buon appetito! 🥢🍴 ";
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
         //Rimuove la tastiera

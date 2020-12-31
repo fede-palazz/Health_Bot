@@ -6,12 +6,17 @@ package com.project.Health_Bot.model;
 /**
  * @author FedePalaz & GiovanniNovelli9 & Baldellaux
  * 
- *         Sottoclasse di Alimento che modella il generico alimento, aggiungendo informazioni
+ *         Sottoclasse di Alimento che modella il generico alimento aggiungendo le informazioni
+ *         nutrizionali
  *
  */
 public class AlimentoInfo extends Alimento {
 
-    private int proteine, lipidi, carbo;
+    private double proteine, lipidi, carbo;
+
+    public AlimentoInfo(String nome) {
+        super(nome);
+    }
 
     /**
      * Costruttore
@@ -23,7 +28,7 @@ public class AlimentoInfo extends Alimento {
      * @param lipidi
      * @param carbo
      */
-    public AlimentoInfo(String nome, int kcal, int qta, int proteine, int lipidi, int carbo) {
+    public AlimentoInfo(String nome, int kcal, int qta, double proteine, double lipidi, double carbo) {
         super(nome, kcal, qta);
         this.proteine = proteine;
         this.lipidi = lipidi;
@@ -34,7 +39,7 @@ public class AlimentoInfo extends Alimento {
      * 
      * @return energia
      */
-    public int getProteine() {
+    public double getProteine() {
         return proteine;
     }
 
@@ -42,7 +47,7 @@ public class AlimentoInfo extends Alimento {
      * 
      * @param proteine
      */
-    public void setProteine(int proteine) {
+    public void setProteine(double proteine) {
         this.proteine = proteine;
     }
 
@@ -50,7 +55,7 @@ public class AlimentoInfo extends Alimento {
      * 
      * @return lipidi
      */
-    public int getLipidi() {
+    public double getLipidi() {
         return lipidi;
     }
 
@@ -58,7 +63,7 @@ public class AlimentoInfo extends Alimento {
      * 
      * @param lipidi
      */
-    public void setLipidi(int lipidi) {
+    public void setLipidi(double lipidi) {
         this.lipidi = lipidi;
     }
 
@@ -66,7 +71,7 @@ public class AlimentoInfo extends Alimento {
      * 
      * @return carboidrati
      */
-    public int getCarbo() {
+    public double getCarbo() {
         return carbo;
     }
 
@@ -74,8 +79,18 @@ public class AlimentoInfo extends Alimento {
      * 
      * @param carboidrati
      */
-    public void setCarbo(int carbo) {
+    public void setCarbo(double carbo) {
         this.carbo = carbo;
+    }
+
+    /**
+     * Stampa le informazioni dell'alimento
+     */
+    @Override
+    public String toString() {
+        return "L'alimento '" + this.getNome() + "', nella seguente quantità in grammi: " + this.getQta() + ", \n"
+                + "fornisce " + this.getKcal() + " [Kcal], ripartite in: \n" + this.getCarbo() + " carboidrati 🍝\n"
+                + this.getProteine() + " proteine 🥩\n" + this.getLipidi() + " grassi 🧈\n";
     }
 
 }
