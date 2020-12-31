@@ -32,7 +32,7 @@ public class StatsSingole {
      */
     public static Misurazione pesoMAX(Vector<Misurazione> pesi) {
         // Ordino dal minore al maggiore e ritorno il maggiore
-        Collections.sort(pesi);
+        // Collections.sort(pesi);
         // System.out.println("Ecco il peso massimo mai registrato da te: " + pesi.get(pesi.size() - 1));
         return pesi.get(pesi.size() - 1);
     }
