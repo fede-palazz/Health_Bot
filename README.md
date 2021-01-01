@@ -42,6 +42,12 @@ Inoltre BotFather fornisce all'utente il token da utilizzare per comandare il bo
 
 
 
+## FUNZIONAMENTO NELL'APP MOBILE TELEGRAM 
+
+![](img/RegBOT.gif)
+
+
+
 ## DIAGRAMMI UML E FUNZIONAMENTO DEL SOFTWARE
 
 Diagramma dei casi d'uso:
