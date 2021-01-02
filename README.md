@@ -1,34 +1,40 @@
-# Progetto Programmazione ad Oggetti: Health_Bot
+#           Progetto Programmazione ad Oggetti: Health_Bot
+
+TODO Indice
 
 
 
-## INTRODUZIONE
+## Introduzione
 
 Lo scopo del progetto è quello di realizzare un Web Service in grado di interagire con l' API di Telegram e permettere il funzionamento di "Health_Bot", un bot con svariate funzionalità, tra cui:
 
-- Monitoraggio del peso e del BMI;
+- Aggiornamento parametri: peso e livello di attività fisica;
 
-- Calcolo del FCG (Fabbisogno Calorico Giornaliero), del PI (Peso ideale), del BMR (Fabbisogno Metabolico a Riposo) e dell'LBM (Massa magra in kg);
+- Calcolo del BMI (Body Mass Index), del FCG (Fabbisogno Calorico Giornaliero), del PI (Peso ideale), del BMR (Fabbisogno Metabolico a Riposo) e dell'LBM (Massa magra in kg);
 
-- Diagnostica della salute (sulla base del BMI);
+- Diagnostica della salute, sulla base del BMI e del PI;
+
+- Calcolo dei principali valori nutrizionali di un alimento;
 
 - Consigli sull'allenamento, in base al livello di attività fisica svolta dall'utente, e sulla dieta, in base al valore del suo FCG;
 
-- Statistiche su peso e BMI (sia personali per ogni utente, che generali accessibili tramite richieste GET).
+- Statistiche su peso, BMI ed LBM (sia personali per ogni utente, che generali accessibili tramite richieste GET).
 
   
 
-## LOGICA DI FUNZIONAMENTO
+## Logica di funzionamento
+
+Il telegram client, cioè un normale utente dell'app telegram, manda un messaggio alla chat @health_fit_bot (https://t.me/health_fit_bot), che risponde con una delle viste programmate. L'interfaccia del bot è a sua volta controllata dal web service (il software qui sviluppato) che comunica direttamente con la Telegramm Bot API attraverso richieste formattatate in HTTP. Quest'ultima, in base alla richiesta dell'utente, nel caso di Health_Bot, per esempio, questa funzione si attiva nel bottone "Info nutrizionali", si può inoltre mettere in comunicazione attraverso una richiesta HTTP con una REST API esterna.
 
 ![](img/Funzionamento_BOT.png)
 
-
-
-## GETTING STARTED
+## Configurazione iniziale
 
 Per poter iniziare è necessario creare un bot su Telegram interagendo direttamente con il BotFather, come mostrato nella gif sotto:
 
-![](img/IntrGIUSTA.gif)
+![Introduzione](img/GIF/Introduzione.gif)
+
+
 
 Successivamente, seguendo le istruzioni indicate da BotFather, sarà possibile, per esempio:
 
@@ -42,23 +48,57 @@ Inoltre BotFather fornisce all'utente il token da utilizzare per comandare il bo
 
 
 
-## FUNZIONAMENTO NELL'APP MOBILE TELEGRAM 
+## Anteprima: funzionamento nell'app mobile Telegram
 
-![](img/RegBOT.gif)
+### Registrazione dell'utente
+
+![](img/GIF/RegBOT.gif)
 
 
 
-## DIAGRAMMI UML E FUNZIONAMENTO DEL SOFTWARE
+### Menù parte 1:
+
+![](img/GIF/Menu.pt1.gif)
+
+
+
+### Menù parte 2:
+
+![](img/GIF/Menu.pt2.gif)
+
+
+
+## Download
+
+Attraverso l’ambiente Eclipse si possono eseguire le seguenti operazioni:
+
+• Clonare la repository dal workspace di github;
+
+• Eseguire il codice come SpringBoot application;
+
+• Aprire un API testing, come ad esempio [PostMan](https://www.postman.com).
+
+L’applicazione ora è pronta ed è in ascolto alla porta http://localhost8081.
+
+
+
+## Rotte
+
+
+
+
+
+## Diagrammi UML
 
 Diagramma dei casi d'uso:
 
-![](img/UML/Case_Diagram.png)
+![](img/UML/Health_Bot__Case Diagram.png)
 
 
 
 Diagrammi delle classi:
 
-<img src="img/UML/class_diagram-Diagramma classi.png" style="zoom:80%;" />
+
 
 
 
@@ -68,7 +108,7 @@ Diagrammi delle sequenze:
 
 
 
-## TECNOLOGIE UTILIZZATE
+## Tecnologie utilizzate
 
 - Software utilizzati:
 
@@ -106,7 +146,7 @@ Diagrammi delle sequenze:
 
   
 
-## Contributors
+## Autori
 
 - [Federico Palazzi](https://github.com/fedePalazz) 
 - [Giovanni Novelli](https://github.com/GiovanniNovelli9) 

@@ -159,18 +159,23 @@ public class Menu {
      */
     public static SendMessage getVistaDieta(long chatId, String username, float fcg, List<Vector<Alimento>> dieta) {
         // Testo del messaggio
-        String mess = ("Caro/a " + username + ", \n"
+        String mess1 = ("Caro/a " + username + ", \n"
                 + "la dieta 🍽 che ti consiglio 😋, scelta accuratamente in base al valore del tuo FCG, pari a: " + fcg
                 + " ,é la seguente: \n\n");
 
         int i = 0;
         String[] nomePasti = { "Colazione", "Pranzo", "Spuntino", "Cena" };
         for (Vector<Alimento> pasto : dieta) {
-            mess += nomePasti[i++] + "\n";
+            mess1 += nomePasti[i++] + "\n";
             for (Alimento al : pasto) {
-                mess += "- " + al.getNome() + ":  " + al.getQta() + "g,  " + al.getKcal() + " Kcal\n";
+                mess1 += "- " + al.getNome() + ":  " + al.getQta() + "g,  " + al.getKcal() + " Kcal. ";
             }
         }
+
+        String mess2 = "\n\n"
+                + "Se ritieni che la dieta selezionata per te non sia adatta, oppure soffri di qualche patologia o disturbo alimentare, ti invitiamo a rivolgerti al tuo nutrizionista di fiducia 😉.";
+
+        String mess = mess1 + mess2;
 
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
@@ -197,7 +202,8 @@ public class Menu {
         // Testo del messaggio
         String mess = ("Caro/a " + username + ", \n"
                 + "dopo aver studiato attentamente il tuo tenore di attività fisica 💪🏻, siamo sicuri che il miglior allenamento per te sia il seguente: \n\n"
-                + allenamento);
+                + allenamento + "\n\n"
+                + "Se ritieni che l'allenamento selezionato per te non sia adatto, prova a cambiare il tuo livello di attività fisica, oppure ti invitiamo a rivolgerti al tuo personal trainer di fiducia 😉.");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
         // Aggiungo dei pulsanti alla risposta
@@ -234,7 +240,7 @@ public class Menu {
      */
     public static SendMessage getVistaInfoNutr(long chatId, AlimentoInfo alimento) {
         // Testo del messaggio
-        String mess = alimento.toString() + "Buon appetito! 🥢🍴 ";
+        String mess = alimento.toString() + "\n" + "Buon appetito! 🥢🍴 ";
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
         //Rimuove la tastiera
