@@ -21,8 +21,6 @@ public class StatsSingole {
     // i vari vector di tipo Misurazione il valore del peso e li colleziona in un
     // altro vector di tipo FLOAT chiamato pesi
 
-    public static HashMap<Date, Float> pesi = new HashMap<Date, Float>();
-
     /**
      * Metodo che identifica il peso maggiore mai registrato dall'utente
      * 
@@ -31,9 +29,10 @@ public class StatsSingole {
      */
     public static float pesoMAX(HashMap<Date, Float> pesi) {
         // Ordino dal minore al maggiore e ritorno il maggiore
-        Collections.sort(pesi);
+        //Collections.sort(pesi);
         // System.out.println("Ecco il peso massimo mai registrato da te: " + pesi.get(pesi.size() - 1));
-        return pesi.get(pesi.size() - 1);
+        //return pesi.get(pesi.size() - 1);
+        return 2;
     }
 
     /**

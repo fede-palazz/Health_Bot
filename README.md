@@ -1,7 +1,5 @@
 # Progetto Programmazione ad Oggetti: Health_Bot
 
-
-
 ## INTRODUZIONE
 
 Lo scopo del progetto è quello di realizzare un Web Service in grado di interagire con le API di Telegram e permettere il funzionamento di "Health_Bot", un bot con svariate funzionalità:

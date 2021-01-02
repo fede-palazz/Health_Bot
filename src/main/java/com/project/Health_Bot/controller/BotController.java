@@ -5,12 +5,15 @@ package com.project.Health_Bot.controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.UpdatesListener;
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.SendMessage;
 import com.project.Health_Bot.exception.InvalidUpdateException;
+import com.project.Health_Bot.filter.GestoreFiltri;
 import com.project.Health_Bot.service.BotService;
 import com.project.Health_Bot.util.JSONOffline;
 
@@ -63,6 +66,13 @@ public class BotController {
                 return UpdatesListener.CONFIRMED_UPDATES_ALL; // Conferma tutti gli updates ricevuti
             }
         });
+    }
+
+    @PostMapping
+    public String getStat(@RequestBody GestoreFiltri gest) {
+
+        return "";
+
     }
 
 }
