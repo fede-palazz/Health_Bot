@@ -12,11 +12,12 @@ package com.project.Health_Bot.exception;
  */
 public class FoodNotFoundException extends Exception {
 
+	
 	 /**
      * 
      */
     private static final long serialVersionUID = 1L;
-
+    String message;
     /**
      * 
      */
@@ -29,6 +30,12 @@ public class FoodNotFoundException extends Exception {
      * @param message
      */
     public FoodNotFoundException(String message) {
-        super(message);
+    	super(message);
+    	this.message = message;
     }
+
+	public String getMessage() {
+		return message;
+	}
+    
 }

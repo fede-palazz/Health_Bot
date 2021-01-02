@@ -10,6 +10,7 @@ import com.pengrad.telegrambot.model.request.ReplyKeyboardMarkup;
 import com.pengrad.telegrambot.model.request.ReplyKeyboardRemove;
 import com.pengrad.telegrambot.request.SendMessage;
 import com.project.Health_Bot.model.Alimento;
+import com.project.Health_Bot.model.AlimentoInfo;
 
 /**
  * @author FedePalaz & GiovanniNovelli9 & Baldellaux
@@ -158,18 +159,23 @@ public class Menu {
      */
     public static SendMessage getVistaDieta(long chatId, String username, float fcg, List<Vector<Alimento>> dieta) {
         // Testo del messaggio
-        String mess = ("Caro/a " + username + ", \n"
+        String mess1 = ("Caro/a " + username + ", \n"
                 + "la dieta 🍽 che ti consiglio 😋, scelta accuratamente in base al valore del tuo FCG, pari a: " + fcg
-                + " é la seguente: \n\n");
+                + " ,é la seguente: \n\n");
 
         int i = 0;
         String[] nomePasti = { "Colazione", "Pranzo", "Spuntino", "Cena" };
         for (Vector<Alimento> pasto : dieta) {
-            mess += nomePasti[i++] + "\n";
+            mess1 += nomePasti[i++] + "\n";
             for (Alimento al : pasto) {
-                mess += "- " + al.getNome() + ":  " + al.getQta() + "g,  " + al.getKcal() + " Kcal\n";
+                mess1 += "- " + al.getNome() + ":  " + al.getQta() + "g,  " + al.getKcal() + " Kcal. ";
             }
         }
+
+        String mess2 = "\n\n"
+                + "Se ritieni che la dieta selezionata per te non sia adatta, oppure soffri di qualche patologia o disturbo alimentare, ti invitiamo a rivolgerti al tuo nutrizionista di fiducia 😉.";
+
+        String mess = mess1 + mess2;
 
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
@@ -196,7 +202,8 @@ public class Menu {
         // Testo del messaggio
         String mess = ("Caro/a " + username + ", \n"
                 + "dopo aver studiato attentamente il tuo tenore di attività fisica 💪🏻, siamo sicuri che il miglior allenamento per te sia il seguente: \n\n"
-                + allenamento);
+                + allenamento + "\n\n"
+                + "Se ritieni che l'allenamento selezionato per te non sia adatto, prova a cambiare il tuo livello di attività fisica, oppure ti invitiamo a rivolgerti al tuo personal trainer di fiducia 😉.");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
         // Aggiungo dei pulsanti alla risposta
@@ -231,12 +238,9 @@ public class Menu {
      * 
      * @return response
      */
-    public static SendMessage getVistaInfoNutr(long chatId, Vector<Object> alimento) {
+    public static SendMessage getVistaInfoNutr(long chatId, AlimentoInfo alimento) {
         // Testo del messaggio
-        String mess = ("L'alimento '" + alimento.get(0) + "', nella seguente quantità in grammi: " + alimento.get(1)
-                + ", \n" + "fornisce " + alimento.get(2) + " [Kcal], ripartite in: \n" + alimento.get(4)
-                + " carboidrati 🍝\n" + alimento.get(3) + " proteine 🥩\n" + alimento.get(5) + " grassi 🧈\n"
-                + "Buon appetito! 🥢🍴 ");
+        String mess = alimento.toString() + "\n" + "Buon appetito! 🥢🍴 ";
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
         //Rimuove la tastiera
@@ -263,18 +267,6 @@ public class Menu {
         return response;
     }
 
-    public static String setTipo(String tipo) {
-        switch (tipo) {
-        case "sed":
-            return "Sedentario 🧘🏻️";
-        case "sport":
-            return "Moderato 🏃";
-        case "pes":
-            return "Pesante 🏋🏻";
-        }
-        return null;
-    }
-
     /**
      * Tasto (4)
      * Vista di riepilogo dei parametri registrati e calcolati
@@ -284,7 +276,19 @@ public class Menu {
     public static SendMessage getVistaRiepilogoSalute(long chatId, String tipo, float peso, float iw, int fcg,
             float bmr, float bmi, float lbm) {
 
-        String newTipo = setTipo(tipo);
+        String newTipo = null;
+
+        switch (tipo) {
+        case "sed":
+            newTipo = "Sedentario 🧘🏻️";
+            break;
+        case "sport":
+            newTipo = "Moderato 🏃";
+            break;
+        case "pes":
+            newTipo = "Pesante 🏋🏻";
+            break;
+        }
 
         // Testo del messaggio
         String mess = ("⛑ Riepilogo dati SALUTE ⛑ \n\n" + "- livello di attività fisica 💪🏻: " + newTipo + "\n"

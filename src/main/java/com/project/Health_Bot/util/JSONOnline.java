@@ -8,13 +8,13 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.Vector;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import com.project.Health_Bot.exception.APIResponseException;
 import com.project.Health_Bot.exception.FoodNotFoundException;
+import com.project.Health_Bot.model.AlimentoInfo;
 
 /**
  * Classe che contiene i metodi che gestiscono i file JSON in online
@@ -85,9 +85,10 @@ public class JSONOnline {
      * @return il JSONObject contente i valori nutrizionali del cibo scelto
      * @throws ParseException
      * @throws APIResponseException
-     * @throws FoodNotFoundException 
+     * @throws FoodNotFoundException
      */
-    public static Vector<Object> FOOD_API(String cibo) throws ParseException, APIResponseException, FoodNotFoundException {
+    public static AlimentoInfo FOOD_API(String cibo)
+            throws ParseException, APIResponseException, FoodNotFoundException {
 
         JSONObject j0 = (JSONObject) JSONOffline.caricaObj("src/main/resources/config.json").get("foodAPI");
         String url = j0.get("URL").toString();
@@ -122,27 +123,23 @@ public class JSONOnline {
         JSONArray array = (JSONArray) obj.get("items");
 
         if (array == null || array.isEmpty()) // Cibo inserito non valido
-            throw new FoodNotFoundException();
+            throw new FoodNotFoundException("Il cibo inserito non è valido");
         // JSONObject contenente i valori nutrizionali
         JSONObject jo = (JSONObject) array.get(0);
 
-        // Casto tutti i valori a Object
-        Object name = jo.get("name");
-        Object qta = jo.get("serving_size_g"); // Qta in grammi
-        Object kcal = jo.get("calories");
-        Object protein = jo.get("protein_g");
-        Object carbo = jo.get("carbohydrates_total_g");
-        Object lipid = jo.get("fat_total_g");
+        // Crea un alimento con le relative informazioni nutritive
+        AlimentoInfo alimento = new AlimentoInfo(jo.get("name").toString());
+        Double qta = (double) jo.get("serving_size_g");
+        alimento.setQta(qta.intValue());
 
-        Vector<Object> nut = new Vector<Object>();
-        nut.add(name);
-        nut.add(qta);
-        nut.add(kcal);
-        nut.add(protein);
-        nut.add(carbo);
-        nut.add(lipid);
+        Double kcal = (double) jo.get("calories");
+        alimento.setKcal(kcal.intValue());
 
-        return nut;
+        alimento.setProteine((double) jo.get("protein_g"));
+        alimento.setCarbo((double) jo.get("carbohydrates_total_g"));
+        alimento.setLipidi((double) jo.get("fat_total_g"));
+
+        return alimento;
     }
 
 }

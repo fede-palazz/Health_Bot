@@ -1,10 +1,8 @@
 /**
- * TODO
- * Questo package permette al client di fare chiamate attraverso il Bot.
+ * Questo package contiene le possibili eccezioni che potrebbe generare il nostro programma.
  */
 
 /**
  *  @author FedePalaz & GiovanniNovelli9 & Baldellaux
- *
  */
 package com.project.Health_Bot.exception;
