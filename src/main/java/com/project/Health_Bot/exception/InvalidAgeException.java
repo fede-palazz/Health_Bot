@@ -8,21 +8,21 @@ package com.project.Health_Bot.exception;
  * @author FedePalaz & GiovanniNovelli9 & Baldellaux
  *
  *         Questa classe contiene l'eccezione riguardante il non corretto
- *         inserimento del peso.
+ *         inserimento dell'età.
  *
  */
-public class InvalidWeightException extends IllegalArgumentException {
+public class InvalidAgeException extends IllegalArgumentException {
 
 	/**
-	 * 
-	 */
+	* 
+	*/
 	private static final long serialVersionUID = 1L;
 	String message;
 
 	/**
 	 * 
 	 */
-	public InvalidWeightException() {
+	public InvalidAgeException() {
 		super();
 	}
 
@@ -30,7 +30,7 @@ public class InvalidWeightException extends IllegalArgumentException {
 	 * 
 	 * @param message
 	 */
-	public InvalidWeightException(String message) {
+	public InvalidAgeException(String message) {
 		super(message);
 		this.message = message;
 	}
@@ -38,5 +38,4 @@ public class InvalidWeightException extends IllegalArgumentException {
 	public String getMessage() {
 		return message;
 	}
-
 }
