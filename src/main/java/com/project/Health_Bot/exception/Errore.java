@@ -10,10 +10,10 @@ public class Errore {
     private final String nomeErr;
     private final String mess;
 
-    public Errore(HttpStatus stato, Instant instante, String nomeErr, String mess) {
+    public Errore(HttpStatus stato, Instant istante, String nomeErr, String mess) {
 
         this.stato = stato;
-        this.istante = instante;
+        this.istante = istante;
         this.nomeErr = nomeErr;
         this.mess = mess;
     }

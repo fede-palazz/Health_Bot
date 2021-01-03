@@ -7,11 +7,11 @@ package com.project.Health_Bot.exception;
  * 
  * @author FedePalaz & GiovanniNovelli9 & Baldellaux
  *
- *         Questa classe contiene l'eccezione riguardante la non esistenza del
- *         cibo inserito.
+ *         Questa classe contiene l'eccezione riguardante il non corretto
+ *         inserimento dell'età.
  *
  */
-public class FoodNotFoundException extends Exception {
+public class InvalidAgeException extends IllegalArgumentException {
 
 	/**
 	* 
@@ -22,7 +22,7 @@ public class FoodNotFoundException extends Exception {
 	/**
 	 * 
 	 */
-	public FoodNotFoundException() {
+	public InvalidAgeException() {
 		super();
 	}
 
@@ -30,7 +30,7 @@ public class FoodNotFoundException extends Exception {
 	 * 
 	 * @param message
 	 */
-	public FoodNotFoundException(String message) {
+	public InvalidAgeException(String message) {
 		super(message);
 		this.message = message;
 	}
@@ -38,5 +38,4 @@ public class FoodNotFoundException extends Exception {
 	public String getMessage() {
 		return message;
 	}
-
 }

@@ -168,7 +168,7 @@ public class Menu {
         for (Vector<Alimento> pasto : dieta) {
             mess1 += nomePasti[i++] + "\n";
             for (Alimento al : pasto) {
-                mess1 += "- " + al.getNome() + ":  " + al.getQta() + "g,  " + al.getKcal() + " Kcal. ";
+                mess1 += "- " + al.getNome() + ":  " + al.getQta() + "g,  " + al.getKcal() + " Kcal. \n";
             }
         }
 
@@ -350,19 +350,39 @@ public class Menu {
 
     /**
      * Tasto (5.2)
-     * Vista relativa alle statistiche sull'andamento del peso e del BMI nel tempo
-     * TODO
+     * Vista generale relativa alle statistiche.
      * 
      * @param chatId
      * @return response
      */
     public static SendMessage getVistaStats(long chatId) {
         // Testo del messaggio
-        String mess = ("📊Statistiche e 📈confronti📉");
+        String mess = ("📊Statistiche e 📈confronti📉 \n\n"
+                + "Seleziona sotto 🔽 la finestra temporale per tenere d'occhio 🧐 le statistiche che più ti interessano.");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
-        //Rimuove la tastiera
-        Keyboard tastiera = new ReplyKeyboardRemove();
+        // Aggiungo dei pulsanti alla risposta
+        Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "Ultimo mese", "Ultima settimana" },
+                new String[] { "Da sempre", "Torna al menù ⬅️" }).resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
+        response.replyMarkup(tastiera);
+        return response;
+    }
+
+    /**
+     * Tasto (5.2.1)
+     * Vistan generale che mostra i progressi fatti dall'utente nel range temporale considerato.
+     * 
+     * @param chatId
+     * @return response
+     */
+    public static SendMessage getVistaStatsSingMese(long chatId) {
+        // Testo del messaggio
+        String mess = (/*TODO*/ "");
+        // Crea l'oggetto di risposta
+        SendMessage response = new SendMessage(chatId, mess);
+        // Aggiungo dei pulsanti alla risposta
+        Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "Ultimo mese", "Ultima settimana" },
+                new String[] { "Da sempre", "Torna al menù ⬅️" }).resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
         response.replyMarkup(tastiera);
         return response;
     }

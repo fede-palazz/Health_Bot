@@ -7,22 +7,22 @@ package com.project.Health_Bot.exception;
  * 
  * @author FedePalaz & GiovanniNovelli9 & Baldellaux
  *
- *         Questa classe contiene l'eccezione riguardante la non esistenza del
- *         cibo inserito.
+ *         Questa classe contiene l'eccezione riguardante il non corretto
+ *         inserimento del peso.
  *
  */
-public class FoodNotFoundException extends Exception {
+public class InvalidWeightException extends IllegalArgumentException {
 
 	/**
-	* 
-	*/
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 	String message;
 
 	/**
 	 * 
 	 */
-	public FoodNotFoundException() {
+	public InvalidWeightException() {
 		super();
 	}
 
@@ -30,7 +30,7 @@ public class FoodNotFoundException extends Exception {
 	 * 
 	 * @param message
 	 */
-	public FoodNotFoundException(String message) {
+	public InvalidWeightException(String message) {
 		super(message);
 		this.message = message;
 	}
