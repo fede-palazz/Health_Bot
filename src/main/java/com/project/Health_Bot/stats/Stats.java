@@ -36,10 +36,10 @@ public interface Stats {
 
     public float numeroUltimeMis(Vector<Misurazione> mis);
 
-    public Misurazione paramMax(Vector<Misurazione> mis);
+    public Misurazione paramMax(String param, Vector<Misurazione> mis);
 
-    public Misurazione paramMin(Vector<Misurazione> mis);
+    public Misurazione paramMin(String param, Vector<Misurazione> mis);
 
-    public float paramMedia(Vector<Misurazione> mis);
+    public float paramMedia(String param, Vector<Misurazione> mis);
 
 }
