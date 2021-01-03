@@ -14,10 +14,22 @@ public class FiltroEta extends FiltriUser {
         this.etaMax = etaMax;
     }
 
+    /**
+     * Filtra gli utenti in base ai valori minimi e massimi di età specificati
+     * 
+     */
     @Override
-    public void filtra(Vector<Utente> misure) {
-        // TODO Auto-generated method stub
-
+    public void filtra(Vector<Utente> utenti) {
+        if (etaMin != null) {
+            for (Utente user : utenti)
+                if (user.getEta().get() < etaMin)
+                    utenti.remove(user);
+        }
+        if (etaMax != null) {
+            for (Utente user : utenti)
+                if (user.getEta().get() > etaMax)
+                    utenti.remove(user);
+        }
     }
 
     @Override

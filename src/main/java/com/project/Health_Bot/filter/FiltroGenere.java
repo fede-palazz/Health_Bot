@@ -13,10 +13,14 @@ public class FiltroGenere extends FiltriUser {
         this.sesso = sesso;
     }
 
+    /**
+     * Filtra gli utenti in base al sesso specificato
+     */
     @Override
-    public void filtra(Vector<Utente> misure) {
-        // TODO Auto-generated method stub
-
+    public void filtra(Vector<Utente> utenti) {
+        for (Utente user : utenti)
+            if (user.getSesso().get() != sesso)
+                utenti.remove(user);
     }
 
     @Override

@@ -26,7 +26,15 @@ public class GestoreFiltri {
         // Crea un filtro sul tipo
         if (tipo != null)
             filtriUser.add(new FiltroTipo(tipo));
-
+        // Crea un filtro sul peso
+        if (pesoMin != null || pesoMax != null)
+            filtriMis.add(new FiltroPeso(pesoMin, pesoMax));
+        // Crea un filtro sul bmi
+        if (bmiMin != null || bmiMax != null)
+            filtriMis.add(new FiltroBmi(bmiMin, bmiMax));
+        // Crea un filtro sull'lbm
+        if (lbmMin != null || lbmMax != null)
+            filtriMis.add(new FiltroLbm(lbmMin, lbmMax));
     }
 
     public Vector<FiltriUser> getFiltriUser() {
@@ -35,6 +43,16 @@ public class GestoreFiltri {
 
     public Vector<FiltriMis> getFiltriMis() {
         return filtriMis;
+    }
+
+    /**
+     * Verifica che i filtri non abbiano dei parametri errati
+     */
+    public void convalidaFiltri() {
+        for (FiltriUser filtro : filtriUser)
+            filtro.validate();
+        for (FiltriMis filtro : filtriMis)
+            filtro.validate();
     }
 
 }

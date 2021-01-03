@@ -19,4 +19,10 @@ public abstract class FiltriMis {
      * @param misure
      */
     public abstract void filtra(Vector<Misurazione> misure);
+
+    /**
+     * Verifica che i parametri passati in ingresso al filtro siano validi o meno
+     * 
+     */
+    public abstract void validate();
 }

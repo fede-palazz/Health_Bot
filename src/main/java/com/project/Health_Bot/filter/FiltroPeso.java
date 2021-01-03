@@ -16,8 +16,16 @@ public class FiltroPeso extends FiltriMis {
 
     @Override
     public void filtra(Vector<Misurazione> misure) {
-        // TODO Auto-generated method stub
-
+        if (pesoMin != null) {
+            for (Misurazione mis : misure)
+                if (mis.getPeso() < pesoMin)
+                    misure.remove(mis);
+        }
+        if (pesoMax != null) {
+            for (Misurazione mis : misure)
+                if (mis.getPeso() > pesoMax)
+                    misure.remove(mis);
+        }
     }
 
     @Override

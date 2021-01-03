@@ -9,14 +9,13 @@ public abstract class FiltriUser {
      * Implementa l'operazione di filtraggio degli utenti sulla base dei parametri precedentemente
      * ricevuti
      * 
-     * @param misure
+     * @param utenti
      */
     public abstract void filtra(Vector<Utente> utenti);
 
     /**
      * Verifica che i parametri passati in ingresso al filtro siano validi o meno
      * 
-     * @return
      */
     public abstract void validate();
 
