@@ -1,9 +1,12 @@
+/**
+ * 
+ */
 package com.project.Health_Bot.filter;
 
 import java.util.Vector;
 import com.project.Health_Bot.model.Misurazione;
 
-public class FiltroEta extends Filtri {
+public class FiltroEta extends FiltriUser {
 
     private Integer etaMin, etaMax;
 
@@ -14,9 +17,9 @@ public class FiltroEta extends Filtri {
     }
 
     @Override
-    public void filtra(Vector<Misurazione> misure) {
+    public void filtra(<Vector> utente) {
         // TODO Auto-generated method stub
-
+        
     }
 
 }

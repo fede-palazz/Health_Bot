@@ -92,7 +92,7 @@ L’applicazione ora è pronta ed è in ascolto alla porta http://localhost8081.
 
 Diagramma dei casi d'uso:
 
-![](img/UML/Health_Bot__Case Diagram.png)
+![](img/UML/UseCaseDiagram.png)
 
 
 

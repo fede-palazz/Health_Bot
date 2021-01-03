@@ -168,7 +168,7 @@ public class Menu {
         for (Vector<Alimento> pasto : dieta) {
             mess1 += nomePasti[i++] + "\n";
             for (Alimento al : pasto) {
-                mess1 += "- " + al.getNome() + ":  " + al.getQta() + "g,  " + al.getKcal() + " Kcal. ";
+                mess1 += "- " + al.getNome() + ":  " + al.getQta() + "g,  " + al.getKcal() + " Kcal. \n";
             }
         }
 

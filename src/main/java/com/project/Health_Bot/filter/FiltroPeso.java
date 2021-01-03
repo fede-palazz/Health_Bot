@@ -3,7 +3,7 @@ package com.project.Health_Bot.filter;
 import java.util.Vector;
 import com.project.Health_Bot.model.Misurazione;
 
-public class FiltroPeso extends Filtri {
+public class FiltroPeso extends FiltriMis {
 
     private Float pesoMin, pesoMax;
 
