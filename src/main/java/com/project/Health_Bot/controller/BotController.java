@@ -14,12 +14,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.UpdatesListener;
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.SendMessage;
+
+import com.project.Health_Bot.exception.FilterArgumentException;
+import com.project.Health_Bot.exception.InvalidParamException;
 import com.project.Health_Bot.exception.InvalidUpdateException;
+
 import com.project.Health_Bot.filter.GestoreFiltri;
+import com.project.Health_Bot.model.Misura;
+import com.project.Health_Bot.model.Misurazione;
 import com.project.Health_Bot.model.Utente;
 import com.project.Health_Bot.service.BotService;
 import com.project.Health_Bot.stats.*;
@@ -81,93 +88,114 @@ public class BotController {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@GetMapping("/tipo")
 	public JSONObject getTipo(@RequestParam("tipo") String tipo) {
 
-		// Leggere il DB locale e caricarlo in memoria
-        HashMap<String, Utente> db = JSONOffline.caricaDB();
-        // Estrapolare gli utenti
-        Vector<Utente> utenti = new Vector<Utente>();
-        db.forEach((id, utente) -> {
-            utenti.add(utente);
-        });
-        float type = 0;
-		if (tipo.equals("sedentari")||(tipo.equals("sportivi"))||(tipo.equals("pesisti"))) {
+		Vector<Utente> utenti = JSONOffline.getUtenti();
+		float type = 0;
+		if (tipo.equals("sed") || (tipo.equals("sport")) || (tipo.equals("pes"))) {
 			StatsImpl statics = new StatsImpl();
 			type = statics.percTipo(tipo, utenti);
-		}
+		} else
+			throw new InvalidParamException("Tipo inserito inesistente");
+
 		JSONObject jo = new JSONObject();
-		jo.put("descrizione", "...");
-		jo.put("percentuale di " + tipo, type + " %");
+		jo.put("descrizione", "percentuale di: ");
+		jo.put(tipo, type + " %");
 
 		return jo;
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@GetMapping("/genere")
-	public int getGenere(@RequestParam("genere") Character genere) {
+	public JSONObject getGenere(@RequestParam("genere") Character genere) {
 
-		// Leggere il DB locale e caricarlo in memoria
-        HashMap<String, Utente> db = JSONOffline.caricaDB();
-        // Estrapolare gli utenti
-        Vector<Utente> utenti = new Vector<Utente>();
-        db.forEach((id, utente) -> {
-            utenti.add(utente);
-        });
-        
+		Vector<Utente> utenti = JSONOffline.getUtenti();
+		float type = 0;
 		if (genere.equals('M') || (genere.equals('F'))) {
 			StatsImpl statics = new StatsImpl();
-			statics.percGenere(genere, utenti);
+			type = statics.percGenere(genere, utenti);
+		} else
+			throw new InvalidParamException("Genere inserito non valido");
 
-		}
-		return 0;
+		JSONObject jo = new JSONObject();
+		jo.put("descrizione", "percentuale di ");
+		jo.put(genere, type + " %");
+
+		return jo;
 	}
 
+	@SuppressWarnings("unchecked")
 	@GetMapping("/rangeEta")
-	public int getRangeEta(@RequestParam("eta") int eta) {
-		
-		
-		// Leggere il DB locale e caricarlo in memoria
-        HashMap<String, Utente> db = JSONOffline.caricaDB();
-        // Estrapolare gli utenti
-        Vector<Utente> utenti = new Vector<Utente>();
-        db.forEach((id, utente) -> {
-            utenti.add(utente);
-        });
-		
-		
-		
-		return eta;
+	public JSONObject getRangeEta(@RequestParam("eta") int eta) {
 
-		
+		Vector<Utente> utenti = JSONOffline.getUtenti();
+
+		float type = 0;
+		StatsImpl statics = new StatsImpl();
+		type = statics.percRangeEta(eta, utenti);
+
+		JSONObject jo = new JSONObject();
+		jo.put("descrizione", "...");
+		jo.put("percentuale di " + eta, type + " %");
+
+		return jo;
+
 	}
 
+	@SuppressWarnings("unchecked")
 	@GetMapping("/condizioni")
-	public int getCondizioni(@RequestParam("condizioni") String tipo) {
+	public JSONObject getCondizioni(@RequestParam("condizioni") String condizione) {
 
-		
-		// Leggere il DB locale e caricarlo in memoria
-        HashMap<String, Utente> db = JSONOffline.caricaDB();
-        // Estrapolare gli utenti
-        Vector<Utente> utenti = new Vector<Utente>();
-        db.forEach((id, utente) -> {
-            utenti.add(utente);
-        });
-        
+		Vector<Utente> utenti = JSONOffline.getUtenti();
+		float type = 0;
+		if (condizione.equals("magro") || condizione.equals("sott") || condizione.equals("norm")
+				|| condizione.equals("sovr") || condizione.equals("ob1") || condizione.equals("ob2")
+				|| condizione.equals("ob3")) {
+			StatsImpl statics = new StatsImpl();
+			type = statics.percCondizioni(condizione, utenti);
+		} else
+			throw new InvalidParamException("Condizione inserita non valida");
+		JSONObject jo = new JSONObject();
+		jo.put("descrizione", "...");
+		jo.put("percentuale di " + condizione, type + " %");
+
+		return jo;
 	}
-
+//TODO
 	@GetMapping("/varParam")
-	public int getVarParam(@RequestParam("tipo") String tipo) {
+	public JSONObject getVarParam(@RequestParam("param") String param) {
 
+		Vector<Utente> utenti = JSONOffline.getUtenti();
+		Vector<Misurazione> mis = JSONOffline.getMisura(utenti);
 		
-		// Leggere il DB locale e caricarlo in memoria
-        HashMap<String, Utente> db = JSONOffline.caricaDB();
-        // Estrapolare gli utenti
-        Vector<Utente> utenti = new Vector<Utente>();
-        db.forEach((id, utente) -> {
-            utenti.add(utente);
-        });
-        
+		float type = 0;
+		if (param.equals("peso")) { //|| param.equals("bmi") || param.equals("lbm")){
+			StatsImpl statics = new StatsImpl();
+			type = statics.varazioneParam(param, mis);
+		} else
+			throw new InvalidParamException("Condizione inserita non valida");
+		
+		JSONObject jo = new JSONObject();
+		jo.put("descrizione", "...");
+		jo.put("percentuale di " + param, type + " %");
+
+		return jo;
+	}
+	
+	@GetMapping("/ultMis")
+	public Vector<Misurazione> getUltMis(@RequestParam("lastMis") int n){
+		
+		Vector<Utente> utenti = JSONOffline.getUtenti();
+		Vector<Misurazione> mis = JSONOffline.getMisura(utenti);
+		//ordino per data
+	    mis.sort((m1, m2) -> m1.getData().compareTo(m2.getData()));
+
+		StatsImpl statics = new StatsImpl();
+		return statics.ultimeMis(n, mis);
+				
 	}
 
 }

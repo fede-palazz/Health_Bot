@@ -53,11 +53,11 @@ public class StatsImpl implements Stats {
         float[] perc = percTipo(utenti);
 
         switch (tipo) {
-        case "sedentari":
+        case "sed":
             return perc[0];
-        case "sportivi":
+        case "sport":
             return perc[1];
-        case "pesisti":
+        case "pes":
             return perc[2];
         }
         return 0;
@@ -212,19 +212,19 @@ public class StatsImpl implements Stats {
     public float percCondizioni(String condizione, Vector<Utente> utenti) {
         float[] perc = percCondizioni(utenti);
         switch (condizione) {
-        case "GRAVE MAGREZZA":
+        case "magro":
             return perc[0];
-        case "SOTTOPESO":
+        case "sott":
             return perc[1];
-        case "NORMOPESO":
+        case "norm":
             return perc[2];
-        case "SOVRAPPESO":
+        case "sovr":
             return perc[3];
-        case "OBESITÀ CLASSE I (lieve)":
+        case "ob1":
             return perc[4];
-        case "OBESITÀ CLASSE II (media)":
+        case "ob2":
             return perc[5];
-        case "OBESITÀCLASSE III (grave)":
+        case "ob3":
             return perc[6];
         }
 
