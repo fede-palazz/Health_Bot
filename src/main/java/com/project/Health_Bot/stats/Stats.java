@@ -16,6 +16,7 @@ import com.project.Health_Bot.model.Utente;
  */
 public interface Stats {
 
+    // Multiutente
     /**
      * Restituisce in un array la percentuale di utenti per ogni livello di attività fisica.
      * 
@@ -83,10 +84,11 @@ public interface Stats {
      * @return percentuale scelta
      */
     public float percCondizioni(String condizione, Vector<Utente> utenti);
+    // Fine multiutente
 
+    // Utente singolo
     /**
-     * Restituisce la percentuale riguardante la variazione rispetto al peso oppure al bmi oppure
-     * all'lbm.
+     * Restituisce la percentuale riguardante la variazione rispetto al parametro selezionato.
      * 
      * @param param
      * @param mis
@@ -101,10 +103,10 @@ public interface Stats {
      * @param mis
      * @return Vector di misurazioni
      */
-    public Vector<Misurazione> ultimeMis(int n, Vector<Misurazione> mis);
+    public Vector<Misurazione> ultimeMis(int n, Vector<Misurazione> mis); // Per le rotte
 
     /**
-     * Restituisce il valore massimo del parametro selezionato.
+     * Restituisce il valore massimo del parametro selezionato, tra le misurazioni del singolo utente.
      * 
      * @param param
      * @param mis
@@ -113,7 +115,7 @@ public interface Stats {
     public Misurazione paramMax(String param, Vector<Misurazione> mis);
 
     /**
-     * Restituisce il valore minimo del parametro selezionato.
+     * Restituisce il valore minimo del parametro selezionato, tra le misurazioni del singolo utente.
      * 
      * @param param
      * @param mis
@@ -129,5 +131,6 @@ public interface Stats {
      * @return media aritmetica
      */
     public float paramMedia(String param, Vector<Misurazione> mis);
+    // Fine utente singolo
 
 }

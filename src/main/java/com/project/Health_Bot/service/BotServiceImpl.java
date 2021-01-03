@@ -302,7 +302,18 @@ public class BotServiceImpl implements BotService {
 
         case "📊Statistiche📈": // Tasto (5.2)
             view.add(Menu.getVistaStats(chatId));
-            view.add(Menu.getVistaMenu(chatId));
+            return view;
+
+        case "Ultimo mese": // Tasto (5.2.1)
+
+            return view;
+
+        case "Ultimo settimana": // Tasto (5.2.2)
+
+            return view;
+
+        case "Da sempre": // Tasto (5.2.3)
+
             return view;
 
         case "Info generali ℹ️": // Tasto (6)
