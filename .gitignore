@@ -13,3 +13,6 @@ target/
 
 # MacOs
 .DS_Store
+
+# File di log
+*.log
