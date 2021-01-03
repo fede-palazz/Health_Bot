@@ -53,11 +53,11 @@ public class StatsImpl implements Stats {
         float[] perc = percTipo(utenti);
 
         switch (tipo) {
-        case "sed":
+        case "sedentari":
             return perc[0];
-        case "sport":
+        case "sportivi":
             return perc[1];
-        case "pes":
+        case "pesisti":
             return perc[2];
         }
         return 0;
