@@ -304,16 +304,28 @@ public class BotServiceImpl implements BotService {
             view.add(Menu.getVistaStats(chatId));
             return view;
 
-        case "Ultimo mese": // Tasto (5.2.1)
+        case "Ultimo mese 🗓": // Tasto (5.2.1)
 
+            view.add(Menu.getVistaStatsSingPeriodo(chatId, username, pesoMax, lbmMax, pesoMin, lbmMin, mediaPeso,
+                    mediaLbm, variazPeso, variazLbm));
             return view;
 
-        case "Ultimo settimana": // Tasto (5.2.2)
-
+        case "Ultima settimana 📆": // Tasto (5.2.1)
+            view.add(Menu.getVistaStatsSingPeriodo(chatId, username, pesoMax, lbmMax, pesoMin, lbmMin, mediaPeso,
+                    mediaLbm, variazPeso, variazLbm));
             return view;
 
-        case "Da sempre": // Tasto (5.2.3)
+        case "Dall'inizio ♾": // Tasto (5.2.1)
+            view.add(Menu.getVistaStatsSingPeriodo(chatId, username, pesoMax, lbmMax, pesoMin, lbmMin, mediaPeso,
+                    mediaLbm, variazPeso, variazLbm));
+            return view;
 
+        case "Ultime misurazioni": // Tasto (5.3)
+            view.add(Menu.getVistaUltimeMis(chatId, username, mis));
+            return view;
+
+        case "Torna a 'Conosci il tuo corpo 🧘🏻‍♂️️'": // Tasto (5.3.1)
+            view.add(Menu.getVistaConosciCorpo(chatId, username));
             return view;
 
         case "Info generali ℹ️": // Tasto (6)
