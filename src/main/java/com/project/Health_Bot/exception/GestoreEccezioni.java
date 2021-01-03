@@ -9,11 +9,30 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class GestoreEccezioni {
 
-    @ExceptionHandler(value = InvalidWeightException.class)
-    public ResponseEntity<Object> gestisciInvalidWeightException(InvalidWeightException e) {
-        //1. Crea l'oggetto errore
-        Errore err = new Errore(HttpStatus.BAD_REQUEST, Instant.now(), e.getClass().getCanonicalName(), e.getMessage());
-        //2. Restituisce la response entity
+    /**
+     * Gestisce le eccezioni derivanti da un incorretto inserimento dei paramentri dei filtri
+     * 
+     * @param ex
+     * @return
+     */
+    @ExceptionHandler(value = { FilterArgumentException.class })
+    public ResponseEntity<Object> gestisciInvalidWeightException(FilterArgumentException ex) {
+        Errore err = new Errore(HttpStatus.BAD_REQUEST, Instant.now(), ex.getClass().getCanonicalName(),
+                ex.getMessage());
         return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
     }
+
+    /**
+     * Gestisce un'eccezione generica
+     * 
+     * @param ex
+     * @return
+     */
+    @ExceptionHandler(value = { Exception.class })
+    public ResponseEntity<Object> gestisciInvalidWeightException(Exception ex) {
+        Errore err = new Errore(HttpStatus.BAD_REQUEST, Instant.now(), ex.getClass().getCanonicalName(),
+                ex.getMessage());
+        return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
+    }
+
 }
