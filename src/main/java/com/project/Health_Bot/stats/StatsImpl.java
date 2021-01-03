@@ -191,7 +191,7 @@ public class StatsImpl implements Stats {
             case "OBESITÀ CLASSE II (media)":
                 cont[5]++;
                 break;
-            case "OBESITÀCLASSE III (grave)":
+            case "OBESITÀ CLASSE III (grave)":
                 cont[6]++;
                 break;
             }
