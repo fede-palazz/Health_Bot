@@ -12,7 +12,8 @@ public class GestoreFiltri {
             @JsonProperty("gen") String genere, @JsonProperty("tipo") String tipo,
             @JsonProperty("pesoMin") Float pesoMin, @JsonProperty("pesoMax") Float pesoMax,
             @JsonProperty("bmiMin") Float bmiMin, @JsonProperty("bmiMax") Float bmiMax,
-            @JsonProperty("lbmMin") Float lbmMin, @JsonProperty("lbmMax") Float lbmMax) {
+            @JsonProperty("lbmMin") Float lbmMin, @JsonProperty("lbmMax") Float lbmMax,
+            @JsonProperty("dal") String dataInizio, @JsonProperty("al") String dataFine) {
 
         filtriUser = new Vector<FiltriUser>();
         filtriMis = new Vector<FiltriMis>();
@@ -35,6 +36,9 @@ public class GestoreFiltri {
         // Crea un filtro sull'lbm
         if (lbmMin != null || lbmMax != null)
             filtriMis.add(new FiltroLbm(lbmMin, lbmMax));
+        // Crea un filtro sulla data
+        if (dataInizio != null || dataFine != null)
+            filtriMis.add(new FiltroData(dataInizio, dataFine));
     }
 
     public Vector<FiltriUser> getFiltriUser() {
