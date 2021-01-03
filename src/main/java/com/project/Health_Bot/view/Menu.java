@@ -11,6 +11,7 @@ import com.pengrad.telegrambot.model.request.ReplyKeyboardRemove;
 import com.pengrad.telegrambot.request.SendMessage;
 import com.project.Health_Bot.model.Alimento;
 import com.project.Health_Bot.model.AlimentoInfo;
+import com.project.Health_Bot.model.Misurazione;
 
 /**
  * @author FedePalaz & GiovanniNovelli9 & Baldellaux
@@ -321,7 +322,7 @@ public class Menu {
         SendMessage response = new SendMessage(chatId, mess);
         // Aggiungo dei pulsanti alla risposta
         Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "Diagnostica 🩺", "📊Statistiche📈" },
-                new String[] { "Torna al menù ⬅️" }).resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
+                new String[] { "Ultime misurazioni", "Torna al menù ⬅️" }).resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
         response.replyMarkup(tastiera);
         return response;
     }
@@ -362,27 +363,66 @@ public class Menu {
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
         // Aggiungo dei pulsanti alla risposta
-        Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "Ultimo mese", "Ultima settimana" },
-                new String[] { "Da sempre", "Torna al menù ⬅️" }).resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
+        Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "Ultimo mese 🗓", "Ultima settimana 📆" },
+                new String[] { "Dall'inizio ♾", "Torna al menù ⬅️" }).resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
         response.replyMarkup(tastiera);
         return response;
     }
 
     /**
      * Tasto (5.2.1)
-     * Vistan generale che mostra i progressi fatti dall'utente nel range temporale considerato.
+     * Vista generale che mostra i progressi fatti dall'utente nel range temporale considerato.
      * 
      * @param chatId
      * @return response
      */
-    public static SendMessage getVistaStatsSingMese(long chatId) {
+    public static SendMessage getVistaStatsSingPeriodo(long chatId, String username, Misurazione pesoMax,
+            Misurazione lbmMax, Misurazione pesoMin, Misurazione lbmMin, float mediaPeso, float mediaLbm,
+            float variazPeso, float variazLbm) {
         // Testo del messaggio
-        String mess = (/*TODO*/ "");
+        String mess = ("Caro/a" + username + ", \n"
+                + "nel periodo selezionato abbiamo osservato attentamente i dati che hai registrato, il peso massimo è "
+                + pesoMax + "[Kg]" + ", mentre il minimo è " + pesoMin + "[Kg]. \n\n"
+                + "Il peso medio registrato in questo periodo è stato di " + mediaPeso + "[Kg]");
+        if (variazPeso > 0)
+            mess += ", mentre l'incremento di peso è stato pari a " + variazPeso + "[Kg]😊.";
+        else
+            mess += ", mentre la perdita di peso è stata pari a " + variazPeso + "[Kg]😕.";
+
+        mess = ("Allo stesso modo, in questo lasso di tempo hai registrato un LBM massimo di " + lbmMax
+                + "[Kg] 🙂 ed un indice di massa magra minimo pari a " + lbmMin + "[Kg] 😔."
+                + "L'LBM medio registrato è stato di " + mediaLbm + "[Kg]");
+        if (variazLbm > 0)
+            mess += ", mentre l'incremento di massa magra è stato pari a " + variazLbm + "[Kg]😊.";
+        else
+            mess += ", mentre la perdita di massa magra è stata pari a " + variazLbm + "[Kg]😕.";
+
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
         // Aggiungo dei pulsanti alla risposta
-        Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "Ultimo mese", "Ultima settimana" },
-                new String[] { "Da sempre", "Torna al menù ⬅️" }).resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
+        Keyboard tastiera = new ReplyKeyboardMarkup(new String[] { "Ultimo mese 🗓", "Ultima settimana 📆" },
+                new String[] { "Dall'inizio ♾", "Torna al menù ⬅️" }).resizeKeyboard(true);
+        response.replyMarkup(tastiera);
+        return response;
+    }
+
+    /**
+     * Tasto (5.3)
+     * Vista che restituisce le ultime misurazioni richieste dall'utente
+     * 
+     * @param chatId
+     * @param username
+     * @param mis
+     * @return ultime misurazioni
+     */
+    public static SendMessage getVistaUltimeMis(long chatId, String username, Vector<Misurazione> mis) {
+        // Testo del messaggio
+        String mess = ("Ciao" + username + "!" + "Ecco le ultime misurazioni che hai richiesto: " + mis);
+        // Crea l'oggetto di risposta
+        SendMessage response = new SendMessage(chatId, mess);
+        // Aggiungo dei pulsanti alla risposta
+        Keyboard tastiera = new ReplyKeyboardMarkup(
+                new String[] { "Torna a 'Conosci il tuo corpo 🧘🏻‍♂️️'", "Torna al menù ⬅️" }).resizeKeyboard(true); // Visualizzazione compatta della tastiera (più carina)
         response.replyMarkup(tastiera);
         return response;
     }
