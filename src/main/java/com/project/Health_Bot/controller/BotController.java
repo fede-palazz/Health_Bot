@@ -29,7 +29,7 @@ import com.project.Health_Bot.util.JSONOffline;
  * @author FedePalaz & GiovanniNovelli9 & Baldellaux
  *
  *         Classe Controller del Bot
- *
+ *         200 COMMIT YEEHH
  */
 @RestController
 public class BotController {
@@ -158,7 +158,7 @@ public class BotController {
             throw new InvalidParamException("Condizione inserita non valida");
         JSONObject jo = new JSONObject();
         jo.put("descrizione", "...");
-        jo.put("percentuale di " + condizione, type + " %");
+        jo.put("719252874percentuale di " + condizione, type + " %");
 
         return jo;
     }
