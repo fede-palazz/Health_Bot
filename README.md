@@ -86,18 +86,15 @@ L’applicazione ora è pronta ed è in ascolto alla porta http://localhost8081.
 
 Le rotte definite sono le seguenti:
 
-- | Tipo  | Rotta                          | Descrizione                                                  |
-  | ----- | :----------------------------- | :----------------------------------------------------------- |
-  | `GET` | `/tipo?tipo=param`             | *Parametri consentiti: sed = sedentari, sport = sportivi, pes = pesisti. Restituisce un JSONObject contenente la singola percentuale di utenti per ogni livello di attività fisica scelto.* |
-  | `GET` | `/genere?genere=param`         | *Parametri consentiti: M, F. Restituisce un JSONObject contenente la singola percentuale di utenti per genere.* |
-  | `GET` | `/rangeEta?eta=anni`           | *Restituisce un JSONObject contenente la singola percentuale relativa al range dell'età scelta.* |
-  | `GET` | `/condizioni?condizioni=param` | *Parametri consentiti: magro = Grave Magrezza, sott = Sottopeso, norm = Normopeso, sovr = Sovrappeso, ob1 = Obesità Classe I (lieve), ob2 = Obesità Classe II (media), ob3 = Obesità Classe III (grave). Restituisce un JSONObject contenente la singola percentuale relativa alla condizione fisica scelta.* |
-  | `GET` | `/ultMis?lastMis=15`           | *Restituisce un JSONObject contenente le ultime n misurazioni scelte dall'utente.* |
-  | `GET` | TODO                           |                                                              |
-  |       |                                |                                                              |
-  |       |                                |                                                              |
-
-
+| Tipo  | Rotta                          | Descrizione                                                  |
+| ----- | :----------------------------- | :----------------------------------------------------------- |
+| `GET` | `/tipo?tipo=param`             | *Parametri consentiti: sed = sedentari, sport = sportivi, pes = pesisti. Restituisce un JSONObject contenente la singola percentuale di utenti per ogni livello di attività fisica scelto.* |
+| `GET` | `/genere?genere=param`         | *Parametri consentiti: M, F. Restituisce un JSONObject contenente la singola percentuale di utenti per genere.* |
+| `GET` | `/rangeEta?eta=anni`           | *Restituisce un JSONObject contenente la singola percentuale relativa al range dell'età scelta.* |
+| `GET` | `/condizioni?condizioni=param` | *Parametri consentiti: magro = Grave Magrezza, sott = Sottopeso, norm = Normopeso, sovr = Sovrappeso, ob1 = Obesità Classe I (lieve), ob2 = Obesità Classe II (media), ob3 = Obesità Classe III (grave). Restituisce un JSONObject contenente la singola percentuale relativa alla condizione fisica scelta.* |
+| `GET` | `/ultMis?lastMis=15`           | *Restituisce un JSONObject contenente le ultime n misurazioni scelte dall'utente.* |
+|       |                                |                                                              |
+|       |                                |                                                              |
 
 ## Diagrammi UML
 
