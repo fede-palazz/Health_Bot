@@ -258,9 +258,6 @@ public class Menu {
         String mess = alimento.toString() + "\n" + "Buon appetito! 🥢🍴 ";
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
-        //Rimuove la tastiera
-        Keyboard tastiera = new ReplyKeyboardRemove();
-        response.replyMarkup(tastiera);
         return response;
     }
 
@@ -312,9 +309,6 @@ public class Menu {
                 + "Per sapere il significato di questi parametri, premi il tasto Info generali ℹ️");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
-        //Rimuove la tastiera
-        Keyboard tastiera = new ReplyKeyboardRemove();
-        response.replyMarkup(tastiera);
         return response;
     }
 
