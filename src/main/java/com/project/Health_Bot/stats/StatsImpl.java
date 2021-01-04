@@ -236,13 +236,16 @@ public class StatsImpl implements Stats {
 
         switch (param) {
         case "peso":
-            return ((mis.firstElement().getPeso() - mis.lastElement().getPeso()) * 100) / mis.firstElement().getPeso();
+            return (float) (Math.round(((mis.firstElement().getLbm() - mis.lastElement().getLbm()) * 100)
+                    / mis.firstElement().getPeso() * 100d) / 100d);
 
         case "bmi":
-            return ((mis.firstElement().getBmi() - mis.lastElement().getBmi()) * 100) / mis.firstElement().getBmi();
+            return (float) (Math.round(((mis.firstElement().getLbm() - mis.lastElement().getLbm()) * 100)
+                    / mis.firstElement().getBmi() * 100d) / 100d);
 
         case "lbm":
-            return ((mis.firstElement().getLbm() - mis.lastElement().getLbm()) * 100) / mis.firstElement().getLbm();
+            return (float) (Math.round(((mis.firstElement().getLbm() - mis.lastElement().getLbm()) * 100)
+                    / mis.firstElement().getLbm() * 100d) / 100d);
         }
         return 0;
     }
@@ -318,7 +321,7 @@ public class StatsImpl implements Stats {
             for (int i = 0; i < mis.size(); i++) {
                 sum += mis.get(i).getLbm();
             }
-            return sum / mis.size();
+            return (float) (Math.round(sum / mis.size() * 100d) / 100d);
         }
         return 0;
     }

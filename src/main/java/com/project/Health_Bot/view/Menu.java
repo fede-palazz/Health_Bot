@@ -78,13 +78,27 @@ public class Menu {
 
     /**
      * Tasto (1.2)
-     * Vista aggiornamento livello attività fisica
+     * Vista aggiornamento livello attività fisica.
      * 
      * @return response
      */
     public static SendMessage getVistaAttivita(long chatId, String tipo, String username) {
+        String newTipo = null;
+
+        switch (tipo) {
+        case "sed":
+            newTipo = "Sedentario 🧘🏻️";
+            break;
+        case "sport":
+            newTipo = "Moderato 🏃";
+            break;
+        case "pes":
+            newTipo = "Pesante 🏋🏻";
+            break;
+        }
+
         // Testo del messaggio
-        String mess = ("Caro/a " + username + ", il tuo attuale livello 💪🏻 è: " + tipo + "\n"
+        String mess = ("Caro/a " + username + ", il tuo attuale livello 💪🏻 è: " + newTipo + "\n"
                 + "Se vuoi cambiarlo, seleziona il tuo nuovo livello di attività fisica ⬇️: ");
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
@@ -381,18 +395,18 @@ public class Menu {
         String mess = ("Caro/a " + username + ", \n"
                 + "nel periodo selezionato abbiamo osservato attentamente i dati che hai registrato: \n" + "PESO \n"
                 + "- peso massimo: " + peso[0] + "[Kg] 😔;\n" + "- peso minimo: " + peso[1] + "[Kg]🙂;\n "
-                + "- peso medio :" + peso[2] + "[Kg];\n");
+                + "- peso medio: " + peso[2] + "[Kg];\n");
         if (peso[3] >= 0)
-            mess += "- incremento di peso: " + peso[3] + "[Kg].\n";
+            mess += "- incremento di peso: " + peso[3] + "%.\n";
         else
-            mess += "- perdita di peso: " + (-1 * peso[3]) + "[Kg].\n";
+            mess += "- perdita di peso: " + (-1 * peso[3]) + "%.\n";
 
         mess += ("LBM \n" + "- LBM massimo: " + LBM[0] + "[Kg] 🙂;\n" + "- LBM minimo: " + LBM[1] + "[Kg] 😔.\n"
                 + "- LBM medio: " + LBM[2] + "[Kg]\n");
         if (LBM[3] >= 0)
-            mess += "- incremento LBM: " + LBM[3] + "[Kg].\n";
+            mess += "- incremento LBM: " + LBM[3] + "%.\n";
         else
-            mess += "- perdita LBM: " + (-1 * LBM[3]) + "[Kg].\n";
+            mess += "- perdita LBM: " + (-1 * LBM[3]) + "%.\n";
 
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
