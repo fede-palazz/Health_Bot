@@ -3,6 +3,7 @@ package com.project.Health_Bot.filter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Vector;
 import com.project.Health_Bot.exception.FilterArgumentException;
 import com.project.Health_Bot.model.Misurazione;
@@ -24,23 +25,36 @@ public class FiltroData extends FiltriMis {
         // Crea le date a partire dalle stringhe
         Date dal = null, al = null;
         try {
-            dal = df.parse(dataInizio);
-            al = df.parse(dataFine);
+            if (dataInizio != null)
+                dal = df.parse(dataInizio);
+            if (dataFine != null)
+                al = df.parse(dataFine);
         }
         catch (ParseException e) {
             e.printStackTrace();
         }
         // Ordina le misurazioni in ordine cronologico
         misure.sort((m1, m2) -> m1.getData().compareTo(m2.getData()));
+        // Istanzia un nuovo iteratore
+
         if (dataInizio != null) {
-            for (Misurazione mis : misure)
-                if (mis.getData().compareTo(dal) < 0)
-                    misure.remove(mis);
+            Iterator<Misurazione> iter = misure.iterator();
+            while (iter.hasNext()) {
+                Misurazione m = iter.next(); // Prossima misurazione
+                if (m.getData().compareTo(dal) < 0) // Data misurazione precedente alla minima richiesta
+                    iter.remove();
+                else
+                    break;
+            }
+
         }
         if (dataFine != null) {
-            for (Misurazione mis : misure)
-                if (mis.getData().compareTo(al) > 0)
-                    misure.remove(mis);
+            Iterator<Misurazione> iter = misure.iterator();
+            while (iter.hasNext()) {
+                Misurazione m = iter.next(); // Prossima misurazione
+                if (m.getData().compareTo(al) > 0) // Data misurazione precedente alla minima richiesta
+                    iter.remove();
+            }
         }
     }
 

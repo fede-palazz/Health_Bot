@@ -5,7 +5,6 @@ package com.project.Health_Bot.service;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
@@ -255,11 +254,12 @@ public class BotServiceImpl implements BotService {
 
         // Oggetto formattatore di date
         SimpleDateFormat date = new SimpleDateFormat("dd-MM-yyyy");
-        String dataOggi = date.format(new Date());
+        //String dataOggi = date.format(new Date());
         // Data di un mese fa
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.MONTH, -1);
         String dataMese = date.format(calendar.getTime());
+        calendar = Calendar.getInstance();
         // Data di una settimana fa
         calendar.add(Calendar.WEEK_OF_MONTH, -1);
         String dataSett = date.format(calendar.getTime());
@@ -325,7 +325,7 @@ public class BotServiceImpl implements BotService {
 
         case "Ultimo mese 🗓": // Tasto (5.2.1)
             // Filtro il periodo
-            FiltroData filter = new FiltroData(dataMese, dataOggi);
+            FiltroData filter = new FiltroData(dataMese, null);
             filter.filtra(misure);
 
             float[] LBM30 = new float[4];
@@ -345,7 +345,7 @@ public class BotServiceImpl implements BotService {
 
         case "Ultima settimana 📆": // Tasto (5.2.1)
             // Filtro il periodo
-            FiltroData filtro = new FiltroData(dataSett, dataOggi);
+            FiltroData filtro = new FiltroData(dataSett, null);
             filtro.filtra(misure);
 
             float[] LBM7 = new float[4];
