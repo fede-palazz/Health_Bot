@@ -1,5 +1,6 @@
 package com.project.Health_Bot.filter;
 
+import java.util.Iterator;
 import java.util.Vector;
 import com.project.Health_Bot.exception.FilterArgumentException;
 import com.project.Health_Bot.model.Utente;
@@ -18,14 +19,17 @@ public class FiltroGenere extends FiltriUser {
      */
     @Override
     public void filtra(Vector<Utente> utenti) {
-        for (Utente user : utenti)
+        Iterator<Utente> iter = utenti.iterator();
+        while (iter.hasNext()) {
+            Utente user = iter.next(); // Prossimo utente
             if (user.getSesso().get() != sesso)
-                utenti.remove(user);
+                iter.remove();
+        }
     }
 
     @Override
     public void validate() {
-        if (sesso != 'M' || sesso != 'F')
+        if (sesso != 'M' && sesso != 'F')
             throw new FilterArgumentException("Genere inserito non valido (ammessi 'M', 'F')");
     }
 

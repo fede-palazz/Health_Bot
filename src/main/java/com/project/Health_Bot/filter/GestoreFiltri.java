@@ -2,6 +2,8 @@ package com.project.Health_Bot.filter;
 
 import java.util.Vector;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.project.Health_Bot.model.Misurazione;
+import com.project.Health_Bot.model.Utente;
 
 public class GestoreFiltri {
 
@@ -57,6 +59,16 @@ public class GestoreFiltri {
             filtro.validate();
         for (FiltriMis filtro : filtriMis)
             filtro.validate();
+    }
+
+    public void filtraUser(Vector<Utente> utenti) {
+        for (FiltriUser filtro : filtriUser)
+            filtro.filtra(utenti);
+    }
+
+    public void filtraMis(Vector<Misurazione> misure) {
+        for (FiltriMis filtro : filtriMis)
+            filtro.filtra(misure);
     }
 
 }

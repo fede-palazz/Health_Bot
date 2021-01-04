@@ -1,5 +1,6 @@
 package com.project.Health_Bot.filter;
 
+import java.util.Iterator;
 import java.util.Vector;
 import com.project.Health_Bot.exception.FilterArgumentException;
 import com.project.Health_Bot.model.Pesista;
@@ -18,23 +19,30 @@ public class FiltroTipo extends FiltriUser {
 
     @Override
     public void filtra(Vector<Utente> utenti) {
+        Iterator<Utente> iter = utenti.iterator();
         switch (tipo) {
         case "sed":
-            for (Utente user : utenti)
+            while (iter.hasNext()) {
+                Utente user = iter.next(); // Prossimo utente
                 if (!(user instanceof Sedentario))
-                    utenti.remove(user);
+                    iter.remove();
+            }
             break;
 
         case "sport":
-            for (Utente user : utenti)
+            while (iter.hasNext()) {
+                Utente user = iter.next(); // Prossimo utente
                 if (!(user instanceof Sportivo))
-                    utenti.remove(user);
+                    iter.remove();
+            }
             break;
 
         case "pes":
-            for (Utente user : utenti)
+            while (iter.hasNext()) {
+                Utente user = iter.next(); // Prossimo utente
                 if (!(user instanceof Pesista))
-                    utenti.remove(user);
+                    iter.remove();
+            }
             break;
         }
 

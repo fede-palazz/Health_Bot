@@ -1,5 +1,6 @@
 package com.project.Health_Bot.filter;
 
+import java.util.Iterator;
 import java.util.Vector;
 import com.project.Health_Bot.exception.FilterArgumentException;
 import com.project.Health_Bot.model.Misurazione;
@@ -17,14 +18,21 @@ public class FiltroBmi extends FiltriMis {
     @Override
     public void filtra(Vector<Misurazione> misure) {
         if (bmiMin != null) {
-            for (Misurazione mis : misure)
+            Iterator<Misurazione> iter = misure.iterator();
+            while (iter.hasNext()) {
+                Misurazione mis = iter.next(); // Prossima misurazione
                 if (mis.getBmi() < bmiMin)
-                    misure.remove(mis);
+                    iter.remove();
+            }
+
         }
         if (bmiMax != null) {
-            for (Misurazione mis : misure)
+            Iterator<Misurazione> iter = misure.iterator();
+            while (iter.hasNext()) {
+                Misurazione mis = iter.next(); // Prossima misurazione
                 if (mis.getBmi() > bmiMax)
-                    misure.remove(mis);
+                    iter.remove();
+            }
         }
     }
 

@@ -1,5 +1,6 @@
 package com.project.Health_Bot.filter;
 
+import java.util.Iterator;
 import java.util.Vector;
 import com.project.Health_Bot.exception.FilterArgumentException;
 import com.project.Health_Bot.model.Utente;
@@ -21,14 +22,20 @@ public class FiltroEta extends FiltriUser {
     @Override
     public void filtra(Vector<Utente> utenti) {
         if (etaMin != null) {
-            for (Utente user : utenti)
+            Iterator<Utente> iter = utenti.iterator();
+            while (iter.hasNext()) {
+                Utente user = iter.next(); // Prossimo utente
                 if (user.getEta().get() < etaMin)
-                    utenti.remove(user);
+                    iter.remove();
+            }
         }
         if (etaMax != null) {
-            for (Utente user : utenti)
+            Iterator<Utente> iter = utenti.iterator();
+            while (iter.hasNext()) {
+                Utente user = iter.next(); // Prossimo utente
                 if (user.getEta().get() > etaMax)
-                    utenti.remove(user);
+                    iter.remove();
+            }
         }
     }
 

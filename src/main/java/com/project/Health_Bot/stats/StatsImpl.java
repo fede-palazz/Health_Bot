@@ -234,6 +234,8 @@ public class StatsImpl implements Stats {
     @Override
     public float varazioneParam(String param, Vector<Misurazione> mis) {
 
+        // Ordina le misurazioni in ordine cronologico
+        mis.sort((m1, m2) -> m1.getData().compareTo(m2.getData()));
         switch (param) {
         case "peso":
             return (float) (Math.round(((mis.firstElement().getLbm() - mis.lastElement().getLbm()) * 100)
