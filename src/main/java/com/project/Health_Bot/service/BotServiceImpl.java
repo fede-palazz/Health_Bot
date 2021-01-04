@@ -379,7 +379,7 @@ public class BotServiceImpl implements BotService {
             view.add(Menu.getVistaStatsSingPeriodo(chatId, username, weight, LBM));
             return view;
 
-        case "Ultime misurazioni": // Tasto (5.3)
+        case "Ultime misurazioni 🔙": // Tasto (5.3)
             view.add(Menu.getVistaUltimeMis(chatId, username, stats.ultimeMis(5, misure)));
             return view;
 
