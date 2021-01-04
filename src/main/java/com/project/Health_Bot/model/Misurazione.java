@@ -123,7 +123,10 @@ public class Misurazione {
     @Override
     public String toString() {
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy"); // Oggetto formattatore di date
-        return "Misurazione [peso=" + peso + ", lbm=" + lbm + ", bmi=" + bmi + ", data=" + df.format(data) + "]";
+        return "in data " + df.format(data).replaceAll("-", "/") + ", hai registrato: \n" + "- peso: " + peso
+                + "[Kg] \n" + "- LBM: " + lbm + "[Kg] \n" + "- BMI: " + bmi + "[Kg] \n";
+        /* return "Misurazione [peso=" + peso + ", lbm=" + lbm + ", bmi=" + bmi + ", data="
+                + df.format(data).replaceAll("-", "/") + "]"; */
     }
 
 }

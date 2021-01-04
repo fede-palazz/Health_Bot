@@ -428,7 +428,7 @@ public class Menu {
      */
     public static SendMessage getVistaUltimeMis(long chatId, String username, Vector<Misurazione> misure) {
         // Testo del messaggio
-        String mess = ("Ciao" + username + "! \n" + "Ecco le ultime misurazioni che hai richiesto: ");
+        String mess = ("Ciao " + username + "! \n" + "Ecco le ultime misurazioni che hai richiesto, ");
         for (Misurazione mis : misure) {
             mess += mis.toString() + "\n";
         }
