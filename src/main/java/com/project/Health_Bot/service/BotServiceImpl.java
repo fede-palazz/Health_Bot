@@ -3,7 +3,9 @@
  */
 package com.project.Health_Bot.service;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
@@ -17,11 +19,13 @@ import com.project.Health_Bot.dao.UtenteRegDao;
 import com.project.Health_Bot.exception.APIResponseException;
 import com.project.Health_Bot.exception.FoodNotFoundException;
 import com.project.Health_Bot.exception.InvalidUpdateException;
+import com.project.Health_Bot.filter.FiltroData;
 import com.project.Health_Bot.model.Misurazione;
 import com.project.Health_Bot.model.Pesista;
 import com.project.Health_Bot.model.Sedentario;
 import com.project.Health_Bot.model.Sportivo;
 import com.project.Health_Bot.model.Utente;
+import com.project.Health_Bot.stats.StatsImpl;
 import com.project.Health_Bot.util.JSONOnline;
 import com.project.Health_Bot.util.ParamNutr;
 import com.project.Health_Bot.view.Menu;
@@ -245,6 +249,21 @@ public class BotServiceImpl implements BotService {
         float iw = ParamNutr.calcolaIW(utente.getSesso().get(), utente.getAltezza().get());
         Float peso = utenteRegDao.getUltimaMisurazione(utente).getPeso();
 
+        StatsImpl stats = new StatsImpl();
+        // Ultima misurazione registrata
+        Vector<Misurazione> misure = utenteRegDao.getMisurazioni(utente);
+
+        // Oggetto formattatore di date
+        SimpleDateFormat date = new SimpleDateFormat("dd-MM-yyyy");
+        String dataOggi = date.format(new Date());
+        // Data di un mese fa
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.MONTH, -1);
+        String dataMese = date.format(calendar.getTime());
+        // Data di una settimana fa
+        calendar.add(Calendar.WEEK_OF_MONTH, -1);
+        String dataSett = date.format(calendar.getTime());
+
         switch (mess) {
 
         case "Aggiorna parametri 🔄": // tasto (1)
@@ -305,23 +324,63 @@ public class BotServiceImpl implements BotService {
             return view;
 
         case "Ultimo mese 🗓": // Tasto (5.2.1)
+            // Filtro il periodo
+            FiltroData filter = new FiltroData(dataMese, dataOggi);
+            filter.filtra(misure);
 
-            view.add(Menu.getVistaStatsSingPeriodo(chatId, username, pesoMax, lbmMax, pesoMin, lbmMin, mediaPeso,
-                    mediaLbm, variazPeso, variazLbm));
+            float[] LBM30 = new float[4];
+            LBM30[0] = stats.paramMax("lbm", misure).getLbm();
+            LBM30[1] = stats.paramMin("lbm", misure).getLbm();
+            LBM30[2] = stats.paramMedia("lbm", misure);
+            LBM30[3] = stats.varazioneParam("lbm", misure);
+
+            float[] peso30 = new float[4];
+            peso30[0] = stats.paramMax("peso", misure).getPeso();
+            peso30[1] = stats.paramMin("peso", misure).getPeso();
+            peso30[2] = stats.paramMedia("peso", misure);
+            peso30[3] = stats.varazioneParam("peso", misure);
+
+            view.add(Menu.getVistaStatsSingPeriodo(chatId, username, peso30, LBM30));
             return view;
 
         case "Ultima settimana 📆": // Tasto (5.2.1)
-            view.add(Menu.getVistaStatsSingPeriodo(chatId, username, pesoMax, lbmMax, pesoMin, lbmMin, mediaPeso,
-                    mediaLbm, variazPeso, variazLbm));
+            // Filtro il periodo
+            FiltroData filtro = new FiltroData(dataSett, dataOggi);
+            filtro.filtra(misure);
+
+            float[] LBM7 = new float[4];
+            LBM7[0] = stats.paramMax("lbm", misure).getLbm();
+            LBM7[1] = stats.paramMin("lbm", misure).getLbm();
+            LBM7[2] = stats.paramMedia("lbm", misure);
+            LBM7[3] = stats.varazioneParam("lbm", misure);
+
+            float[] peso7 = new float[4];
+            peso7[0] = stats.paramMax("peso", misure).getPeso();
+            peso7[1] = stats.paramMin("peso", misure).getPeso();
+            peso7[2] = stats.paramMedia("peso", misure);
+            peso7[3] = stats.varazioneParam("peso", misure);
+
+            view.add(Menu.getVistaStatsSingPeriodo(chatId, username, peso7, LBM7));
             return view;
 
         case "Dall'inizio ♾": // Tasto (5.2.1)
-            view.add(Menu.getVistaStatsSingPeriodo(chatId, username, pesoMax, lbmMax, pesoMin, lbmMin, mediaPeso,
-                    mediaLbm, variazPeso, variazLbm));
+            float[] LBM = new float[4];
+            LBM[0] = stats.paramMax("lbm", misure).getLbm();
+            LBM[1] = stats.paramMin("lbm", misure).getLbm();
+            LBM[2] = stats.paramMedia("lbm", misure);
+            LBM[3] = stats.varazioneParam("lbm", misure);
+
+            float[] weight = new float[4];
+            weight[0] = stats.paramMax("peso", misure).getPeso();
+            weight[1] = stats.paramMin("peso", misure).getPeso();
+            weight[2] = stats.paramMedia("peso", misure);
+            weight[3] = stats.varazioneParam("peso", misure);
+
+            view.add(Menu.getVistaStatsSingPeriodo(chatId, username, weight, LBM));
             return view;
 
         case "Ultime misurazioni": // Tasto (5.3)
-            view.add(Menu.getVistaUltimeMis(chatId, username, mis));
+            view.add(Menu.getVistaUltimeMis(chatId, username, stats.ultimeMis(5, misure)));
             return view;
 
         case "Torna a 'Conosci il tuo corpo 🧘🏻‍♂️️'": // Tasto (5.3.1)

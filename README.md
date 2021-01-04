@@ -50,7 +50,7 @@ Inoltre BotFather fornisce all'utente il token da utilizzare per comandare il bo
 
 ## Anteprima: funzionamento nell'app mobile Telegram
 
-### Registrazione dell'utente
+### Registrazione dell'utente:
 
 ![](img/GIF/RegBot.gif)
 

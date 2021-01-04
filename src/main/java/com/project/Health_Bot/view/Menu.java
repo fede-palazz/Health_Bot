@@ -376,26 +376,23 @@ public class Menu {
      * @param chatId
      * @return response
      */
-    public static SendMessage getVistaStatsSingPeriodo(long chatId, String username, Misurazione pesoMax,
-            Misurazione lbmMax, Misurazione pesoMin, Misurazione lbmMin, float mediaPeso, float mediaLbm,
-            float variazPeso, float variazLbm) {
+    public static SendMessage getVistaStatsSingPeriodo(long chatId, String username, float[] peso, float[] LBM) {
         // Testo del messaggio
-        String mess = ("Caro/a" + username + ", \n"
-                + "nel periodo selezionato abbiamo osservato attentamente i dati che hai registrato, il peso massimo è "
-                + pesoMax + "[Kg]" + ", mentre il minimo è " + pesoMin + "[Kg]. \n\n"
-                + "Il peso medio registrato in questo periodo è stato di " + mediaPeso + "[Kg]");
-        if (variazPeso > 0)
-            mess += ", mentre l'incremento di peso è stato pari a " + variazPeso + "[Kg]😊.";
+        String mess = ("Caro/a " + username + ", \n"
+                + "nel periodo selezionato abbiamo osservato attentamente i dati che hai registrato: \n" + "PESO \n"
+                + "- peso massimo: " + peso[0] + "[Kg] 😔;\n" + "- peso minimo: " + peso[1] + "[Kg]🙂;\n "
+                + "- peso medio :" + peso[2] + "[Kg];\n");
+        if (peso[3] >= 0)
+            mess += "- incremento di peso: " + peso[3] + "[Kg].\n";
         else
-            mess += ", mentre la perdita di peso è stata pari a " + variazPeso + "[Kg]😕.";
+            mess += "- perdita di peso: " + (-1 * peso[3]) + "[Kg].\n";
 
-        mess = ("Allo stesso modo, in questo lasso di tempo hai registrato un LBM massimo di " + lbmMax
-                + "[Kg] 🙂 ed un indice di massa magra minimo pari a " + lbmMin + "[Kg] 😔."
-                + "L'LBM medio registrato è stato di " + mediaLbm + "[Kg]");
-        if (variazLbm > 0)
-            mess += ", mentre l'incremento di massa magra è stato pari a " + variazLbm + "[Kg]😊.";
+        mess += ("LBM \n" + "- LBM massimo: " + LBM[0] + "[Kg] 🙂;\n" + "- LBM minimo: " + LBM[1] + "[Kg] 😔.\n"
+                + "- LBM medio: " + LBM[2] + "[Kg]\n");
+        if (LBM[3] >= 0)
+            mess += "- incremento LBM: " + LBM[3] + "[Kg].\n";
         else
-            mess += ", mentre la perdita di massa magra è stata pari a " + variazLbm + "[Kg]😕.";
+            mess += "- perdita LBM: " + (-1 * LBM[3]) + "[Kg].\n";
 
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
@@ -415,9 +412,12 @@ public class Menu {
      * @param mis
      * @return ultime misurazioni
      */
-    public static SendMessage getVistaUltimeMis(long chatId, String username, Vector<Misurazione> mis) {
+    public static SendMessage getVistaUltimeMis(long chatId, String username, Vector<Misurazione> misure) {
         // Testo del messaggio
-        String mess = ("Ciao" + username + "!" + "Ecco le ultime misurazioni che hai richiesto: " + mis);
+        String mess = ("Ciao" + username + "! \n" + "Ecco le ultime misurazioni che hai richiesto: ");
+        for (Misurazione mis : misure) {
+            mess += mis.toString() + "\n";
+        }
         // Crea l'oggetto di risposta
         SendMessage response = new SendMessage(chatId, mess);
         // Aggiungo dei pulsanti alla risposta
