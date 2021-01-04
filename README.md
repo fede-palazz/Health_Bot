@@ -52,7 +52,7 @@ Inoltre BotFather fornisce all'utente il token da utilizzare per comandare il bo
 
 ### Registrazione dell'utente:
 
-![](img/GIF/RegBotBreve.gif)
+![](img/GIF/RegBotFinal.gif)
 
 
 
