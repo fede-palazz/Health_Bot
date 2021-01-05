@@ -1,8 +1,35 @@
 #           Progetto Programmazione ad Oggetti: Health_Bot
 
-TODO Indice
+![](img/Bot_def.jpg)
 
 
+
+## Indice
+
+- [Introduzione](#introduzione)
+
+- [Logica di funzionamento](#logica-di-funzionamento)
+
+- [Configurazione iniziale](#configurazione-iniziale)
+
+- [Anteprima: funzionamento nell'app mobile Telegram](#anteprima--funzionamento-nell-app-mobile-telegram)
+  * [Registrazione dell'utente:](#registrazione-dell-utente-)
+  * [Menù parte 1:](#men--parte-1-)
+  * [Menù parte 2:](#men--parte-2-)
+  
+- [Download](#download)
+
+- [Rotte](#rotte)
+
+- [Filtri](#filtri)
+
+- [Diagrammi UML](#diagrammi-uml)
+
+- [Tecnologie utilizzate](#tecnologie-utilizzate)
+
+- [Autori](#autori)
+
+  
 
 ## Introduzione
 
@@ -96,6 +123,14 @@ Le rotte definite sono le seguenti:
 
 
 
+Esempio di rotta /rangeEta di tipo GET :
+
+*Response:*
+
+![](img/Rotte_Filtri/rangeEta.jpg)
+
+
+
 ## Filtri
 
 I filtri definiti sono i seguenti:
@@ -109,6 +144,109 @@ I filtri definiti sono i seguenti:
 | `Misurazioni` | `Bmi`     | bmiMin, bmiMax   | *Filtra in base al range di Bmi scelto .*       |
 | `Misurazioni` | `Lbm`     | lbmMin, lbmMax   | *Filtra in base al range di Lbm scelto .*       |
 | `Misurazioni` | `Data`    | dal, al          | *Filtra in base al range di date scelte .*      |
+
+
+
+Esempio di rotta /stats di tipo POST :
+
+*Body:*
+
+![](img/Rotte_Filtri/POSTbody.jpg)
+
+
+
+*Response:*
+
+<details>
+
+    <summary>Details</summary>
+    ```json
+    {
+    "Età": [
+        {
+            "Range di età": "0-17",
+            "Percentuale": "0.0%"
+        },
+        {
+            "Range di età": "18-34",
+            "Percentuale": "100.0%"
+        },
+        {
+            "Range di età": "35-49",
+            "Percentuale": "0.0%"
+        },
+        {
+            "Range di età": "50-64",
+            "Percentuale": "0.0%"
+        },
+        {
+            "Range di età": "65 in sù",
+            "Percentuale": "0.0%"
+        }
+    ],
+    "Genere": [
+        {
+            "Genere": "M",
+            "Percentuale": "100.0%"
+        },
+        {
+            "Genere": "F",
+            "Percentuale": "0.0%"
+        }
+    ],
+    "Utenti selezionati": "10%",
+    "Livello attività": [
+        {
+            "Livello attività": "Sedentario",
+            "Percentuale": "0.0%"
+        },
+        {
+            "Livello attività": "Moderata",
+            "Percentuale": "100.0%"
+        },
+        {
+            "Livello attività": "Pesante",
+            "Percentuale": "0.0%"
+        }
+    ],
+    "Condizione": [
+        {
+            "Range di età": "GRAVE MAGREZZA",
+            "Percentuale": "0.0%"
+        },
+        {
+            "Range di età": "SOTTOPESO",
+            "Percentuale": "0.0%"
+        },
+        {
+            "Range di età": "NORMOPESO",
+            "Percentuale": "100.0%"
+        },
+        {
+            "Range di età": "SOVRAPPESO",
+            "Percentuale": "0.0%"
+        },
+        {
+            "Range di età": "OBESITÀ CLASSE I (lieve)",
+            "Percentuale": "0.0%"
+        },
+        {
+            "Range di età": "OBESITÀ CLASSE II (media)",
+            "Percentuale": "0.0%"
+        },
+        {
+            "Range di età": "OBESITÀ CLASSE III (grave)",
+            "Percentuale": "0.0%"
+        }
+    ]
+}
+    ```
+    
+    ```
+
+</details>
+
+
 
 
 
@@ -190,7 +328,29 @@ I filtri definiti sono i seguenti:
 
 **Diagrammi delle sequenze:**
 
-![](img/UML/Seq_diagram-Seq_Updates.png)
+- **Updates:**
+
+![](img/UML/Seq_Diag/Seq_diagram-Seq_Updates.png)
+
+
+
+- **Registrazione:**
+
+![](img/UML/Seq_Diag/class_diagram-Seq_Registrazione.png)
+
+
+
+- **Chiamata API del BMI:**
+
+![](img/UML/Seq_Diag/class_diagram-Seq_BmiAPI.png)
+
+
+
+- **Rotte:**
+
+
+
+
 
 
 
