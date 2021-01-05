@@ -79,6 +79,7 @@ public class ParamNutr {
 	/**
 	 * Metodo che calcola l'IW, cioè il peso ideale.
 	 * 
+	 * @param sesso
 	 * @param altezza
 	 * @return valore dell'IW
 	 */

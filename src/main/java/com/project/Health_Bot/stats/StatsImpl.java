@@ -46,22 +46,6 @@ public class StatsImpl implements Stats {
         return perc;
     }
 
-    @Override // TODO Più inutile del precedente
-    public float percTipo(String tipo, Vector<Utente> utenti) {
-
-        float[] perc = percTipo(utenti);
-
-        switch (tipo) {
-        case "sed":
-            return perc[0];
-        case "sport":
-            return perc[1];
-        case "pes":
-            return perc[2];
-        }
-        return 0;
-    }
-
     @Override
     public float[] percGenere(Vector<Utente> utenti) {
         int[] cont = new int[2];
@@ -82,16 +66,6 @@ public class StatsImpl implements Stats {
 
         return perc;
 
-    }
-
-    @Override // TODO Ancora più inutile
-    public float percGenere(char gender, Vector<Utente> utenti) {
-        float[] perc = percGenere(utenti);
-
-        if (gender == 'M')
-            return perc[0];
-        else
-            return perc[1];
     }
 
     @Override
@@ -129,22 +103,6 @@ public class StatsImpl implements Stats {
         // percentuale utenti con eta >= 65
         perc[4] = ((float) (cont[4] * 100 / utentiTot));
         return perc;
-    }
-
-    @Override // TODO Inutile
-    public float percRangeEta(int eta, Vector<Utente> utenti) {
-        float[] perc = percRangeEta(utenti);
-
-        if (eta < 18)
-            return perc[0];
-        else if (eta >= 18 && eta < 35)
-            return perc[1];
-        else if (eta >= 35 && eta < 50)
-            return perc[2];
-        else if (eta >= 50 && eta < 65)
-            return perc[3];
-        else
-            return perc[4];
     }
 
     @Override
@@ -205,29 +163,6 @@ public class StatsImpl implements Stats {
             perc[i] = ((float) (cont[i] * 100 / utentiTot));
         }
         return perc;
-    }
-
-    @Override // TODO Inutilissimo
-    public float percCondizioni(String condizione, Vector<Utente> utenti) {
-        float[] perc = percCondizioni(utenti);
-        switch (condizione) {
-        case "magro":
-            return perc[0];
-        case "sott":
-            return perc[1];
-        case "norm":
-            return perc[2];
-        case "sovr":
-            return perc[3];
-        case "ob1":
-            return perc[4];
-        case "ob2":
-            return perc[5];
-        case "ob3":
-            return perc[6];
-        }
-
-        return 0;
     }
 
     @Override

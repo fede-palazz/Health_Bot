@@ -29,9 +29,9 @@ public class JSONOnline {
 	 * 
 	 * @param peso    [kg]
 	 * @param altezza [cm]
-	 * @return valore del BMI
 	 * @throws ParseException
 	 * @throws APIResponseException
+	 * @return valore del BMI
 	 */
 	public static float BMI_API(float peso, int altezza) throws ParseException, APIResponseException {
 
@@ -80,11 +80,11 @@ public class JSONOnline {
 	 * Metodo che chiama l'API del FOOD
 	 * 
 	 * @param cibo inserito
-	 * @return Oggetto di tipo AlimentoInfo contenente i valori nutrizionali del
-	 *         cibo scelto
 	 * @throws ParseException
 	 * @throws APIResponseException
 	 * @throws FoodNotFoundException
+	 * @return Oggetto di tipo AlimentoInfo contenente i valori nutrizionali del
+	 *         cibo scelto
 	 */
 	public static AlimentoInfo FOOD_API(String cibo)
 			throws ParseException, APIResponseException, FoodNotFoundException {

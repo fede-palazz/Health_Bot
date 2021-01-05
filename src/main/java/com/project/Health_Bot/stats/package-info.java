@@ -1,5 +1,5 @@
 /**
- * Questo package contiene le classi relative alle statistiche.
+ * Questo package contiene le classi relative alle statistiche multiutente ed utente singolo.
  */
 
 /**

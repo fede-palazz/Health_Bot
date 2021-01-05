@@ -332,8 +332,8 @@ public class JSONOffline {
 	 * Metodo che carica l'allenamento dal file e lo restituisce
 	 * 
 	 * @param tipo Stile di vita (sed, sport, pes)
-	 * @param n    variabile generata randomicamente
-	 * @return String un possibile allenamento
+	 * @param n  variabile generata randomicamente
+	 * @return un possibile allenamento
 	 */
 	public static String getAllenamento(String tipo, int n) {
 
@@ -365,6 +365,8 @@ public class JSONOffline {
 	/**
 	 * Carica una dieta da file e la restituice
 	 * 
+	 * @param n variabile generata randomicamente
+	 * @param numPasti
 	 * @return Lista di pasti
 	 */
 	public static List<Vector<Alimento>> getDieta(int n, int numPasti) {
@@ -420,6 +422,7 @@ public class JSONOffline {
 	 * Inserisce l'oggetto Alimento nel Vector<Alimento> del pasto scelto
 	 * 
 	 * @param ja JSONArray che contiene il pasto selezionato
+	 * @param pasto
 	 */
 	@SuppressWarnings("unused")
 	private static void getPasto(JSONArray ja, Vector<Alimento> pasto) {
