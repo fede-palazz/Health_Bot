@@ -60,7 +60,7 @@ public class FiltroLbm extends FiltriMis {
     public void validate() {
         if (lbmMin != null && lbmMin < 0)
             throw new FilterArgumentException("L'lbm minimo non può essere negativo");
-        if (lbmMax != null && lbmMax < lbmMin)
+        if (lbmMin != null && lbmMax != null && lbmMax < lbmMin)
             throw new FilterArgumentException("L'lbm massimo non può essere minore di quello minimo");
     }
 

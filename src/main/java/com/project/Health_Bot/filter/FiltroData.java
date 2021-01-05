@@ -92,7 +92,7 @@ public class FiltroData extends FiltriMis {
         catch (ParseException e) {
             throw new FilterArgumentException("Date inserite non valide (formato accettato 'dd-MM-yyyy')");
         }
-        if (al != null && al.compareTo(dal) < 0)
+        if (dal != null && al != null && al.compareTo(dal) < 0)
             throw new FilterArgumentException("La data finale non può essere precedente a quella iniziale");
     }
 

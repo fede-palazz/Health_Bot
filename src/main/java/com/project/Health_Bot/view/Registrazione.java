@@ -36,6 +36,7 @@ public class Registrazione {
     /**
      * Restituisce la vista relativa al sesso
      * 
+     * @param chatId
      * @return response
      */
     public static SendMessage getVistaSesso(long chatId) {
@@ -49,6 +50,7 @@ public class Registrazione {
     /**
      * Restituisce la vista relativa al peso
      * 
+     * @param chatId
      * @return response
      */
     public static SendMessage getVistaPeso(long chatId) {
@@ -65,6 +67,7 @@ public class Registrazione {
     /**
      * Restituisce la vista relativa all'altezza
      * 
+     * @param chatId
      * @return response
      */
     public static SendMessage getVistaAltezza(long chatId) {
@@ -81,6 +84,7 @@ public class Registrazione {
     /**
      * Restituisce la vista relativa all'anno di nascita
      * 
+     * @param chatId
      * @return response
      */
     public static SendMessage getVistaAnno(long chatId) {
@@ -97,6 +101,7 @@ public class Registrazione {
     /**
      * Metodo che restituisce il livello di att. fisica selezionato dall'utente
      * 
+     * @param chatId
      * @return response
      */
     public static SendMessage getVistaAttivita(long chatId) {
@@ -132,6 +137,7 @@ public class Registrazione {
     /**
      * Restituisce una vista di errore sui dati inseriti dall'utente
      * 
+     * @param chatId
      * @return response
      */
     public static SendMessage getVistaErrore(long chatId) {

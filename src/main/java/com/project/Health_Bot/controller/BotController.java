@@ -36,7 +36,7 @@ import com.project.Health_Bot.util.JSONOffline;
  * @author FedePalaz & GiovanniNovelli9 & Baldellaux
  *
  *         Classe Controller del Bot
- *         200 COMMIT YEEHH
+ *
  */
 @RestController
 public class BotController {
@@ -89,30 +89,33 @@ public class BotController {
     @SuppressWarnings("unchecked")
     @PostMapping("/stats")
     public JSONObject getStat(@RequestBody GestoreFiltri gest) {
+
         // Verifica che i parametri dei filtri siano corretti
         gest.convalidaFiltri();
+
         // Lista utenti totali
         Vector<Utente> utenti = JSONOffline.getUtenti();
         int utentiTot = utenti.size();
 
-        // Filtra la lista di utenti
+        // Filtra la lista di utenti in base ai filtri user
         for (FiltriUser filtro : gest.getFiltriUser())
             filtro.filtra(utenti);
 
-        Iterator<Utente> iter = utenti.iterator();
-        while (iter.hasNext()) {
-            Utente utente = iter.next();
-            // Ottiene tutte le misurazioni di un utente
-            Vector<Misurazione> misure = null;
-            if (utente instanceof Sedentario)
-                misure = ((Sedentario) utente).getMisurazioni();
-            else if (utente instanceof Sportivo)
-                misure = ((Sportivo) utente).getMisurazioni();
-            else if (utente instanceof Pesista)
-                misure = ((Pesista) utente).getMisurazioni();
-            // Filtra le misurazioni
-            for (FiltriMis filtro : gest.getFiltriMis()) {
-                if (!(filtro instanceof FiltroData)) { // Inibisce filtro data
+        // Filtra gli utenti in base ai filtri sulle misurazioni
+        for (FiltriMis filtro : gest.getFiltriMis()) {
+            if (!(filtro instanceof FiltroData)) { // Inibisce filtro data
+                Iterator<Utente> iter = utenti.iterator();
+                while (iter.hasNext()) {
+                    Utente utente = iter.next();
+                    // Ottiene tutte le misurazioni di un utente
+                    Vector<Misurazione> misure = null;
+                    if (utente instanceof Sedentario)
+                        misure = ((Sedentario) utente).getMisurazioni();
+                    else if (utente instanceof Sportivo)
+                        misure = ((Sportivo) utente).getMisurazioni();
+                    else if (utente instanceof Pesista)
+                        misure = ((Pesista) utente).getMisurazioni();
+
                     int num = misure.size(); // Numero misurazioni non filtrate
                     filtro.filtra(misure);
                     if (misure.size() < num) {
@@ -122,10 +125,17 @@ public class BotController {
                 }
             }
         }
-        float perc = utenti.size() * 100 / utentiTot;
-        JSONObject jo = new JSONObject();
-        jo.put("Percentuale utenti", perc + "%");
-        return jo;
+        // JSONObject di risposta
+        JSONObject response = new JSONObject();
+        if (utenti.isEmpty())
+            return response;
+        // Richiede le statistiche delle GET passando il vettore di utenti filtrato
+        response.put("Età", this.getRangeEta(utenti));
+        response.put("Genere", this.getGenere(utenti));
+        response.put("Condizione", this.getCondizioni(utenti));
+        response.put("Livello attività", this.getLvlAtt(utenti));
+        response.put("Utenti selezionati", utenti.size() * 100 / utentiTot + "%");
+        return response;
     }
 
     @SuppressWarnings("unchecked")
@@ -146,10 +156,41 @@ public class BotController {
     }
 
     @SuppressWarnings("unchecked")
+    public JSONArray getLvlAtt(Vector<Utente> utenti) {
+        String[] tipo = { "Sedentario", "Moderata", "Pesante" };
+        StatsImpl stats = new StatsImpl();
+        float[] perc = stats.percTipo(utenti);
+        JSONArray ja = new JSONArray();
+        for (int i = 0; i < perc.length; i++) {
+            JSONObject jo = new JSONObject();
+            jo.put("Livello attività", tipo[i]);
+            jo.put("Percentuale", perc[i] + "%");
+            ja.add(jo);
+        }
+        return ja;
+    }
+
+    @SuppressWarnings("unchecked")
     @GetMapping("/genere")
     public JSONArray getGenere() {
         String[] genere = { "M", "F" };
         Vector<Utente> utenti = JSONOffline.getUtenti();
+        StatsImpl stats = new StatsImpl();
+        float[] perc = stats.percGenere(utenti);
+        JSONArray ja = new JSONArray();
+
+        for (int i = 0; i < perc.length; i++) {
+            JSONObject jo = new JSONObject();
+            jo.put("Genere", genere[i]);
+            jo.put("Percentuale", perc[i] + "%");
+            ja.add(jo);
+        }
+        return ja;
+    }
+
+    @SuppressWarnings("unchecked")
+    public JSONArray getGenere(Vector<Utente> utenti) {
+        String[] genere = { "M", "F" };
         StatsImpl stats = new StatsImpl();
         float[] perc = stats.percGenere(utenti);
         JSONArray ja = new JSONArray();
@@ -182,6 +223,22 @@ public class BotController {
     }
 
     @SuppressWarnings("unchecked")
+    public JSONArray getRangeEta(Vector<Utente> utenti) {
+        String[] rangeEta = { "0-17", "18-34", "35-49", "50-64", "65 in sù" };
+        StatsImpl stats = new StatsImpl();
+        float[] perc = stats.percRangeEta(utenti);
+        JSONArray ja = new JSONArray();
+
+        for (int i = 0; i < perc.length; i++) {
+            JSONObject jo = new JSONObject();
+            jo.put("Range di età", rangeEta[i]);
+            jo.put("Percentuale", perc[i] + "%");
+            ja.add(jo);
+        }
+        return ja;
+    }
+
+    @SuppressWarnings("unchecked")
     @GetMapping("/condizioni")
     public JSONArray getCondizioni() {
         String[] condizioni = { "GRAVE MAGREZZA", "SOTTOPESO", "NORMOPESO", "SOVRAPPESO", "OBESITÀ CLASSE I (lieve)", "OBESITÀ CLASSE II (media)", "OBESITÀ CLASSE III (grave)" };
@@ -199,8 +256,37 @@ public class BotController {
         return ja;
     }
 
+    @SuppressWarnings("unchecked")
+    public JSONArray getCondizioni(Vector<Utente> utenti) {
+        String[] condizioni = { "GRAVE MAGREZZA", "SOTTOPESO", "NORMOPESO", "SOVRAPPESO", "OBESITÀ CLASSE I (lieve)", "OBESITÀ CLASSE II (media)", "OBESITÀ CLASSE III (grave)" };
+        StatsImpl stats = new StatsImpl();
+        float[] perc = stats.percCondizioni(utenti); // Percentuali condizioni utenti
+        JSONArray ja = new JSONArray();
+
+        for (int i = 0; i < perc.length; i++) {
+            JSONObject jo = new JSONObject();
+            jo.put("Range di età", condizioni[i]);
+            jo.put("Percentuale", perc[i] + "%");
+            ja.add(jo);
+        }
+        return ja;
+    }
+
     @GetMapping("/ultMis")
-    public Vector<Misurazione> getUltMis(@RequestParam("lastMis") int n) {
+    public Vector<Misurazione> getUltMis(@RequestParam("num") int n) {
+
+        Vector<Utente> utenti = JSONOffline.getUtenti();
+        Vector<Misurazione> mis = JSONOffline.getMisura(utenti);
+        //ordino per data
+        mis.sort((m1, m2) -> m1.getData().compareTo(m2.getData()));
+
+        StatsImpl statics = new StatsImpl();
+        return statics.ultimeMis(n, mis);
+
+    }
+
+    @PostMapping("/ultMis")
+    public Vector<Misurazione> getUltMisFiltr(@RequestParam("num") int n) {
 
         Vector<Utente> utenti = JSONOffline.getUtenti();
         Vector<Misurazione> mis = JSONOffline.getMisura(utenti);
