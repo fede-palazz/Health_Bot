@@ -1,6 +1,6 @@
 #           Progetto Programmazione ad Oggetti: Health_Bot
 
-![](img/Bot_def.jpg)
+<img src = "img/Bot_def.jpg" width="500">
 
 
 
@@ -159,8 +159,7 @@ Esempio di rotta /stats di tipo POST :
 
 <details>
 
-    <summary>Details</summary>
-    ```json
+  
     {
     "Età": [
         {
@@ -239,10 +238,8 @@ Esempio di rotta /stats di tipo POST :
             "Percentuale": "0.0%"
         }
     ]
-}
-    ```
-    
-    ```
+    }
+   
 
 </details>
 
@@ -266,13 +263,13 @@ Esempio di rotta /stats di tipo POST :
 
 - **Package controller:**
 
-  ![](img/UML/Class_Diag/controller.png)
+  <img src = "img/UML/Class_Diag/controller.png" width="700">
 
 
 
 - **Package service:**
 
-  ![](img/UML/Class_Diag/service.png)
+  <img src = "img/UML/Class_Diag/service.png" width="700">
 
 
 
@@ -290,7 +287,7 @@ Esempio di rotta /stats di tipo POST :
 
 - **Package dao:**
 
-![](img/UML/Class_Diag/dao.png)
+ <img src = "img/UML/Class_Diag/dao.png" width="700">
 
 
 
@@ -302,13 +299,13 @@ Esempio di rotta /stats di tipo POST :
 
 - **Package test:**
 
-![](img/UML/Class_Diag/test.png)
+<img src = "img/UML/Class_Diag/test.png" width="700">
 
 
 
 - **Package exception:**
 
-![](img/UML/Class_Diag/exception.png)
+<img src = "img/UML/Class_Diag/exception.png" width="700">
 
 
 
