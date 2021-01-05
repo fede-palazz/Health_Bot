@@ -25,6 +25,7 @@ public class Menu {
      * Tasto (0)
      * Menù principale del bot
      * 
+     * @param chatId
      * @return response
      */
     public static SendMessage getVistaMenu(long chatId) {
@@ -63,6 +64,7 @@ public class Menu {
      * Tasto (1.1)
      * Vista aggiornamento peso dell'utente
      * 
+     * @param chatId
      * @return response
      */
     public static SendMessage getVistaAggPeso(long chatId) {
@@ -80,6 +82,9 @@ public class Menu {
      * Tasto (1.2)
      * Vista aggiornamento livello attività fisica.
      * 
+     * @param chatId
+     * @param tipo
+     * @param username
      * @return response
      */
     public static SendMessage getVistaAttivita(long chatId, String tipo, String username) {
@@ -131,6 +136,7 @@ public class Menu {
      * Tasto (1.4)
      * Vista livello attività fisica aggiornata con successo
      * 
+     * @param chatId
      * @return response
      */
     public static SendMessage getVistaAttivitaSucc(long chatId) {
@@ -168,6 +174,8 @@ public class Menu {
      * Tasto (2.1)
      * Vista dieta consigliata sulla base dell'fcg
      * 
+     * @param chatId
+     * @param username
      * @param fcg
      * @param dieta
      * @return response
@@ -234,6 +242,7 @@ public class Menu {
      * Tasto(3.1)
      * Vista inserimento nome cibo per analisi dei parametri nutrizionali
      * 
+     * @param chatId
      * @return response
      */
     public static SendMessage getVistaAlimento(long chatId) {
@@ -251,6 +260,8 @@ public class Menu {
      * Tasto(3.2)
      * Vista che restituisce i valori nutrionali di un cibo precedentemente inserito
      * 
+     * @param chatId
+     * @param alimento
      * @return response
      */
     public static SendMessage getVistaInfoNutr(long chatId, AlimentoInfo alimento) {
@@ -265,6 +276,7 @@ public class Menu {
      * Tasto(3.3)
      * Avvisa l'utente che il cibo digitato non esiste
      * 
+     * @param chatId
      * @return response
      */
     public static SendMessage getVistaInfoNutrFail(long chatId) {
@@ -283,6 +295,14 @@ public class Menu {
      * Tasto (4)
      * Vista di riepilogo dei parametri registrati e calcolati
      * 
+     * @param chatId
+     * @param tipo
+     * @param peso
+     * @param iw
+     * @param fcg
+     * @param bmr
+     * @param bmi
+     * @param lbm
      * @return response
      */
     public static SendMessage getVistaRiepilogoSalute(long chatId, String tipo, float peso, float iw, int fcg,
@@ -339,6 +359,7 @@ public class Menu {
      * Tasto (5.1)
      * Vista diagnostica stato di salute tramite analisi del BMI
      * 
+     * @param chatId
      * @param bmi
      * @param condizione
      * @param peso
@@ -382,6 +403,9 @@ public class Menu {
      * Vista generale che mostra i progressi fatti dall'utente nel range temporale considerato.
      * 
      * @param chatId
+     * @param username
+     * @param peso
+     * @param LBM
      * @return response
      */
     public static SendMessage getVistaStatsSingPeriodo(long chatId, String username, float[] peso, float[] LBM) {
@@ -417,8 +441,8 @@ public class Menu {
      * 
      * @param chatId
      * @param username
-     * @param mis
-     * @return ultime misurazioni
+     * @param misure
+     * @return response
      */
     public static SendMessage getVistaUltimeMis(long chatId, String username, Vector<Misurazione> misure) {
         // Testo del messaggio
@@ -439,6 +463,7 @@ public class Menu {
      * Tasto (6)
      * Menù informativo
      * 
+     * @param chatId
      * @return response
      */
     public static SendMessage getVistaInfo(long chatId) {
@@ -457,6 +482,7 @@ public class Menu {
      * Tasto (6.1)
      * Vista che spiega cos'è il BMI e come è utilizzato nel bot
      * 
+     * @param chatId
      * @return response
      */
     public static SendMessage getVistaInfoBMI(long chatId) {
@@ -476,6 +502,7 @@ public class Menu {
      * Tasto (6.2)
      * Vista che spiega cos'è l'IW e come viene utilizzato nel bot
      * 
+     * @param chatId
      * @return response
      */
     public static SendMessage getVistaInfoIW(long chatId) {
@@ -493,7 +520,8 @@ public class Menu {
      * Tasto (6.3)
      * Vista che spiega cos'è il BMR e come viene utilizzato nel bot
      * 
-     * @return mess
+     * @param chatId
+     * @return response
      */
     public static SendMessage getVistaInfoBMR(long chatId) {
         // Testo del messaggio
@@ -512,6 +540,7 @@ public class Menu {
      * Tasto (6.4)
      * Vista che spiega cos'è l'FCG e come viene utilizzato nel bot
      * 
+     * @param chatId
      * @return response
      */
     public static SendMessage getVistaInfoFCG(long chatId) {
@@ -529,6 +558,7 @@ public class Menu {
      * Tasto (6.5)
      * Vista che spiega cos'è l'LBM e come viene utilizzato nel bot
      * 
+     * @param chatId
      * @return response
      */
     public static SendMessage getVistaInfoLBM(long chatId) {
@@ -546,6 +576,7 @@ public class Menu {
     /**
      * Restituisce una vista di errore sui dati inseriti dall'utente
      * 
+     * @param chatId
      * @return response
      */
     public static SendMessage getVistaErrore(long chatId) {
