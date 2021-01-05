@@ -122,7 +122,7 @@ I filtri definiti sono i seguenti:
 
 **Diagrammi delle classi:**
 
-![](img/UML/Class_Diag/diagramma classi.png)
+![](img/UML/Class_Diag/diagClassi.png)
 
 
 
