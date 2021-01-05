@@ -144,6 +144,12 @@ public class BotController {
         return response;
     }
 
+    /**
+     * Rotta GET che restituisce le statistiche sul livello di attività fisica degli utenti
+     * 
+     * @param utenti
+     * @return statistiche livello attività fisica
+     */
     @SuppressWarnings("unchecked")
     @GetMapping("/lvlAtt")
     public JSONArray getLvlAtt(Vector<Utente> utenti) {
