@@ -84,15 +84,15 @@ L’applicazione ora è pronta ed è in ascolto alla porta http://localhost8081.
 
 Le rotte definite sono le seguenti:
 
-| Tipo   | Rotta         | Descrizione                                                  |
-| ------ | :------------ | :----------------------------------------------------------- |
-| `GET`  | `/lvlAtt`     | *Livello di attività:  **sedentario**,  **moderata**,  **pesante**. Restituisce la singola percentuale di utenti per ogni livello di attività fisica.* |
-| `GET`  | `/genere`     | *Genere: **M**, **F**. Restituisce la singola percentuale di utenti per genere.* |
-| `GET`  | `/rangeEta`   | *Restituisce la singola percentuale relativa al range dell'età.* |
-| `GET`  | `/condizioni` | *Condizioni: **Grave Magrezza**, **Sottopeso**, **Normopeso**, **Sovrappeso**, **Obesità Classe I (lieve)**, **Obesità Classe II (media)**, **Obesità Classe III (grave)**.  Restituisce la singola percentuale relativa alla condizione fisica.* |
-| `GET`  | `/ultMis`     | *Restituisce le ultime **n** misurazioni degli utenti.*      |
-| `POST` | `/stats`      | *Restituisce le statistiche generali degli utenti filtrate secondo i parametri forniti* |
-| `POST` | `/ultMis`     | *Restituisce le ultime **n** misurazioni registrate avendo applicato i filtri impostati* |
+| Tipo   | Rotta         | Param | Descrizione                                                  |
+| ------ | :------------ | ----- | :----------------------------------------------------------- |
+| `GET`  | `/lvlAtt`     | n/a   | *Livello di attività:  **sedentario**,  **moderata**,  **pesante**. Restituisce la singola percentuale di utenti per ogni livello di attività fisica.* |
+| `GET`  | `/genere`     | n/a   | *Genere: **M**, **F**. Restituisce la singola percentuale di utenti per genere.* |
+| `GET`  | `/rangeEta`   | n/a   | *Restituisce la singola percentuale relativa al range dell'età.* |
+| `GET`  | `/condizioni` | n/a   | *Condizioni: **Grave Magrezza**, **Sottopeso**, **Normopeso**, **Sovrappeso**, **Obesità Classe I (lieve)**, **Obesità Classe II (media)**, **Obesità Classe III (grave)**.  Restituisce la singola percentuale relativa alla condizione fisica.* |
+| `GET`  | `/ultMis`     | num   | *Restituisce le ultime **num** misurazioni degli utenti.*    |
+| `POST` | `/stats`      | n/a   | *Restituisce le statistiche generali degli utenti filtrate secondo i parametri forniti* |
+| `POST` | `/ultMis`     | num   | *Restituisce le ultime **num** misurazioni registrate avendo applicato i filtri impostati* |
 
 
 
