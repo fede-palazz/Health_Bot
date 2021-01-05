@@ -10,7 +10,7 @@ import com.project.Health_Bot.model.Misurazione;
 import com.project.Health_Bot.model.Utente;
 
 /**
- * Interfaccia che modella l'utente già registrato
+ * Modella l'interfaccia di accesso ai dati dell'utente ancora registrato
  * 
  * @author FedePalaz & GiovanniNovelli9 & Baldellaux
  *
@@ -22,6 +22,7 @@ public interface UtenteRegDao {
      * Restituisce "False" se l'utente non è registrato nel sistema o lo è parzialmente
      * 
      * @param id
+     * @return utente registrato nel Bot
      */
     public boolean isRegistered(String id);
 
@@ -29,7 +30,7 @@ public interface UtenteRegDao {
      * Inserisce un nuovo utente nel DB
      * 
      * @param id
-     * @param user
+     * @param user id
      */
     public Utente inserisciUtente(String id, Utente user);
 
@@ -37,14 +38,15 @@ public interface UtenteRegDao {
      * Se presente, restituisce l'utente con l'id specificato
      * 
      * @param id
-     * @return
+     * @return id dell'utente registrato
      */
     public Utente getUtente(String id);
 
     /**
-     * Rimuove l'utente specificato dal DB e lo restituisce
+     * Rimuove l'utente specificato dal DB in memoria e lo restituisce
      * 
      * @param id
+     * @return rimozione dell'utente
      */
     public Utente rimuoviUtente(String id);
 
@@ -52,12 +54,12 @@ public interface UtenteRegDao {
      * Restituisce il tipo di utente ("sed", "sport", "pes")
      * 
      * @param user
-     * @return
+     * @return livello di attività fisica
      */
     public String getTipo(Utente user);
 
     /**
-     * Aggiorna il peso attuale dell'utente
+     * Aggiorna il peso attuale dell'utente in Kg
      * 
      * @param id
      * @param peso
@@ -114,29 +116,32 @@ public interface UtenteRegDao {
      * Restituisce l'ultima misurazione registrata dell'utente specificato
      * 
      * @param id
-     * @return
+     * @return Vector<Misurazione>
      */
     public Misurazione getUltimaMisurazione(Utente user);
 
     /**
      * Restituisce un allenamento casuale in base al tipo di utente
      * 
-     * @return allenamento
+     * @param user
+     * @return allenamento in Stringa
      */
     public String getAllenamento(Utente user);
 
     /**
      * Restituisce una dieta casuale in base al tipo di utente
      * 
+     * @param fcg
+     * @param user
      * @return dieta
      */
     public List<Vector<Alimento>> getDieta(Utente user, int fcg);
 
     /**
-     * Restituisce true se l'ultima misurazione registrata dell'utente è vuota
+     * Restituisce true se l'ultima misurazione registrata dell'utente è vuota, altrimenti false
      * 
-     * @param id
-     * @return
+     * @param user
+     * @return true o faslse, un boolean
      */
     public boolean isLastMisEmpty(Utente user);
 

@@ -41,6 +41,9 @@ import com.project.Health_Bot.util.JSONOffline;
 @RestController
 public class BotController {
 
+    /**
+     * Oggetti necessari per far funzionare il controller
+     */
     @Autowired
     private BotService service;
     private TelegramBot bot;
@@ -56,7 +59,7 @@ public class BotController {
     }
 
     /**
-     * Imposta un Listener per ricevere gli update in arrivo da Telegram
+     * Imposta un Listener per ricevere gli update in arrivo da Telegramz
      */
     private void riceviUpdate() {
         bot.setUpdatesListener(new UpdatesListener() {

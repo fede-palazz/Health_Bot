@@ -13,30 +13,40 @@ package com.project.Health_Bot.exception;
  */
 public class FoodNotFoundException extends Exception {
 
-	/**
-	* 
-	*/
-	private static final long serialVersionUID = 1L;
-	String message;
+    /**
+     * Serial ID generale dell'eccezione, generato automaticamente
+     */
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * 
-	 */
-	public FoodNotFoundException() {
-		super();
-	}
+    /**
+     * Messaggio generato dall'eccezione
+     */
+    private String message;
 
-	/**
-	 * 
-	 * @param message
-	 */
-	public FoodNotFoundException(String message) {
-		super(message);
-		this.message = message;
-	}
+    /**
+     * Costruttore di default
+     */
+    public FoodNotFoundException() {
+        super();
+    }
 
-	public String getMessage() {
-		return message;
-	}
+    /**
+     * Costruttore
+     * 
+     * @param message
+     */
+    public FoodNotFoundException(String message) {
+        super(message);
+        this.message = message;
+    }
+
+    /**
+     * Restituisce il messaggio generato dall'eccezione, sotto forma di stringa
+     * 
+     * @return mess
+     */
+    public String getMessage() {
+        return message;
+    }
 
 }

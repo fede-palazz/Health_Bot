@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package com.project.Health_Bot.exception;
 
 import java.time.Instant;
@@ -6,6 +9,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+/**
+ * 
+ * @author FedePalaz & GiovanniNovelli9 & Baldellaux
+ *
+ *         Questa classe contiene metodi che gestiscono eccezioni generali.
+ *
+ */
 @ControllerAdvice
 public class GestoreEccezioni {
 
@@ -13,7 +23,7 @@ public class GestoreEccezioni {
      * Gestisce le eccezioni derivanti da un incorretto inserimento dei paramentri dei filtri
      * 
      * @param ex
-     * @return
+     * @return ResponseEntity<Object>
      */
     @ExceptionHandler(value = { FilterArgumentException.class })
     public ResponseEntity<Object> gestisciInvalidWeightException(FilterArgumentException ex) {
@@ -26,7 +36,7 @@ public class GestoreEccezioni {
      * Gestisce un'eccezione generica
      * 
      * @param ex
-     * @return
+     * @return ResponseEntity<Object>
      */
     @ExceptionHandler(value = { Exception.class })
     public ResponseEntity<Object> gestisciInvalidWeightException(Exception ex) {
@@ -34,12 +44,12 @@ public class GestoreEccezioni {
                 ex.getMessage());
         return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
     }
-    
+
     /**
      * Gestisce le eccezioni derivanti da un incorretto inserimento dei paramentri
      * 
      * @param ex
-     * @return
+     * @return ResponseEntity<Object>
      */
     @ExceptionHandler(value = { InvalidParamException.class })
     public ResponseEntity<Object> gestisciInvalidWeightException(InvalidParamException ex) {

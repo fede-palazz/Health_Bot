@@ -13,30 +13,40 @@ package com.project.Health_Bot.exception;
  */
 public class InvalidParamException extends IllegalArgumentException {
 
-	/**
-	* 
-	*/
-	private static final long serialVersionUID = 1L;
-	String message;
+    /**
+     * Serial ID generale dell'eccezione, generato automaticamente
+     */
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * 
-	 */
-	public InvalidParamException() {
-		super();
-	}
+    /**
+     * Messaggio generato dall'eccezione
+     */
+    private String message;
 
-	/**
-	 * 
-	 * @param message
-	 */
-	public InvalidParamException(String message) {
-		super(message);
-		this.message = message;
-	}
+    /**
+     * Costruttore di default
+     */
+    public InvalidParamException() {
+        super();
+    }
 
-	public String getMessage() {
-		return message;
-	}
+    /**
+     * Costruttore
+     * 
+     * @param message
+     */
+    public InvalidParamException(String message) {
+        super(message);
+        this.message = message;
+    }
+
+    /**
+     * Restituisce il messaggio generato dall'eccezione, sotto forma di stringa
+     * 
+     * @return message
+     */
+    public String getMessage() {
+        return message;
+    }
 
 }

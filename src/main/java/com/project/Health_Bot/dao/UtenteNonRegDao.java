@@ -6,7 +6,7 @@ package com.project.Health_Bot.dao;
 import com.project.Health_Bot.model.Utente;
 
 /**
- * Interfaccia che modella l'utente non ancora registrato
+ * Modella l'interfaccia di accesso ai dati dell'utente non ancora registrato
  * 
  * @author FedePalaz & GiovanniNovelli9 & Baldellaux
  *
@@ -34,7 +34,7 @@ public interface UtenteNonRegDao {
      * Restituisce l'utente con l'id specificato, null se non è presente
      * 
      * @param id
-     * @return
+     * @return utente relativo all'id assegnato
      */
     public Utente getUtente(String id);
 
@@ -81,6 +81,7 @@ public interface UtenteNonRegDao {
      * Rimuove un utente da quelli in fase di registrazione e lo restituisce
      * 
      * @param id
+     * @return utente
      */
     public Utente rimuoviUtente(String id);
 

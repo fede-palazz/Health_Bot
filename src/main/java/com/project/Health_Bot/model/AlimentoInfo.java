@@ -14,6 +14,11 @@ public class AlimentoInfo extends Alimento {
 
     private double proteine, lipidi, carbo;
 
+    /**
+     * Costruttore
+     * 
+     * @param nome
+     */
     public AlimentoInfo(String nome) {
         super(nome);
     }

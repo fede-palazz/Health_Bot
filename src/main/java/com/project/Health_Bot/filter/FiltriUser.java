@@ -1,8 +1,18 @@
+/**
+ * 
+ */
 package com.project.Health_Bot.filter;
 
 import java.util.Vector;
 import com.project.Health_Bot.model.Utente;
 
+/**
+ * 
+ * @author FedePalaz & GiovanniNovelli9 & Baldellaux
+ * 
+ *         Superclasse astratta dei filtri rigurdanti le misurazioni
+ *
+ */
 public abstract class FiltriUser {
 
     /**
@@ -15,7 +25,6 @@ public abstract class FiltriUser {
 
     /**
      * Verifica che i parametri passati in ingresso al filtro siano validi o meno
-     * 
      */
     public abstract void validate();
 

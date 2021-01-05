@@ -25,7 +25,7 @@ import com.project.Health_Bot.util.JSONOffline;
 public class UtenteRegDaoImpl implements UtenteRegDao {
 
     /**
-     * Insieme utenti registrati al sistema
+     * Insieme di tutti gli utenti registrati al sistema
      */
     private static HashMap<String, Utente> utentiReg = new HashMap<String, Utente>();
 
@@ -49,6 +49,7 @@ public class UtenteRegDaoImpl implements UtenteRegDao {
         return utentiReg.get(id);
     }
 
+    @Override
     public Utente rimuoviUtente(String id) {
         return utentiReg.remove(id);
     }
@@ -142,6 +143,7 @@ public class UtenteRegDaoImpl implements UtenteRegDao {
             return null;
     }
 
+    @Override
     public String getTipo(Utente user) {
         if (user instanceof Sedentario)
             return "sed";

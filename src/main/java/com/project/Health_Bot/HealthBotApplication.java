@@ -7,9 +7,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * Runner
  * 
  * @author FedePalaz & GiovanniNovelli9 & Baldellaux
+ * 
+ *         Runner
  *
  */
 @SpringBootApplication
@@ -22,7 +23,6 @@ public class HealthBotApplication {
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-
         SpringApplication.run(HealthBotApplication.class, args);
     }
 

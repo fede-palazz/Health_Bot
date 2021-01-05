@@ -30,7 +30,7 @@ Il telegram client, cioè un normale utente dell'app telegram, manda un messaggi
 
 ## Configurazione iniziale
 
-Per poter iniziare è necessario creare un bot su Telegram interagendo direttamente con il BotFather, come mostrato nella gif sotto:
+Per poter iniziare è necessario creare un bot su Telegram interagendo direttamente con il BotFather, come mostrato nella Gif sotto:
 
 ![Introduzione](img/GIF/Introduzione.gif)
 
@@ -84,15 +84,29 @@ L’applicazione ora è pronta ed è in ascolto alla porta http://localhost8081.
 
 Le rotte definite sono le seguenti:
 
-| Tipo  | Rotta                          | Descrizione                                                  |
-| ----- | :----------------------------- | :----------------------------------------------------------- |
-| `GET` | `/tipo?tipo=param`             | *Parametri consentiti: **sed** = sedentari, **sport** = sportivi, **pes** = pesisti. Restituisce un JSONObject contenente la singola percentuale di utenti per ogni livello di attività fisica scelto.* |
-| `GET` | `/genere?genere=param`         | *Parametri consentiti: **M**, **F**.                                                                         Restituisce un JSONObject contenente la singola percentuale di utenti per genere.* |
-| `GET` | `/rangeEta?eta=anni`           | *Restituisce un JSONObject contenente la singola percentuale relativa al range dell'età scelta.* |
-| `GET` | `/condizioni?condizioni=param` | *Parametri consentiti: **magro** = Grave Magrezza, **sott** = Sottopeso, **norm** = Normopeso, **sovr** = Sovrappeso, **ob1** = Obesità Classe I (lieve), **ob2** = Obesità Classe II (media), **ob3** = Obesità Classe III (grave).                                                                      Restituisce un JSONObject contenente la singola percentuale relativa alla condizione fisica scelta.* |
-| `GET` | `/ultMis?lastMis=n`            | *Restituisce un JSONObject contenente le ultime **n** misurazioni scelte dall'utente.* |
-|       |                                |                                                              |
-|       |                                |                                                              |
+| Tipo   | Rotta         | Descrizione                                                  |
+| ------ | :------------ | :----------------------------------------------------------- |
+| `GET`  | `/lvlAtt`     | *Livello di attività:  **sedentario**,  **moderata**,  **pesante**. Restituisce la singola percentuale di utenti per ogni livello di attività fisica.* |
+| `GET`  | `/genere`     | *Genere: **M**, **F**. Restituisce la singola percentuale di utenti per genere.* |
+| `GET`  | `/rangeEta`   | *Restituisce la singola percentuale relativa al range dell'età.* |
+| `GET`  | `/condizioni` | *Condizioni: **Grave Magrezza**, **Sottopeso**, **Normopeso**, **Sovrappeso**, **Obesità Classe I (lieve)**, **Obesità Classe II (media)**, **Obesità Classe III (grave)**.                                                                      Restituisce la singola percentuale relativa alla condizione fisica.* |
+| `GET`  | `/ultMis`     | *Restituisce le ultime **n** misurazioni degli utenti.*      |
+| `POST` | `/stats`      |                                                              |
+| `POST` |               |                                                              |
+
+## Filtri
+
+I filtri definiti sono i seguenti:
+
+| Tipo          | Categoria | Parametri Filtro | Descrizione                                     |
+| ------------- | :-------- | ---------------- | :---------------------------------------------- |
+| `Utente`      | `Eta`     | etaMin, etaMax   | *Filtra in base al range di età scelto.*        |
+| `Utente`      | `Genere`  | gen              | *Filtra in base al genere: **M**, **F**.*       |
+| `Utente`      | `Tipo`    | tipo             | *Filtra in base al livello di attività fisica.* |
+| `Misurazioni` | `Peso`    | pesoMin, pesoMax | *Filtra in base al range di peso scelto .*      |
+| `Misurazioni` | `Bmi`     | bmiMin, bmiMax   | *Filtra in base al range di Bmi scelto .*       |
+| `Misurazioni` | `Lbm`     | lbmMin, lbmMax   | *Filtra in base al range di Lbm scelto .*       |
+| `Misurazioni` | `Data`    | dal, al          | *Filtra in base al range di date scelte .*      |
 
 ## Diagrammi UML
 
