@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package com.project.Health_Bot.filter;
 
 import java.util.Iterator;
@@ -8,10 +11,25 @@ import com.project.Health_Bot.model.Sedentario;
 import com.project.Health_Bot.model.Sportivo;
 import com.project.Health_Bot.model.Utente;
 
+/**
+ * 
+ * @author FedePalaz & GiovanniNovelli9 & Baldellaux
+ * 
+ *         Modella il filtro sull'età, estendendo la superclasse FiltriUser.
+ * 
+ */
 public class FiltroTipo extends FiltriUser {
 
+    /**
+     * Attributo su cui si basa il filtraggio
+     */
     private String tipo;
 
+    /**
+     * Costruttore
+     * 
+     * @param tipo
+     */
     public FiltroTipo(String tipo) {
         super();
         this.tipo = tipo;

@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package com.project.Health_Bot.filter;
 
 import java.text.ParseException;
@@ -8,11 +11,32 @@ import java.util.Vector;
 import com.project.Health_Bot.exception.FilterArgumentException;
 import com.project.Health_Bot.model.Misurazione;
 
+/**
+ * 
+ * @author FedePalaz & GiovanniNovelli9 & Baldellaux
+ * 
+ *         Modella il filtro sulla data, estendendo la superclasse FiltriUser. Usa due valori di
+ *         filtraggio, uno minimo, dataInizio, ed un valore massimo, dataFine.
+ *
+ */
 public class FiltroData extends FiltriMis {
 
+    /**
+     * Valori minimo e massimo di filtraggio
+     */
     private String dataInizio, dataFine;
-    SimpleDateFormat df; // Oggetto formattatore di date
 
+    /**
+     * Oggetto formattatore di date
+     */
+    SimpleDateFormat df;
+
+    /**
+     * Costruttore
+     * 
+     * @param dataInizio
+     * @param dataFine
+     */
     public FiltroData(String dataInizio, String dataFine) {
         super();
         this.dataInizio = dataInizio;

@@ -8,10 +8,27 @@ import java.util.Vector;
 import com.project.Health_Bot.exception.FilterArgumentException;
 import com.project.Health_Bot.model.Misurazione;
 
+/**
+ * 
+ * @author FedePalaz & GiovanniNovelli9 & Baldellaux
+ * 
+ *         Modella il filtro sul bmi, estendendo la superclasse FiltriMis. Usa due valori di
+ *         filtraggio, uno minimo, il bmiMin, ed un valore massimo, il bmiMax.
+ *
+ */
 public class FiltroBmi extends FiltriMis {
 
+    /**
+     * Valori minimo e massimo di filtraggio
+     */
     private Float bmiMin, bmiMax;
 
+    /**
+     * Costruttore
+     * 
+     * @param bmiMin
+     * @param bmiMax
+     */
     public FiltroBmi(Float bmiMin, Float bmiMax) {
         super();
         this.bmiMin = bmiMin;

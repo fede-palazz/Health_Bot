@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package com.project.Health_Bot.filter;
 
 import java.util.Iterator;
@@ -5,20 +8,33 @@ import java.util.Vector;
 import com.project.Health_Bot.exception.FilterArgumentException;
 import com.project.Health_Bot.model.Utente;
 
+/**
+ * 
+ * @author FedePalaz & GiovanniNovelli9 & Baldellaux
+ * 
+ *         Modella il filtro sull'età, estendendo la superclasse FiltriUser. Usa due valori di
+ *         filtraggio, uno minimo, etaMin, ed un valore massimo, etaMax.
+ *
+ */
 public class FiltroEta extends FiltriUser {
 
+    /**
+     * Valori minimo e massimo di filtraggio
+     */
     private Integer etaMin, etaMax;
 
+    /**
+     * Costruttore
+     * 
+     * @param etaMin
+     * @param etaMax
+     */
     public FiltroEta(Integer etaMin, Integer etaMax) {
         super();
         this.etaMin = etaMin;
         this.etaMax = etaMax;
     }
 
-    /**
-     * Filtra gli utenti in base ai valori minimi e massimi di età specificati
-     * 
-     */
     @Override
     public void filtra(Vector<Utente> utenti) {
         if (etaMin != null) {

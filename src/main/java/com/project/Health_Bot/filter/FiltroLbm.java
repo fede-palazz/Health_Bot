@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package com.project.Health_Bot.filter;
 
 import java.util.Iterator;
@@ -5,10 +8,27 @@ import java.util.Vector;
 import com.project.Health_Bot.exception.FilterArgumentException;
 import com.project.Health_Bot.model.Misurazione;
 
+/**
+ * 
+ * @author FedePalaz & GiovanniNovelli9 & Baldellaux
+ * 
+ *         Modella il filtro sull'lbm, estendendo la superclasse FiltriMis. Usa due valori di
+ *         filtraggio, uno minimo, il lbmMin, ed un valore massimo, il lbmMax.
+ *
+ */
 public class FiltroLbm extends FiltriMis {
 
+    /**
+     * Valori minimo e massimo di filtraggio
+     */
     private Float lbmMin, lbmMax;
 
+    /**
+     * Costruttore
+     * 
+     * @param lbmMin
+     * @param lbmMax
+     */
     public FiltroLbm(Float lbmMin, Float lbmMax) {
         super();
         this.lbmMin = lbmMin;

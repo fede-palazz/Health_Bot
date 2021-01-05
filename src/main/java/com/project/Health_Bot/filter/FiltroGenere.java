@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package com.project.Health_Bot.filter;
 
 import java.util.Iterator;
@@ -5,18 +8,31 @@ import java.util.Vector;
 import com.project.Health_Bot.exception.FilterArgumentException;
 import com.project.Health_Bot.model.Utente;
 
+/**
+ * 
+ * @author FedePalaz & GiovanniNovelli9 & Baldellaux
+ * 
+ *         Modella il filtro sull'età, estendendo la superclasse FiltriUser. Usa due valori di
+ *         filtraggio, cioè maschio o femmina, i possibili valori che può assumere sesso.
+ *
+ */
 public class FiltroGenere extends FiltriUser {
 
+    /**
+     * Attributo che può essere maschio o femmina
+     */
     private char sesso;
 
+    /**
+     * Costruttore
+     * 
+     * @param sesso
+     */
     public FiltroGenere(char sesso) {
         super();
         this.sesso = sesso;
     }
 
-    /**
-     * Filtra gli utenti in base al sesso specificato
-     */
     @Override
     public void filtra(Vector<Utente> utenti) {
         Iterator<Utente> iter = utenti.iterator();
