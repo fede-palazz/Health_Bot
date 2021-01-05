@@ -59,7 +59,7 @@ public class BotController {
     }
 
     /**
-     * Imposta un Listener per ricevere gli update in arrivo da Telegramz
+     * Imposta un Listener per ricevere gli update in arrivo da Telegram
      */
     private void riceviUpdate() {
         bot.setUpdatesListener(new UpdatesListener() {

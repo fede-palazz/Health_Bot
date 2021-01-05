@@ -114,19 +114,81 @@ I filtri definiti sono i seguenti:
 
 ## Diagrammi UML
 
-Diagramma dei casi d'uso:
+**Diagramma dei casi d'uso:**
 
 ![](img/UML/UseCaseDiagram.png)
 
 
 
-Diagrammi delle classi:
+**Diagrammi delle classi:**
+
+![](img/UML/Class_Diag/diagramma classi.png)
+
+
+
+- **Package controller:**
+
+  ![](img/UML/Class_Diag/controller.png)
+
+
+
+- **Package service:**
+
+  ![](img/UML/Class_Diag/service.png)
+
+
+
+- **Package filter:**
+
+![](img/UML/Class_Diag/filter.png)
+
+
+
+- **Package view:**
+
+![](img/UML/Class_Diag/view.png)
+
+
+
+- **Package dao:**
+
+![](img/UML/Class_Diag/dao.png)
+
+
+
+- **Package stats:**
+
+![](img/UML/Class_Diag/stats.png)
+
+
+
+- **Package test:**
+
+![](img/UML/Class_Diag/test.png)
+
+
+
+- **Package exception:**
+
+![](img/UML/Class_Diag/exception.png)
+
+
+
+- **Package model:**
+
+![](img/UML/Class_Diag/model.png)
+
+
+
+- **Package util:**
+
+![](img/UML/Class_Diag/util.png)
 
 
 
 
 
-Diagrammi delle sequenze:
+**Diagrammi delle sequenze:**
 
 ![](img/UML/Seq_diagram-Seq_Updates.png)
 
