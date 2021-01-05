@@ -8,22 +8,36 @@ import java.util.Date;
 
 /**
  * 
- * Classe che contiene i parametri ed i metodi descriventi
- * lo storico delle misurazioni
- * 
  * @author FedePalaz & GiovanniNovelli9 & Baldellaux
  * 
+ *         Classe che contiene i parametri ed i metodi descriventi
+ *         lo storico delle misurazioni
  *
  */
 public class Misurazione {
 
+    /**
+     * Attributo che descrive una misurazione
+     */
     private Float peso;
+
+    /**
+     * Attributo che descrive una misurazione
+     */
     private Float lbm;
+
+    /**
+     * Attributo che descrive una misurazione
+     */
     private Float bmi;
+
+    /**
+     * Attributo che descrive una misurazione
+     */
     private Date data;
 
     /**
-     * Costruttore di default
+     * Costruttore
      * 
      * @param data
      */
@@ -50,6 +64,7 @@ public class Misurazione {
     }
 
     /**
+     * Restituisce il peso dell'utente come float
      * 
      * @return peso
      */
@@ -58,6 +73,7 @@ public class Misurazione {
     }
 
     /**
+     * Imposta il peso dell'utente come float
      * 
      * @param peso
      */
@@ -66,6 +82,7 @@ public class Misurazione {
     }
 
     /**
+     * Restituisce l'lbm dell'utente come float
      * 
      * @return lbm
      */
@@ -74,6 +91,7 @@ public class Misurazione {
     }
 
     /**
+     * Imposta l'lbm dell'utente come Stringa
      * 
      * @param lbm
      */
@@ -82,6 +100,7 @@ public class Misurazione {
     }
 
     /**
+     * Restituisce il bmi dell'utente come float
      * 
      * @return bmi
      */
@@ -90,6 +109,7 @@ public class Misurazione {
     }
 
     /**
+     * Imposta il bmi dell'utente come float
      * 
      * @param bmi
      */
@@ -98,6 +118,7 @@ public class Misurazione {
     }
 
     /**
+     * Restituisce la data dell'utente come oggeto Date
      * 
      * @return data
      */
@@ -106,9 +127,9 @@ public class Misurazione {
     }
 
     /**
-     * Restituisce true se la misurazione è vuota
+     * Restituisce true se la misurazione è vuota, false altrimenti
      * 
-     * @return
+     * @return true o false
      */
     public boolean isEmpty() {
         if (this.peso == null && this.lbm == null && this.bmi == null)
@@ -118,7 +139,12 @@ public class Misurazione {
     }
 
     /**
-     * Metodo toString
+     * 
+     * Metodo toString.
+     * Restituisce la stringa formattata, che contiene le informazioni di una certa misurazione.
+     * 
+     * @return stringa formattata
+     * 
      */
     @Override
     public String toString() {

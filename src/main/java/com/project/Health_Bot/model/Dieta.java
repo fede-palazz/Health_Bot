@@ -8,24 +8,29 @@ import java.util.Vector;
 import com.project.Health_Bot.util.JSONOffline;
 
 /**
- * Classe che modella l'oggetto dieta
  * 
  * @author FedePalaz & GiovanniNovelli9 & Baldellaux
+ * 
+ *         Classe che modella l'oggetto dieta
  *
  */
 public class Dieta {
 
-    // vector di alimenti per ogni singolo pasto
+    /**
+     * Vector di oggetti Alimento per ogni pasto della giornata.
+     */
     private Vector<Alimento> colazione;
     private Vector<Alimento> pranzo;
     private Vector<Alimento> spuntino;
     private Vector<Alimento> cena;
+
     /**
      * Numero pasti giornalieri
      */
     private int numPasti;
+
     /**
-     * Numero di possibili pasti diversi generabili per ogni pasto
+     * Numero di pasti per ogni tipologia
      */
     private int tipiPasti;
 
@@ -41,18 +46,38 @@ public class Dieta {
         numPasti = 4;
     }
 
+    /**
+     * Restituisce la dieta per la colazione come vector di oggetti Alimento
+     * 
+     * @return colazione
+     */
     public Vector<Alimento> getColazione() {
         return colazione;
     }
 
+    /**
+     * Restituisce la dieta per il pranzo come vector di oggetti Alimento
+     * 
+     * @return pranzo
+     */
     public Vector<Alimento> getPranzo() {
         return pranzo;
     }
 
+    /**
+     * Restituisce la dieta per lo spuntino come vector di oggetti Alimento
+     * 
+     * @return spuntino
+     */
     public Vector<Alimento> getSpuntino() {
         return spuntino;
     }
 
+    /**
+     * Restituisce la dieta per lo spuntino come vector di oggetti Alimento
+     * 
+     * @return colazione
+     */
     public Vector<Alimento> getCena() {
         return cena;
     }
@@ -61,7 +86,7 @@ public class Dieta {
      * Genera una dieta calcolata accuratamente in base al valore del FCG
      * dell'utente
      * 
-     * @param fcg Fabbisogno calorico giornaliero
+     * @param fcg, cioè Fabbisogno Calorico Giornaliero
      */
     public void generaDieta(int fcg) {
 
@@ -145,7 +170,7 @@ public class Dieta {
     }
 
     /**
-     * Metodo che setta il Vector con i nuovi elementi (kcal, quantita') calcolati
+     * Metodo che imposta il Vector con i nuovi elementi (kcal, quantità) calcolati
      * in base al fcg dell'utente
      * 
      * @param pasto
@@ -164,10 +189,10 @@ public class Dieta {
     }
 
     /**
-     * Metodo che calcola le Kcal di un pasto
+     * Metodo che calcola le Kcal di un pasto, come intero
      * 
      * @param pasto
-     * @return
+     * @return computo totale delle Kcal di un pasto
      */
     private int getKcal(Vector<Alimento> pasto) {
         int n = 0;
@@ -178,6 +203,8 @@ public class Dieta {
 
     /**
      * Metodo toString()
+     * 
+     * @return stringa del pasto designato
      */
     @Override
     public String toString() {

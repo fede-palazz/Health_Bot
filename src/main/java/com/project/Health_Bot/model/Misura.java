@@ -36,30 +36,33 @@ public interface Misura {
     public void inserisciMisurazione();
 
     /**
-     * Restituisce le misurazioni dell'utente
+     * Restituisce le misurazioni dell'utente, sotto forma di Vector di oggetti Misurazione
+     * 
+     * @return Vector<Misurazione>
      */
     public Vector<Misurazione> getMisurazioni();
 
     /**
-     * Restituisce le ultime N misurazioni
+     * Restituisce le ultime N misurazioni, sotto forma di Vector di oggetti Misurazione
      * 
-     * @param ultimeN
-     * @return
+     * @param ultimeN misurazioni di un utente
+     * @return Vector<Misurazione>
      */
     public Vector<Misurazione> getMisurazioni(int ultimeN);
 
     /**
-     * Restituisce il tipo di utente {"sed", "sport", "pes"}
+     * Restituisce il tipo di utente {"sed", "sport", "pes"}, come stringa
      * 
      * @return Tipo di utente
      */
     public String getTipo();
 
     /**
-     * Restituisce una dieta casuale sulla base del fcg
+     * Restituisce una dieta casuale, come Lista di di Vector di oggetti Misurazione, sulla base
+     * dell'intero fcg
      * 
      * @param fcg
-     * @return
+     * @return List<Vector<Alimento>>
      */
     public List<Vector<Alimento>> getDieta(int fcg);
 }

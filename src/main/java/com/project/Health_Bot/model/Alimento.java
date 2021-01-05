@@ -11,8 +11,16 @@ package com.project.Health_Bot.model;
  */
 public class Alimento {
 
+    /**
+     * Nome dell'alimento
+     */
     private String nome;
+
+    /**
+     * Kcal dell'alimento
+     */
     private int kcal;
+
     /**
      * Quantità in grammi
      */
@@ -41,6 +49,7 @@ public class Alimento {
     }
 
     /**
+     * Restituisce sotto forma di Stringa il nome dell'alimento
      * 
      * @return nome
      */
@@ -49,6 +58,7 @@ public class Alimento {
     }
 
     /**
+     * Imposta il nome dell'alimento come Stringa
      * 
      * @param nome
      */
@@ -57,6 +67,7 @@ public class Alimento {
     }
 
     /**
+     * Restituisce la quantità di kcal dell'alimento, come intero
      * 
      * @return energia
      */
@@ -65,6 +76,7 @@ public class Alimento {
     }
 
     /**
+     * Imposta la quantità di kcal dell'alimento, come intero
      * 
      * @param energia
      */
@@ -73,6 +85,7 @@ public class Alimento {
     }
 
     /**
+     * Restituisce la quantità in grammi dell'alimento, come intero
      * 
      * @return Quantità in grammi
      */
@@ -81,7 +94,7 @@ public class Alimento {
     }
 
     /**
-     * Imposta la quantità [g]
+     * Imposta la quantità in grammi dell'alimento, come intero
      * 
      * @param qta
      */

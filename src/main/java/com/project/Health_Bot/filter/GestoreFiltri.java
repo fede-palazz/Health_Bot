@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package com.project.Health_Bot.filter;
 
 import java.util.Vector;
@@ -5,11 +8,41 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.project.Health_Bot.model.Misurazione;
 import com.project.Health_Bot.model.Utente;
 
+/**
+ * 
+ * @author FedePalaz & GiovanniNovelli9 & Baldellaux
+ * 
+ *         Classe che gestisce i filtri.
+ *
+ */
 public class GestoreFiltri {
 
+    /**
+     * Attributo gestito
+     */
     private Vector<FiltriUser> filtriUser;
+
+    /**
+     * Attributo gestito
+     */
     private Vector<FiltriMis> filtriMis;
 
+    /**
+     * Costruttore
+     * 
+     * @param etaMin
+     * @param etaMax
+     * @param genere
+     * @param tipo
+     * @param pesoMin
+     * @param pesoMax
+     * @param bmiMin
+     * @param bmiMax
+     * @param lbmMin
+     * @param lbmMax
+     * @param dataInizio
+     * @param dataFine
+     */
     public GestoreFiltri(@JsonProperty("etaMin") Integer etaMin, @JsonProperty("etaMax") Integer etaMax,
             @JsonProperty("gen") String genere, @JsonProperty("tipo") String tipo,
             @JsonProperty("pesoMin") Float pesoMin, @JsonProperty("pesoMax") Float pesoMax,
@@ -43,10 +76,20 @@ public class GestoreFiltri {
             filtriMis.add(new FiltroData(dataInizio, dataFine));
     }
 
+    /**
+     * Restituisce un Vector di oggetti di tipo FiltriUser
+     * 
+     * @return filtriUser
+     */
     public Vector<FiltriUser> getFiltriUser() {
         return filtriUser;
     }
 
+    /**
+     * Restituisce un Vector di oggetti di tipo FiltreiMis
+     * 
+     * @return filtriMis
+     */
     public Vector<FiltriMis> getFiltriMis() {
         return filtriMis;
     }

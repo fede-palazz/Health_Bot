@@ -10,14 +10,22 @@ import java.util.Vector;
 import com.project.Health_Bot.util.JSONOffline;
 
 /**
- * Classe che modella l'utente pesista.
  * 
  * @author FedePalaz & GiovanniNovelli9 & Baldellaux
+ * 
+ *         Classe che modella l'utente pesista.
  *
  */
 public class Pesista extends Utente implements Misura {
 
+    /**
+     * Attributo misurazioni, espresso come Vector di oggetti Misurazione
+     */
     private Vector<Misurazione> misurazioni;
+
+    /**
+     * Oggetto dieta
+     */
     private Dieta dieta;
 
     /**
@@ -61,6 +69,7 @@ public class Pesista extends Utente implements Misura {
 
     /**
      * Metodo che genera un numero casuale e restituisce un allenamento salvato nel file
+     * allenamenti.json
      * 
      * @return Allenamento per utente Pesista
      */

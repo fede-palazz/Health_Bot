@@ -12,6 +12,9 @@ package com.project.Health_Bot.model;
  */
 public class AlimentoInfo extends Alimento {
 
+    /**
+     * Attributi nutrizionali aggiuntivi del generico alimento
+     */
     private double proteine, lipidi, carbo;
 
     /**
@@ -41,6 +44,7 @@ public class AlimentoInfo extends Alimento {
     }
 
     /**
+     * Restituisce la quantità di proteine dell'alimento, come double
      * 
      * @return energia
      */
@@ -49,6 +53,7 @@ public class AlimentoInfo extends Alimento {
     }
 
     /**
+     * Imposta le proteine dell'alimento, come double
      * 
      * @param proteine
      */
@@ -57,6 +62,7 @@ public class AlimentoInfo extends Alimento {
     }
 
     /**
+     * Restituisce la quantità di lipidi dell'alimento, come double
      * 
      * @return lipidi
      */
@@ -65,6 +71,7 @@ public class AlimentoInfo extends Alimento {
     }
 
     /**
+     * Imposta i lipidi dell'alimento, come double
      * 
      * @param lipidi
      */
@@ -73,6 +80,7 @@ public class AlimentoInfo extends Alimento {
     }
 
     /**
+     * Restituisce la quantità di carboidrati dell'alimento, come double
      * 
      * @return carboidrati
      */
@@ -81,6 +89,7 @@ public class AlimentoInfo extends Alimento {
     }
 
     /**
+     * Imposta i carboidrati dell'alimento, come double
      * 
      * @param carboidrati
      */
@@ -89,7 +98,9 @@ public class AlimentoInfo extends Alimento {
     }
 
     /**
-     * Stampa le informazioni dell'alimento
+     * Stampa le informazioni dell'alimento, come stringa
+     * 
+     * @return la stringa con le informazioni nutrizionali sull'alimento
      */
     @Override
     public String toString() {
