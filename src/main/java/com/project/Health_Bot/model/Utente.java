@@ -7,9 +7,10 @@ import java.util.Calendar;
 import java.util.Optional;
 
 /**
- * Classe che modella l'utente
  * 
  * @author FedePalaz & GiovanniNovelli9 & Baldellaux
+ * 
+ *         Classe che modella l'utente
  *
  */
 public class Utente {
@@ -18,14 +19,17 @@ public class Utente {
      * Sesso ('M' o 'F')
      */
     protected Character sesso;
+
     /**
      * Altezza in cm
      */
     protected Integer altezza;
+
     /**
      * Peso inserito in fase di registrazione
      */
     protected Float peso;
+
     /**
      * Anno di nascita
      */
@@ -59,7 +63,10 @@ public class Utente {
         this.annoNascita = annoNascita;
     }
 
+    // Optional sostituisce il riferimento nullo con un riferimento non nullo e indica che il valore desiderato potrebbe essere nullo.
+    // Fornisce un modo per verificare se l'oggetto desiderato è disponibile o meno.
     /**
+     * Restituisce il sesso dell'utente, come Character
      * 
      * @return Sesso dell'utente
      */
@@ -68,6 +75,7 @@ public class Utente {
     }
 
     /**
+     * Imposta il sesso dell'utente, come Character
      * 
      * @param sesso
      */
@@ -76,6 +84,7 @@ public class Utente {
     }
 
     /**
+     * Restituisce l'altezza dell'utente, come intero
      * 
      * @return Altezza [cm]
      */
@@ -84,6 +93,7 @@ public class Utente {
     }
 
     /**
+     * Imposta l'altezza dell'utente, come intero
      * 
      * @param altezza
      */
@@ -92,6 +102,7 @@ public class Utente {
     }
 
     /**
+     * Restituisce il peso dell'utente, come float
      * 
      * @return Peso al momento della registrazione
      */
@@ -100,6 +111,7 @@ public class Utente {
     }
 
     /**
+     * Imposta il peso dell'utente, come float
      * 
      * @param peso
      */
@@ -108,7 +120,7 @@ public class Utente {
     }
 
     /**
-     * Metodo che calcola l'età a aprtire dall'anno di nascita
+     * Metodo che calcola l'età, a partire dall'anno di nascita dell'utente
      * 
      * @return età
      */
@@ -124,7 +136,7 @@ public class Utente {
     /**
      * Getter di annoNascita
      * 
-     * @return Anno di nascita
+     * @return annoNascita
      */
     public Optional<Integer> getAnnoNascita() {
         return Optional.ofNullable(this.annoNascita);

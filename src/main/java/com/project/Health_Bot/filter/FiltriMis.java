@@ -10,7 +10,7 @@ import com.project.Health_Bot.model.Misurazione;
  * 
  * @author FedePalaz & GiovanniNovelli9 & Baldellaux
  * 
- *         Superclasse astratta dei filtri rigurdanti le misurazioni
+ *         Superclasse astratta dei filtri rigurdanti le misurazioni.
  *
  */
 public abstract class FiltriMis {
