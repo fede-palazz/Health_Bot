@@ -1,4 +1,4 @@
-#           Progetto Programmazione ad Oggetti: Health_Bot
+#           getto Programmazione ad Oggetti: Health_Bot
 
 <img src = "img/Bot_def.jpg" width="500">
 
@@ -13,10 +13,11 @@
 - [Configurazione iniziale](#configurazione-iniziale)
 
 - [Anteprima: funzionamento nell'app mobile Telegram](#anteprima--funzionamento-nell-app-mobile-telegram)
+
   * [Registrazione dell'utente:](#registrazione-dell-utente-)
   * [Menù parte 1:](#men--parte-1-)
   * [Menù parte 2:](#men--parte-2-)
-  
+
 - [Download](#download)
 
 - [Rotte](#rotte)
@@ -51,29 +52,28 @@ Lo scopo del progetto è quello di realizzare un Web Service in grado di interag
 
 ## Logica di funzionamento
 
-Il telegram client, cioè un normale utente dell'app telegram, manda un messaggio alla chat @health_fit_bot (https://t.me/health_fit_bot), che risponde con una delle viste programmate. L'interfaccia del bot è a sua volta controllata dal web service (il software qui sviluppato) che comunica direttamente con la Telegramm Bot API attraverso richieste formattatate in HTTP. Quest'ultima, in base alla richiesta dell'utente, nel caso di Health_Bot, per esempio, questa funzione si attiva nel bottone "Info nutrizionali", si può inoltre mettere in comunicazione attraverso una richiesta HTTP con una REST API esterna.
+- Quando un utente invia ad Health_Bot ([@health_fit_bot](https://t.me/health_fit_bot)) un messaggio, esso viene salvato nei server di Telegram per circa 24 ore. 
+- Il nostro web service, attraverso delle richieste HTTP alla Telegram Bot API, richiede periodicamente eventuali nuovi updates inviati dagli utenti. 
+- Alla ricezione di nuovi messaggi, avviene l'elaborazione della richiesta dell'utente e il responso viene rimandato indietro alla Bot API.
 
 ![](img/Funzionamento_BOT.png)
 
 ## Configurazione iniziale
 
-Per poter iniziare è necessario creare un bot su Telegram interagendo direttamente con il BotFather, come mostrato nella Gif sotto:
+Per poter iniziare a programmare un bot, sarà necessario crearne uno nuovo interagendo direttamente con [BotFather](https://t.me/botfather/), come mostrato nella Gif sotto:
 
 ![Introduzione](img/GIF/Introduzione.gif)
 
 
 
-Successivamente, seguendo le istruzioni indicate da BotFather, sarà possibile, per esempio:
+Successivamente, seguendo le istruzioni indicate da BotFather, sarà possibile:
 
-- Scegliere un username per il bot (deve terminare con 'Bot' o 'bot');
+- Scegliere un username per il bot (deve terminare con 'Bot' o 'bot')
+- Abilitare/disabilitare l'inserimento del bot nei gruppi
+- Scegliere la descrizione tramite il comando '/setdescription'
+- ecc...
 
-- Abilitare/disabilitare il bot ad essere inserito in gruppi;
-
-- Scegliere la descrizione tramite il comando '/setdescription'.
-
-Inoltre BotFather fornisce all'utente il token da utilizzare per comandare il bot tramite richieste HTTP.
-
-
+Inoltre BotFather fornisce all'utente il `token` da utilizzare per comandare il bot tramite richieste HTTP.
 
 ## Anteprima: funzionamento nell'app mobile Telegram
 
@@ -81,31 +81,31 @@ Inoltre BotFather fornisce all'utente il token da utilizzare per comandare il bo
 
 ![](img/GIF/Registrazione/RegBotFinal.gif)
 
-### Menù parte 1:
+### Menù pt.1:
 
 ![](img/GIF/Menu/Menu1Lento.gif)
 
 
 
-### Menù parte 2:
+### Menù pt.2:
 
 ![](img/GIF/Menu/Menu2Lento.gif)
 
-
-
 ## Download
 
-Attraverso l’ambiente Eclipse si possono eseguire le seguenti operazioni:
+1. Clonare il repository (o scaricare e scompattare lo zip)
 
-• Clonare la repository dal workspace di Github;
+   ```bash
+   $ git clone https://github.com/fedePalazz/Health_Bot.git
+   ```
 
-• Eseguire il codice come SpringBoot application;
+2. Importare il progetto con Eclipse/IntelliJ
 
-• Aprire un API testing, come ad esempio [PostMan](https://www.postman.com).
+   > File --> Import --> Existing Maven Project
 
-L’applicazione ora è pronta ed è in ascolto alla porta http://localhost8081.
+3. Avviare `HealthBotApplication.java` come Spring Boot App
 
-
+4. Ora sarà possibile interagire con Health_Bot direttamente dall'app di Telegram e, in aggiunta, eseguire le richieste GET/POST indicate di seguito all'indirizzo http://localhost:8081.
 
 ## Rotte
 
@@ -121,9 +121,7 @@ Le rotte definite sono le seguenti:
 | `POST` | `/stats`      | n/a   | *Restituisce le statistiche generali degli utenti filtrate secondo i parametri forniti* |
 | `POST` | `/ultMis`     | num   | *Restituisce le ultime **num** misurazioni registrate avendo applicato i filtri impostati* |
 
-
-
-Esempio di rotta /rangeEta di tipo GET :
+Esempio di rotta `/rangeEta` di tipo GET :
 
 *Response:*
 
@@ -147,115 +145,108 @@ I filtri definiti sono i seguenti:
 
 
 
-Esempio di rotta /stats di tipo POST :
+Esempio di rotta `/stats` di tipo POST :
 
 *Body:*
 
 ![](img/Rotte_Filtri/POSTbody.jpg)
 
-
-
 *Response:*
 
 <details>
-
-  
+{
+"Età": 
+  [
     {
-    "Età": [
-        {
-            "Range di età": "0-17",
-            "Percentuale": "0.0%"
-        },
-        {
-            "Range di età": "18-34",
-            "Percentuale": "100.0%"
-        },
-        {
-            "Range di età": "35-49",
-            "Percentuale": "0.0%"
-        },
-        {
-            "Range di età": "50-64",
-            "Percentuale": "0.0%"
-        },
-        {
-            "Range di età": "65 in sù",
-            "Percentuale": "0.0%"
-        }
-    ],
-    "Genere": [
-        {
-            "Genere": "M",
-            "Percentuale": "100.0%"
-        },
-        {
-            "Genere": "F",
-            "Percentuale": "0.0%"
-        }
-    ],
-    "Utenti selezionati": "10%",
-    "Livello attività": [
-        {
-            "Livello attività": "Sedentario",
-            "Percentuale": "0.0%"
-        },
-        {
-            "Livello attività": "Moderata",
-            "Percentuale": "100.0%"
-        },
-        {
-            "Livello attività": "Pesante",
-            "Percentuale": "0.0%"
-        }
-    ],
-    "Condizione": [
-        {
-            "Range di età": "GRAVE MAGREZZA",
-            "Percentuale": "0.0%"
-        },
-        {
-            "Range di età": "SOTTOPESO",
-            "Percentuale": "0.0%"
-        },
-        {
-            "Range di età": "NORMOPESO",
-            "Percentuale": "100.0%"
-        },
-        {
-            "Range di età": "SOVRAPPESO",
-            "Percentuale": "0.0%"
-        },
-        {
-            "Range di età": "OBESITÀ CLASSE I (lieve)",
-            "Percentuale": "0.0%"
-        },
-        {
-            "Range di età": "OBESITÀ CLASSE II (media)",
-            "Percentuale": "0.0%"
-        },
-        {
-            "Range di età": "OBESITÀ CLASSE III (grave)",
-            "Percentuale": "0.0%"
-        }
-    ]
+        "Range di età": "0-17",
+        "Percentuale": "0.0%"
+    },
+    {
+        "Range di età": "18-34",
+        "Percentuale": "100.0%"
+    },
+    {
+        "Range di età": "35-49",
+        "Percentuale": "0.0%"
+    },
+    {
+        "Range di età": "50-64",
+        "Percentuale": "0.0%"
+    },
+    {
+        "Range di età": "65 in sù",
+        "Percentuale": "0.0%"
     }
-   
-
+  ],
+"Genere": 
+  [
+    {
+        "Genere": "M",
+        "Percentuale": "100.0%"
+    },
+    {
+        "Genere": "F",
+        "Percentuale": "0.0%"
+    }
+  ],
+"Utenti selezionati": "10%",
+"Livello attività": 
+  [
+    {
+        "Livello attività": "Sedentario",
+        "Percentuale": "0.0%"
+    },
+    {
+        "Livello attività": "Moderata",
+        "Percentuale": "100.0%"
+    },
+    {
+        "Livello attività": "Pesante",
+        "Percentuale": "0.0%"
+    }
+  ],
+"Condizione": 
+  [
+    {
+        "Range di età": "GRAVE MAGREZZA",
+        "Percentuale": "0.0%"
+    },
+    {
+        "Range di età": "SOTTOPESO",
+        "Percentuale": "0.0%"
+    },
+    {
+        "Range di età": "NORMOPESO",
+        "Percentuale": "100.0%"
+    },
+    {
+        "Range di età": "SOVRAPPESO",
+        "Percentuale": "0.0%"
+    },
+    {
+        "Range di età": "OBESITÀ CLASSE I (lieve)",
+        "Percentuale": "0.0%"
+    },
+    {
+        "Range di età": "OBESITÀ CLASSE II (media)",
+        "Percentuale": "0.0%"
+    },
+    {
+        "Range di età": "OBESITÀ CLASSE III (grave)",
+        "Percentuale": "0.0%"
+    }
+  ]
+}
 </details>
-
-
-
-
-
 ## Diagrammi UML
 
-**Diagramma dei casi d'uso:**
+### **Diagramma dei casi d'uso:**
 
 ![](img/UML/UseCaseDiagram.png)
 
 
 
-**Diagrammi delle classi:**
+### **Diagrammi delle classi:**
 
 ![](img/UML/Class_Diag/diagClassi.png)
 
@@ -263,12 +254,16 @@ Esempio di rotta /stats di tipo POST :
 
 - **Package controller:**
 
+  
+  
   <img src = "img/UML/Class_Diag/controller.png" width="700">
 
 
 
 - **Package service:**
 
+  
+  
   <img src = "img/UML/Class_Diag/service.png" width="700">
 
 
@@ -321,73 +316,59 @@ Esempio di rotta /stats di tipo POST :
 
 
 
+### **Diagrammi delle sequenze:**
 
-
-**Diagrammi delle sequenze:**
-
-- **Updates:**
+- **Meccanismo di richiesta degli updates ed elaborazione degli stessi**
 
 ![](img/UML/Seq_Diag/Seq_diagram-Seq_Updates.png)
 
 
 
-- **Registrazione:**
+- **Registrazione di un nuovo utente**
 
 ![](img/UML/Seq_Diag/class_diagram-Seq_Registrazione.png)
 
 
 
-- **Chiamata API del BMI:**
+- **Chiamata alla Food API**
 
 ![](img/UML/Seq_Diag/class_diagram-Seq_BmiAPI.png)
 
 
 
-- **Rotte:**
+- **Esempio di rotta POST "/stats"**
 
-
-
-
-
-
+![](img/UML/Seq_Diag/class_diagram-Seq_Rotte.png)
 
 ## Tecnologie utilizzate
 
 - Software utilizzati:
 
-  [Eclipse](https://www.eclipse.org/downloads/) -IDE per scrivere il codice in Java 
+  [Eclipse](https://www.eclipse.org/downloads/) - IDE per scrivere il codice in Java 
 
-  [SpringBoot](https://spring.io/projects/spring-boot) -framework per sviluppo di applicazioni Java
+  [SpringBoot](https://spring.io/projects/spring-boot) - framework backend Java
 
-  [PostMan](https://www.postman.com) -Software per l'API Testing
+  [PostMan](https://www.postman.com) - Software per l'API Testing
 
-  [UMLGenerator](http://www.umldesigner.org) -utilizzato per il diagramma dei casi d'uso
+  [UMLGenerator](http://www.umldesigner.org) - utilizzato per il diagramma dei casi d'uso
 
-  [Draw.io](https://app.diagrams.net) -utilizzato per il diagramma delle classi e delle sequenze
+  [Draw.io](https://app.diagrams.net) - utilizzato per il diagramma delle classi e delle sequenze
 
-  [Typora](https://typora.io) -usato per scrivere il ReadMe.md in formato Markdown
-
-
+  [Typora](https://typora.io) - usato per scrivere il ReadMe.md in formato Markdown
 
 - Telegram BOT API:
 
-  [Telegram](https://core.telegram.org/bots/api) -Documentazione API telegram 
-
-  
+  [Telegram](https://core.telegram.org/bots/api) - Documentazione API telegram 
 
 - Implentazione per Java (librerie utilizzate):
 
   [Libreria Pengrad](https://github.com/pengrad/java-telegram-bot-api)
 
-
-
 - REST API esterne:
 
-  [CalorieNinjas](https://rapidapi.com/calorieninjas/api/calorieninjas/endpoints) -API che restituisce le info nutrizionali su di un alimento
+  [CalorieNinjas](https://rapidapi.com/calorieninjas/api/calorieninjas/endpoints) - API che restituisce le info nutrizionali su di un alimento
 
-  [BMICalculator](https://rapidapi.com/SharkAPIs/api/body-mass-index-bmi-calculator/) -API che calcola automaticamente il BMI di un individuo
-
-  
+  [BMICalculator](https://rapidapi.com/SharkAPIs/api/body-mass-index-bmi-calculator/) - API che calcola automaticamente il BMI di un individuo
 
 ## Autori
 
