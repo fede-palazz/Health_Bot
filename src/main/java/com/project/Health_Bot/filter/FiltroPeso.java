@@ -39,7 +39,7 @@ public class FiltroPeso extends FiltriMis {
     public void validate() {
         if (pesoMin != null && pesoMin < 0)
             throw new FilterArgumentException("Il peso minimo non può essere negativo");
-        if (pesoMax != null && pesoMax < pesoMin)
+        if (pesoMin != null && pesoMax != null && pesoMax < pesoMin)
             throw new FilterArgumentException("Il peso massimo non può essere minore di quello minimo");
     }
 

@@ -43,7 +43,7 @@ public class FiltroEta extends FiltriUser {
     public void validate() {
         if (etaMin != null && etaMin < 0)
             throw new FilterArgumentException("L'età minima non può essere negativa");
-        if (etaMax != null && etaMax < etaMin)
+        if (etaMin != null && etaMax != null && etaMax < etaMin)
             throw new FilterArgumentException("L'età massima non può essere minore di quella minima");
     }
 

@@ -27,7 +27,6 @@ public class FiltroBmi extends FiltriMis {
                 if (mis.getBmi() < bmiMin)
                     iter.remove();
             }
-
         }
         if (bmiMax != null) {
             Iterator<Misurazione> iter = misure.iterator();
@@ -43,7 +42,7 @@ public class FiltroBmi extends FiltriMis {
     public void validate() {
         if (bmiMin != null && bmiMin < 0)
             throw new FilterArgumentException("Il bmi minimo non può essere negativo");
-        if (bmiMax != null && bmiMax < bmiMin)
+        if (bmiMin != null && bmiMax != null && bmiMax < bmiMin)
             throw new FilterArgumentException("Il bmi massimo non può essere minore di quello minimo");
     }
 
