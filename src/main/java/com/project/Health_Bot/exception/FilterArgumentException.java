@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package com.project.Health_Bot.exception;
 
 public class FilterArgumentException extends IllegalArgumentException {

@@ -294,6 +294,7 @@ public class BotServiceImpl implements BotService {
             return view;
 
         case "Torna al menù ⬅️":
+            richiestaInfoNutr.put(userId, false);
             view.add(Menu.getVistaMenu(chatId));
             return view;
 
@@ -486,9 +487,9 @@ public class BotServiceImpl implements BotService {
         if (richiestaInfoNutr.get(userId) != null && richiestaInfoNutr.get(userId)) {
             // mess = nomeCibo
             try {
-                richiestaInfoNutr.put(userId, false);
                 view.add(Menu.getVistaInfoNutr(chatId, JSONOnline.FOOD_API(mess)));
                 view.add(Menu.getVistaMenu(chatId));
+                richiestaInfoNutr.put(userId, true);
             }
             catch (ParseException e) {
                 e.printStackTrace();

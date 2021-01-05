@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package com.project.Health_Bot.exception;
 
 import java.time.Instant;

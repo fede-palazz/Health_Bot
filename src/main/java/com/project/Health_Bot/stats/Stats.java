@@ -103,7 +103,7 @@ public interface Stats {
      * @param mis
      * @return Vector di misurazioni
      */
-    public Vector<Misurazione> ultimeMis(int n, Vector<Misurazione> mis); // Per le rotte
+    public Vector<Misurazione> ultimeMis(int n, Vector<Misurazione> mis);
 
     /**
      * Restituisce il valore massimo del parametro selezionato, tra le misurazioni del singolo utente.
