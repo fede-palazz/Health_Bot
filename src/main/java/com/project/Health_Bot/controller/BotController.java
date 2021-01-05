@@ -86,6 +86,13 @@ public class BotController {
         });
     }
 
+    /**
+     * Rotta POST che restituisce le statistiche generali degli utenti filtrate secondo i parametri
+     * forniti
+     * 
+     * @param gest
+     * @return statistiche generali filtrate
+     */
     @SuppressWarnings("unchecked")
     @PostMapping("/stats")
     public JSONObject getStat(@RequestBody GestoreFiltri gest) {
@@ -140,23 +147,10 @@ public class BotController {
 
     @SuppressWarnings("unchecked")
     @GetMapping("/lvlAtt")
-    public JSONArray getLvlAtt() {
-        String[] tipo = { "Sedentario", "Moderata", "Pesante" };
-        Vector<Utente> utenti = JSONOffline.getUtenti();
-        StatsImpl stats = new StatsImpl();
-        float[] perc = stats.percTipo(utenti);
-        JSONArray ja = new JSONArray();
-        for (int i = 0; i < perc.length; i++) {
-            JSONObject jo = new JSONObject();
-            jo.put("Livello attività", tipo[i]);
-            jo.put("Percentuale", perc[i] + "%");
-            ja.add(jo);
-        }
-        return ja;
-    }
-
-    @SuppressWarnings("unchecked")
     public JSONArray getLvlAtt(Vector<Utente> utenti) {
+        // Carica tutti gli utenti se non specificati come parametro
+        if (utenti.isEmpty())
+            utenti = JSONOffline.getUtenti();
         String[] tipo = { "Sedentario", "Moderata", "Pesante" };
         StatsImpl stats = new StatsImpl();
         float[] perc = stats.percTipo(utenti);
@@ -170,26 +164,18 @@ public class BotController {
         return ja;
     }
 
+    /**
+     * Rotta GET che restituisce le statistiche sul genere degli utenti
+     * 
+     * @param utenti
+     * @return statistiche genere
+     */
     @SuppressWarnings("unchecked")
     @GetMapping("/genere")
-    public JSONArray getGenere() {
-        String[] genere = { "M", "F" };
-        Vector<Utente> utenti = JSONOffline.getUtenti();
-        StatsImpl stats = new StatsImpl();
-        float[] perc = stats.percGenere(utenti);
-        JSONArray ja = new JSONArray();
-
-        for (int i = 0; i < perc.length; i++) {
-            JSONObject jo = new JSONObject();
-            jo.put("Genere", genere[i]);
-            jo.put("Percentuale", perc[i] + "%");
-            ja.add(jo);
-        }
-        return ja;
-    }
-
-    @SuppressWarnings("unchecked")
     public JSONArray getGenere(Vector<Utente> utenti) {
+        // Carica tutti gli utenti se non specificati come parametro
+        if (utenti.isEmpty())
+            utenti = JSONOffline.getUtenti();
         String[] genere = { "M", "F" };
         StatsImpl stats = new StatsImpl();
         float[] perc = stats.percGenere(utenti);
@@ -204,26 +190,18 @@ public class BotController {
         return ja;
     }
 
+    /**
+     * Rotta GET che restituisce le statistiche sull'età degli utenti
+     * 
+     * @param utenti
+     * @return statistiche età
+     */
     @SuppressWarnings("unchecked")
     @GetMapping("/rangeEta")
-    public JSONArray getRangeEta() {
-        String[] rangeEta = { "0-17", "18-34", "35-49", "50-64", "65 in sù" };
-        Vector<Utente> utenti = JSONOffline.getUtenti();
-        StatsImpl stats = new StatsImpl();
-        float[] perc = stats.percRangeEta(utenti);
-        JSONArray ja = new JSONArray();
-
-        for (int i = 0; i < perc.length; i++) {
-            JSONObject jo = new JSONObject();
-            jo.put("Range di età", rangeEta[i]);
-            jo.put("Percentuale", perc[i] + "%");
-            ja.add(jo);
-        }
-        return ja;
-    }
-
-    @SuppressWarnings("unchecked")
     public JSONArray getRangeEta(Vector<Utente> utenti) {
+        // Carica tutti gli utenti se non specificati come parametro
+        if (utenti.isEmpty())
+            utenti = JSONOffline.getUtenti();
         String[] rangeEta = { "0-17", "18-34", "35-49", "50-64", "65 in sù" };
         StatsImpl stats = new StatsImpl();
         float[] perc = stats.percRangeEta(utenti);
@@ -238,26 +216,16 @@ public class BotController {
         return ja;
     }
 
+    /**
+     * Rotta GET che restituisce le statistiche sulle condizioni fisiche degli utenti
+     * 
+     * @param utenti
+     * @return statistiche condizione
+     */
     @SuppressWarnings("unchecked")
     @GetMapping("/condizioni")
-    public JSONArray getCondizioni() {
-        String[] condizioni = { "GRAVE MAGREZZA", "SOTTOPESO", "NORMOPESO", "SOVRAPPESO", "OBESITÀ CLASSE I (lieve)", "OBESITÀ CLASSE II (media)", "OBESITÀ CLASSE III (grave)" };
-        Vector<Utente> utenti = JSONOffline.getUtenti();
-        StatsImpl stats = new StatsImpl();
-        float[] perc = stats.percCondizioni(utenti); // Percentuali condizioni utenti
-        JSONArray ja = new JSONArray();
-
-        for (int i = 0; i < perc.length; i++) {
-            JSONObject jo = new JSONObject();
-            jo.put("Range di età", condizioni[i]);
-            jo.put("Percentuale", perc[i] + "%");
-            ja.add(jo);
-        }
-        return ja;
-    }
-
-    @SuppressWarnings("unchecked")
     public JSONArray getCondizioni(Vector<Utente> utenti) {
+
         String[] condizioni = { "GRAVE MAGREZZA", "SOTTOPESO", "NORMOPESO", "SOVRAPPESO", "OBESITÀ CLASSE I (lieve)", "OBESITÀ CLASSE II (media)", "OBESITÀ CLASSE III (grave)" };
         StatsImpl stats = new StatsImpl();
         float[] perc = stats.percCondizioni(utenti); // Percentuali condizioni utenti
@@ -272,30 +240,47 @@ public class BotController {
         return ja;
     }
 
+    /**
+     * Rotta GET che restituisce le ultime n misurazioni registrate
+     * 
+     * @param n numero misurazioni da restituire
+     * @return ultime n misurazioni
+     */
     @GetMapping("/ultMis")
     public Vector<Misurazione> getUltMis(@RequestParam("num") int n) {
 
         Vector<Utente> utenti = JSONOffline.getUtenti();
         Vector<Misurazione> mis = JSONOffline.getMisura(utenti);
-        //ordino per data
+        // Ordina per data
         mis.sort((m1, m2) -> m1.getData().compareTo(m2.getData()));
-
         StatsImpl statics = new StatsImpl();
         return statics.ultimeMis(n, mis);
-
     }
 
+    /**
+     * Rotta POST che restituisce le ultime n misurazioni registrate avendo applicato i filtri impostati
+     * 
+     * @param n    numero misurazioni da restituire
+     * @param gest gestore filtri
+     * @return ultime n misurazioni filtrate
+     */
     @PostMapping("/ultMis")
-    public Vector<Misurazione> getUltMisFiltr(@RequestParam("num") int n) {
-
+    public Vector<Misurazione> getUltMisFiltr(@RequestParam("num") int n, @RequestBody GestoreFiltri gest) {
+        // Verifica che i parametri dei filtri siano corretti
+        gest.convalidaFiltri();
+        // Utenti nel DB
         Vector<Utente> utenti = JSONOffline.getUtenti();
+        // Filtra gli utenti
+        gest.filtraUser(utenti);
+        // Misurazioni di tutti gli utenti
         Vector<Misurazione> mis = JSONOffline.getMisura(utenti);
+        // Filtra le misurazioni
+        gest.filtraMis(mis);
         //ordino per data
         mis.sort((m1, m2) -> m1.getData().compareTo(m2.getData()));
-
         StatsImpl statics = new StatsImpl();
+        // Restituisce le ultime n misurazioni
         return statics.ultimeMis(n, mis);
-
     }
 
 }
