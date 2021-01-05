@@ -114,7 +114,7 @@ public class Menu {
      * Vista aggiornamento peso completato con successo
      * 
      * @param chatId
-     * @return
+     * @return response
      */
     public static SendMessage getVistaPesoSucc(long chatId) {
         // Testo del messaggio

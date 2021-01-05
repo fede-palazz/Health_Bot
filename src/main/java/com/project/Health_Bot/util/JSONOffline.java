@@ -23,9 +23,9 @@ import com.project.Health_Bot.model.Sportivo;
 import com.project.Health_Bot.model.Utente;
 
 /**
- * Gestisce la lettura/scrittura di un file JSON locale
- *
  * @author FedePalaz & GiovanniNovelli9 & Baldellaux
+ * 
+ *         Gestisce la lettura/scrittura di un file JSON locale
  * 
  */
 public class JSONOffline {
@@ -59,7 +59,7 @@ public class JSONOffline {
 	 * Restituisce il JSONArray letto dal file specificato
 	 * 
 	 * @param nome_file
-	 * @return
+	 * @return JSONArray presente nel file
 	 */
 	public static JSONArray caricaArray(String nome_file) {
 		// caricare JSONObject salvato in locale su un file .JSON
@@ -80,7 +80,7 @@ public class JSONOffline {
 	 * Restituisce il JSONObject letto dal file specificato
 	 * 
 	 * @param nome_file
-	 * @return
+	 * @return JSONObject presente nel file
 	 */
 	public static JSONObject caricaObj(String nome_file) {
 		// caricare JSONObject salvato in locale su un file .JSON
@@ -103,7 +103,7 @@ public class JSONOffline {
 	 * Controlla se nel DB è presente un utente con un dato id
 	 * 
 	 * @param id
-	 * @return
+	 * @return true se l'utente è registrato, false in caso contrario
 	 */
 	public static Boolean isRegistered(String id) {
 		JSONArray ja = caricaArray(pathUtenti);
@@ -123,7 +123,7 @@ public class JSONOffline {
 	 * Restituisce un utente salvato nel DB con le proprie misurazioni
 	 * 
 	 * @param id
-	 * @return
+	 * @return Utente con proprie misurazioni corrispondente all'id inserito
 	 */
 	public static Utente getUtente(String id) {
 		JSONArray ja = caricaArray(pathUtenti);
@@ -214,7 +214,7 @@ public class JSONOffline {
 	 * Converte un oggetto Utente in un JSONObject
 	 * 
 	 * @param user
-	 * @return
+	 * @return JSONObject che contiene le informazioni dell'utente
 	 */
 	@SuppressWarnings("unchecked")
 	public static JSONObject getUtenteObj(Utente user) {
@@ -287,7 +287,7 @@ public class JSONOffline {
 	/**
 	 * Restituisce il DB salvato in locale
 	 * 
-	 * @return
+	 * @return HashMap<String, Utente>, collezioni di coppie id e utente
 	 */
 	public static HashMap<String, Utente> caricaDB() {
 
@@ -417,7 +417,7 @@ public class JSONOffline {
 	}
 
 	/**
-	 * Inserisce l'oggetto Alimento nel Vector(Alimento) del pasto scelto
+	 * Inserisce l'oggetto Alimento nel Vector<Alimento> del pasto scelto
 	 * 
 	 * @param ja JSONArray che contiene il pasto selezionato
 	 */
@@ -444,9 +444,9 @@ public class JSONOffline {
 	}
 
 	/**
-	 * Carica gli utenti dal DB in un Vector(Utente)
+	 * Carica gli utenti dal DB in un Vector<Utente>
 	 * 
-	 * @return
+	 * @return Vector<Utente> contenente tutti gli utenti del DB
 	 */
 	public static Vector<Utente> getUtenti() {
 		// Leggere il DB locale e caricarlo in memoria
@@ -463,7 +463,7 @@ public class JSONOffline {
 	 * Da vettore di utenti a vettore di misurazioni (non ordinate)
 	 * 
 	 * @param utenti
-	 * @return
+	 * @return Vector<Misurazione> contenente le misurazioni di tutti gli utenti
 	 */
 	public static Vector<Misurazione> getMisura(Vector<Utente> utenti) {
 		// Da vettore di utenti a vettore di misurazioni (non ordinate)
