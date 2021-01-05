@@ -91,8 +91,8 @@ Le rotte definite sono le seguenti:
 | `GET`  | `/rangeEta`   | *Restituisce la singola percentuale relativa al range dell'età.* |
 | `GET`  | `/condizioni` | *Condizioni: **Grave Magrezza**, **Sottopeso**, **Normopeso**, **Sovrappeso**, **Obesità Classe I (lieve)**, **Obesità Classe II (media)**, **Obesità Classe III (grave)**.  Restituisce la singola percentuale relativa alla condizione fisica.* |
 | `GET`  | `/ultMis`     | *Restituisce le ultime **n** misurazioni degli utenti.*      |
-| `POST` | `/stats`      |                                                              |
-| `POST` |               |                                                              |
+| `POST` | `/stats`      | *Restituisce le statistiche generali degli utenti filtrate secondo i parametri forniti* |
+| `POST` | `/ultMis`     | *Restituisce le ultime **n** misurazioni registrate avendo applicato i filtri impostati* |
 
 
 
