@@ -120,7 +120,7 @@ public class ParamNutr {
             return "OBESITÀ CLASSE II (media)";
         }
         else if (bmi >= 40) {
-            return "OBESITÀCLASSE III (grave)";
+            return "OBESITÀ CLASSE III (grave)";
         }
         return null;
     }

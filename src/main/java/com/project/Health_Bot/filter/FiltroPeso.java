@@ -24,7 +24,6 @@ public class FiltroPeso extends FiltriMis {
                 if (mis.getPeso() < pesoMin)
                     iter.remove();
             }
-
         }
         if (pesoMax != null) {
             Iterator<Misurazione> iter = misure.iterator();

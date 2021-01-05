@@ -35,7 +35,6 @@ public class StatsImpl implements Stats {
             else if (utente instanceof Pesista)
                 cont[2]++;
         }
-
         int utentiTot = cont[0] + cont[1] + cont[2];
         float[] perc = new float[3];
         // percentuale utenti sedentari
@@ -47,7 +46,7 @@ public class StatsImpl implements Stats {
         return perc;
     }
 
-    @Override
+    @Override // TODO Più inutile del precedente
     public float percTipo(String tipo, Vector<Utente> utenti) {
 
         float[] perc = percTipo(utenti);
@@ -74,7 +73,6 @@ public class StatsImpl implements Stats {
             else
                 cont[1]++;
         }
-
         int utentiTot = cont[0] + cont[1];
         float[] perc = new float[2];
         // percentuale utenti maschi
@@ -86,7 +84,7 @@ public class StatsImpl implements Stats {
 
     }
 
-    @Override
+    @Override // TODO Ancora più inutile
     public float percGenere(char gender, Vector<Utente> utenti) {
         float[] perc = percGenere(utenti);
 
@@ -120,20 +118,20 @@ public class StatsImpl implements Stats {
         int utentiTot = cont[0] + cont[1] + cont[2] + cont[3] + cont[4];
 
         float[] perc = new float[5];
-        // percentuale utenti con eta<18
+        // percentuale utenti con eta < 18
         perc[0] = ((float) (cont[0] * 100 / utentiTot));
-        // percentuale utenti con 18=<eta<35 
+        // percentuale utenti con 18 <= eta < 35 
         perc[1] = ((float) (cont[1] * 100 / utentiTot));
-        // percentuale utenti con 35=<eta<50
+        // percentuale utenti con 35 <= eta < 50
         perc[2] = ((float) (cont[2] * 100 / utentiTot));
-        // percentuale utenti con 50=<eta<65
+        // percentuale utenti con 50 <= eta < 65
         perc[3] = ((float) (cont[3] * 100 / utentiTot));
-        // percentuale utenti con eta>=65
+        // percentuale utenti con eta >= 65
         perc[4] = ((float) (cont[4] * 100 / utentiTot));
         return perc;
     }
 
-    @Override
+    @Override // TODO Inutile
     public float percRangeEta(int eta, Vector<Utente> utenti) {
         float[] perc = percRangeEta(utenti);
 
@@ -157,6 +155,8 @@ public class StatsImpl implements Stats {
 
         for (Utente utente : utenti) {
             String cond = null;
+
+            // Verifica la condizione di ogni utente
             if (utente instanceof Sedentario) {
                 Vector<Misurazione> ultimaMis = ((Sedentario) utente).getMisurazioni(1);
                 float bmi = ultimaMis.get(0).getBmi();
@@ -195,7 +195,6 @@ public class StatsImpl implements Stats {
                 cont[6]++;
                 break;
             }
-
         }
         int utentiTot = 0;
         for (int i = 0; i < cont.length; i++)
@@ -208,7 +207,7 @@ public class StatsImpl implements Stats {
         return perc;
     }
 
-    @Override
+    @Override // TODO Inutilissimo
     public float percCondizioni(String condizione, Vector<Utente> utenti) {
         float[] perc = percCondizioni(utenti);
         switch (condizione) {

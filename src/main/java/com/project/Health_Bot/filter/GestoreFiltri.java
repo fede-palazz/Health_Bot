@@ -61,11 +61,21 @@ public class GestoreFiltri {
             filtro.validate();
     }
 
+    /**
+     * Applica tutti i filtri utente impostati alla lista di utenti
+     * 
+     * @param utenti
+     */
     public void filtraUser(Vector<Utente> utenti) {
         for (FiltriUser filtro : filtriUser)
             filtro.filtra(utenti);
     }
 
+    /**
+     * Applica tutti i filtri misure impostati alla lista di misurazioni
+     * 
+     * @param misure
+     */
     public void filtraMis(Vector<Misurazione> misure) {
         for (FiltriMis filtro : filtriMis)
             filtro.filtra(misure);
