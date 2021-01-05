@@ -89,10 +89,12 @@ Le rotte definite sono le seguenti:
 | `GET`  | `/lvlAtt`     | *Livello di attività:  **sedentario**,  **moderata**,  **pesante**. Restituisce la singola percentuale di utenti per ogni livello di attività fisica.* |
 | `GET`  | `/genere`     | *Genere: **M**, **F**. Restituisce la singola percentuale di utenti per genere.* |
 | `GET`  | `/rangeEta`   | *Restituisce la singola percentuale relativa al range dell'età.* |
-| `GET`  | `/condizioni` | *Condizioni: **Grave Magrezza**, **Sottopeso**, **Normopeso**, **Sovrappeso**, **Obesità Classe I (lieve)**, **Obesità Classe II (media)**, **Obesità Classe III (grave)**.                                                                      Restituisce la singola percentuale relativa alla condizione fisica.* |
+| `GET`  | `/condizioni` | *Condizioni: **Grave Magrezza**, **Sottopeso**, **Normopeso**, **Sovrappeso**, **Obesità Classe I (lieve)**, **Obesità Classe II (media)**, **Obesità Classe III (grave)**.  Restituisce la singola percentuale relativa alla condizione fisica.* |
 | `GET`  | `/ultMis`     | *Restituisce le ultime **n** misurazioni degli utenti.*      |
 | `POST` | `/stats`      |                                                              |
 | `POST` |               |                                                              |
+
+
 
 ## Filtri
 
@@ -107,6 +109,8 @@ I filtri definiti sono i seguenti:
 | `Misurazioni` | `Bmi`     | bmiMin, bmiMax   | *Filtra in base al range di Bmi scelto .*       |
 | `Misurazioni` | `Lbm`     | lbmMin, lbmMax   | *Filtra in base al range di Lbm scelto .*       |
 | `Misurazioni` | `Data`    | dal, al          | *Filtra in base al range di date scelte .*      |
+
+
 
 ## Diagrammi UML
 
