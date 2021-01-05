@@ -13,18 +13,19 @@ package com.project.Health_Bot.exception;
 public class InvalidUpdateException extends Exception {
 
     /**
-     * 
+     * Serial ID generale dell'eccezione, generato automaticamente
      */
     private static final long serialVersionUID = 1L;
 
     /**
-     * 
+     * Costruttore di default
      */
     public InvalidUpdateException() {
         super();
     }
 
     /**
+     * Costruttore
      * 
      * @param message
      */

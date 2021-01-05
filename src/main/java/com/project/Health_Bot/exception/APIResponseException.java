@@ -13,24 +13,25 @@ package com.project.Health_Bot.exception;
  */
 public class APIResponseException extends Exception {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    /**
+     * Serial ID generale dell'eccezione, generato automaticamente
+     */
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * 
-	 */
-	public APIResponseException() {
-		super();
-	}
+    /**
+     * Costruttore di default
+     */
+    public APIResponseException() {
+        super();
+    }
 
-	/**
-	 * 
-	 * @param message
-	 */
-	public APIResponseException(String message) {
-		super(message);
-	}
+    /**
+     * Costruttore
+     * 
+     * @param message
+     */
+    public APIResponseException(String message) {
+        super(message);
+    }
 
 }
