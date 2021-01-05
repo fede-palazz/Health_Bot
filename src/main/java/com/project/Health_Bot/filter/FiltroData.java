@@ -86,8 +86,10 @@ public class FiltroData extends FiltriMis {
     public void validate() {
         Date dal = null, al = null;
         try {
-            dal = df.parse(dataInizio);
-            al = df.parse(dataFine);
+            if (dataInizio != null)
+                dal = df.parse(dataInizio);
+            if (dataFine != null)
+                al = df.parse(dataFine);
         }
         catch (ParseException e) {
             throw new FilterArgumentException("Date inserite non valide (formato accettato 'dd-MM-yyyy')");

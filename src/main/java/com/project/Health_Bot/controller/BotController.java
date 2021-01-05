@@ -127,7 +127,6 @@ public class BotController {
                     filtro.filtra(misure);
                     if (misure.size() < num) {
                         iter.remove();
-                        break;
                     }
                 }
             }
@@ -231,7 +230,9 @@ public class BotController {
     @SuppressWarnings("unchecked")
     @GetMapping("/condizioni")
     public JSONArray getCondizioni(Vector<Utente> utenti) {
-
+        // Carica tutti gli utenti se non specificati come parametro
+        if (utenti.isEmpty())
+            utenti = JSONOffline.getUtenti();
         String[] condizioni = { "GRAVE MAGREZZA", "SOTTOPESO", "NORMOPESO", "SOVRAPPESO", "OBESITÀ CLASSE I (lieve)", "OBESITÀ CLASSE II (media)", "OBESITÀ CLASSE III (grave)" };
         StatsImpl stats = new StatsImpl();
         float[] perc = stats.percCondizioni(utenti); // Percentuali condizioni utenti
@@ -252,15 +253,21 @@ public class BotController {
      * @param n numero misurazioni da restituire
      * @return ultime n misurazioni
      */
+    @SuppressWarnings("unchecked")
     @GetMapping("/ultMis")
-    public Vector<Misurazione> getUltMis(@RequestParam("num") int n) {
-
+    public JSONArray getUltMis(@RequestParam("num") int n) {
         Vector<Utente> utenti = JSONOffline.getUtenti();
         Vector<Misurazione> mis = JSONOffline.getMisura(utenti);
         // Ordina per data
         mis.sort((m1, m2) -> m1.getData().compareTo(m2.getData()));
         StatsImpl statics = new StatsImpl();
-        return statics.ultimeMis(n, mis);
+        // Restituisce le ultime n misurazioni
+        Vector<Misurazione> ultimeMis = statics.ultimeMis(n, mis);
+        // Le restituisce in un JSONArray
+        JSONArray ja = new JSONArray();
+        for (Misurazione misura : ultimeMis)
+            ja.add(JSONOffline.getMisureObj(misura));
+        return ja;
     }
 
     /**
@@ -270,8 +277,9 @@ public class BotController {
      * @param gest gestore filtri
      * @return ultime n misurazioni filtrate
      */
+    @SuppressWarnings("unchecked")
     @PostMapping("/ultMis")
-    public Vector<Misurazione> getUltMisFiltr(@RequestParam("num") int n, @RequestBody GestoreFiltri gest) {
+    public JSONArray getUltMisFiltr(@RequestParam("num") int n, @RequestBody GestoreFiltri gest) {
         // Verifica che i parametri dei filtri siano corretti
         gest.convalidaFiltri();
         // Utenti nel DB
@@ -280,13 +288,18 @@ public class BotController {
         gest.filtraUser(utenti);
         // Misurazioni di tutti gli utenti
         Vector<Misurazione> mis = JSONOffline.getMisura(utenti);
+
         // Filtra le misurazioni
         gest.filtraMis(mis);
-        //ordino per data
-        mis.sort((m1, m2) -> m1.getData().compareTo(m2.getData()));
+
         StatsImpl statics = new StatsImpl();
         // Restituisce le ultime n misurazioni
-        return statics.ultimeMis(n, mis);
+        Vector<Misurazione> ultimeMis = statics.ultimeMis(n, mis);
+        // Le restituisce in un JSONArray
+        JSONArray ja = new JSONArray();
+        for (Misurazione misura : ultimeMis)
+            ja.add(JSONOffline.getMisureObj(misura));
+        return ja;
     }
 
 }
