@@ -26,7 +26,7 @@ public class GestoreEccezioni {
      * @return ResponseEntity<Object>
      */
     @ExceptionHandler(value = { FilterArgumentException.class })
-    public ResponseEntity<Object> gestisciInvalidWeightException(FilterArgumentException ex) {
+    public ResponseEntity<Object> gestisciFilterArgumentException(FilterArgumentException ex) {
         Errore err = new Errore(HttpStatus.BAD_REQUEST, Instant.now(), ex.getClass().getCanonicalName(),
                 ex.getMessage());
         return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
@@ -39,20 +39,7 @@ public class GestoreEccezioni {
      * @return ResponseEntity<Object>
      */
     @ExceptionHandler(value = { Exception.class })
-    public ResponseEntity<Object> gestisciInvalidWeightException(Exception ex) {
-        Errore err = new Errore(HttpStatus.BAD_REQUEST, Instant.now(), ex.getClass().getCanonicalName(),
-                ex.getMessage());
-        return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
-    }
-
-    /**
-     * Gestisce le eccezioni derivanti da un incorretto inserimento dei paramentri
-     * 
-     * @param ex
-     * @return ResponseEntity<Object>
-     */
-    @ExceptionHandler(value = { InvalidParamException.class })
-    public ResponseEntity<Object> gestisciInvalidWeightException(InvalidParamException ex) {
+    public ResponseEntity<Object> gestisciException(Exception ex) {
         Errore err = new Errore(HttpStatus.BAD_REQUEST, Instant.now(), ex.getClass().getCanonicalName(),
                 ex.getMessage());
         return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
