@@ -1,4 +1,4 @@
-#           getto Programmazione ad Oggetti: Health_Bot
+# Progetto Programmazione ad Oggetti: Health_Bot
 
 <img src = "img/Bot_def.jpg" width="500">
 
