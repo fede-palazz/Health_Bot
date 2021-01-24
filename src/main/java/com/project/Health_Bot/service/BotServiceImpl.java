@@ -253,10 +253,8 @@ public class BotServiceImpl implements BotService {
         Float peso = utenteRegDao.getUltimaMisurazione(utente).getPeso();
 
         StatsImpl stats = new StatsImpl();
-        // Ultima misurazione registrata
-        Vector<Misurazione> misure = new Vector<Misurazione>();
-        for (Misurazione m : utenteRegDao.getMisurazioni(utente))
-            misure.add(m);
+        // Lista misurazioni utente
+        Vector<Misurazione> misure = utenteRegDao.getMisurazioni(utente);
 
         // Oggetto formattatore di date
         SimpleDateFormat date = new SimpleDateFormat("dd-MM-yyyy");

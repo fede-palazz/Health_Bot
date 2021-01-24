@@ -116,14 +116,16 @@ public class Pesista extends Utente implements Misura {
 
     @Override
     public Vector<Misurazione> getMisurazioni() {
-        return misurazioni;
+        // Restituisce una copia del vector di misurazioni
+        return new Vector<Misurazione>(misurazioni);
     }
 
     @Override
     public Vector<Misurazione> getMisurazioni(int ultimeN) {
-        if (misurazioni.size() <= ultimeN)
+        if (misurazioni.size() <= ultimeN) {
             // Se le misurazioni registrate sono inferiori al numero richiesto, restituisce tutto il Vector
-            return misurazioni;
+            return new Vector<Misurazione>(misurazioni);
+        }
         else { // Altrimenti restituisce le ultime N
             Vector<Misurazione> misure = new Vector<Misurazione>();
             for (int i = misurazioni.size() - ultimeN - 1; i < misurazioni.size(); i++)

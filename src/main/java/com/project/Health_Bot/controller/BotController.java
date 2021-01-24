@@ -288,7 +288,8 @@ public class BotController {
         gest.filtraUser(utenti);
         // Misurazioni di tutti gli utenti
         Vector<Misurazione> mis = JSONOffline.getMisura(utenti);
-
+        // Ordina le misurazioni in ordine cronologico
+        mis.sort((m1, m2) -> m1.getData().compareTo(m2.getData()));
         // Filtra le misurazioni
         gest.filtraMis(mis);
 
